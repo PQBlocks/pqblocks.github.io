@@ -5,6 +5,8 @@ description: The six steps of a post-quantum migration, the PQBlocks package for
 
 # The post-quantum transition, mapped
 
+<div class="pqb-figure" data-figure="swap" data-label="Seven building blocks in a tray. The block under the pointer lifts out of its slot and its neighbours part: one block replaced without touching the rest."></div>
+
 <p class="pqb-lead">Moving off RSA and elliptic curves is a multi-year engineering programme, not a library upgrade. This page maps each step to the package that does the work and to the deadlines that set the pace.</p>
 
 ![Six migration steps (discover, assess, govern, migrate, interoperate, verify) and the PQBlocks packages for each](assets/diagrams/pipeline-light.svg#only-light)

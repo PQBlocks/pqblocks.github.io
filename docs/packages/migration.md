@@ -8,6 +8,8 @@ schema: {"@context": "https://schema.org", "@type": "CollectionPage", "name": "P
 
 # :material-radar: Migration & readiness
 
+<div class="pqb-figure" data-figure="loupe" data-label="A loupe over a ruled sheet: the pointer drags it across to inspect."></div>
+
 <p class="pqb-lead">Find cryptography in code and on the wire, emit CBOMs, score readiness, gate CI with policy-as-code and assemble compliance evidence.</p>
 
 <div class="grid cards" markdown>

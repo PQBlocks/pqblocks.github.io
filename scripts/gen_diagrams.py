@@ -35,8 +35,14 @@ def text(x, y, s, t, size=14, weight=400, color=None, anchor="middle"):
         x, y, size, weight, color or t["text"], anchor, escape(s))
 
 
+def top_of_channels(box_h):
+    return 116 + box_h + 36
+
+
 def ecosystem(pkgs, t):
-    w, h = 1200, 560
+    most = max(min(sum(1 for p in pkgs if p["area"] == a), 10) for a in AREAS)
+    box_h = 92 + most * 25
+    w, h = 1200, top_of_channels(box_h) + 110
     out = [text(w // 2, 52, "PQBlocks ecosystem", t, 26, 700),
            text(w // 2, 80, "%d packages across five areas of the post-quantum transition" % len(pkgs), t, 15, 400, t["muted"])]
     bw, gap, top = 212, 20, 116
@@ -44,15 +50,17 @@ def ecosystem(pkgs, t):
     for i, area in enumerate(AREAS):
         x = x0 + i * (bw + gap)
         names = sorted(p["package"][9:] for p in pkgs if p["area"] == area)
-        out.append('<rect x="%d" y="%d" width="%d" height="300" rx="12" fill="%s" stroke="%s"/>' % (x, top, bw, t["panel"], t["line"]))
+        if len(names) > 10:                       # keep the box readable as the catalog grows
+            names = names[:9] + ["+%d more" % (len(names) - 9)]
+        out.append('<rect x="%d" y="%d" width="%d" height="%d" rx="12" fill="%s" stroke="%s"/>' % (x, top, bw, box_h, t["panel"], t["line"]))
         out.append('<rect x="%d" y="%d" width="%d" height="5" rx="2" fill="url(#acc)"/>' % (x, top, bw))
         out.append(text(x + bw // 2, top + 36, area, t, 15, 700))
         out.append(text(x + bw // 2, top + 58, "%d packages" % len(names), t, 13, 400, t["muted"]))
-        for j, n in enumerate(names[:9]):
+        for j, n in enumerate(names):
             out.append('<rect x="%d" y="%d" width="%d" height="22" rx="11" fill="%s"/>' % (x + 16, top + 74 + j * 25, bw - 32, t["chip"]))
             out.append(text(x + bw // 2, top + 89 + j * 25, n, t, 12, 500))
     # delivery channels: solid = shipped, dashed = roadmap
-    cy = 452
+    cy = top_of_channels(box_h)
     out.append(text(w // 2, cy, "Delivery channels", t, 15, 700))
     chans = [("Python packages", True), ("npm modules", False), ("Native SDKs", False), ("CLIs", True), ("MCP + agent skills", True), ("Hosted services", False)]
     cw, cg = 170, 14
@@ -67,13 +75,15 @@ def ecosystem(pkgs, t):
     return svg(w, h, "\n".join(out), "PQBlocks ecosystem: five areas and delivery channels", t)
 
 
-def pipeline(t):
+def pipeline(pkgs, t):
     steps = [("Discover", "find every algorithm", ["scan", "lint"]),
              ("Assess", "score and document", ["cbom", "agility"]),
              ("Govern", "enforce in CI", ["policy", "jwe-audit", "cnsa-evidence"]),
              ("Migrate", "hybrid PQ primitives", ["core", "primitives", "jose", "files"]),
              ("Interoperate", "carry it on the wire", ["tls-interop", "wire", "csr-pop", "jwe"]),
              ("Verify", "prove it is correct", ["acvp", "fips-check"])]
+    live = {p["package"][9:] for p in pkgs}
+    steps = [(a, b, [n for n in c if n in live]) for a, b, c in steps]
     w, h = 1200, 340
     out = [text(w // 2, 40, "The post-quantum migration, step by step", t, 22, 700),
            text(w // 2, 64, "package names below omit the pqblocks- prefix", t, 12, 400, t["muted"])]
@@ -97,11 +107,12 @@ def pipeline(t):
 
 
 def main():
-    pkgs = json.load(open(os.path.join(ROOT, "data", "catalog.json")))["packages"]
+    pkgs = [p for p in json.load(open(os.path.join(ROOT, "data", "catalog.json")))["packages"]
+            if not p.get("held") and p.get("verified") is True]
     os.makedirs(OUT, exist_ok=True)
     for name, t in THEMES.items():
         open(os.path.join(OUT, "ecosystem-%s.svg" % name), "w").write(ecosystem(pkgs, t))
-        open(os.path.join(OUT, "pipeline-%s.svg" % name), "w").write(pipeline(t))
+        open(os.path.join(OUT, "pipeline-%s.svg" % name), "w").write(pipeline(pkgs, t))
     print("diagrams ->", os.path.relpath(OUT, ROOT))
 
 

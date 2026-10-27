@@ -13,7 +13,7 @@ Source of **[pqblocks.github.io](https://pqblocks.github.io)**, the documentatio
 
 ```mermaid
 flowchart LR
-    P[26 package repositories] -->|build_catalog.py --verify<br/>runs every quickstart| C[data/catalog.json]
+    P[package repositories<br/>topic: pqblocks] -->|build_catalog.py --verify<br/>runs every quickstart| C[data/catalog.json]
     C -->|gen_docs.py| D[package, area and catalog pages<br/>llms.txt · llms-full.txt]
     C -->|gen_diagrams.py| G[SVG diagrams]
     R[docs/recipes/code/*.py] -->|check_recipes.py| OK[recipes executed]

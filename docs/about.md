@@ -31,7 +31,7 @@ The post-quantum transition touches every system that uses public-key cryptograp
 
 | Now | Next |
 |---|---|
-| 26 Python packages, each in its own repository | PyPI releases for every package (in progress) |
+| Python packages across five areas, each in its own repository | PyPI releases for every package (in progress) |
 | MCP server, Claude skill, Cursor rule, `llms.txt` | npm modules for JavaScript and TypeScript |
 | Executed documentation and recipes | Native SDKs and framework adapters (FastAPI, Django, Express) |
 | | Hosted readiness services built on the open packages |

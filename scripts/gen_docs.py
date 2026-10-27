@@ -12,6 +12,8 @@ import json
 import os
 import re
 
+import yaml
+
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
 DOCS = os.path.join(ROOT, "docs")
 SITE = "https://pqblocks.github.io"
@@ -76,6 +78,22 @@ DOC_INFO = {
 }
 
 
+# one interactive line figure per section page (hairline, vendored)
+FIGURES = {
+    "crypto": ("vault", "A vault door with a dial and bolts: the dial turns toward the pointer."),
+    "migration": ("loupe", "A loupe over a ruled sheet: the pointer drags it across to inspect."),
+    "interop": ("patch", "A patch panel of ports and cables: the cable under the pointer lifts."),
+    "conformance": ("sieve", "Stacked test sieves: the pointer's height lifts one clear of the stack."),
+    "optimization": ("terrain", "Pillars on a plinth that rise around the pointer, like an energy landscape."),
+    "index": ("rebuild", "A tree of packages: the one under the pointer rises with everything that depends on it."),
+}
+
+
+def figure(slug):
+    name, label = FIGURES[slug]
+    return '<div class="pqb-figure" data-figure="%s" data-label="%s"></div>\n' % (name, label)
+
+
 def short(pkg):
     return pkg["package"][len("pqblocks-"):]
 
@@ -92,7 +110,7 @@ def desc(text, n=155):
 
 def headline(summary, n=48):
     """A title-sized clause of the summary, cut at a word boundary (no ellipsis)."""
-    text = re.split(r"[.:;(]| - | — ", desc(summary, 400))[0].strip()
+    text = re.split(r"\.\s|\.$|[:;(]| - | — ", desc(summary, 400))[0].strip()
     if len(text) > n:
         text = text[:n].rsplit(" ", 1)[0]
         text = re.sub(r"\s+(and|or|with|for|of|to|the|a|an|in|on|via|from|,)$", "", text).rstrip(",")
@@ -221,7 +239,7 @@ def area_page(area, pkgs):
     schema = {"@context": "https://schema.org", "@type": "CollectionPage", "name": "PQBlocks: %s" % name,
               "description": scope, "url": "%s/packages/%s/" % (SITE, slug),
               "hasPart": [{"@type": "SoftwareSourceCode", "name": p["package"], "codeRepository": p["url"]} for p in pkgs]}
-    out = [front("%s packages" % name, scope, schema), "# :%s: %s\n" % (icon, name),
+    out = [front("%s packages" % name, scope, schema), "# :%s: %s\n" % (icon, name), figure(slug),
            '<p class="pqb-lead">%s</p>\n' % scope, '<div class="grid cards" markdown>\n']
     for p in pkgs:
         out.append("-   __[%s](%s.md)__\n\n    ---\n\n    %s\n\n    `%s`\n" % (
@@ -243,7 +261,7 @@ def index_page(pkgs):
     out = [front("Package catalog", "Every PQBlocks package across post-quantum cryptography, migration, "
                  "interoperability, conformance and quantum-inspired optimisation, with install lines that work today.",
                  schema),
-           "# Package catalog\n",
+           "# Package catalog\n", figure("index"),
            '<p class="pqb-lead">%d packages across five areas of the post-quantum transition. Each one installs '
            "on its own, ships its own tests and evidence, and states what it does not do.</p>\n" % len(pkgs),
            '<div class="grid cards" markdown>\n']
@@ -272,7 +290,10 @@ def llms(pkgs, full):
             "- [Package catalog](%s/packages/): all packages by area" % SITE,
             "- [Transition map](%s/transition-map/): which package for which migration phase" % SITE,
             "- [Recipes](%s/recipes/): complete, tested solutions to common tasks" % SITE,
-            "- [AI assistants](%s/ai/): MCP server, Claude skill and Cursor rules" % SITE, ""]
+            "- [AI assistants](%s/ai/): MCP server, Claude skill and Cursor rules" % SITE,
+            "- [FAQ](%s/faq/): direct answers about the post-quantum transition and PQBlocks" % SITE,
+            "- [Glossary](%s/glossary/): ML-KEM, ML-DSA, SLH-DSA, CBOM, CNSA 2.0 and related terms" % SITE,
+            "- [Releases](%s/releases/): current version and status of every package" % SITE, ""]
     for name, slug, _, scope in AREAS:
         head += ["## %s" % name, "", scope, ""]
         for p in (q for q in pkgs if q["area"] == name):
@@ -282,6 +303,10 @@ def llms(pkgs, full):
                 head += ["", "  ```python"] + ["  " + l if l else "" for l in p["quickstart"].rstrip().splitlines()] + ["  ```", ""]
         head.append("")
     if full:
+        head += ["## Frequently asked questions", ""]
+        for sec in yaml.safe_load(open(os.path.join(ROOT, "data", "faq.yml"), encoding="utf-8")):
+            for i in sec["items"]:
+                head += ["### %s" % i["q"], "", plain(i["a"]), ""]
         head += ["## Recipes", ""]
         rdir = os.path.join(DOCS, "recipes", "code")
         for f in sorted(os.listdir(rdir)):
@@ -290,13 +315,96 @@ def llms(pkgs, full):
     return "\n".join(head).rstrip() + "\n"
 
 
+def plain(md):
+    """Markdown answer -> plain text for JSON-LD."""
+    return re.sub(r"\s+", " ", re.sub(r"[`*]", "", re.sub(r"\[([^\]]+)\]\([^)]*\)", r"\1", md))).strip()
+
+
+def faq_schema(items):
+    return {"@context": "https://schema.org", "@type": "FAQPage",
+            "mainEntity": [{"@type": "Question", "name": i["q"],
+                            "acceptedAnswer": {"@type": "Answer", "text": plain(i["a"])}} for i in items]}
+
+
+def faq_pages():
+    data = yaml.safe_load(open(os.path.join(ROOT, "data", "faq.yml"), encoding="utf-8"))
+    every = [i for sec in data for i in sec["items"]]
+    out = [front("Post-quantum cryptography FAQ", "Answers about PQBlocks and the post-quantum transition: what to "
+                 "migrate and when, ML-KEM and ML-DSA, hybrid modes, CBOMs, TLS, installation, validation and AI assistants.",
+                 faq_schema(every)),
+           "# Frequently asked questions\n",
+           '<p class="pqb-lead">Short, direct answers about PQBlocks and the post-quantum transition, with links to '
+           "the pages that go deeper.</p>\n"]
+    for sec in data:
+        out.append("## %s\n" % sec["section"])
+        for i in sec["items"]:
+            out += ["### %s\n" % i["q"], i["a"].strip() + "\n"]
+    open(os.path.join(DOCS, "faq.md"), "w", encoding="utf-8").write("\n".join(out))
+    home = [i for i in every if i.get("home")]
+    inc = ["### %s\n\n%s\n" % (i["q"], i["a"].strip()) for i in home]
+    inc.append("[All questions](faq.md){ .md-button }\n")
+    open(os.path.join(DOCS, "includes", "faq-home.md"), "w", encoding="utf-8").write("\n".join(inc))
+    # the home page carries the FAQPage schema for the questions it shows
+    path = os.path.join(DOCS, "index.md")
+    text = open(path, encoding="utf-8").read()
+    line = "schema: %s" % json.dumps(faq_schema(home), ensure_ascii=False)
+    text = re.sub(r"^schema: .*$", lambda _: line, text, count=1, flags=re.M) if re.search(r"^schema: ", text, re.M) \
+        else text.replace("\nhide:", "\n%s\nhide:" % line, 1)
+    open(path, "w", encoding="utf-8").write(text)
+    return len(every)
+
+
+def glossary_page():
+    terms = yaml.safe_load(open(os.path.join(ROOT, "data", "glossary.yml"), encoding="utf-8"))
+    url = SITE + "/glossary/"
+    schema = {"@context": "https://schema.org", "@type": "DefinedTermSet", "name": "PQBlocks post-quantum glossary",
+              "url": url, "hasDefinedTerm": [{"@type": "DefinedTerm", "name": t["term"], "description": plain(t["def"]),
+                                              "inDefinedTermSet": url} for t in terms]}
+    out = [front("Post-quantum glossary", "Plain definitions of post-quantum terms: ML-KEM, ML-DSA, SLH-DSA, hybrid "
+                 "key exchange, X25519MLKEM768, CBOM, CNSA 2.0, NIST IR 8547, ACVP, QUBO and more.", schema),
+           "# Glossary\n", '<p class="pqb-lead">The terms used across PQBlocks, each in a sentence or two.</p>\n']
+    for t in sorted(terms, key=lambda t: t["term"].lower()):
+        out += ["### %s\n" % t["term"], t["def"].strip() + "\n"]
+    open(os.path.join(DOCS, "glossary.md"), "w", encoding="utf-8").write("\n".join(out))
+    return len(terms)
+
+
+def releases_page(pkgs):
+    out = [front("Releases and versions", "Current version, status and install channel of every PQBlocks package, "
+                 "with links to each changelog, plus the versioning and deprecation policy."),
+           "# Releases\n",
+           '<p class="pqb-lead">The current release of every package. Versions follow semantic versioning; during '
+           "0.x a minor release may change the API, and each change is listed in the package's changelog.</p>\n",
+           "| Package | Version | Status | Install from | Changelog |", "|---|---|---|---|---|"]
+    for p in sorted(pkgs, key=lambda p: p["package"]):
+        out.append("| [`%s`](packages/%s.md) | %s | %s | %s | [CHANGELOG](%s) |" % (
+            p["package"], short(p), p["version"], p["status"] or "Alpha",
+            "[PyPI](https://pypi.org/project/%s/)" % p["package"] if p["on_pypi"] else "GitHub",
+            p["docs"].get("CHANGELOG.md", p["url"])))
+    out += ["", "## Versioning and deprecation\n",
+            "- **Semantic versioning.** `0.x` while APIs settle; `1.0` only when a package's API is stable.",
+            "- **Deprecation.** From 1.0, a public API is deprecated for at least one minor release, with a warning "
+            "and a changelog entry, before it is removed.",
+            "- **Security fixes.** During 0.x, only the latest minor release of each package receives them "
+            "([policy](security/security-notes.md#supported-versions)).",
+            "- **This page** is regenerated from the package repositories, so a new release appears here on its own.", ""]
+    open(os.path.join(DOCS, "releases.md"), "w", encoding="utf-8").write("\n".join(out))
+
+
 def main():
     cat = json.load(open(os.path.join(ROOT, "data", "catalog.json"), encoding="utf-8"))
     order = [a[0] for a in AREAS]
-    pkgs = sorted(cat["packages"], key=lambda p: (order.index(p["area"]), p["package"]))
-    bad = [p["package"] for p in pkgs if p.get("verified") is not True]
-    if bad:
-        raise SystemExit("refusing to publish unverified quickstarts: %s" % bad)
+    # only verified, classified, gate-clean packages are published; held ones wait for a fix
+    pkgs = sorted((p for p in cat["packages"] if not p.get("held") and p.get("verified") is True),
+                  key=lambda p: (order.index(p["area"]), p["package"]))
+    for p in cat["packages"]:
+        if p.get("held"):
+            print("held back: %s (%s)" % (p["package"], p["held"]))
+    stale = [f for f in os.listdir(os.path.join(DOCS, "packages"))
+             if f.endswith(".md") and f[:-3] not in {short(p) for p in pkgs} | {a[1] for a in AREAS} | {"index"}]
+    os.makedirs(os.path.join(ROOT, ".cache"), exist_ok=True)
+    for f in stale:                                # a package that is no longer published loses its page
+        os.replace(os.path.join(DOCS, "packages", f), os.path.join(ROOT, ".cache", "retired-" + f))
     pdir = os.path.join(DOCS, "packages")
     os.makedirs(pdir, exist_ok=True)
     for p in pkgs:
@@ -313,7 +421,34 @@ def main():
         open(os.path.join(inc, short(p) + ".py"), "w", encoding="utf-8").write(p["quickstart"])
     open(os.path.join(DOCS, "llms.txt"), "w", encoding="utf-8").write(llms(pkgs, False))
     open(os.path.join(DOCS, "llms-full.txt"), "w", encoding="utf-8").write(llms(pkgs, True))
-    print("%d package pages, %d area pages, index, llms.txt, llms-full.txt" % (len(pkgs), len(AREAS)))
+    # the published catalog: what the MCP server and the skills repository sync from
+    public = [{k: v for k, v in p.items() if k not in ("verify_output", "held")} for p in pkgs]
+    json.dump({"org": cat["org"], "site": cat["site"], "packages": public},
+              open(os.path.join(DOCS, "catalog.json"), "w", encoding="utf-8"), indent=1, ensure_ascii=False)
+    # the home page's area table, so counts follow the catalog
+    rows = ["| Area | What it covers | Packages |", "|---|---|---:|"]
+    rows += ["| :%s: [%s](packages/%s.md) | %s | %d |" % (icon, name, slug, scope, sum(1 for p in pkgs if p["area"] == name))
+             for name, slug, icon, scope in AREAS]
+    rows.append("| | **All packages** · [catalog](packages/index.md) | **%d** |" % len(pkgs))
+    open(os.path.join(DOCS, "includes", "areas-table.md"), "w", encoding="utf-8").write("\n".join(rows) + "\n")
+    write_nav(pkgs)
+    nfaq, nterms = faq_pages(), glossary_page()
+    releases_page(pkgs)
+    print("faq: %d questions, glossary: %d terms, releases" % (nfaq, nterms))
+    print("%d package pages, %d area pages, index, llms.txt, llms-full.txt, catalog.json, nav" % (len(pkgs), len(AREAS)))
+
+
+def write_nav(pkgs):
+    """Rewrite the Packages section of mkdocs.yml so new packages appear without hand edits."""
+    nav = ["  - Packages:", "    - packages/index.md"]
+    for name, slug, _, _ in AREAS:
+        nav += ["    - %s:" % name, "      - Overview: packages/%s.md" % slug]
+        nav += ["      - %s: packages/%s.md" % (p["package"], short(p)) for p in pkgs if p["area"] == name]
+    path = os.path.join(ROOT, "mkdocs.yml")
+    text = open(path, encoding="utf-8").read()
+    new = re.sub(r"  - Packages:\n(?:    .*\n)+", lambda _: "\n".join(nav) + "\n", text, count=1)
+    if new != text:
+        open(path, "w", encoding="utf-8").write(new)
 
 
 if __name__ == "__main__":

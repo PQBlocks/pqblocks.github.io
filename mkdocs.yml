@@ -83,6 +83,13 @@ extra:
 extra_css:
   - stylesheets/extra.css
 
+extra_javascript:
+  - assets/vendor/hairline/kernel.js
+  - javascripts/hairline-registry.js
+  - assets/figures/swap.js
+  - path: javascripts/figures.js
+    type: module
+
 markdown_extensions:
   - abbr
   - admonition
@@ -187,4 +194,8 @@ nav:
     - ai/index.md
     - MCP server: ai/mcp.md
     - Claude skill and Cursor rules: ai/skills.md
+  - Reference:
+    - FAQ: faq.md
+    - Glossary: glossary.md
+    - Releases: releases.md
   - About: about.md

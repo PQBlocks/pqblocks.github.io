@@ -8,6 +8,8 @@ schema: {"@context": "https://schema.org", "@type": "CollectionPage", "name": "P
 
 # :material-transit-connection-variant: Interoperability
 
+<div class="pqb-figure" data-figure="patch" data-label="A patch panel of ports and cables: the cable under the pointer lifts."></div>
+
 <p class="pqb-lead">Wire formats, JOSE, X.509/CSR and TLS hybrid groups that carry larger post-quantum keys, ciphertexts and signatures through real protocols.</p>
 
 <div class="grid cards" markdown>

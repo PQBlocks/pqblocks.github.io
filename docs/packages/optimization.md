@@ -8,6 +8,8 @@ schema: {"@context": "https://schema.org", "@type": "CollectionPage", "name": "P
 
 # :material-chart-bell-curve-cumulative: Quantum-inspired
 
+<div class="pqb-figure" data-figure="terrain" data-label="Pillars on a plinth that rise around the pointer, like an energy landscape."></div>
+
 <p class="pqb-lead">Classical solvers modelled on quantum dynamics for Ising and QUBO problems. Kept separate from security: no cryptographic claims.</p>
 
 <div class="grid cards" markdown>

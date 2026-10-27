@@ -1,0 +1,121 @@
+# One source for the glossary page and its DefinedTermSet JSON-LD. Definitions open with "X is ...".
+- term: Post-quantum cryptography (PQC)
+  def: >-
+    Post-quantum cryptography is public-key cryptography designed to resist attacks by large quantum
+    computers while running on ordinary computers. The first NIST standards are ML-KEM, ML-DSA and SLH-DSA.
+- term: Cryptographically relevant quantum computer (CRQC)
+  def: >-
+    A cryptographically relevant quantum computer is a quantum computer large and reliable enough to run
+    Shor's algorithm against real RSA and elliptic-curve keys. None is known to exist; migration deadlines
+    are set so systems move before one does.
+- term: Shor's algorithm
+  def: >-
+    Shor's algorithm is a quantum algorithm that factors integers and computes discrete logarithms in
+    polynomial time, which breaks RSA, Diffie–Hellman, DSA and elliptic-curve cryptography.
+- term: Grover's algorithm
+  def: >-
+    Grover's algorithm is a quantum search algorithm with a quadratic speed-up. It roughly halves the
+    effective strength of symmetric keys, which is why CNSA 2.0 requires AES-256 rather than AES-128.
+- term: Harvest now, decrypt later
+  def: >-
+    Harvest now, decrypt later is the attack of recording encrypted data today in order to decrypt it once
+    a cryptographically relevant quantum computer exists. It makes post-quantum key establishment urgent for
+    data that must stay confidential for years.
+- term: ML-KEM (FIPS 203)
+  def: >-
+    ML-KEM is the NIST-standard lattice-based key-encapsulation mechanism, formerly CRYSTALS-Kyber. ML-KEM-768
+    has a 1,184-byte public key, a 1,088-byte ciphertext and a 32-byte shared secret; ML-KEM-1024 is the CNSA 2.0
+    parameter set.
+- term: ML-DSA (FIPS 204)
+  def: >-
+    ML-DSA is the NIST-standard lattice-based digital signature algorithm, formerly CRYSTALS-Dilithium.
+    ML-DSA-65 has a 1,952-byte public key and a 3,309-byte signature; ML-DSA-87 is the CNSA 2.0 parameter set.
+- term: SLH-DSA (FIPS 205)
+  def: >-
+    SLH-DSA is the NIST-standard stateless hash-based signature algorithm, formerly SPHINCS+. Its security rests
+    only on hash functions; signatures are large (7,856 bytes for SLH-DSA-SHA2-128s).
+- term: FN-DSA
+  def: >-
+    FN-DSA is the forthcoming NIST signature standard (FIPS 206) based on Falcon, with smaller signatures than
+    ML-DSA and a more delicate implementation.
+- term: HQC
+  def: >-
+    HQC is a code-based key-encapsulation mechanism that NIST selected in 2025 for standardisation as a backup
+    to ML-KEM, built on different mathematics.
+- term: Key-encapsulation mechanism (KEM)
+  def: >-
+    A key-encapsulation mechanism is a public-key scheme in which a sender uses the recipient's public key to
+    produce a ciphertext and a shared secret, which only the recipient's private key can recover. It replaces
+    Diffie–Hellman-style key agreement in post-quantum protocols.
+- term: Hybrid key exchange
+  def: >-
+    Hybrid key exchange combines a post-quantum KEM and a classical key agreement, such as ML-KEM-768 with
+    X25519, and derives one secret from both, so the result stays secure if either component is broken.
+- term: X25519MLKEM768
+  def: >-
+    X25519MLKEM768 is the hybrid key-exchange group used in TLS 1.3 that combines X25519 with ML-KEM-768.
+    It is the most widely deployed post-quantum mechanism on the web.
+- term: Composite signature
+  def: >-
+    A composite signature pairs a post-quantum and a classical signature (for example ML-DSA-65 with Ed25519)
+    under one key and one verification decision; both must verify.
+- term: Crypto agility
+  def: >-
+    Crypto agility is the ability to change cryptographic algorithms through configuration or a small,
+    contained code change, without redesigning a system. It makes this and future migrations cheaper.
+- term: Cryptography Bill of Materials (CBOM)
+  def: >-
+    A Cryptography Bill of Materials is a machine-readable inventory of the algorithms, keys, protocols and
+    certificates a system uses, typically in CycloneDX format. It is the basis for migration planning and audit.
+- term: CycloneDX
+  def: >-
+    CycloneDX is an OWASP standard for bills of materials. Version 1.6 includes cryptographic assets, which is
+    how CBOMs are written.
+- term: SARIF
+  def: >-
+    SARIF (Static Analysis Results Interchange Format, OASIS 2.1.0) is a JSON format for static-analysis
+    findings that code-scanning tools such as GitHub code scanning can display.
+- term: CNSA 2.0
+  def: >-
+    CNSA 2.0 is the NSA's Commercial National Security Algorithm Suite 2.0: ML-KEM-1024, ML-DSA-87, LMS and
+    XMSS, AES-256 and SHA-384/512, with transition deadlines from 2025 to 2033 depending on the system type.
+- term: NIST IR 8547
+  def: >-
+    NIST IR 8547 is NIST's draft guidance on transitioning to post-quantum cryptography. It deprecates 112-bit
+    quantum-vulnerable algorithms after 2030 and disallows quantum-vulnerable public-key algorithms after 2035.
+- term: FIPS 140-3 and CMVP
+  def: >-
+    FIPS 140-3 is the US standard for cryptographic modules, and the Cryptographic Module Validation Program
+    (CMVP) is how accredited laboratories validate modules against it. No PQBlocks package is CMVP validated.
+- term: ACVP
+  def: >-
+    ACVP (Automated Cryptographic Validation Protocol) is NIST's protocol and test-vector format for checking
+    that an algorithm implementation produces the right results.
+- term: Known-answer test (KAT)
+  def: >-
+    A known-answer test runs an implementation on fixed inputs and compares its outputs with published
+    expected values, catching implementation errors that random testing can miss.
+- term: Wycheproof
+  def: >-
+    Wycheproof is a collection of test vectors for known attacks and edge cases in cryptographic libraries,
+    such as malformed inputs and invalid curve points.
+- term: liboqs
+  def: >-
+    liboqs is the Open Quantum Safe project's C library of post-quantum algorithms. Several PQBlocks packages
+    use it for ML-KEM, ML-DSA and SLH-DSA rather than re-implementing them.
+- term: QUBO
+  def: >-
+    A QUBO (quadratic unconstrained binary optimisation) problem minimises a quadratic function of binary
+    variables. Many scheduling, routing and selection problems can be written this way.
+- term: Ising model
+  def: >-
+    An Ising model assigns spins of +1 or −1 to variables and minimises an energy with pairwise couplings and
+    local fields. It is equivalent to a QUBO up to a change of variables.
+- term: Simulated bifurcation
+  def: >-
+    Simulated bifurcation is a quantum-inspired classical heuristic (Goto et al., 2019 and 2021) that evolves
+    continuous oscillators which bifurcate into ±1 states to find low-energy Ising solutions.
+- term: Quantum-inspired optimisation
+  def: >-
+    Quantum-inspired optimisation is classical algorithms modelled on quantum dynamics, such as annealing or
+    bifurcation, run on ordinary hardware. It involves no quantum computer and has no security role.

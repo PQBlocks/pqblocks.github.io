@@ -72,7 +72,8 @@
     "Part of PQBlocks"
    ],
    "verified": true,
-   "verify_output": "Executed 4 cases: 4 passed (denominator verified: True)"
+   "verify_output": "Executed 4 cases: 4 passed (denominator verified: True)",
+   "held": null
   },
   {
    "package": "pqblocks-agility",
@@ -146,7 +147,8 @@
     "Part of PQBlocks"
    ],
    "verified": true,
-   "verify_output": "CARS score: 75.0 / 100.0 (Grade A)"
+   "verify_output": "CARS score: 75.0 / 100.0 (Grade A)",
+   "held": null
   },
   {
    "package": "pqblocks-anneal-sa",
@@ -215,7 +217,8 @@
     "License"
    ],
    "verified": true,
-   "verify_output": "Sample: [-1, 1, -1, 1]"
+   "verify_output": "Sample: [-1, 1, -1, 1]",
+   "held": null
   },
   {
    "package": "pqblocks-anneal-schedule",
@@ -284,7 +287,8 @@
     "License"
    ],
    "verified": true,
-   "verify_output": "Best Config: [-1 -1 -1 -1]"
+   "verify_output": "Best Config: [-1 -1 -1 -1]",
+   "held": null
   },
   {
    "package": "pqblocks-anneal-sqa",
@@ -353,7 +357,8 @@
     "License"
    ],
    "verified": true,
-   "verify_output": "Best Energy: -6.000000"
+   "verify_output": "Best Energy: -6.000000",
+   "held": null
   },
   {
    "package": "pqblocks-bifurcation",
@@ -425,7 +430,8 @@
     "Part of PQBlocks"
    ],
    "verified": true,
-   "verify_output": "[1 1] -1.0"
+   "verify_output": "[1 1] -1.0",
+   "held": null
   },
   {
    "package": "pqblocks-cbom",
@@ -495,7 +501,8 @@
     "License"
    ],
    "verified": true,
-   "verify_output": "Injected properties: ['appliedquantum.algorithm.family', 'appliedquantum.algorithm.classification', 'appliedquantum.algorithm.key_size', 'appliedquantum.algorithm.std_reference']"
+   "verify_output": "Injected properties: ['appliedquantum.algorithm.family', 'appliedquantum.algorithm.classification', 'appliedquantum.algorithm.key_size', 'appliedquantum.algorithm.std_reference']",
+   "held": null
   },
   {
    "package": "pqblocks-cnsa-evidence",
@@ -562,7 +569,8 @@
     "License"
    ],
    "verified": true,
-   "verify_output": "Compliance Status: complete"
+   "verify_output": "Compliance Status: complete",
+   "held": null
   },
   {
    "package": "pqblocks-core",
@@ -631,7 +639,8 @@
     "Part of PQBlocks"
    ],
    "verified": true,
-   "verify_output": "PQBlocks hybrid core initialized successfully."
+   "verify_output": "PQBlocks hybrid core initialized successfully.",
+   "held": null
   },
   {
    "package": "pqblocks-csr-pop",
@@ -697,7 +706,8 @@
     "License"
    ],
    "verified": true,
-   "verify_output": "CSR verified successfully: 1399 bytes DER"
+   "verify_output": "CSR verified successfully: 1399 bytes DER",
+   "held": null
   },
   {
    "package": "pqblocks-digital-anneal",
@@ -764,7 +774,8 @@
     "License"
    ],
    "verified": true,
-   "verify_output": "Spin State: [-1.0, 1.0, 1.0, 1.0]"
+   "verify_output": "Spin State: [-1.0, 1.0, 1.0, 1.0]",
+   "held": null
   },
   {
    "package": "pqblocks-files",
@@ -836,7 +847,8 @@
     "Part of PQBlocks"
    ],
    "verified": true,
-   "verify_output": ""
+   "verify_output": "",
+   "held": null
   },
   {
    "package": "pqblocks-fips-check",
@@ -904,7 +916,8 @@
     "License"
    ],
    "verified": true,
-   "verify_output": "liboqs-python faulthandler is disabled"
+   "verify_output": "liboqs-python faulthandler is disabled",
+   "held": null
   },
   {
    "package": "pqblocks-jose",
@@ -973,7 +986,8 @@
     "License"
    ],
    "verified": true,
-   "verify_output": "JWE decrypted matches: True"
+   "verify_output": "JWE decrypted matches: True",
+   "held": null
   },
   {
    "package": "pqblocks-jwe",
@@ -1046,7 +1060,8 @@
     "Part of PQBlocks"
    ],
    "verified": true,
-   "verify_output": "1697 b'settlement-v1' 1120"
+   "verify_output": "1697 b'settlement-v1' 1120",
+   "held": null
   },
   {
    "package": "pqblocks-jwe-audit",
@@ -1116,7 +1131,8 @@
     "License"
    ],
    "verified": true,
-   "verify_output": "Flagged Algorithms: ['RSA-OAEP-256', 'unknown-alg: RSA-OAEP-256']"
+   "verify_output": "Flagged Algorithms: ['RSA-OAEP-256', 'unknown-alg: RSA-OAEP-256']",
+   "held": null
   },
   {
    "package": "pqblocks-lint",
@@ -1191,7 +1207,8 @@
     "Part of PQBlocks"
    ],
    "verified": true,
-   "verify_output": "1"
+   "verify_output": "1",
+   "held": null
   },
   {
    "package": "pqblocks-policy",
@@ -1259,7 +1276,8 @@
     "License"
    ],
    "verified": true,
-   "verify_output": "Verdict: pass | Assets: 1 | Violations: 0"
+   "verify_output": "Verdict: pass | Assets: 1 | Violations: 0",
+   "held": null
   },
   {
    "package": "pqblocks-population-anneal",
@@ -1327,7 +1345,8 @@
     "Documentation"
    ],
    "verified": true,
-   "verify_output": "Estimated Free Energy: -6.102126"
+   "verify_output": "Estimated Free Energy: -6.102126",
+   "held": null
   },
   {
    "package": "pqblocks-primitives",
@@ -1399,7 +1418,8 @@
     "License"
    ],
    "verified": true,
-   "verify_output": "liboqs-python faulthandler is disabled"
+   "verify_output": "liboqs-python faulthandler is disabled",
+   "held": null
   },
   {
    "package": "pqblocks-qiea",
@@ -1466,7 +1486,8 @@
     "Documentation"
    ],
    "verified": true,
-   "verify_output": "Best Energy: -4.000000"
+   "verify_output": "Best Energy: -4.000000",
+   "held": null
   },
   {
    "package": "pqblocks-qubo",
@@ -1530,7 +1551,8 @@
     "License"
    ],
    "verified": true,
-   "verify_output": "QUBO Energy: -2.0"
+   "verify_output": "QUBO Energy: -2.0",
+   "held": null
   },
   {
    "package": "pqblocks-qubo-bench",
@@ -1602,7 +1624,8 @@
     "License"
    ],
    "verified": true,
-   "verify_output": "Calculated TTS (99% target): 0.0432s"
+   "verify_output": "Calculated TTS (99% target): 0.0432s",
+   "held": null
   },
   {
    "package": "pqblocks-scan",
@@ -1677,7 +1700,8 @@
     "Part of PQBlocks"
    ],
    "verified": true,
-   "verify_output": "1.6"
+   "verify_output": "1.6",
+   "held": null
   },
   {
    "package": "pqblocks-tls-interop",
@@ -1747,7 +1771,8 @@
     "License"
    ],
    "verified": true,
-   "verify_output": "4588"
+   "verify_output": "4588",
+   "held": null
   },
   {
    "package": "pqblocks-wire",
@@ -1822,7 +1847,8 @@
     "Part of PQBlocks"
    ],
    "verified": true,
-   "verify_output": "True b'hello'"
+   "verify_output": "True b'hello'",
+   "held": null
   }
  ]
 }

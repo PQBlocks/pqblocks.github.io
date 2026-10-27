@@ -36,11 +36,6 @@
 .md-typeset h2 { font-weight: 700; letter-spacing: -.01em; }
 .md-typeset .pqb-lead { font-size: 1.12rem; line-height: 1.6; color: var(--pqb-muted); max-width: 48rem; margin-top: -.4rem; }
 
-/* gradient rule under the main title */
-.md-typeset h1::after {
-  content: ""; display: block; width: 4.5rem; height: 4px; margin-top: .55rem; border-radius: 2px;
-  background: linear-gradient(90deg, var(--pqb-cyan), var(--pqb-violet));
-}
 
 /* cards: hierarchy and depth, not uniform boxes */
 .md-typeset .grid.cards > ul > li,
@@ -50,7 +45,7 @@
 }
 .md-typeset .grid.cards > ul > li:hover,
 .md-typeset .grid > .card:hover {
-  transform: translateY(-2px); border-color: var(--pqb-cyan);
+  border-color: var(--pqb-cyan);
   box-shadow: 0 10px 30px -12px rgba(8, 145, 178, .45);
 }
 .md-typeset .grid.cards .lg { color: var(--pqb-cyan); }
@@ -58,7 +53,6 @@
 /* hero */
 .pqb-hero { padding: 1.2rem 0 .4rem; }
 .pqb-hero h1 { font-size: 2.6rem; line-height: 1.12; margin-bottom: .6rem; }
-.pqb-hero h1::after { display: none; }
 .pqb-hero .pqb-kicker {
   display: inline-block; font-size: .72rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
   color: var(--pqb-cyan); margin-bottom: .6rem;
@@ -96,3 +90,24 @@
 /* two-column grids for paired content */
 .md-typeset .grid.pqb-two { grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr)); }
 @media screen and (min-width: 60em) { .md-typeset .grid.pqb-two { grid-template-columns: repeat(2, 1fr); } }
+
+/* interactive line figures (hairline): one per section page, beside the lead */
+.pqb-figure { float: right; width: 15rem; margin: 0 0 1rem 1.5rem; --hairline-plate: var(--md-default-bg-color); }
+[data-md-color-scheme="default"] .pqb-figure { --hairline-plate: #ffffff; }
+[data-md-color-scheme="slate"] .pqb-figure { --hairline-plate: #0b1220; }
+@media screen and (max-width: 44.9375em) {
+  .pqb-figure { float: none; width: 100%; max-width: 18rem; margin: 0 auto 1rem; }
+}
+
+/* home: text and the figure side by side, stacked on small screens */
+.md-typeset .pqb-hero { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 2.4rem; align-items: center; padding: .6rem 0 1.4rem; }
+.md-typeset .pqb-hero h1 { font-size: 2.4rem; margin: 0 0 .5rem; }
+.md-typeset .pqb-hero__text > p:first-of-type { font-size: 1.15rem; color: var(--pqb-ink); margin-top: 0; }
+.md-typeset .pqb-hero__figure { margin: 0; width: 100%; display: block; }
+.md-typeset .pqb-hero__figure figcaption { font-size: .72rem; color: var(--pqb-muted); margin-top: .2rem; max-width: none; }
+.md-typeset .pqb-figure--hero { float: none; width: 100%; max-width: 30rem; margin: 0 auto; }
+.md-typeset .pqb-standards { font-size: .7rem; color: var(--pqb-muted); margin-top: 1.2rem; }
+.md-typeset .pqb-standards a { color: inherit; text-decoration: underline; text-decoration-color: var(--pqb-line); }
+@media screen and (max-width: 59.9375em) {
+  .md-typeset .pqb-hero { grid-template-columns: 1fr; gap: 1rem; }
+}

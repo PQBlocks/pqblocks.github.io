@@ -5,6 +5,8 @@ description: Complete, tested solutions to common post-quantum tasks in Python -
 
 # Recipes
 
+<div class="pqb-figure" data-figure="terminal" data-label="A terminal with its history in rows: the pointer's height scrolls back through it."></div>
+
 <p class="pqb-lead">One page per question developers actually ask. Every recipe is a complete program that was executed against the package source before this site was published, and each page shows the output it printed.</p>
 
 <div class="grid cards" markdown>

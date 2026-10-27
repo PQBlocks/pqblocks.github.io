@@ -5,6 +5,8 @@ description: Make Claude Code, Cursor, Copilot and other coding agents choose th
 
 # Using PQBlocks with AI coding assistants
 
+<div class="pqb-figure" data-figure="hub" data-label="A hub with tiles on dashed links: the tile under the pointer rises and its link turns solid."></div>
+
 <p class="pqb-lead">When you ask an assistant to "add post-quantum encryption", it should pick a real package and call its real API. PQBlocks gives agents the facts at runtime, so they stop guessing function names.</p>
 
 ## How do coding agents choose a library?

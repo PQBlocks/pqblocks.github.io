@@ -11,6 +11,9 @@ Install lines below are the ones that work today. Use the documented API only; e
 - [Transition map](https://pqblocks.github.io/transition-map/): which package for which migration phase
 - [Recipes](https://pqblocks.github.io/recipes/): complete, tested solutions to common tasks
 - [AI assistants](https://pqblocks.github.io/ai/): MCP server, Claude skill and Cursor rules
+- [FAQ](https://pqblocks.github.io/faq/): direct answers about the post-quantum transition and PQBlocks
+- [Glossary](https://pqblocks.github.io/glossary/): ML-KEM, ML-DSA, SLH-DSA, CBOM, CNSA 2.0 and related terms
+- [Releases](https://pqblocks.github.io/releases/): current version and status of every package
 
 ## PQ cryptography
 

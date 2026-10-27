@@ -5,10 +5,35 @@
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
   <meta name="theme-color" content="#0b1220">
   <link rel="alternate" type="text/plain" title="llms.txt" href="{{ config.site_url }}llms.txt">
-  {%- if page and page.meta and page.meta.schema %}
+  {%- if page %}
+  {%- set page_url = config.site_url ~ page.url %}
+  {%- if page.meta and page.meta.schema %}
   <script type="application/ld+json">{{ page.meta.schema | tojson }}</script>
+  {%- elif not page.is_homepage %}
+  {%- set modified = page.meta.git_revision_date_localized_raw_iso_date if page.meta else none %}
+  <script type="application/ld+json">{{ {
+    "@context": "https://schema.org",
+    "@type": "TechArticle" if page.url.startswith("recipes/") and page.url != "recipes/" else "WebPage",
+    "headline": page.title,
+    "name": page.title,
+    "description": (page.meta.description if page.meta and page.meta.description else config.site_description),
+    "url": page_url,
+    "inLanguage": "en",
+    "dateModified": modified,
+    "isPartOf": {"@type": "WebSite", "name": config.site_name, "url": config.site_url},
+    "publisher": {"@type": "Organization", "name": "PQBlocks", "url": config.site_url}
+  } | tojson }}</script>
   {%- endif %}
-  {%- if page and page.is_homepage %}
+  {%- if not page.is_homepage %}
+  {%- set crumbs = [{"@type": "ListItem", "position": 1, "name": "Home", "item": config.site_url}] %}
+  {%- for anc in page.ancestors | reverse %}
+    {%- set first = anc.children | selectattr("is_page") | first if anc.children else none %}
+    {%- if first %}{%- set _ = crumbs.append({"@type": "ListItem", "position": crumbs | length + 1, "name": anc.title, "item": config.site_url ~ first.url}) %}{%- endif %}
+  {%- endfor %}
+  {%- set _ = crumbs.append({"@type": "ListItem", "position": crumbs | length + 1, "name": page.title, "item": page_url}) %}
+  <script type="application/ld+json">{{ {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": crumbs} | tojson }}</script>
+  {%- endif %}
+  {%- if page.is_homepage %}
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -36,5 +61,6 @@
     ]
   }
   </script>
+  {%- endif %}
   {%- endif %}
 {% endblock %}

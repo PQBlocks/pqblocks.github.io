@@ -8,6 +8,8 @@ schema: {"@context": "https://schema.org", "@type": "CollectionPage", "name": "P
 
 # :material-check-decagram-outline: Conformance
 
+<div class="pqb-figure" data-figure="sieve" data-label="Stacked test sieves: the pointer's height lifts one clear of the stack."></div>
+
 <p class="pqb-lead">Official NIST ACVP vectors and strict FIPS 203/204 boundary checks that prove an implementation and a migration are correct.</p>
 
 <div class="grid cards" markdown>
