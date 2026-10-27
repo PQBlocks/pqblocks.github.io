@@ -1,0 +1,3201 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Open-source post-quantum engineering. ML-KEM and ML-DSA cryptography, crypto inventory and CBOMs, protocol interoperability, NIST conformance and quantum-inspired optimisation, each package tested and documented.">
+      
+      
+        <meta name="author" content="PQBlocks">
+      
+      
+        <link rel="canonical" href="https://pqblocks.github.io/">
+      
+      
+      
+        <link rel="next" href="transition-map/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/favicon.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+    
+    
+      
+        <title>PQBlocks · Verified building blocks for the post-quantum era - PQBlocks</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="stylesheets/extra.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta name="theme-color" content="#0b1220">
+  <link rel="alternate" type="text/plain" title="llms.txt" href="https://pqblocks.github.io/llms.txt">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "PQBlocks is an open-source engineering organisation that builds the components of a post-quantum migration as independent packages: post-quantum cryptography (ML-KEM, ML-DSA, SLH-DSA and hybrid modes), migration tooling (crypto inventory, CBOMs, readiness scoring, policy gates, CNSA 2.0 evidence), interoperability (TLS, JOSE, wire formats, certificate requests), conformance testing against NIST ACVP vectors, and quantum-inspired optimisation. Each package lives in its own repository under github.com/PQBlocks, is licensed Apache-2.0, and ships its tests, benchmarks, primary sources and a verification report. PQBlocks is a QubitRock project."}, "name": "What is PQBlocks?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Start by finding the cryptography you already run. pqblocks-scan inventories RSA, elliptic curves, weak hashes and post-quantum algorithms in source code and TLS endpoints, and writes a CycloneDX 1.6 CBOM and a SARIF report. For new code, use pqblocks-primitives for ML-KEM, ML-DSA and SLH-DSA, pqblocks-jose for post-quantum JWS and JWE tokens, and pqblocks-files for file encryption. The recipes are complete, tested programs for the common tasks."}, "name": "Which PQBlocks package should I start with?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "No. PQBlocks packages implement or wire to the NIST standards FIPS 203, 204 and 205 and test against official vectors where those exist, but none of them is a FIPS 140-3 / CMVP validated cryptographic module, and none claims to be. If you need a validated module, use one, and treat PQBlocks components as the integration, inventory and verification layer around it."}, "name": "Are PQBlocks packages FIPS validated?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Post-quantum cryptography (PQC) is public-key cryptography designed to stay secure against an attacker with a large quantum computer. It runs on today\u0027s ordinary computers. NIST standardised the first algorithms in August 2024: ML-KEM (FIPS 203) for key establishment, and ML-DSA (FIPS 204) and SLH-DSA (FIPS 205) for digital signatures. They replace RSA, Diffie\u2013Hellman and elliptic-curve cryptography, which Shor\u0027s algorithm would break."}, "name": "What is post-quantum cryptography?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Now, for planning and inventory. NIST\u0027s transition guidance (NIST IR 8547, draft) deprecates 112-bit quantum-vulnerable algorithms such as RSA-2048 and P-256 after 2030 and disallows all quantum-vulnerable public-key algorithms after 2035. The NSA\u0027s CNSA 2.0 asks national security systems to prefer post-quantum algorithms from 2025 for software signing and web services and to use them exclusively between 2030 and 2033 depending on the system type. See the transition map for the dates and sources."}, "name": "When do we need to migrate to post-quantum cryptography?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "During the transition, hybrid is the safer default: combine ML-KEM with X25519 for key establishment and pair ML-DSA with Ed25519 for signatures. An attacker then has to break both the lattice scheme and the classical one, which protects you if either has an implementation flaw or an unexpected cryptanalytic result. TLS 1.3 already uses the hybrid group X25519MLKEM768. Requirements such as CNSA 2.0 eventually call for post-quantum algorithms on their own, so prefer designs where a policy setting moves you from hybrid to pure."}, "name": "Should I use hybrid or pure post-quantum cryptography?"}, {"@type": "Question", "acceptedAnswer": {"@type": "Answer", "text": "Add the pqblocks-mcp server to Claude Code, Cursor or any MCP client. It recommends a package for a task, returns its install line and a quickstart executed against the real package, and flags quantum-vulnerable algorithms in pasted code. The Claude skill and Cursor rules give the same guidance without a server, and llms.txt and llms-full.txt give agents the whole catalog in one file."}, "name": "How do AI coding assistants use PQBlocks?"}]}</script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://pqblocks.github.io/#org",
+        "name": "PQBlocks",
+        "url": "https://pqblocks.github.io/",
+        "logo": "https://pqblocks.github.io/assets/logo.svg",
+        "description": "Open engineering organisation for the post-quantum era: verified building blocks for post-quantum cryptography, migration, interoperability, conformance and quantum-inspired optimisation.",
+        "parentOrganization": {"@type": "Organization", "name": "QubitRock"},
+        "sameAs": ["https://github.com/PQBlocks", "https://pypi.org/search/?q=pqblocks"],
+        "knowsAbout": ["Post-quantum cryptography", "ML-KEM", "FIPS 203", "ML-DSA", "FIPS 204", "SLH-DSA", "FIPS 205",
+                       "Hybrid key exchange", "Cryptography bill of materials", "CNSA 2.0", "NIST ACVP", "QUBO", "Ising model"]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://pqblocks.github.io/#site",
+        "url": "https://pqblocks.github.io/",
+        "name": "PQBlocks",
+        "publisher": {"@id": "https://pqblocks.github.io/#org"},
+        "inLanguage": "en"
+      }
+    ]
+  }
+  </script>
+
+  
+<meta property="og:type" content="website" />
+<meta property="og:title" content="PQBlocks" />
+<meta property="og:description" content="Open-source post-quantum engineering. ML-KEM and ML-DSA cryptography, crypto inventory and CBOMs, protocol interoperability, NIST conformance and quantum-inspired optimisation, each package tested and documented." />
+<meta property="og:image" content="https://pqblocks.github.io/assets/images/social/index.png" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:url" content="https://pqblocks.github.io/" />
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:title" content="PQBlocks" />
+<meta property="twitter:description" content="Open-source post-quantum engineering. ML-KEM and ML-DSA cryptography, crypto inventory and CBOMs, protocol interoperability, NIST conformance and quantum-inspired optimisation, each package tested and documented." />
+<meta property="twitter:image" content="https://pqblocks.github.io/assets/images/social/index.png" />
+</head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#pqblocks" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="." title="PQBlocks" class="md-header__button md-logo" aria-label="PQBlocks" data-md-component="logo">
+      
+  <img src="assets/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PQBlocks
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              PQBlocks · Verified building blocks for the post-quantum era
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/PQBlocks" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    PQBlocks
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="transition-map/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Transition map
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="packages/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Packages
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="recipes/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Recipes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="security/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Security & verification
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="ai/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  AI assistants
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="faq/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Reference
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="about/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  About
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="PQBlocks" class="md-nav__button md-logo" aria-label="PQBlocks" data-md-component="logo">
+      
+  <img src="assets/logo.svg" alt="logo">
+
+    </a>
+    PQBlocks
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/PQBlocks" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    PQBlocks
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="." class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-the-post-quantum-transition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is the post-quantum transition?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#areas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Areas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-lattices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why lattices?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#crypto-agility-replace-one-block-at-a-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Crypto agility: replace one block at a time
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#start-in-a-minute" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Start in a minute
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-package-for-every-step-of-the-migration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A package for every step of the migration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-pqblocks-earns-trust" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How PQBlocks earns trust
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#frequently-asked-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frequently asked questions
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="transition-map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transition map
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="packages/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Packages
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Packages
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PQ cryptography
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PQ cryptography
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="packages/crypto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="packages/core/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    pqblocks-core
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="packages/files/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    pqblocks-files
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="packages/jose/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    pqblocks-jose
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="packages/primitives/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    pqblocks-primitives
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Migration & readiness
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Migration & readiness
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="packages/migration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="packages/agility/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    pqblocks-agility
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="packages/cbom/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    pqblocks-cbom
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="packages/cnsa-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    pqblocks-cnsa-evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="packages/jwe-audit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    pqblocks-jwe-audit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="packages/lint/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    pqblocks-lint
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="packages/policy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    pqblocks-policy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="packages/scan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    pqblocks-scan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interoperability
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Interoperability
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="packages/interop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="packages/csr-pop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    pqblocks-csr-pop
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="packages/jwe/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    pqblocks-jwe
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="packages/tls-interop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    pqblocks-tls-interop
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="packages/wire/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    pqblocks-wire
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conformance
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Conformance
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="packages/conformance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="packages/acvp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    pqblocks-acvp
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="packages/fips-check/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    pqblocks-fips-check
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quantum-inspired
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Quantum-inspired
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="packages/optimization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="packages/anneal-sa/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    pqblocks-anneal-sa
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="packages/anneal-schedule/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    pqblocks-anneal-schedule
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="packages/anneal-sqa/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    pqblocks-anneal-sqa
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="packages/bifurcation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    pqblocks-bifurcation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="packages/digital-anneal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    pqblocks-digital-anneal
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="packages/population-anneal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    pqblocks-population-anneal
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="packages/qiea/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    pqblocks-qiea
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="packages/qubo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    pqblocks-qubo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="packages/qubo-bench/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    pqblocks-qubo-bench
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="recipes/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Recipes
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Recipes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="recipes/jwt-ml-dsa/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How to sign JWTs with ML-DSA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="recipes/fastapi-pqc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How to add post-quantum tokens to FastAPI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="recipes/hybrid-kem/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How to do hybrid X25519 + ML-KEM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="recipes/encrypt-files/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How to encrypt files post-quantum
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="recipes/crypto-audit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How to find RSA and ECC in code
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="recipes/qubo-maxcut/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How to solve Max-Cut quantum-inspired
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="security/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security & verification
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Security & verification
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="security/verification-reports/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How we verify
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="security/security-notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security posture and limits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="ai/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI assistants
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AI assistants
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ai/mcp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP server
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ai/skills/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Claude skill and Cursor rules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="releases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Releases
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-the-post-quantum-transition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is the post-quantum transition?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#areas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Areas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-lattices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why lattices?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#crypto-agility-replace-one-block-at-a-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Crypto agility: replace one block at a time
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#start-in-a-minute" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Start in a minute
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-package-for-every-step-of-the-migration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A package for every step of the migration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-pqblocks-earns-trust" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How PQBlocks earns trust
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#frequently-asked-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frequently asked questions
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+  
+
+
+
+  
+
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+  
+
+
+
+  
+    <a href="https://github.com/PQBlocks/pqblocks.github.io/edit/main/docs/index.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<div class="pqb-hero">
+<div class="pqb-hero__text">
+<h1 id="pqblocks">PQBlocks<a class="headerlink" href="#pqblocks" title="Link to this section">&para;</a></h1>
+<p><strong>Verified building blocks for the post-quantum transition.</strong></p>
+<p>PQBlocks is an open-source engineering organisation for the post-quantum (<abbr title="Post-quantum">PQ</abbr>) era. It builds the pieces a real migration needs: NIST-standard cryptography in hybrid modes, tools that find and score the cryptography you already run, formats and protocol checks that carry post-quantum data, conformance against official vectors, and quantum-inspired optimisation. Each package lives in its own repository, ships its tests and evidence, and says what it does <strong>not</strong> do.</p>
+<p><a class="md-button md-button--primary" href="packages/">Package catalog</a>
+<a class="md-button" href="recipes/">Recipes</a>
+<a class="md-button" href="https://github.com/PQBlocks">GitHub</a></p>
+<p class="pqb-standards">Built on <a href="https://csrc.nist.gov/pubs/fips/203/final">FIPS 203</a> · <a href="https://csrc.nist.gov/pubs/fips/204/final">FIPS 204</a> · <a href="https://csrc.nist.gov/pubs/fips/205/final">FIPS 205</a> · <a href="https://www.rfc-editor.org/rfc/rfc7748">RFC 7748</a> · <a href="https://www.rfc-editor.org/rfc/rfc5869">RFC 5869</a> · <a href="https://cyclonedx.org/specification/overview/">CycloneDX 1.6</a> · <a href="https://pages.nist.gov/ACVP/">NIST <abbr title="Automated Cryptographic Validation Protocol">ACVP</abbr></a></p>
+</div>
+<figure class="pqb-hero__figure">
+<div class="pqb-figure pqb-figure--hero" data-figure="construct" data-label="Modules scattered on a round platform. Point at a module and it lifts; point at the core and they fly in to form the frame and processor chip of a quantum computer, and its cryostat stages and coaxial lines grow round them."></div>
+<figcaption>Separate blocks, one machine. Point at a block, then at the core.</figcaption>
+</figure>
+</div>
+<h2 id="what-is-the-post-quantum-transition">What is the post-quantum transition?<a class="headerlink" href="#what-is-the-post-quantum-transition" title="Link to this section">&para;</a></h2>
+<p>A cryptographically relevant quantum computer (<abbr title="Cryptographically relevant quantum computer">CRQC</abbr>) running Shor's algorithm would break RSA, Diffie–Hellman and elliptic-curve cryptography: the public-key algorithms behind TLS, code signing, tokens and encrypted archives. Data recorded today can be decrypted once such a machine exists, which is why the threat is called <em>harvest now, decrypt later</em>. In August 2024 NIST published the replacements as final standards: <strong><abbr title="Module-Lattice-Based Key-Encapsulation Mechanism (NIST FIPS 203)">ML-KEM</abbr></strong> (FIPS 203) for key establishment, <strong><abbr title="Module-Lattice-Based Digital Signature Algorithm (NIST FIPS 204)">ML-DSA</abbr></strong> (FIPS 204) and <strong><abbr title="Stateless Hash-Based Digital Signature Algorithm (NIST FIPS 205)">SLH-DSA</abbr></strong> (FIPS 205) for signatures. NIST's transition guidance (NIST IR 8547, draft) deprecates today's 112-bit public-key algorithms after 2030 and disallows them after 2035, and the NSA's <abbr title="Commercial National Security Algorithm Suite">CNSA</abbr> 2.0 sets similar deadlines for national security systems. Changing the algorithm is the small part. The work is finding every use, migrating safely, carrying larger keys through real protocols and proving the result.</p>
+<h2 id="areas">Areas<a class="headerlink" href="#areas" title="Link to this section">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Area</th>
+<th>What it covers</th>
+<th style="text-align: right;">Packages</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 11c0 5.55-3.84 10.74-9 12-5.16-1.26-9-6.45-9-12V5l9-4 9 4zm-9 10c3.75-1 7-5.46 7-9.78V6.3l-7-3.12L5 6.3v4.92C5 15.54 8.25 20 12 21m0-15a3 3 0 0 1 3 3c0 1.31-.83 2.42-2 2.83V14h2v2h-2v2h-2v-6.17A2.99 2.99 0 0 1 9 9a3 3 0 0 1 3-3m0 2a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1"/></svg></span> <a href="packages/crypto/"><abbr title="Post-quantum">PQ</abbr> cryptography</a></td>
+<td><abbr title="Module-Lattice-Based Key-Encapsulation Mechanism (NIST FIPS 203)">ML-KEM</abbr>, <abbr title="Module-Lattice-Based Digital Signature Algorithm (NIST FIPS 204)">ML-DSA</abbr> and <abbr title="Stateless Hash-Based Digital Signature Algorithm (NIST FIPS 205)">SLH-DSA</abbr> through maintained implementations, hybrid key establishment and signatures, and safe defaults for files and tokens.</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m19.07 4.93-1.41 1.41A8.01 8.01 0 0 1 20 12a8 8 0 0 1-8 8 8 8 0 0 1-8-8c0-4.08 3.05-7.44 7-7.93v2.02C8.16 6.57 6 9.03 6 12a6 6 0 0 0 6 6 6 6 0 0 0 6-6c0-1.66-.67-3.16-1.76-4.24l-1.41 1.41C15.55 9.9 16 10.9 16 12a4 4 0 0 1-4 4 4 4 0 0 1-4-4c0-1.86 1.28-3.41 3-3.86v2.14c-.6.35-1 .98-1 1.72a2 2 0 0 0 2 2 2 2 0 0 0 2-2c0-.74-.4-1.38-1-1.72V2h-1A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10c0-2.76-1.12-5.26-2.93-7.07"/></svg></span> <a href="packages/migration/">Migration &amp; readiness</a></td>
+<td>Find cryptography in code and on the wire, emit CBOMs, score readiness, gate CI with policy-as-code and assemble compliance evidence.</td>
+<td style="text-align: right;">7</td>
+</tr>
+<tr>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 11h-3.18C14.4 9.84 13.3 9 12 9s-2.4.84-2.82 2H6c-.33 0-2-.1-2-2V8c0-1.83 1.54-2 2-2h10.18C16.6 7.16 17.7 8 19 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3c-1.3 0-2.4.84-2.82 2H6C4.39 4 2 5.06 2 8v1c0 2.94 2.39 4 4 4h3.18c.42 1.16 1.52 2 2.82 2s2.4-.84 2.82-2H18c.33 0 2 .1 2 2v1c0 1.83-1.54 2-2 2H7.82C7.4 16.84 6.3 16 5 16a3 3 0 0 0-3 3 3 3 0 0 0 3 3c1.3 0 2.4-.84 2.82-2H18c1.61 0 4-1.07 4-4v-1c0-2.93-2.39-4-4-4m1-7a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1M5 20a1 1 0 0 1-1-1 1 1 0 0 1 1-1 1 1 0 0 1 1 1 1 1 0 0 1-1 1"/></svg></span> <a href="packages/interop/">Interoperability</a></td>
+<td>Wire formats, <abbr title="JSON Object Signing and Encryption">JOSE</abbr>, X.509/<abbr title="Certificate Signing Request">CSR</abbr> and TLS hybrid groups that carry larger post-quantum keys, ciphertexts and signatures through real protocols.</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m23 12-2.4-2.8.3-3.7-3.6-.8-1.9-3.2L12 3 8.6 1.5 6.7 4.7l-3.6.8.3 3.7L1 12l2.4 2.8-.3 3.7 3.6.8 1.9 3.2L12 21l3.4 1.5 1.9-3.2 3.6-.8-.3-3.7zm-4.3 4.9-2.7.6-1.4 2.4-2.6-1.1-2.6 1.1L8 17.5l-2.7-.6.2-2.8L3.7 12l1.8-2.1-.2-2.8L8 6.5l1.4-2.4L12 5.2l2.6-1.1L16 6.5l2.7.6-.2 2.8 1.8 2.1-1.8 2.1zm-2.1-9.3L18 9l-8 8-4-4 1.4-1.4 2.6 2.6z"/></svg></span> <a href="packages/conformance/">Conformance</a></td>
+<td>Official NIST <abbr title="Automated Cryptographic Validation Protocol">ACVP</abbr> vectors and strict FIPS 203/204 boundary checks that prove an implementation and a migration are correct.</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr>
+<td><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 19v1h18v2H2V2h2v15c3 0 6-2 8.1-5.6 3-5 6.3-7.4 9.9-7.4v2c-2.8 0-5.5 2.1-8.1 6.5C11.3 16.6 7.7 19 4 19"/></svg></span> <a href="packages/optimization/">Quantum-inspired</a></td>
+<td>Classical solvers modelled on quantum dynamics for Ising and <abbr title="Quadratic Unconstrained Binary Optimization">QUBO</abbr> problems. Kept separate from security: no cryptographic claims.</td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr>
+<td></td>
+<td><strong>All packages</strong> · <a href="packages/">catalog</a></td>
+<td style="text-align: right;"><strong>26</strong></td>
+</tr>
+</tbody>
+</table>
+<p><img alt="PQBlocks ecosystem: packages across PQ cryptography, migration and readiness, interoperability, conformance and quantum-inspired optimisation" src="assets/diagrams/ecosystem-light.svg#only-light" />
+<img alt="PQBlocks ecosystem: packages across PQ cryptography, migration and readiness, interoperability, conformance and quantum-inspired optimisation" src="assets/diagrams/ecosystem-dark.svg#only-dark" /></p>
+<p>Coding assistants can use the same catalog through the <a href="ai/">MCP server, Claude skill and Cursor rules</a>.</p>
+<h2 id="why-lattices">Why lattices?<a class="headerlink" href="#why-lattices" title="Link to this section">&para;</a></h2>
+<div class="pqb-feature">
+<div class="pqb-feature__text">
+<p><abbr title="Module-Lattice-Based Key-Encapsulation Mechanism (NIST FIPS 203)">ML-KEM</abbr> and <abbr title="Module-Lattice-Based Digital Signature Algorithm (NIST FIPS 204)">ML-DSA</abbr>, the two main NIST post-quantum standards, are built on <strong>lattices</strong>: regular grids of points generated by a few basis vectors. Their security rests on problems such as Module Learning With Errors, which amount to finding a lattice point close to a given target when the lattice has hundreds of dimensions and the basis is deliberately awkward. In two dimensions, as in the figure, rounding in the basis finds the answer at once. In the dimensions the standards use, no known classical or quantum algorithm does it efficiently, and that gap is what protects the keys.</p>
+<p><a class="md-button" href="packages/crypto/"><abbr title="Post-quantum">PQ</abbr> cryptography packages</a>
+<a class="md-button" href="glossary/#ml-kem-fips-203">Glossary: <abbr title="Module-Lattice-Based Key-Encapsulation Mechanism (NIST FIPS 203)">ML-KEM</abbr>, <abbr title="Module-Lattice-Based Digital Signature Algorithm (NIST FIPS 204)">ML-DSA</abbr></a></p>
+</div>
+<figure class="pqb-feature__figure">
+<div class="pqb-figure pqb-figure--wide" data-figure="lattice" data-label="Pillars on a skewed two-dimensional lattice. The point closest to the pointer rises, and a path of whole basis steps draws to it from the origin."></div>
+<figcaption>Point anywhere on the plane: the closest lattice point answers, reached in whole basis steps.</figcaption>
+</figure>
+</div>
+<h2 id="crypto-agility-replace-one-block-at-a-time">Crypto agility: replace one block at a time<a class="headerlink" href="#crypto-agility-replace-one-block-at-a-time" title="Link to this section">&para;</a></h2>
+<div class="pqb-feature__text">
+<p>The post-quantum migration will not be the last. Algorithms will be retired again, parameters will change and new standards such as FN-DSA and HQC will arrive. Systems that can change an algorithm through configuration, without a redesign, are <strong>crypto-agile</strong>, and they make every future change cheap. PQBlocks packages are built that way: each one does one job, a policy pins the algorithms in use, and downgrades to classical-only cryptography are refused unless you allow them explicitly.</p>
+<p><a class="md-button" href="packages/agility/">Score your crypto agility</a>
+<a class="md-button" href="packages/policy/">Policy-as-code</a></p>
+</div>
+<h2 id="start-in-a-minute">Start in a minute<a class="headerlink" href="#start-in-a-minute" title="Link to this section">&para;</a></h2>
+<p>Each tab is the package's own quickstart, executed against the package source before this site was published.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:4"><input checked="checked" id="post-quantum-kem" name="__tabbed_1" type="radio" /><input id="encrypt-a-file" name="__tabbed_1" type="radio" /><input id="find-rsa-and-ecc" name="__tabbed_1" type="radio" /><input id="solve-an-ising-problem" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="post-quantum-kem">Post-quantum <abbr title="Key-encapsulation mechanism">KEM</abbr></label><label for="encrypt-a-file">Encrypt a file</label><label for="find-rsa-and-ecc">Find RSA and ECC</label><label for="solve-an-ising-problem">Solve an Ising problem</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-python highlight"><span class="filename">ML-KEM-768 with pqblocks-primitives</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pqblocks_primitives</span><span class="w"> </span><span class="kn">import</span> <span class="n">kem_keygen</span><span class="p">,</span> <span class="n">kem_encaps</span><span class="p">,</span> <span class="n">kem_decaps</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1"># Generate ML-KEM-768 keypair</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">pk</span><span class="p">,</span> <span class="n">sk</span> <span class="o">=</span> <span class="n">kem_keygen</span><span class="p">(</span><span class="s2">"768"</span><span class="p">)</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="c1"># Encapsulate shared secret</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">ct</span><span class="p">,</span> <span class="n">shared_secret_sender</span> <span class="o">=</span> <span class="n">kem_encaps</span><span class="p">(</span><span class="n">pk</span><span class="p">,</span> <span class="s2">"768"</span><span class="p">)</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="c1"># Decapsulate shared secret</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="n">shared_secret_receiver</span> <span class="o">=</span> <span class="n">kem_decaps</span><span class="p">(</span><span class="n">sk</span><span class="p">,</span> <span class="n">ct</span><span class="p">,</span> <span class="s2">"768"</span><span class="p">)</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="k">assert</span> <span class="n">shared_secret_sender</span> <span class="o">==</span> <span class="n">shared_secret_receiver</span>
+</span></code></pre></div>
+<p><a href="recipes/hybrid-kem/">Hybrid X25519 + <abbr title="Module-Lattice-Based Key-Encapsulation Mechanism (NIST FIPS 203)">ML-KEM</abbr> recipe</a> · <a href="packages/primitives/">pqblocks-primitives</a></p>
+</div>
+<div class="tabbed-block">
+<div class="language-python highlight"><span class="filename">ML-KEM-768 + X25519 file encryption with pqblocks-files</span><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pqblocks_files.encrypt</span><span class="w"> </span><span class="kn">import</span> <span class="n">encrypt</span><span class="p">,</span> <span class="n">decrypt</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pqblocks_files.keys</span><span class="w"> </span><span class="kn">import</span> <span class="n">keygen</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">keypair</span> <span class="o">=</span> <span class="n">keygen</span><span class="p">()</span>                                    <span class="c1"># ML-KEM-768 + X25519</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">blob</span> <span class="o">=</span> <span class="n">encrypt</span><span class="p">(</span><span class="sa">b</span><span class="s2">"quarterly numbers"</span><span class="p">,</span> <span class="p">[</span><span class="n">keypair</span><span class="o">.</span><span class="n">public</span><span class="p">])</span>  <span class="c1"># fresh random file key every call</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="k">assert</span> <span class="n">decrypt</span><span class="p">(</span><span class="n">blob</span><span class="p">,</span> <span class="n">keypair</span><span class="p">)</span> <span class="o">==</span> <span class="sa">b</span><span class="s2">"quarterly numbers"</span>   <span class="c1"># refuses classical-only files by default</span>
+</span></code></pre></div>
+<p><a href="recipes/encrypt-files/">Full recipe with key files</a> · <a href="packages/files/">pqblocks-files</a></p>
+</div>
+<div class="tabbed-block">
+<div class="language-python highlight"><span class="filename">Crypto inventory with pqblocks-scan</span><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pqblocks_scan.discovery</span><span class="w"> </span><span class="kn">import</span> <span class="n">Discovery</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pqblocks_scan.scorer</span><span class="w"> </span><span class="kn">import</span> <span class="n">CARSScorer</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pqblocks_scan.cbom</span><span class="w"> </span><span class="kn">import</span> <span class="n">CBOMGenerator</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="n">src</span> <span class="o">=</span> <span class="s2">"import hashlib</span><span class="se">\n</span><span class="s2">h = hashlib.sha1(b'x').hexdigest()</span><span class="se">\n</span><span class="s2">from pqcrypto.kem import ml_kem_768</span><span class="se">\n</span><span class="s2">"</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="n">assets</span> <span class="o">=</span> <span class="n">Discovery</span><span class="p">()</span><span class="o">.</span><span class="n">discover_source</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="s2">"app.py"</span><span class="p">)</span><span class="o">.</span><span class="n">assets</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="nb">print</span><span class="p">([(</span><span class="n">a</span><span class="o">.</span><span class="n">algorithm</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">line_number</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">is_quantum_vulnerable</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">assets</span><span class="p">])</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="c1"># [('ML-KEM-768', 3, False), ('SHA-1', 2, True)]</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="n">grade</span> <span class="o">=</span> <span class="n">CARSScorer</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">assets</span><span class="p">)</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="nb">print</span><span class="p">(</span><span class="n">grade</span><span class="o">.</span><span class="n">score</span><span class="p">,</span> <span class="n">grade</span><span class="o">.</span><span class="n">letter</span><span class="p">)</span>                      <span class="c1"># 55.5 C</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="nb">print</span><span class="p">(</span><span class="n">CBOMGenerator</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">assets</span><span class="p">)[</span><span class="s2">"specVersion"</span><span class="p">])</span>  <span class="c1"># 1.6</span>
+</span></code></pre></div>
+<p><a href="recipes/crypto-audit/">Audit recipe</a> · <a href="packages/scan/">pqblocks-scan</a></p>
+</div>
+<div class="tabbed-block">
+<div class="language-python highlight"><span class="filename">Simulated Bifurcation with pqblocks-bifurcation</span><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pqblocks_bifurcation.solver</span><span class="w"> </span><span class="kn">import</span> <span class="n">SimulatedBifurcationSampler</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">sampler</span> <span class="o">=</span> <span class="n">SimulatedBifurcationSampler</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">"dSB"</span><span class="p">)</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="n">J</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]])</span>   <span class="c1"># couplings</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="n">h</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">])</span>                   <span class="c1"># local fields</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="n">spins</span><span class="p">,</span> <span class="n">energy</span> <span class="o">=</span> <span class="n">sampler</span><span class="o">.</span><span class="n">sample_ising</span><span class="p">(</span><span class="n">J</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="nb">print</span><span class="p">(</span><span class="n">spins</span><span class="p">,</span> <span class="n">energy</span><span class="p">)</span>                        <span class="c1"># [1 1] -1.0</span>
+</span></code></pre></div>
+<p><a href="recipes/qubo-maxcut/">Max-Cut recipe</a> · <a href="packages/bifurcation/">pqblocks-bifurcation</a></p>
+</div>
+</div>
+</div>
+<h2 id="a-package-for-every-step-of-the-migration">A package for every step of the migration<a class="headerlink" href="#a-package-for-every-step-of-the-migration" title="Link to this section">&para;</a></h2>
+<p><img alt="Six migration steps (discover, assess, govern, migrate, interoperate, verify) and the PQBlocks packages for each" src="assets/diagrams/pipeline-light.svg#only-light" />
+<img alt="Six migration steps (discover, assess, govern, migrate, interoperate, verify) and the PQBlocks packages for each" src="assets/diagrams/pipeline-dark.svg#only-dark" /></p>
+<p>The <a href="transition-map/">transition map</a> walks through each step, the deadlines behind it and the package that does the work.</p>
+<h2 id="how-pqblocks-earns-trust">How PQBlocks earns trust<a class="headerlink" href="#how-pqblocks-earns-trust" title="Link to this section">&para;</a></h2>
+<ul>
+<li><strong>Standards, not inventions.</strong> Only standardised or peer-reviewed algorithms. Post-quantum primitives come from maintained implementations such as <a href="https://openquantumsafe.org/liboqs/">liboqs</a>.</li>
+<li><strong>Evidence in every repository.</strong> <code>TESTING</code>, <code>BENCHMARKS</code>, <code>EVIDENCE</code>, <code>SECURITY_NOTES</code> and a <code>VERIFICATION_REPORT</code>, with benchmarks that include the cases where a package loses. See <a href="security/verification-reports/">how we verify</a>.</li>
+<li><strong>Limits stated up front.</strong> Packages are pre-1.0. None is FIPS 140-3 or <abbr title="Cryptographic Module Validation Program">CMVP</abbr> validated or externally audited, and none claims to be. See <a href="security/security-notes/">security posture</a>.</li>
+<li><strong>Executed documentation.</strong> Every quickstart and recipe on this site is run against the package source before it is published.</li>
+</ul>
+<h2 id="frequently-asked-questions">Frequently asked questions<a class="headerlink" href="#frequently-asked-questions" title="Link to this section">&para;</a></h2>
+<details class="pqb-faq">
+<summary>What is PQBlocks?</summary>
+<p>PQBlocks is an open-source engineering organisation that builds the components of a post-quantum migration as independent packages: post-quantum cryptography (<abbr title="Module-Lattice-Based Key-Encapsulation Mechanism (NIST FIPS 203)">ML-KEM</abbr>, <abbr title="Module-Lattice-Based Digital Signature Algorithm (NIST FIPS 204)">ML-DSA</abbr>, <abbr title="Stateless Hash-Based Digital Signature Algorithm (NIST FIPS 205)">SLH-DSA</abbr> and hybrid modes), migration tooling (crypto inventory, CBOMs, readiness scoring, policy gates, <abbr title="Commercial National Security Algorithm Suite">CNSA</abbr> 2.0 evidence), interoperability (TLS, <abbr title="JSON Object Signing and Encryption">JOSE</abbr>, wire formats, certificate requests), conformance testing against NIST <abbr title="Automated Cryptographic Validation Protocol">ACVP</abbr> vectors, and quantum-inspired optimisation. Each package lives in its own repository under <a href="https://github.com/PQBlocks">github.com/PQBlocks</a>, is licensed Apache-2.0, and ships its tests, benchmarks, primary sources and a verification report. PQBlocks is a QubitRock project.</p>
+</details>
+<details class="pqb-faq">
+<summary>Which PQBlocks package should I start with?</summary>
+<p>Start by finding the cryptography you already run. <a href="packages/scan/"><code>pqblocks-scan</code></a> inventories RSA, elliptic curves, weak hashes and post-quantum algorithms in source code and TLS endpoints, and writes a CycloneDX 1.6 <abbr title="Cryptography Bill of Materials">CBOM</abbr> and a <abbr title="Static Analysis Results Interchange Format">SARIF</abbr> report. For new code, use <a href="packages/primitives/"><code>pqblocks-primitives</code></a> for <abbr title="Module-Lattice-Based Key-Encapsulation Mechanism (NIST FIPS 203)">ML-KEM</abbr>, <abbr title="Module-Lattice-Based Digital Signature Algorithm (NIST FIPS 204)">ML-DSA</abbr> and <abbr title="Stateless Hash-Based Digital Signature Algorithm (NIST FIPS 205)">SLH-DSA</abbr>, <a href="packages/jose/"><code>pqblocks-jose</code></a> for post-quantum <abbr title="JSON Web Signature">JWS</abbr> and <abbr title="JSON Web Encryption">JWE</abbr> tokens, and <a href="packages/files/"><code>pqblocks-files</code></a> for file encryption. The <a href="recipes/">recipes</a> are complete, tested programs for the common tasks.</p>
+</details>
+<details class="pqb-faq">
+<summary>Are PQBlocks packages FIPS validated?</summary>
+<p>No. PQBlocks packages implement or wire to the NIST standards FIPS 203, 204 and 205 and test against official vectors where those exist, but none of them is a FIPS 140-3 / <abbr title="Cryptographic Module Validation Program">CMVP</abbr> validated cryptographic module, and none claims to be. If you need a validated module, use one, and treat PQBlocks components as the integration, inventory and verification layer around it.</p>
+</details>
+<details class="pqb-faq">
+<summary>What is post-quantum cryptography?</summary>
+<p>Post-quantum cryptography (<abbr title="Post-quantum cryptography">PQC</abbr>) is public-key cryptography designed to stay secure against an attacker with a large quantum computer. It runs on today's ordinary computers. NIST standardised the first algorithms in August 2024: <abbr title="Module-Lattice-Based Key-Encapsulation Mechanism (NIST FIPS 203)">ML-KEM</abbr> (FIPS 203) for key establishment, and <abbr title="Module-Lattice-Based Digital Signature Algorithm (NIST FIPS 204)">ML-DSA</abbr> (FIPS 204) and <abbr title="Stateless Hash-Based Digital Signature Algorithm (NIST FIPS 205)">SLH-DSA</abbr> (FIPS 205) for digital signatures. They replace RSA, Diffie–Hellman and elliptic-curve cryptography, which Shor's algorithm would break.</p>
+</details>
+<details class="pqb-faq">
+<summary>When do we need to migrate to post-quantum cryptography?</summary>
+<p>Now, for planning and inventory. NIST's transition guidance (NIST IR 8547, draft) deprecates 112-bit quantum-vulnerable algorithms such as RSA-2048 and P-256 after 2030 and disallows all quantum-vulnerable public-key algorithms after 2035. The NSA's <abbr title="Commercial National Security Algorithm Suite">CNSA</abbr> 2.0 asks national security systems to prefer post-quantum algorithms from 2025 for software signing and web services and to use them exclusively between 2030 and 2033 depending on the system type. See the <a href="transition-map/">transition map</a> for the dates and sources.</p>
+</details>
+<details class="pqb-faq">
+<summary>Should I use hybrid or pure post-quantum cryptography?</summary>
+<p>During the transition, hybrid is the safer default: combine <abbr title="Module-Lattice-Based Key-Encapsulation Mechanism (NIST FIPS 203)">ML-KEM</abbr> with X25519 for key establishment and pair <abbr title="Module-Lattice-Based Digital Signature Algorithm (NIST FIPS 204)">ML-DSA</abbr> with Ed25519 for signatures. An attacker then has to break both the lattice scheme and the classical one, which protects you if either has an implementation flaw or an unexpected cryptanalytic result. TLS 1.3 already uses the hybrid group X25519MLKEM768. Requirements such as <abbr title="Commercial National Security Algorithm Suite">CNSA</abbr> 2.0 eventually call for post-quantum algorithms on their own, so prefer designs where a policy setting moves you from hybrid to pure.</p>
+</details>
+<details class="pqb-faq">
+<summary>How do AI coding assistants use PQBlocks?</summary>
+<p>Add the <a href="ai/mcp/"><code>pqblocks-mcp</code></a> server to Claude Code, Cursor or any MCP client. It recommends a package for a task, returns its install line and a quickstart executed against the real package, and flags quantum-vulnerable algorithms in pasted code. The <a href="ai/skills/">Claude skill and Cursor rules</a> give the same guidance without a server, and <a href="llms.txt"><code>llms.txt</code></a> and <a href="llms-full.txt"><code>llms-full.txt</code></a> give agents the whole catalog in one file.</p>
+</details>
+<p><a class="md-button" href="faq/">All questions</a></p>
+
+
+
+
+
+
+
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 27, 2026 19:58:06 UTC">October 27, 2026</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Created">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 27, 2026 11:35:23 UTC">October 27, 2026</span>
+  </span>
+
+    
+    
+    
+  </aside>
+
+
+
+  
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+        
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+        
+          
+          <a href="transition-map/" class="md-footer__link md-footer__link--next" aria-label="Next: Transition map">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Transition map
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 PQBlocks, a QubitRock project · Code under Apache-2.0 · <a href="https://github.com/PQBlocks">github.com/PQBlocks</a>
+    </div>
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/PQBlocks" target="_blank" rel="noopener" title="PQBlocks on GitHub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://pypi.org/search/?q=pqblocks" target="_blank" rel="noopener" title="PQBlocks on PyPI" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.8 200.5c-7.7-30.9-22.3-54.2-53.4-54.2h-40.1v47.4c0 36.8-31.2 67.8-66.8 67.8H172.7c-29.2 0-53.4 25-53.4 54.3v101.8c0 29 25.2 46 53.4 54.3 33.8 9.9 66.3 11.7 106.8 0 26.9-7.8 53.4-23.5 53.4-54.3v-40.7H226.2v-13.6h160.2c31.1 0 42.6-21.7 53.4-54.2 11.2-33.5 10.7-65.7 0-108.6M286.2 444.7a20.4 20.4 0 1 1 0-40.7 20.4 20.4 0 1 1 0 40.7M167.8 248.1h106.8c29.7 0 53.4-24.5 53.4-54.3V91.9c0-29-24.4-50.7-53.4-55.6-35.8-5.9-74.7-5.6-106.8.1-45.2 8-53.4 24.7-53.4 55.6v40.7h106.9v13.6h-147c-31.1 0-58.3 18.7-66.8 54.2-9.8 40.7-10.2 66.1 0 108.6 7.6 31.6 25.7 54.2 56.8 54.2H101v-48.8c0-35.3 30.5-66.4 66.8-66.4m-6.6-183.4a20.4 20.4 0 1 1 0 40.8 20.4 20.4 0 1 1 0-40.8"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.instant", "navigation.instant.prefetch", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "navigation.path", "navigation.top", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.tooltips", "content.action.edit"], "search": "assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.c21346df.min.js"></script>
+      
+        <script src="assets/vendor/hairline/kernel.js"></script>
+      
+        <script src="javascripts/hairline-registry.js"></script>
+      
+        <script src="assets/figures/catalog-shape.js"></script>
+      
+        <script src="assets/figures/swap.js"></script>
+      
+        <script src="assets/figures/assemble.js"></script>
+      
+        <script src="assets/figures/lattice.js"></script>
+      
+        <script src="assets/figures/construct.js"></script>
+      
+        <script src="assets/figures/merkle.js"></script>
+      
+        <script src="assets/figures/mark.js"></script>
+      
+        <script src="javascripts/figures.js" type="module"></script>
+      
+    
+  </body>
+</html>

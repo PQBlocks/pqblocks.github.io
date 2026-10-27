@@ -1,0 +1,950 @@
+# PQBlocks
+
+> PQBlocks is an open-source engineering organisation for the post-quantum (PQ) era: verified building blocks for post-quantum cryptography, migration and readiness, protocol interoperability, conformance testing and quantum-inspired optimisation. Apache-2.0.
+
+Install lines below are the ones that work today. Use the documented API only; every quickstart was executed against the package source. Never hand-roll ML-KEM or ML-DSA; prefer hybrid modes during the transition; never log private keys.
+
+## Start here
+
+- [Home](https://pqblocks.github.io/): what PQBlocks is and how the areas fit together
+- [Package catalog](https://pqblocks.github.io/packages/): all packages by area
+- [Transition map](https://pqblocks.github.io/transition-map/): which package for which migration phase
+- [Recipes](https://pqblocks.github.io/recipes/): complete, tested solutions to common tasks
+- [AI assistants](https://pqblocks.github.io/ai/): MCP server, Claude skill and Cursor rules
+- [FAQ](https://pqblocks.github.io/faq/): direct answers about the post-quantum transition and PQBlocks
+- [Glossary](https://pqblocks.github.io/glossary/): ML-KEM, ML-DSA, SLH-DSA, CBOM, CNSA 2.0 and related terms
+- [Releases](https://pqblocks.github.io/releases/): current version and status of every package
+
+## PQ cryptography
+
+ML-KEM, ML-DSA and SLH-DSA through maintained implementations, hybrid key establishment and signatures, and safe defaults for files and tokens.
+
+- [pqblocks-core](https://pqblocks.github.io/packages/core/): Post-quantum hybrid cryptography core SDK with C shared libraries and policy enforcement. Install: `pip install git+https://github.com/PQBlocks/hybrid-sdk`. Import: `pqblocks_core`.
+
+  ```python
+  import ctypes, os
+  import pqblocks_core
+
+  # Locate the native hybrid KEM library
+  lib_path = os.path.join(os.path.dirname(pqblocks_core.__file__), "lib", "libpqblocks_kem.so")
+  lib = ctypes.CDLL(lib_path)
+  lib.PQBLOCKS_KEM_X25519_MLKEM768_new.restype = ctypes.c_void_p
+
+  # Initialize hybrid KEM handle (ML-KEM-768 + X25519)
+  kem = lib.PQBLOCKS_KEM_X25519_MLKEM768_new()
+  assert kem is not None
+  print("PQBlocks hybrid core initialized successfully.")
+  ```
+
+- [pqblocks-files](https://pqblocks.github.io/packages/files/): Hybrid post-quantum file encryption: ML-KEM-768 plus X25519 key encapsulation with chunked ChaCha20-Poly1305 in the pfsh v1 format. Install: `pip install git+https://github.com/PQBlocks/hybrid-file-encryption`. Import: `pqblocks_files`.
+
+  ```python
+  from pqblocks_files.encrypt import encrypt, decrypt
+  from pqblocks_files.keys import keygen
+
+  keypair = keygen()                                    # ML-KEM-768 + X25519
+  blob = encrypt(b"quarterly numbers", [keypair.public])  # fresh random file key every call
+  assert decrypt(blob, keypair) == b"quarterly numbers"   # refuses classical-only files by default
+  ```
+
+- [pqblocks-jose](https://pqblocks.github.io/packages/jose/): Post-quantum hybrid JOSE library supporting ML-KEM and ML-DSA JWE and JWS tokens. Install: `pip install git+https://github.com/PQBlocks/hybrid-jose`. Import: `pqblocks_jose`.
+
+  ```python
+  from pqblocks_jose import Policy, generate_keypair, encode_jws, decode_jws, encrypt_jwe, decrypt_jwe
+
+  # 1. Define an enforceable policy
+  policy = Policy(
+      version=1,
+      kem="X25519+MLKEM768",           # Hybrid KEM for JWE
+      sig="MLDSA65+Ed25519",           # Hybrid signature for JWS
+      kdf="HKDF-SHA256",               # Mandatory KDF enforcement
+      max_token_bytes=8192,            # Header-safe limit
+      kdf_info="JOSE_PostQuantum_Traditional_Hybrid X25519MLKEM768",
+      sig_alg_std="ML-DSA-65-Ed25519"
+  )
+
+  # 2. Generate hybrid keypairs
+  sign_keypair = generate_keypair("ML-DSA-65-Ed25519", seed=12345)
+  enc_keypair = generate_keypair("X25519+MLKEM768", seed=12345)
+
+  # 3. Sign & verify a JWS token
+  payload = {"sub": "alice@example.com", "iat": 1700000000, "aud": "api.internal"}
+  jws_result = encode_jws(payload, policy, private_key=sign_keypair.private_key)
+
+  # Verify with public key
+  verification = decode_jws(
+      token=jws_result.compact_serialization,
+      policy=policy,
+      public_key=sign_keypair.public_key
+  )
+  print(f"JWS verified: {verification.signature_verified}")
+  print(f"JWS token size: {len(jws_result.compact_serialization)} bytes")
+
+  # 4. Encrypt & decrypt a JWE token
+  plaintext = b"session_key:random123nonce"
+  jwe_result = encrypt_jwe(plaintext, policy, public_key=enc_keypair.public_key)
+
+  # Decrypt with private key
+  decryption = decrypt_jwe(
+      token=jwe_result.compact_serialization,
+      policy=policy,
+      private_key=enc_keypair.private_key
+  )
+  print(f"JWE decrypted matches: {decryption.plaintext == plaintext}")
+  ```
+
+- [pqblocks-primitives](https://pqblocks.github.io/packages/primitives/): Production-ready integrated post-quantum cryptographic primitives (ML-KEM, ML-DSA, SLH-DSA, and hybrid schemes). Install: `pip install git+https://github.com/PQBlocks/fips-pqc-primitives`. Import: `pqblocks_primitives`.
+
+  ```python
+  from pqblocks_primitives import kem_keygen, kem_encaps, kem_decaps
+
+  # Generate ML-KEM-768 keypair
+  pk, sk = kem_keygen("768")
+
+  # Encapsulate shared secret
+  ct, shared_secret_sender = kem_encaps(pk, "768")
+
+  # Decapsulate shared secret
+  shared_secret_receiver = kem_decaps(sk, ct, "768")
+
+  assert shared_secret_sender == shared_secret_receiver
+  ```
+
+
+## Migration & readiness
+
+Find cryptography in code and on the wire, emit CBOMs, score readiness, gate CI with policy-as-code and assemble compliance evidence.
+
+- [pqblocks-agility](https://pqblocks.github.io/packages/agility/): Cryptographic Agility Readiness Scoring (CARS) and CI/CD regression firewall for CycloneDX 1.6 CBOM inventories. Install: `pip install pqblocks-agility`. Import: `pqblocks_agility`.
+
+  ```python
+  import json
+  from pqblocks_agility.cbom import parse_cbom_dict
+  from pqblocks_agility.cli import compute_cars_score
+
+  cbom_data = {
+      "bomFormat": "CycloneDX", "specVersion": "1.6",
+      "serialNumber": "urn:uuid:6c361972-23c3-4d4b-9721-a47fa266184a", "version": 1,
+      "components": [{"type": "cryptographic-asset", "name": "ML-KEM-768",
+                      "properties": [{"name": "pqblocks-scan.algorithm", "value": "ML-KEM-768"},
+                                     {"name": "pqblocks-scan.grade", "value": "A"}]}]
+  }
+  score, dims = compute_cars_score(parse_cbom_dict(cbom_data))
+  print(f"CARS score: {score:.1f} / 100.0 (Grade A)")
+  ```
+
+- [pqblocks-cbom](https://pqblocks.github.io/packages/cbom/): CycloneDX 1.5 CBOM metadata enrichment engine injecting quantum-safe classifications and CNSA 2.0 compliance properties. Install: `pip install git+https://github.com/PQBlocks/cbom-enricher`. Import: `pqblocks_cbom`.
+
+  ```python
+  from pqblocks_cbom import CBOMEnricher, CBOMProfile
+
+  # Initialize enricher with NSA CNSA 2.0 profile
+  enricher = CBOMEnricher(CBOMProfile.CNSA20)
+
+  sbom = {
+      "bomFormat": "CycloneDX",
+      "specVersion": "1.5",
+      "version": 1,
+      "components": [
+          {"type": "library", "name": "liboqs", "version": "3.5.7"}
+      ]
+  }
+
+  cbom = enricher.enrich_sbom(sbom)
+  print("Enriched components:", len(cbom["components"]))
+  print("Injected properties:", [p["name"] for p in cbom["components"][0]["properties"]])
+  ```
+
+- [pqblocks-cnsa-evidence](https://pqblocks.github.io/packages/cnsa-evidence/): CNSA 2.0 evidence pack generator for quantum-safe compliance, CBOM generation, and migration scheduling. Install: `pip install git+https://github.com/PQBlocks/cnsa-evidence-pack`. Import: `pqblocks_cnsa_evidence`.
+
+  ```python
+  import hashlib
+  import json
+  from pqblocks_cnsa_evidence import (
+      scan_parser,
+      lockfile_parser,
+      sbom_emitter,
+      crypto_inventory_emitter,
+      compliance_matrix_emitter,
+      narrative_emitter,
+      migration_scheduler,
+      executive_summary_emitter,
+      attestation_emitter,
+  )
+
+  # 1. Ingest scan findings and lockfile
+  scan_data = {
+      "algorithms": [
+          {"name": "ML-KEM-1024", "type": "key-encapsulation", "mode": "PQC", "keySize": 1024, "cnsA20Grade": "A", "breakYear": 2040},
+          {"name": "RSA-2048", "type": "signature", "mode": "classical", "keySize": 2048, "cnsA20Grade": "D", "breakYear": 2030},
+          {"name": "AES-256", "type": "encryption", "mode": "classical", "keySize": 256, "cnsA20Grade": "A", "breakYear": 2050},
+      ],
+      "tls_endpoints": [{"host": "api.fed.gov", "cipher": "TLS_AES_256_GCM_SHA384"}],
+      "dependencies": [{"name": "cryptography", "version": "42.0.5"}],
+      "pqc_grades": {"ML-KEM-1024": "A", "RSA-2048": "D", "AES-256": "A"}
+  }
+  lockfile_content = "cryptography==42.0.5\nrequests>=2.31.0\n"
+
+  scan_res = scan_parser(scan_data)
+  lock_res = lockfile_parser("python", lockfile_content)
+
+  # 2. Synthesize evidence pack components
+  sbom = sbom_emitter(scan_res, lock_res)
+  inventory = crypto_inventory_emitter(scan_res, lock_res)
+  matrix = compliance_matrix_emitter(scan_res)
+  narrative = narrative_emitter(scan_res, lock_res)
+  schedule = migration_scheduler(lock_res, matrix)
+  exec_summary = executive_summary_emitter(matrix, narrative, schedule)
+
+  def sha256(val):
+      b = val.encode("utf-8") if isinstance(val, str) else json.dumps(val, sort_keys=True).encode("utf-8")
+      return hashlib.sha256(b).hexdigest()
+
+  # 3. Create cryptographic attestation
+  attestation = attestation_emitter(
+      sbom_sha256=sha256(sbom),
+      inventory_sha256=sha256(inventory),
+      narrative_sha256=sha256(narrative),
+      compliance_sha256=sha256(matrix),
+      migration_plan_sha256=sha256(schedule),
+      executive_summary_sha256=sha256(exec_summary),
+      tool_version="0.1.0",
+      tool_timestamp="2026-10-26T00:00:00Z",
+      scan_json_sha256=sha256(scan_data),
+      lockfile_hashes={"requirements.txt": sha256(lockfile_content)},
+  )
+
+  print(f"Evidence Pack Generated: {sbom['bomFormat']} {sbom['specVersion']}")
+  print(f"Compliance Status: {matrix.get('status', 'complete')}")
+  ```
+
+- [pqblocks-jwe-audit](https://pqblocks.github.io/packages/jwe-audit/): High-throughput JSON Web Encryption (JWE) cryptographic policy auditor enforcing CNSA 2.0 and NIST FIPS 203 PQC standards. Install: `pip install git+https://github.com/PQBlocks/jwe-policy-auditor`. Import: `pqblocks_jwe_audit`.
+
+  ```python
+  from pqblocks_jwe_audit import audit_jwe, ComplianceStandard
+
+  # Inspect an incoming JWE compact token
+  jwe_token = "eyJhbGciOiJSU0EtT0FFUC0yNTYiLCJlbmMiOiJBMjU2R0NNIn0.dummy_key.dummy_iv.dummy_ct.dummy_tag"
+
+  result = audit_jwe(jwe_token, standards=[ComplianceStandard.CNSA_2_0])
+
+  print(f"Compliant: {result.compliant}")
+  print(f"Flagged Algorithms: {result.flagged_algorithms}")
+  # Compliant: False
+  # Flagged Algorithms: ['RSA-OAEP-256']
+  ```
+
+- [pqblocks-lint](https://pqblocks.github.io/packages/lint/): Static analysis for Python source that finds classical and post-quantum cryptographic primitives with a source-to-sink taint pass and reports them as a CycloneDX 1.6 CBOM or a SARIF 2.1.0 log. Install: `pip install git+https://github.com/PQBlocks/pqc-lint`. Import: `pqblocks_lint`.
+
+  ```python
+  import pathlib, tempfile
+  from pqblocks_lint import cli
+
+  src = pathlib.Path(tempfile.mkdtemp(), "keys.py")
+  src.write_text("from cryptography.hazmat.primitives.asymmetric import rsa\n"
+                 "def make_key():\n"
+                 "    key = rsa.generate_private_key(public_exponent=65537, key_size=2048)\n"
+                 "    return key\n")
+  code = cli.main(["--target", str(src), "--format", "cbom", "--output", str(src.with_suffix(".cbom.json")), "--seed", "0"])
+  print(code)   # 1: quantum-vulnerable cryptography found (RSA-2048)
+  ```
+
+- [pqblocks-policy](https://pqblocks.github.io/packages/policy/): Policy-as-code engine for post-quantum cryptography compliance and CBOM verification. Install: `pip install git+https://github.com/PQBlocks/crypto-policy-engine`. Import: `pqblocks_policy`.
+
+  ```python
+  from pqblocks_policy import PolicyEngine, cnsa20_default, Asset, UsageClass
+
+  # 1. Load the default CNSA 2.0 profile
+  profile = cnsa20_default()
+  engine = PolicyEngine(profile)
+
+  # 2. Define a cryptographic asset to evaluate
+  asset = Asset(ref="tls-session-1", alg="ML-KEM-768+X25519", use=UsageClass.KEY_EXCHANGE)
+
+  # 3. Evaluate compliance
+  report = engine.evaluate([asset])
+  print(f"Verdict: {report.verdict.value} | Assets: {report.asset_count} | Violations: {report.violation_count}")
+  ```
+
+- [pqblocks-scan](https://pqblocks.github.io/packages/scan/): Cryptography inventory scanner: finds classical and post-quantum algorithms in source code or a TLS endpoint and writes a CycloneDX 1.6 CBOM, a SARIF 2.1.0 report and a readiness grade. Install: `pip install git+https://github.com/PQBlocks/cbom-scanner`. Import: `pqblocks_scan`.
+
+  ```python
+  from pqblocks_scan.discovery import Discovery
+  from pqblocks_scan.scorer import CARSScorer
+  from pqblocks_scan.cbom import CBOMGenerator
+
+  src = "import hashlib\nh = hashlib.sha1(b'x').hexdigest()\nfrom pqcrypto.kem import ml_kem_768\n"
+  assets = Discovery().discover_source(src, "app.py").assets
+  print([(a.algorithm, a.line_number, a.is_quantum_vulnerable) for a in assets])
+  # [('ML-KEM-768', 3, False), ('SHA-1', 2, True)]
+  grade = CARSScorer.evaluate(assets)
+  print(grade.score, grade.letter)                      # 55.5 C
+  print(CBOMGenerator.generate(assets)["specVersion"])  # 1.6
+  ```
+
+
+## Interoperability
+
+Wire formats, JOSE, X.509/CSR and TLS hybrid groups that carry larger post-quantum keys, ciphertexts and signatures through real protocols.
+
+- [pqblocks-csr-pop](https://pqblocks.github.io/packages/csr-pop/): ML-KEM (FIPS 203) PKCS#10 Certificate Signing Request (CSR) generator with RFC 9883 Proof of Possession (PoP). Install: `pip install git+https://github.com/PQBlocks/mlkem-csr-pop`. Import: `pqblocks_csr_pop`.
+
+  ```python
+  import datetime
+  from cryptography import x509
+  from cryptography.hazmat.primitives.asymmetric import ed25519
+  from cryptography.x509.oid import NameOID
+
+  from pqblocks_csr_pop.csr_builder import build_csr_with_pop, parse_csr, verify_csr_signature
+  from pqblocks_csr_pop.mlkem import mlkem_keygen
+
+  # 1. Attestor Identity (e.g. Host/Device Ed25519 key)
+  attestor_key = ed25519.Ed25519PrivateKey.generate()
+  ca_name = x509.Name([x509.NameAttribute(NameOID.COMMON_NAME, "Device Attestor")])
+  now = datetime.datetime.now(datetime.timezone.utc)
+  attestor_cert = (
+      x509.CertificateBuilder()
+      .subject_name(ca_name).issuer_name(ca_name)
+      .public_key(attestor_key.public_key())
+      .serial_number(x509.random_serial_number())
+      .not_valid_before(now - datetime.timedelta(days=1))
+      .not_valid_after(now + datetime.timedelta(days=365))
+      .sign(attestor_key, None)
+  )
+
+  # 2. Generate ML-KEM Keypair (FIPS 203 ML-KEM-768)
+  ek, dk = mlkem_keygen("ML-KEM-768")
+
+  # 3. Construct PKCS#10 CSR with RFC 9883 PoP Extension
+  subject = x509.Name([x509.NameAttribute(NameOID.COMMON_NAME, "pqc-server.internal.net")])
+  csr_der = build_csr_with_pop(ek, "ML-KEM-768", subject, attestor_key, attestor_cert)
+
+  # 4. CA parses CSR and verifies PoP signature
+  parsed = parse_csr(csr_der)
+  valid = verify_csr_signature(csr_der, attestor_cert)
+  assert valid
+  print(f"CSR verified successfully: {len(csr_der)} bytes DER")
+  ```
+
+- [pqblocks-jwe](https://pqblocks.github.io/packages/jwe/): Compact five-part wire format, with a serializer and structural parser, for hybrid ML-KEM-768 + X25519 JWE-style tokens; it performs no encryption itself. Install: `pip install git+https://github.com/PQBlocks/hybrid-jwe`. Import: `pqblocks_jwe`.
+
+  ```python
+  from pqblocks_jwe import ALG_HYBRID, ENC_A256GCM, parse_jwe, serialize_jwe
+
+  ciphertext = bytes(48)        # your AEAD output; this package does not encrypt
+  kem_ct = bytes(1088 + 32)     # your ML-KEM-768 ciphertext || X25519 ephemeral public key
+  header = {"alg": ALG_HYBRID, "enc": ENC_A256GCM, "kid": "recipient-1"}
+
+  token = serialize_jwe(ciphertext, header, {"cty": "application/json"}, b"settlement-v1", kem_ct)
+  parsed = parse_jwe(token)
+  assert parsed["header"]["alg"] == ALG_HYBRID   # parse_jwe does not check alg/enc for you
+  print(len(token), parsed["aad"], len(parsed["kem_ct"]))   # 1697 b'settlement-v1' 1120
+  ```
+
+- [pqblocks-tls-interop](https://pqblocks.github.io/packages/tls-interop/): TLS 1.3 hybrid key exchange (X25519MLKEM768 / RFC 10024) endpoint probe, downgrade detector, and key material validator. Install: `pip install git+https://github.com/PQBlocks/tls-hybrid-interop`. Import: `pqblocks_tls_interop`.
+
+  ```python
+  from pqblocks_tls_interop import derive_shared_secret_10024, derive_key_material_rfc9954
+  from pqblocks_tls_interop.verifier.probe import HybridGroupProbe
+
+  # 1. Inspect RFC 10024 shared secret specifications
+  layout = HybridGroupProbe.get_shared_secret_layout()
+  print(layout["group_name"])  # X25519MLKEM768
+  print(layout["codepoint"])   # 4588
+
+  # 2. Derive combined hybrid shared secret (64 bytes: 32 bytes ML-KEM || 32 bytes X25519)
+  classical_ss = b"\x01" * 32
+  mlkem_ss = b"\x02" * 32
+  combined = derive_shared_secret_10024(classical_ss, mlkem_ss)
+  assert combined == mlkem_ss + classical_ss
+
+  # 3. Derive key material per RFC 9954 (48-byte SHA-384 digest)
+  km = derive_key_material_rfc9954(classical_ss, mlkem_ss)
+  assert len(km) == 48
+
+  # 4. Probe an external endpoint
+  probe = HybridGroupProbe("example.com", port=443, timeout=5.0)
+  result = probe.probe(sni="example.com")
+  if result.downgrade_detected:
+      print(f"Warning: Endpoint downgraded to classical ({result.error_reason})")
+  ```
+
+- [pqblocks-wire](https://pqblocks.github.io/packages/wire/): Length-prefixed container format (PQCWF1) for ML-KEM ciphertexts and ML-DSA / SLH-DSA signatures, with thin wrappers over liboqs-python and pyca/cryptography; it implements no primitive itself. Install: `pip install git+https://github.com/PQBlocks/pqc-wireformat`. Import: `pqblocks_wire`.
+
+  ```python
+  from pqblocks_wire import (generate_mlkem_keypair, encapsulate_mlkem, decapsulate_mlkem,
+                             encode_wire_format, decode_wire_format)
+
+  pk, sk = generate_mlkem_keypair("ML-KEM-768")
+  ct, ss_sender = encapsulate_mlkem(pk, "ML-KEM-768")
+  frame = encode_wire_format(mlkem_ciphertext=ct, payload=b"hello")      # 1109 bytes
+  received = decode_wire_format(frame)
+  ss_receiver = decapsulate_mlkem(sk, received.mlkem_ciphertext, "ML-KEM-768")
+  print(ss_sender == ss_receiver, received.payload)                    # True b'hello'
+  ```
+
+
+## Conformance
+
+Official NIST ACVP vectors and strict FIPS 203/204 boundary checks that prove an implementation and a migration are correct.
+
+- [pqblocks-acvp](https://pqblocks.github.io/packages/acvp/): Cross-implementation NIST ACVP conformance harness for FIPS 203 (ML-KEM) and FIPS 204 (ML-DSA). Install: `pip install pqblocks-acvp`. Import: `pqblocks_acvp`.
+
+  ```python
+  from pqblocks_acvp.runner import build_golden_session
+  from pqblocks_acvp.harness import ConformanceHarness
+  from pqblocks_acvp.adapters.reference import ReferencePQCAdapter
+
+  session = build_golden_session()
+  harness = ConformanceHarness([ReferencePQCAdapter()])
+  reports = harness.run_session(session)
+  rep = reports["Reference-FIPS-Oracle"]
+  print(f"Executed {rep.total_attempted} cases: {rep.passed} passed (denominator verified: {rep.denominator_verified})")
+  ```
+
+- [pqblocks-fips-check](https://pqblocks.github.io/packages/fips-check/): FIPS 203/204 boundary validator and hybrid key exchange (X25519 + ML-KEM-768) with ML-DSA-65 signatures and CBOM reporting. Install: `pip install git+https://github.com/PQBlocks/fips-boundary-validator`. Import: `pqblocks_fips_check`.
+
+  ```python
+  from pqblocks_fips_check import (
+      hybrid_encap,
+      hybrid_decap,
+      sign,
+      verify_sig,
+      generate_cbom,
+      PQCUnavailableError,
+  )
+  from pqblocks_fips_check.hybrid import hybrid_keygen
+
+  # 1. Hybrid key exchange (X25519 + ML-KEM-768)
+  alice_pk, alice_sk = hybrid_keygen()
+  bob_pk, bob_sk = hybrid_keygen()
+
+  # Alice encapsulates shared secret for Bob
+  ct, ss_alice = hybrid_encap(bob_pk, b"session-context")
+
+  # Bob decapsulates the ciphertext
+  _, ss_bob = hybrid_decap(bob_sk, ct)
+  assert ss_alice == ss_bob
+
+  # 2. ML-DSA-65 signature with context binding
+  sig = sign(b"Critical message payload", context=b"audit-auth")
+  assert verify_sig(b"Critical message payload", sig, context=b"audit-auth")
+
+  # 3. Export SPDX CBOM
+  cbom_json = generate_cbom()
+  assert "ML-KEM-768" in cbom_json and "ML-DSA-65" in cbom_json
+  ```
+
+
+## Quantum-inspired
+
+Classical solvers modelled on quantum dynamics for Ising and QUBO problems. Kept separate from security: no cryptographic claims.
+
+- [pqblocks-anneal-sa](https://pqblocks.github.io/packages/anneal-sa/): Simulated Annealing heuristic solver for Ising and QUBO optimization problems. Quantum-inspired classical optimization, not cryptography. Install: `pip install pqblocks-anneal-sa`. Import: `pqblocks_anneal_sa`.
+
+  ```python
+  import numpy as np
+  from pqblocks_anneal_sa import simulated_annealing
+
+  # 1. Define 4-spin Ising problem (couplings J and linear biases h)
+  J = np.array([
+      [0.0, 1.0, -1.0, 0.0],
+      [1.0, 0.0, 1.0, -1.0],
+      [-1.0, 1.0, 0.0, 1.0],
+      [0.0, -1.0, 1.0, 0.0],
+  ])
+  h = np.array([0.5, -0.3, 0.2, -0.1])
+
+  # 2. Solve with auto-derived parameters
+  result = simulated_annealing(J, h, num_sweeps=100, num_reads=10, seed=42)
+
+  # 3. Retrieve best solution
+  best_idx = np.argmin(result["energies"])
+  print(f"Best energy: {result['energies'][best_idx]:.6f}")
+  print(f"Sample: {result['samples'][best_idx].tolist()}")
+  ```
+
+- [pqblocks-anneal-schedule](https://pqblocks.github.io/packages/anneal-schedule/): Quantum-inspired instance-adaptive simulated annealing with statistics-driven schedule generation for Ising and QUBO optimization problems. Quantum-inspired classical optimization, not cryptography. Install: `pip install pqblocks-anneal-schedule`. Import: `pqblocks_anneal_schedule`.
+
+  ```python
+  import numpy as np
+  from pqblocks_anneal_schedule import (
+      compute_instance_stats,
+      generate_schedule,
+      simulated_annealing,
+  )
+
+  # Define a 4-spin Ising ring
+  J = np.array([
+      [0.0, -1.0,  0.0,  1.0],
+      [-1.0,  0.0, -1.0,  0.0],
+      [0.0, -1.0,  0.0, -1.0],
+      [1.0,  0.0, -1.0,  0.0]
+  ], dtype=float)
+  h = np.zeros(4, dtype=float)
+
+  # Extract graph statistics and synthesize adaptive schedule
+  stats = compute_instance_stats(J, h)
+  schedule = generate_schedule(stats, n=4, max_degree=2, budget_steps=64)
+
+  # Execute simulated annealing
+  result = simulated_annealing(J, h, schedule, seed=42, num_steps=64, num_runs=1)
+
+  print(f"Best Energy: {result.best_energy:.6f}")
+  print("Best Config:", result.best_config)
+  ```
+
+- [pqblocks-anneal-sqa](https://pqblocks.github.io/packages/anneal-sqa/): Simulated Quantum Annealing (Path-Integral Monte Carlo via Suzuki-Trotter decomposition) heuristic solver for Ising and QUBO optimization. Quantum-inspired classical optimization, not cryptography. Install: `pip install git+https://github.com/PQBlocks/simulated-quantum-annealing`. Import: `pqblocks_anneal_sqa`.
+
+  ```python
+  from pqblocks_anneal_sqa import SimulatedQuantumAnnealingSampler
+
+  # 1. Define 4-spin Ising problem
+  h = [-1.0, 1.0, 2.0, -2.0]
+  J = [
+      [0.0, 1.0, -1.0, 2.0],
+      [0.0, 0.0, 1.0, -1.0],
+      [0.0, 0.0, 0.0, -2.0],
+      [0.0, 0.0, 0.0, 0.0],
+  ]
+
+  # 2. Initialize SQA solver
+  sampler = SimulatedQuantumAnnealingSampler()
+
+  # 3. Sample Ising ground state
+  samples, energies = sampler.sample_ising(h, J, num_sweeps=1000, beta=5.0, P=32)
+
+  print("Best Spin State:", samples[0].tolist())
+  print(f"Best Energy: {energies[0]:.6f}")
+  ```
+
+- [pqblocks-bifurcation](https://pqblocks.github.io/packages/bifurcation/): Simulated Bifurcation (ballistic and discrete) heuristic solver for Ising and QUBO problems. Quantum-inspired classical optimization, not cryptography. Install: `pip install git+https://github.com/PQBlocks/simulated-bifurcation`. Import: `pqblocks_bifurcation`.
+
+  ```python
+  import numpy as np
+  from pqblocks_bifurcation.solver import SimulatedBifurcationSampler
+
+  sampler = SimulatedBifurcationSampler(seed=42, mode="dSB")
+  J = np.array([[0.0, -1.0], [-1.0, 0.0]])   # couplings
+  h = np.array([0.5, -0.5])                   # local fields
+  spins, energy = sampler.sample_ising(J, h)
+  print(spins, energy)                        # [1 1] -1.0
+  ```
+
+- [pqblocks-digital-anneal](https://pqblocks.github.io/packages/digital-anneal/): Digital Annealer-style parallel-trial heuristic solver for Ising and QUBO optimization problems. Quantum-inspired classical optimization, not cryptography. Install: `pip install git+https://github.com/PQBlocks/digital-annealing`. Import: `pqblocks_digital_anneal`.
+
+  ```python
+  import numpy as np
+  from pqblocks_digital_anneal import DigitalAnnealerSampler
+
+  # 1. Define 4-spin Ising problem
+  N = 4
+  J = np.zeros((N, N))
+  J[0, 1] = J[1, 0] = 1.0
+  J[1, 2] = J[2, 1] = -1.0
+  J[2, 3] = J[3, 2] = 1.0
+  h = np.array([1.0, -1.0, 0.0, 0.0])
+
+  # 2. Sample with Digital Annealer
+  sampler = DigitalAnnealerSampler(seed=42)
+  results = sampler.sample(J, h, num_sweeps=1000, num_reads=1)
+
+  # 3. Retrieve optimal solution
+  best = min(results, key=lambda x: x["energy"])
+  print(f"Best energy: {best['energy']:.6f}")
+  print("Spin State:", best["sample"].tolist())
+  ```
+
+- [pqblocks-population-anneal](https://pqblocks.github.io/packages/population-anneal/): Population Annealing Monte Carlo heuristic solver for Ising models and QUBO combinatorial optimization. Quantum-inspired classical optimization, not cryptography. Install: `pip install git+https://github.com/PQBlocks/population-annealing`. Import: `pqblocks_population_anneal`.
+
+  ```python
+  import numpy as np
+  from pqblocks_population_anneal import PopulationAnnealingSampler
+
+  # Define a 4-spin chain problem
+  h = np.array([0.5, -0.3, 0.2, -0.1])
+  J = np.array([
+      [0.0, 1.0, -1.0, 0.0],
+      [1.0, 0.0, 1.0, -1.0],
+      [-1.0, 1.0, 0.0, 1.0],
+      [0.0, -1.0, 1.0, 0.0]
+  ])
+
+  # Initialize sampler with 100 replicas and 10 sweeps per temperature step
+  sampler = PopulationAnnealingSampler(num_replicas=100, num_sweeps=10)
+  best_state, best_energy, free_energy = sampler.sample(h, J, seed=42)
+
+  print(f"Best Spin State: {best_state}")
+  print(f"Best Energy: {best_energy:.6f}")
+  print(f"Estimated Free Energy: {free_energy:.6f}")
+  ```
+
+- [pqblocks-qiea](https://pqblocks.github.io/packages/qiea/): Quantum-Inspired Evolutionary Algorithm (QIEA) with Q-bit representations and quantum rotation gates for Ising and QUBO optimization problems. Quantum-inspired classical optimization, not… Install: `pip install git+https://github.com/PQBlocks/quantum-inspired-evolutionary`. Import: `pqblocks_qiea`.
+
+  ```python
+  import numpy as np
+  from pqblocks_qiea import solve_ising
+
+  # 4-spin antiferromagnetic ring
+  N = 4
+  h = np.zeros(N)
+  J = np.zeros((N, N))
+  for i in range(N):
+      j = (i + 1) % N
+      J[i, j] = J[j, i] = 1.0
+
+  # Solve using QIEA
+  best_spins, best_energy = solve_ising(
+      h=h,
+      J=J,
+      num_generations=100,
+      seed=42
+  )
+
+  print("Best Spin State:", best_spins.tolist())
+  print(f"Best Energy: {best_energy:.6f}")
+  ```
+
+- [pqblocks-qubo](https://pqblocks.github.io/packages/qubo/): Unified mathematical representation and converter library for Quadratic Unconstrained Binary Optimization (QUBO) and Ising formulations. Install: `pip install git+https://github.com/PQBlocks/qubo-core`. Import: `pqblocks_qubo`.
+
+  ```python
+  import networkx as nx
+  from pqblocks_qubo import load_maxcut, to_qubo
+
+  # 1. Build a graph and construct native Ising model for MaxCut
+  G = nx.cycle_graph(4)
+  bqm_ising = load_maxcut(G)
+
+  # 2. Convert transparently to QUBO
+  bqm_qubo = to_qubo(bqm_ising)
+
+  # 3. Evaluate state energy (deterministic evaluation)
+  sample = {0: 0, 1: 1, 2: 0, 3: 1}
+  print(f"QUBO Energy: {bqm_qubo.energy(sample)}")
+  ```
+
+- [pqblocks-qubo-bench](https://pqblocks.github.io/packages/qubo-bench/): Benchmarking harness and standard instance loaders for quantum-inspired optimization algorithms against classical baselines. Install: `pip install git+https://github.com/PQBlocks/qubo-benchmark-harness`. Import: `pqblocks_qubo_bench`.
+
+  ```python
+  from pqblocks_qubo_bench.tts_engine import calculate_tts
+
+  # Timing data: list of (runtime_seconds, success_boolean) tuples
+  runs = [(0.012, True), (0.015, False), (0.011, True), (0.014, True)]
+
+  # Calculate Time-To-Solution for 99% target confidence
+  tts = calculate_tts(runs, target_prob=0.99)
+  print(f"Calculated TTS (99% target): {tts:.4f}s")
+  ```
+
+
+## Frequently asked questions
+
+### What is PQBlocks?
+
+PQBlocks is an open-source engineering organisation that builds the components of a post-quantum migration as independent packages: post-quantum cryptography (ML-KEM, ML-DSA, SLH-DSA and hybrid modes), migration tooling (crypto inventory, CBOMs, readiness scoring, policy gates, CNSA 2.0 evidence), interoperability (TLS, JOSE, wire formats, certificate requests), conformance testing against NIST ACVP vectors, and quantum-inspired optimisation. Each package lives in its own repository under github.com/PQBlocks, is licensed Apache-2.0, and ships its tests, benchmarks, primary sources and a verification report. PQBlocks is a QubitRock project.
+
+### Which PQBlocks package should I start with?
+
+Start by finding the cryptography you already run. pqblocks-scan inventories RSA, elliptic curves, weak hashes and post-quantum algorithms in source code and TLS endpoints, and writes a CycloneDX 1.6 CBOM and a SARIF report. For new code, use pqblocks-primitives for ML-KEM, ML-DSA and SLH-DSA, pqblocks-jose for post-quantum JWS and JWE tokens, and pqblocks-files for file encryption. The recipes are complete, tested programs for the common tasks.
+
+### How do I install PQBlocks packages?
+
+Each package installs on its own with pip. Packages already on PyPI install with pip install pqblocks-<name>; the rest install from their GitHub repository with pip install git+https://github.com/PQBlocks/<repository> while their PyPI release is staged. Every package page shows the exact command that works today. Packages that use post-quantum primitives need the liboqs shared library; their README explains how it is found.
+
+### Are PQBlocks packages production-ready?
+
+They are pre-1.0 alpha releases. They follow the NIST standards, test against official vectors where those exist and document their limits, but their APIs may still change between minor versions and none has had an external security audit. Treat them as you would any young security library: pin versions, read each package's SECURITY_NOTES.md and VERIFICATION_REPORT.md, and review the code paths you depend on.
+
+### Are PQBlocks packages FIPS validated?
+
+No. PQBlocks packages implement or wire to the NIST standards FIPS 203, 204 and 205 and test against official vectors where those exist, but none of them is a FIPS 140-3 / CMVP validated cryptographic module, and none claims to be. If you need a validated module, use one, and treat PQBlocks components as the integration, inventory and verification layer around it.
+
+### What licence are PQBlocks packages under?
+
+Apache License 2.0, for every package, the MCP server, the agent skills and this site. You can use, modify and redistribute them commercially. Each algorithm cites its standard or paper in the package's EVIDENCE.md.
+
+### What is post-quantum cryptography?
+
+Post-quantum cryptography (PQC) is public-key cryptography designed to stay secure against an attacker with a large quantum computer. It runs on today's ordinary computers. NIST standardised the first algorithms in August 2024: ML-KEM (FIPS 203) for key establishment, and ML-DSA (FIPS 204) and SLH-DSA (FIPS 205) for digital signatures. They replace RSA, Diffie–Hellman and elliptic-curve cryptography, which Shor's algorithm would break.
+
+### What does "harvest now, decrypt later" mean?
+
+It is the attack in which encrypted traffic or files are recorded today and decrypted years later, once a cryptographically relevant quantum computer exists. It is why key establishment (TLS sessions, VPNs, encrypted archives) has to move to post-quantum algorithms before such a machine is built: data with a long confidentiality life is already exposed. Signatures are not harvested this way, but long-lived keys and trust anchors take years to replace.
+
+### When do we need to migrate to post-quantum cryptography?
+
+Now, for planning and inventory. NIST's transition guidance (NIST IR 8547, draft) deprecates 112-bit quantum-vulnerable algorithms such as RSA-2048 and P-256 after 2030 and disallows all quantum-vulnerable public-key algorithms after 2035. The NSA's CNSA 2.0 asks national security systems to prefer post-quantum algorithms from 2025 for software signing and web services and to use them exclusively between 2030 and 2033 depending on the system type. See the transition map for the dates and sources.
+
+### What are ML-KEM, ML-DSA and SLH-DSA?
+
+They are the three NIST post-quantum standards published in August 2024. ML-KEM (FIPS 203, formerly Kyber) is a lattice-based key-encapsulation mechanism for agreeing on shared secrets. ML-DSA (FIPS 204, formerly Dilithium) is a lattice-based signature scheme. SLH-DSA (FIPS 205, formerly SPHINCS+) is a hash-based signature scheme with larger signatures and very conservative security assumptions. See the glossary for sizes and related terms.
+
+### Should I use hybrid or pure post-quantum cryptography?
+
+During the transition, hybrid is the safer default: combine ML-KEM with X25519 for key establishment and pair ML-DSA with Ed25519 for signatures. An attacker then has to break both the lattice scheme and the classical one, which protects you if either has an implementation flaw or an unexpected cryptanalytic result. TLS 1.3 already uses the hybrid group X25519MLKEM768. Requirements such as CNSA 2.0 eventually call for post-quantum algorithms on their own, so prefer designs where a policy setting moves you from hybrid to pure.
+
+### Does TLS already support post-quantum key exchange?
+
+Yes. TLS 1.3 negotiates the hybrid group X25519MLKEM768, which combines X25519 with ML-KEM-768, and major browsers, CDNs and recent OpenSSL releases support it. Whether your own endpoints use it depends on your TLS library and configuration. pqblocks-tls-interop probes an endpoint, reports the negotiated group and flags downgrades to classical key exchange.
+
+### What is a CBOM?
+
+A Cryptography Bill of Materials lists the cryptographic algorithms, keys, protocols and certificates a system uses, in a machine-readable format such as CycloneDX. It is to cryptography what an SBOM is to dependencies, and it is the starting point for planning a post-quantum migration and proving progress. pqblocks-scan produces one from source code, and pqblocks-cbom enriches it with quantum-safety and CNSA 2.0 classifications.
+
+### How do I sign JWTs with a post-quantum algorithm in Python?
+
+Use pqblocks-jose: generate a composite ML-DSA-65 + Ed25519 key pair, define a policy that pins the algorithms, sign with encode_jws and verify with decode_jws. Both signatures must verify for the token to be accepted. Expect tokens of about 4.6 KB, since an ML-DSA-65 signature alone is 3,309 bytes. The complete recipe runs as written.
+
+### How do I find RSA and elliptic-curve cryptography in my code?
+
+Run pqblocks-scan over the source tree. It parses Python by syntax tree and other languages by pattern, marks each algorithm as quantum-vulnerable or not with its file and line, grades readiness from A to F and writes a CycloneDX 1.6 CBOM and a SARIF report for code scanning. For Python data flow, pqblocks-lint follows keys from where they are made to where they are used. See the audit recipe.
+
+### Is the quantum-inspired work cryptography?
+
+No. The quantum-inspired packages are classical optimisation algorithms (simulated bifurcation, simulated and simulated-quantum annealing, population annealing, digital-annealer-style search and quantum-inspired evolutionary algorithms) for QUBO and Ising problems such as Max-Cut, scheduling and portfolio selection. They run on ordinary CPUs, make no security claims and are kept in their own area so they are never mistaken for cryptography.
+
+### How do AI coding assistants use PQBlocks?
+
+Add the pqblocks-mcp server to Claude Code, Cursor or any MCP client. It recommends a package for a task, returns its install line and a quickstart executed against the real package, and flags quantum-vulnerable algorithms in pasted code. The Claude skill and Cursor rules give the same guidance without a server, and llms.txt and llms-full.txt give agents the whole catalog in one file.
+
+### How do I report a security vulnerability?
+
+Privately, through GitHub private vulnerability reporting on the affected repository (https://github.com/PQBlocks/<repository>/security/advisories/new). Do not open a public issue. Reports are acknowledged within 3 working days, assessed within 10, and normally fixed and disclosed within 90 days in agreement with the reporter. See security posture.
+
+### How is PQBlocks different from liboqs?
+
+liboqs, from the Open Quantum Safe project, is a C library of post-quantum algorithms. PQBlocks builds on top of maintained implementations like it rather than replacing them. It adds what a migration needs around the primitives: hybrid modes and safe defaults, JOSE tokens and file encryption, crypto inventory and CBOMs, policy gates, TLS checks, NIST ACVP conformance runs and compliance evidence, each as an installable Python package with tests and documentation.
+
+### Is PQBlocks free to use commercially?
+
+Yes. Every package is released under the Apache License 2.0, which allows commercial use, modification and redistribution, with no usage limits or registration. Keep the licence and notice files when you redistribute the code.
+
+### Which languages and platforms does PQBlocks support?
+
+Today, Python 3.11 and newer on Linux, with packages installed from PyPI or GitHub. Packages that use post-quantum primitives need the liboqs shared library. npm modules for JavaScript and TypeScript, native SDKs and framework adapters are on the roadmap; this site lists only what is available now.
+
+### How long does a post-quantum migration take?
+
+For a large organisation, years. Inventory alone can take months, because cryptography hides in libraries, protocols, devices and vendor products. That is why the guidance starts now while deadlines run to 2030 and 2035: find what you have, protect long-lived data first with hybrid key establishment, make systems crypto-agile so later changes are configuration, and verify each step.
+
+### How do I contribute to PQBlocks?
+
+Open an issue or pull request on the relevant repository under github.com/PQBlocks, following the contributing guide. Every change to cryptographic code must follow the cryptography policy: no novel cryptography, official vectors as the reference, and no overclaiming.
+
+## Recipes
+
+### crypto_audit.py
+
+```python
+"""Find quantum-vulnerable cryptography in source code and grade readiness (pqblocks-scan)."""
+from pqblocks_scan.cbom import CBOMGenerator
+from pqblocks_scan.discovery import Discovery
+from pqblocks_scan.scorer import CARSScorer
+
+source = '''
+from cryptography.hazmat.primitives.asymmetric import rsa, ec
+key = rsa.generate_private_key(public_exponent=65537, key_size=2048)
+signer = ec.generate_private_key(ec.SECP256R1())
+import hashlib
+digest = hashlib.sha256(b"data").hexdigest()
+'''
+
+assets = Discovery().discover_source(source, "app.py").assets
+for a in sorted(assets, key=lambda a: a.line_number):
+    status = "QUANTUM-VULNERABLE" if a.is_quantum_vulnerable else "ok"
+    print(f"app.py:{a.line_number:<3} {a.algorithm:<12} {status}")
+
+grade = CARSScorer.evaluate(assets)
+cbom = CBOMGenerator.generate(assets)
+print("readiness:", grade.score, grade.letter, "| CBOM spec", cbom["specVersion"])
+assert any(a.is_quantum_vulnerable for a in assets)
+```
+
+### encrypt_files.py
+
+```python
+"""Encrypt a file to a post-quantum hybrid public key and decrypt it (pqblocks-files)."""
+import os
+import tempfile
+
+from pqblocks_files.encrypt import decrypt, encrypt
+from pqblocks_files.keys import keygen, load_private_key, load_public_key, save_private_key, save_public_key
+from pqblocks_files.pqtypes import KeyPair
+
+with tempfile.TemporaryDirectory() as d:
+    # 1. Create a key pair and store it; the private key is sealed under a passphrase (scrypt, mode 0600).
+    passphrase = os.urandom(16).hex().encode()        # demo only: prompt for it or use a secret store
+    kp = keygen()                                     # ML-KEM-768 + X25519
+    save_public_key(kp, os.path.join(d, "alice.pub"))
+    save_private_key(kp, os.path.join(d, "alice.key"), passphrase)
+
+    # 2. Anyone with the public key can encrypt.
+    report = b"Q3 board report - confidential\n" * 1000
+    recipient = load_public_key(os.path.join(d, "alice.pub"))
+    with open(os.path.join(d, "report.pfsh"), "wb") as fh:
+        fh.write(encrypt(report, [recipient]))
+
+    # 3. Only the private key holder can decrypt.
+    me = KeyPair(public=recipient, private=load_private_key(os.path.join(d, "alice.key"), passphrase))
+    with open(os.path.join(d, "report.pfsh"), "rb") as fh:
+        assert decrypt(fh.read(), me) == report
+    print("encrypted", len(report), "bytes and decrypted them back: OK")
+```
+
+### fastapi_pqc.py
+
+```python
+"""FastAPI service that issues and checks hybrid ML-DSA-65 + Ed25519 signed tokens (pqblocks-jose)."""
+from fastapi import Depends, FastAPI, HTTPException
+from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
+from pqblocks_jose import Policy, decode_jws, encode_jws, generate_keypair
+
+POLICY = Policy(
+    version=1,
+    kem="X25519+MLKEM768",
+    sig="MLDSA65+Ed25519",
+    kdf="HKDF-SHA256",
+    max_token_bytes=8192,
+    kdf_info="JOSE_PostQuantum_Traditional_Hybrid X25519MLKEM768",
+    sig_alg_std="ML-DSA-65-Ed25519",
+)
+# Demo only: a real service loads its signing key from a secret store at start-up.
+SIGNING_KEYS = generate_keypair("ML-DSA-65-Ed25519")
+
+app = FastAPI(title="Post-quantum signed tokens")
+bearer = HTTPBearer()
+
+
+@app.post("/token")
+def issue_token(user: str) -> dict:
+    claims = {"sub": user, "aud": "api.example.com"}
+    signed = encode_jws(claims, POLICY, private_key=SIGNING_KEYS.private_key)
+    return {"access_token": signed.compact_serialization, "token_type": "Bearer"}
+
+
+def verified_token(creds: HTTPAuthorizationCredentials = Depends(bearer)) -> str:
+    try:
+        result = decode_jws(token=creds.credentials, policy=POLICY, public_key=SIGNING_KEYS.public_key)
+    except Exception:
+        raise HTTPException(status_code=401, detail="invalid token")
+    if not result.signature_verified:
+        raise HTTPException(status_code=401, detail="invalid token")
+    return creds.credentials
+
+
+@app.get("/me")
+def me(token: str = Depends(verified_token)) -> dict:
+    return {"ok": True, "token_bytes": len(token)}
+
+
+if __name__ == "__main__":
+    # Self-check without a server: issue a token, use it, then tamper with it.
+    from fastapi.testclient import TestClient
+
+    client = TestClient(app)
+    tok = client.post("/token", params={"user": "alice"}).json()["access_token"]
+    assert client.get("/me", headers={"Authorization": "Bearer " + tok}).status_code == 200
+    tampered = tok[:-8] + ("A" * 8 if not tok.endswith("A" * 8) else "B" * 8)
+    assert client.get("/me", headers={"Authorization": "Bearer " + tampered}).status_code == 401
+    print("issued, accepted, tampered token rejected: OK")
+```
+
+### hybrid_kem.py
+
+```python
+"""Hybrid X25519 + ML-KEM-768 key establishment with an HKDF-SHA256 combiner (pqblocks-primitives)."""
+from cryptography.hazmat.primitives import serialization
+from cryptography.hazmat.primitives.asymmetric import x25519
+from pqblocks_primitives import hybrid_decaps, hybrid_encaps, kem_keygen
+
+raw = serialization.Encoding.Raw
+
+# Recipient: one ML-KEM-768 key pair and one X25519 key pair, concatenated.
+kem_pk, kem_sk = kem_keygen("768")
+x_sk = x25519.X25519PrivateKey.generate()
+x_pk = x_sk.public_key().public_bytes(raw, serialization.PublicFormat.Raw)
+x_sk_bytes = x_sk.private_bytes(raw, serialization.PrivateFormat.Raw, serialization.NoEncryption())
+public_key = kem_pk + x_pk            # 1184 + 32 bytes
+private_key = kem_sk + x_sk_bytes     # 2400 + 32 bytes
+
+# Sender: encapsulate to the recipient's hybrid public key.
+sent = hybrid_encaps(public_key, "768", kdf="HKDF-SHA256")
+ciphertext = sent.serialize()         # 1088 + 32 bytes on the wire
+
+# Recipient: decapsulate. Both sides now hold the same 32-byte secret.
+received = hybrid_decaps(private_key, ciphertext, "768", kdf="HKDF-SHA256")
+assert received == sent.shared_secret
+print("public key", len(public_key), "B | ciphertext", len(ciphertext), "B | shared secret", len(received), "B")
+```
+
+### jwt_ml_dsa.py
+
+```python
+"""Sign a JWT-style token with hybrid ML-DSA-65 + Ed25519 and verify it (pqblocks-jose)."""
+from pqblocks_jose import Policy, decode_jws, encode_jws, generate_keypair
+
+# The policy pins every algorithm choice; a token that disagrees with it is rejected.
+policy = Policy(
+    version=1,
+    kem="X25519+MLKEM768",
+    sig="MLDSA65+Ed25519",
+    kdf="HKDF-SHA256",
+    max_token_bytes=8192,
+    kdf_info="JOSE_PostQuantum_Traditional_Hybrid X25519MLKEM768",
+    sig_alg_std="ML-DSA-65-Ed25519",
+)
+
+# No seed: the key comes from os.urandom. Seeds exist for reproducible tests only.
+keys = generate_keypair("ML-DSA-65-Ed25519")
+
+claims = {"sub": "alice@example.com", "aud": "api.example.com", "iat": 1700000000}
+token = encode_jws(claims, policy, private_key=keys.private_key).compact_serialization
+
+result = decode_jws(token=token, policy=policy, public_key=keys.public_key)
+assert result.signature_verified
+print("verified:", result.signature_verified, "| token bytes:", len(token))
+
+# A different key must not verify the token.
+other = generate_keypair("ML-DSA-65-Ed25519")
+try:
+    forged = decode_jws(token=token, policy=policy, public_key=other.public_key)
+    assert not forged.signature_verified
+except Exception as exc:  # the library may raise instead of returning False
+    print("wrong key rejected:", type(exc).__name__)
+```
+
+### qubo_maxcut.py
+
+```python
+"""Solve a small Max-Cut problem with Simulated Bifurcation (pqblocks-bifurcation).
+
+Quantum-inspired classical optimisation: not cryptography, no security claim.
+Max-Cut maps to an Ising model with J_ij = w_ij; the cut value of spins s is sum w_ij (1 - s_i s_j) / 2.
+"""
+import itertools
+
+import numpy as np
+from pqblocks_bifurcation.solver import SimulatedBifurcationSampler
+
+# A 6-node ring with one chord; every edge has weight 1.
+edges = [(0, 1), (1, 2), (2, 3), (3, 4), (4, 5), (5, 0), (0, 3)]
+n = 6
+W = np.zeros((n, n))
+for i, j in edges:
+    W[i, j] = W[j, i] = 1.0
+
+
+def cut_value(spins):
+    return sum(W[i, j] * (1 - spins[i] * spins[j]) / 2 for i, j in edges)
+
+
+# A heuristic: take the best of several independent reads.
+best_spins = max((SimulatedBifurcationSampler(seed=s, mode="dSB").sample_ising(W, np.zeros(n))[0]
+                  for s in range(8)), key=cut_value)
+found = cut_value(best_spins)
+
+# The graph is tiny, so brute force tells us whether the heuristic reached the optimum.
+optimum = max(cut_value(np.array(b)) for b in itertools.product((-1, 1), repeat=n))
+print("partition:", best_spins.tolist(), "| cut:", found, "| optimum:", optimum)
+assert found <= optimum
+```
