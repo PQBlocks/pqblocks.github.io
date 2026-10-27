@@ -6,7 +6,8 @@ Isometric line figures drawn for this site with the `hairline-create` skill of
 
 | Figure | Where | What it shows |
 |---|---|---|
-| `assemble.js` | home page | A core block and one loose block per package; near the pointer they slide into five branches, one per area, and links draw out. Pointing toward a branch lights that area. |
+| `lattice.js` | home page | Pillars on a skewed 2-D lattice (the structure behind ML-KEM and ML-DSA): the closest lattice point to the pointer rises, found by rounding in the basis and checking neighbours, and a dashed path of whole basis steps draws to it. |
+| `assemble.js` | package catalog | A core block and one loose block per package; near the pointer they slide into five branches, one per area, and links draw out. Pointing toward a branch lights that area. |
 | `swap.js` | transition map | Seven blocks in a tray: the one under the pointer lifts out of its slot and its neighbours part. One block replaced without touching the rest. |
 
 To change a figure, edit it here, check it with the skill (`node look.mjs swap.js --answer 136,15,40 --edge 194,30,44`),

@@ -85,7 +85,7 @@ FIGURES = {
     "interop": ("patch", "A patch panel of ports and cables: the cable under the pointer lifts."),
     "conformance": ("sieve", "Stacked test sieves: the pointer's height lifts one clear of the stack."),
     "optimization": ("terrain", "Pillars on a plinth that rise around the pointer, like an energy landscape."),
-    "index": ("rebuild", "A tree of packages: the one under the pointer rises with everything that depends on it."),
+    "index": ("assemble", "A core block and one loose block per package: as the pointer nears they slide into one branch per area."),
 }
 
 

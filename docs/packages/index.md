@@ -8,7 +8,7 @@ schema: {"@context": "https://schema.org", "@type": "ItemList", "name": "PQBlock
 
 # Package catalog
 
-<div class="pqb-figure" data-figure="rebuild" data-label="A tree of packages: the one under the pointer rises with everything that depends on it."></div>
+<div class="pqb-figure" data-figure="assemble" data-label="A core block and one loose block per package: as the pointer nears they slide into one branch per area."></div>
 
 <p class="pqb-lead">26 packages across five areas of the post-quantum transition. Each one installs on its own, ships its own tests and evidence, and states what it does not do.</p>
 
