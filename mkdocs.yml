@@ -86,7 +86,9 @@ extra_css:
 extra_javascript:
   - assets/vendor/hairline/kernel.js
   - javascripts/hairline-registry.js
+  - assets/figures/catalog-shape.js
   - assets/figures/swap.js
+  - assets/figures/assemble.js
   - path: javascripts/figures.js
     type: module
 

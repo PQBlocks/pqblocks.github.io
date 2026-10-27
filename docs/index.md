@@ -26,7 +26,8 @@ PQBlocks is an open-source engineering organisation for the post-quantum (PQ) er
 </div>
 
 <figure class="pqb-hero__figure" markdown>
-<div class="pqb-figure pqb-figure--hero" data-figure="settle" data-label="Loose tiles round a hub slide into a tree as the pointer nears: separate blocks becoming one system."></div>
+<div class="pqb-figure pqb-figure--hero" data-figure="assemble" data-label="A core block and one loose block per package. As the pointer comes near they slide into five branches, one per area, and links draw out from the core."></div>
+<figcaption>One block per package, one branch per area. Bring the pointer to the centre.</figcaption>
 </figure>
 
 </div>
