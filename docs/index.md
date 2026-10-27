@@ -26,8 +26,8 @@ PQBlocks is an open-source engineering organisation for the post-quantum (PQ) er
 </div>
 
 <figure class="pqb-hero__figure" markdown>
-<div class="pqb-figure pqb-figure--hero" data-figure="lattice" data-label="Pillars on the points of a skewed two-dimensional lattice, the structure behind ML-KEM and ML-DSA. The point closest to the pointer rises, and a path of whole basis steps draws to it from the origin."></div>
-<figcaption>A lattice, the mathematics under ML-KEM and ML-DSA. Point anywhere: the closest lattice point answers.</figcaption>
+<div class="pqb-figure pqb-figure--hero" data-figure="construct" data-label="Building blocks scattered on a round platform. Point at a block and it lifts; point at the core and every block flies in to build one structure: a square base, a star tier, a cross and a spire."></div>
+<figcaption>Separate blocks, one structure. Point at a block, then at the core.</figcaption>
 </figure>
 
 </div>

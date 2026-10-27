@@ -80,7 +80,7 @@ DOC_INFO = {
 
 # one interactive line figure per section page (hairline, vendored)
 FIGURES = {
-    "crypto": ("vault", "A vault door with a dial and bolts: the dial turns toward the pointer."),
+    "crypto": ("lattice", "Pillars on a skewed lattice, the structure behind ML-KEM and ML-DSA: the closest lattice point to the pointer rises."),
     "migration": ("loupe", "A loupe over a ruled sheet: the pointer drags it across to inspect."),
     "interop": ("patch", "A patch panel of ports and cables: the cable under the pointer lifts."),
     "conformance": ("sieve", "Stacked test sieves: the pointer's height lifts one clear of the stack."),

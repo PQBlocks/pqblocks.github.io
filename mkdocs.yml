@@ -90,6 +90,7 @@ extra_javascript:
   - assets/figures/swap.js
   - assets/figures/assemble.js
   - assets/figures/lattice.js
+  - assets/figures/construct.js
   - path: javascripts/figures.js
     type: module
 

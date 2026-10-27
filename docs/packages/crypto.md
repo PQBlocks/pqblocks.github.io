@@ -8,7 +8,7 @@ schema: {"@context": "https://schema.org", "@type": "CollectionPage", "name": "P
 
 # :material-shield-key-outline: PQ cryptography
 
-<div class="pqb-figure" data-figure="vault" data-label="A vault door with a dial and bolts: the dial turns toward the pointer."></div>
+<div class="pqb-figure" data-figure="lattice" data-label="Pillars on a skewed lattice, the structure behind ML-KEM and ML-DSA: the closest lattice point to the pointer rises."></div>
 
 <p class="pqb-lead">ML-KEM, ML-DSA and SLH-DSA through maintained implementations, hybrid key establishment and signatures, and safe defaults for files and tokens.</p>
 
