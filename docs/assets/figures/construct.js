@@ -3,105 +3,141 @@
 /**
  * Construct: twenty-six blocks lie scattered on the orbits of a round platform.
  * The block under the pointer lifts and takes the bright stroke. Bring the
- * pointer to the core pad at the centre and every block arcs in, lowest tiers
- * first, and they stack into one structure: two square tiers, a cross, and a
- * spire of three narrowing turned blocks. The slider is the arc: how high the
- * blocks fly on their way in.
+ * pointer to the core pad and every block flies in, lowest first, to raise an
+ * arcology: a twisting main tower, a diamond tower, a stepped tower and a
+ * podium. Once the blocks land, the rest grows out of them: two skybridges, an
+ * antenna mast with a crown, a mast and a landing plate on the other roofs,
+ * and two halo rings round the main tower. The slider is the arc of the flight.
  *
  * The pattern: one of many (a block answers) and a field (the build answers
- * the distance to the core). A spring for the build, each block offset by its
- * tier so the structure rises bottom-up, hit tests on rest poses and on the
- * ground plane, guides painted behind the plates, and a scattered rest.
+ * the distance to the core). One spring for the build, each block offset by its
+ * height so the city rises bottom-up, the fittings gated on the build's last
+ * quarter, hit tests on rest poses and on the ground plane, guides behind the
+ * plates, and a scattered rest.
  */
 const {
   Cam, circ, clamp, facing, fit, flatDot, lerp, mk, open, place, pointer, poly, prism, proj, put, rad,
   register, ringAt, rrect, disposer, solid, spring, stepS, tween, tset, tval, tdone, unproj,
 } = HL;
 
-const R_PLATE = 104, PLATE_H = 6, R_PAD = 40, PAD_H = 2.6, BASE = PLATE_H + PAD_H, CORE = 34;
-const CELL = 21, ORBITS = [62, 86];
-// the structure, bottom up: [x, y, tier, size, height, turn in degrees]. The second tier is the first
-// turned 45 degrees (a star over a square), then a cross, then a spire of three narrowing turned blocks.
-const TIERS = [];
-const D = Math.SQRT1_2;
-for (let j = -1; j <= 1; j++) for (let i = -1; i <= 1; i++) TIERS.push([i * CELL, j * CELL, 0, 19, 12, 0]);
-for (let j = -1; j <= 1; j++) for (let i = -1; i <= 1; i++) TIERS.push([(i - j) * CELL * D, (i + j) * CELL * D, 1, 16, 12, 45]);
-[[0, 0], [CELL, 0], [-CELL, 0], [0, CELL], [0, -CELL]].forEach(([x, y]) => TIERS.push([x, y, 2, 15, 12, 0]));
-TIERS.push([0, 0, 3, 15, 14, 45], [0, 0, 4, 10, 18, 45], [0, 0, 5, 6, 26, 45]);
-const TOPS = [0, 12, 24, 36, 50, 68];                            // each tier's floor above the pad
+const R_PLATE = 112, PLATE_H = 6, R_PAD = 48, PAD_H = 2.6, BASE = PLATE_H + PAD_H, CORE = 36;
+const ORBITS = [70, 94];
+const A = [-6, -6], Bt = [-30, 10], Ct = [10, -30], Dt = [22, 22];
+
+// [x, y, z above the pad, size, height, turn in degrees]: the blocks' places in the city
+const SLOTS = [];
+const stack = ([x, y], sizes, h, turns, z0 = 0) => {
+  let z = z0;
+  sizes.forEach((s, k) => { SLOTS.push([x, y, z, s, h, turns(k)]); z += h; });
+  return z;
+};
+const topA = stack(A, [24, 22, 20, 20, 17, 15, 12, 9], 10, (k) => (Math.floor(k / 2) % 2 ? 45 : 0));
+const topB = stack(Bt, [17, 16, 14, 13, 11, 9], 9, () => 45);
+const topC = stack(Ct, [18, 16, 16, 13, 11, 8], 10, (k) => (k > 3 ? 45 : 0));
+[[16, 16], [30, 16], [16, 30], [30, 30]].forEach(([x, y]) => SLOTS.push([x, y, 0, 13, 7, 0]));
+const topD = stack(Dt, [12, 8], 9, () => 45, 7);
+const HIGH = Math.max(...SLOTS.map((s) => s[2]));
 
 const turn = (ring, cx, cy, th) => {
   const c = Math.cos(th), s = Math.sin(th);
   return ring.map((q) => ({ u: cx + q.u * c - q.v * s, v: cy + q.u * s + q.v * c, nu: q.nu * c - q.nv * s, nv: q.nu * s + q.nv * c }));
 };
+const box = (w, d, r = 1.2) => [rrect(-w / 2, -d / 2, w / 2, d / 2, Math.min(r, w / 2, d / 2), 4),
+  rrect(-w / 2 + 0.8, -d / 2 + 0.8, w / 2 - 0.8, d / 2 - 0.8, Math.max(0.3, Math.min(r, w / 2, d / 2) - 0.8), 4)];
+
+/** A skybridge between two tower centres at height z: a long thin box along the line between them. */
+function bridge(p, q, z, w, inset) {
+  const dx = q[0] - p[0], dy = q[1] - p[1], L = Math.hypot(dx, dy) - inset;
+  return { x: (p[0] + q[0]) / 2, y: (p[1] + q[1]) / 2, z: BASE + z, th: Math.atan2(dy, dx), shape: box(L, w), h: 4, grow: "len", L };
+}
+// the fittings that grow out of the city once the blocks have landed
+const FITTINGS = [
+  bridge(A, Bt, 46, 5, 18), bridge(A, Ct, 32, 5, 18),
+  { x: A[0], y: A[1], z: BASE + topA, th: 0, shape: box(2.6, 2.6, 1.2), h: 40, grow: "up", mast: true },
+  { x: A[0], y: A[1], z: BASE + topA + 22, th: rad(45), shape: box(9, 9, 2.4), h: 2.2, grow: "up" },
+  { x: Bt[0], y: Bt[1], z: BASE + topB, th: 0, shape: box(2.2, 2.2, 1), h: 18, grow: "up" },
+  { x: Ct[0], y: Ct[1], z: BASE + topC, th: 0, shape: [circ(8, 20), circ(6.6, 20)], h: 1.8, grow: "up" },
+  { x: Dt[0], y: Dt[1], z: BASE + topD, th: 0, shape: box(3, 3, 1.2), h: 9, grow: "up" },
+];
 
 function mount({ stage, svg, read }, value) {
   const bag = disposer();
   let arc = value;
-
-  // the scatter: every block on one of two orbits, at its own angle and turn
   let seed = 11;
   const rnd = () => ((seed = (seed * 16807) % 2147483647) / 2147483647) * 2 - 1;
-  const blocks = TIERS.map(([tx, ty, tier, size, h, tdeg], i) => {
-    const a = rad(i * (360 / TIERS.length) + rnd() * 5), r = ORBITS[i % 2] + rnd() * 5;
-    const half = size / 2, ring = rrect(-half, -half, half, half, Math.min(3, half * 0.45), 4);
-    const inner = rrect(-half + 1.2, -half + 1.2, half - 1.2, half - 1.2, Math.min(1.8, half * 0.3), 4);
-    return { i, tier, h, ring, inner, tx, ty, tz: BASE + TOPS[tier], tth: rad(tdeg),
+  const blocks = SLOTS.map(([tx, ty, tz, size, h, tdeg], i) => {
+    const a = rad(i * (360 / SLOTS.length) + rnd() * 5), r = ORBITS[i % 2] + rnd() * 5;
+    const [ring, inner] = box(size, size, Math.min(3, size * 0.2));
+    return { h, ring, inner, tx, ty, tz: BASE + tz, tth: rad(tdeg), order: tz / HIGH,
       rx: Math.cos(a) * r, ry: Math.sin(a) * r, rth: rad(rnd() * 40), lift: tween(0), drawn: "" };
   });
 
-  const C = Cam(45, 0.5, 1.5);
+  const C = Cam(45, 0.5, 1.36);
   fit(C, [[-R_PLATE, -R_PLATE, 0], [R_PLATE, R_PLATE, 0], [R_PLATE, -R_PLATE, 0], [-R_PLATE, R_PLATE, 0],
-    [0, 0, BASE + TOPS[5] + 26 + 4]], 200, 180);
+    [A[0], A[1], BASE + topA + 40]], 200, 186);
   const P = proj(C), front = facing(C);
 
   const g = mk("g", {}, svg);
-  // the platform: a disc, a rim line set into its top, and the core pad
-  put(solid(g), prism(P, front, circ(R_PLATE, 40), circ(R_PLATE - 2.6, 40), 0, PLATE_H));
-  mk("path", { d: poly(ringAt(P, circ(R_PLATE - 9, 40), PLATE_H)), class: "nf lo" }, g);
-  // guides on the deck: the two orbits and eight spokes, all behind the plates
-  ORBITS.forEach((r) => mk("path", { d: poly(ringAt(P, circ(r, 40), PLATE_H)), class: "nf dash" }, g));
+  put(solid(g), prism(P, front, circ(R_PLATE, 44), circ(R_PLATE - 2.6, 44), 0, PLATE_H));
+  mk("path", { d: poly(ringAt(P, circ(R_PLATE - 9, 44), PLATE_H)), class: "nf lo" }, g);
+  ORBITS.forEach((r) => mk("path", { d: poly(ringAt(P, circ(r, 44), PLATE_H)), class: "nf dash" }, g));
   let spokes = "";
   for (let k = 0; k < 8; k++) {
     const a = rad(22.5 + k * 45);
     spokes += open([P(Math.cos(a) * (R_PAD + 4), Math.sin(a) * (R_PAD + 4), PLATE_H), P(Math.cos(a) * (R_PLATE - 12), Math.sin(a) * (R_PLATE - 12), PLATE_H)]);
   }
   mk("path", { d: spokes, class: "nf dash" }, g);
-  // rim beacons: twelve dim dots
-  for (let k = 0; k < 12; k++) {
-    const a = rad(k * 30), d = flatDot(g, C, 0.9, "dot off");
+  for (let k = 0; k < 16; k++) {
+    const a = rad(k * 22.5), d = flatDot(g, C, 0.9, "dot off");
     place(d, P(Math.cos(a) * (R_PLATE - 5), Math.sin(a) * (R_PLATE - 5), PLATE_H));
   }
   const pad = solid(g);
-  put(pad, prism(P, front, circ(R_PAD, 28), circ(R_PAD - 2.2, 28), PLATE_H, BASE));
-  mk("path", { d: poly(ringAt(P, circ(R_PAD - 8, 28), BASE)), class: "nf lo" }, g);
+  put(pad, prism(P, front, circ(R_PAD, 32), circ(R_PAD - 2.2, 32), PLATE_H, BASE));
+  mk("path", { d: poly(ringAt(P, circ(R_PAD - 8, 32), BASE)), class: "nf lo" }, g);
+  // halo rings round the main tower: guides, so they sit behind every plate
+  const halos = [30, 58].map(() => mk("path", { class: "nf dash" }, g));
 
   const layer = mk("g", {}, g);
-  blocks.forEach((b) => { b.el = solid(mk("g", {}, layer)); });
+  blocks.forEach((b, k) => { b.el = solid(mk("g", { "data-k": "b" + k }, layer)); });
+  const fits = FITTINGS.map((f, k) => ({ ...f, el: solid(mk("g", { "data-k": "f" + k }, layer)), drawn: "" }));
   const build = spring(0, { eps: 0.002 });
 
-  /** Where block b stands: its scatter, its place in the structure, or on the arc between. */
-  function pose(b, now) {
-    const s = clamp(build.x * 1.6 - b.tier * 0.12, 0, 1);
-    const x = lerp(b.rx, b.tx, s), y = lerp(b.ry, b.ty, s), th = lerp(b.rth, b.tth, s);
-    const z = lerp(PLATE_H, b.tz, s) + Math.sin(Math.PI * s) * arc + tval(b.lift, now) * (1 - s);
-    return { x, y, z, th };
+  function poseBlock(b, now) {
+    const s = clamp(build.x * 1.7 - b.order * 0.7, 0, 1);
+    return { x: lerp(b.rx, b.tx, s), y: lerp(b.ry, b.ty, s), th: lerp(b.rth, b.tth, s),
+      z: lerp(PLATE_H, b.tz, s) + Math.sin(Math.PI * s) * arc + tval(b.lift, now) * (1 - s) };
   }
+  const grown = () => clamp((build.x - 0.8) / 0.2, 0, 1);
 
   let order = "";
   function draw(now) {
-    const poses = blocks.map((b) => pose(b, now));
-    blocks.forEach((b, k) => {
-      const q = poses[k], key = [q.x, q.y, q.z, q.th].map((v) => v.toFixed(2)).join();
-      if (key === b.drawn) return;
-      b.drawn = key;
-      put(b.el, prism(P, front, turn(b.ring, q.x, q.y, q.th), turn(b.inner, q.x, q.y, q.th), q.z, q.z + b.h));
+    const e = grown(), items = [];
+    blocks.forEach((b) => {
+      const q = poseBlock(b, now), key = [q.x, q.y, q.z, q.th].map((v) => v.toFixed(2)).join();
+      if (key !== b.drawn) {
+        b.drawn = key;
+        put(b.el, prism(P, front, turn(b.ring, q.x, q.y, q.th), turn(b.inner, q.x, q.y, q.th), q.z, q.z + b.h));
+      }
+      items.push({ el: b.el.g, depth: q.x + q.y + q.z * 1.5 });
     });
-    // back to front, and bottom to top within the structure
-    const depth = (q) => q.x + q.y + q.z * 1.6;
-    const idx = blocks.map((_, k) => k).sort((a, c) => depth(poses[a]) - depth(poses[c]));
-    const key = idx.join();
-    if (key !== order) { order = key; idx.forEach((k) => layer.appendChild(blocks[k].el.g)); }
+    fits.forEach((f) => {
+      const key = e.toFixed(3);
+      if (key !== f.drawn) {
+        f.drawn = key;
+        if (e <= 0.01) put(f.el, { sil: "", crease: "" });       // not grown yet: nothing drawn
+        else {
+          const shape = f.grow === "len" ? box(Math.max(1, f.L * e), 5) : f.shape;
+          const h = f.grow === "up" ? Math.max(0.3, f.h * e) : f.h;
+          put(f.el, prism(P, front, turn(shape[0], f.x, f.y, f.th), turn(shape[1], f.x, f.y, f.th), f.z, f.z + h));
+        }
+      }
+      items.push({ el: f.el.g, depth: f.x + f.y + f.z * 1.5 + (f.mast ? 0.1 : 0) });
+    });
+    halos.forEach((el, k) => el.setAttribute("d", e > 0.5
+      ? poly(ringAt(P, circ(20 + k * 6, 40).map((q) => ({ ...q, u: q.u + A[0], v: q.v + A[1] })), BASE + [30, 58][k])) : ""));
+    items.sort((a, b) => a.depth - b.depth);
+    const key = items.map((i) => i.el.getAttribute("data-k")).join();
+    if (key !== order) { order = key; items.forEach((i) => layer.appendChild(i.el)); }
   }
 
   const B = register(stage, (dt, now) => {
@@ -112,10 +148,9 @@ function mount({ stage, svg, read }, value) {
   });
   bag.add(B.unregister);
 
-  // hit tests: the core on the ground plane; a block by its RESTING centre on screen
   const restC = blocks.map((b) => P(b.rx, b.ry, PLATE_H + b.h / 2));
   function pickBlock([sx, sy]) {
-    let best = -1, bd = 16;
+    let best = -1, bd = 15;
     restC.forEach(([x, y], k) => { const d = Math.hypot(x - sx, y - sy); if (d < bd) { bd = d; best = k; } });
     return best;
   }
@@ -141,7 +176,7 @@ function mount({ stage, svg, read }, value) {
       if (k >= 0) tset(blocks[k].lift, 9, now, 0);
       picked = k;
     }
-    if (build.t > 0) { light(blocks[blocks.length - 1].el.sil); read.textContent = "build"; }
+    if (build.t > 0) { light(fits[2].el.sil); read.textContent = "build"; }
     else if (k >= 0) { light(blocks[k].el.sil); read.textContent = "block " + String(k + 1).padStart(2, "0"); }
     else { light(pad.sil); read.textContent = "rest"; }
     B.wake();
@@ -154,10 +189,10 @@ function mount({ stage, svg, read }, value) {
 
 hairline({
   name: "construct",
-  means: "Blocks scattered on a platform: the one under the pointer lifts; at the core they all fly in and build one structure.",
+  means: "Blocks scattered on a platform: the one under the pointer lifts; at the core they fly in and raise a city of towers.",
   rules: [1, 3, 5, 6],
   range: [8, 22, 40],
-  tour: [[291, 232], [200, 184], [120, 200], null],
+  tour: [[290, 249], [200, 201], [130, 215], null],
   mount,
 });
 })();

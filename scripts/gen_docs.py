@@ -333,15 +333,22 @@ def faq_pages():
                  "migrate and when, ML-KEM and ML-DSA, hybrid modes, CBOMs, TLS, installation, validation and AI assistants.",
                  faq_schema(every)),
            "# Frequently asked questions\n",
-           '<p class="pqb-lead">Short, direct answers about PQBlocks and the post-quantum transition, with links to '
-           "the pages that go deeper.</p>\n"]
+           '<p class="pqb-lead">%d short, direct answers about PQBlocks and the post-quantum transition, each with '
+           "links to the page that goes deeper.</p>\n" % len(every),
+           '<div class="grid cards pqb-faq-index" markdown>\n']
+    for sec in data:
+        anchor = re.sub(r"[^a-z0-9]+", "-", sec["section"].lower()).strip("-")
+        out.append("-   __[%s](#%s)__\n\n    ---\n\n    %s\n" % (sec["section"], anchor,
+                   " · ".join(i["q"].rstrip("?") for i in sec["items"][:3]) + (" …" if len(sec["items"]) > 3 else "")))
+    out.append("</div>\n")
     for sec in data:
         out.append("## %s\n" % sec["section"])
         for i in sec["items"]:
-            out += ["### %s\n" % i["q"], i["a"].strip() + "\n"]
+            out += ["### %s\n" % i["q"], '<div class="pqb-answer" markdown>\n\n%s\n\n</div>\n' % i["a"].strip()]
     open(os.path.join(DOCS, "faq.md"), "w", encoding="utf-8").write("\n".join(out))
     home = [i for i in every if i.get("home")]
-    inc = ["### %s\n\n%s\n" % (i["q"], i["a"].strip()) for i in home]
+    inc = ['??? question "%s"\n\n%s\n' % (i["q"].replace('"', "'"),
+                                            "\n".join("    " + l for l in i["a"].strip().splitlines())) for i in home]
     inc.append("[All questions](faq.md){ .md-button }\n")
     open(os.path.join(DOCS, "includes", "faq-home.md"), "w", encoding="utf-8").write("\n".join(inc))
     # the home page carries the FAQPage schema for the questions it shows

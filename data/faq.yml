@@ -143,3 +143,36 @@
         (`https://github.com/PQBlocks/<repository>/security/advisories/new`). Do not open a public issue.
         Reports are acknowledged within 3 working days, assessed within 10, and normally fixed and
         disclosed within 90 days in agreement with the reporter. See [security posture](security/security-notes.md).
+- section: Comparisons and scope
+  items:
+    - q: How is PQBlocks different from liboqs?
+      a: >-
+        liboqs, from the Open Quantum Safe project, is a C library of post-quantum algorithms. PQBlocks builds on
+        top of maintained implementations like it rather than replacing them. It adds what a migration needs around
+        the primitives: hybrid modes and safe defaults, JOSE tokens and file encryption, crypto inventory and CBOMs,
+        policy gates, TLS checks, NIST ACVP conformance runs and compliance evidence, each as an installable Python
+        package with tests and documentation.
+    - q: Is PQBlocks free to use commercially?
+      a: >-
+        Yes. Every package is released under the Apache License 2.0, which allows commercial use, modification and
+        redistribution, with no usage limits or registration. Keep the licence and notice files when you
+        redistribute the code.
+    - q: Which languages and platforms does PQBlocks support?
+      a: >-
+        Today, Python 3.11 and newer on Linux, with packages installed from PyPI or GitHub. Packages that use
+        post-quantum primitives need the liboqs shared library. npm modules for JavaScript and TypeScript, native
+        SDKs and framework adapters are on the [roadmap](about.md#roadmap); this site lists only what is available
+        now.
+    - q: How long does a post-quantum migration take?
+      a: >-
+        For a large organisation, years. Inventory alone can take months, because cryptography hides in libraries,
+        protocols, devices and vendor products. That is why the guidance starts now while deadlines run to 2030 and
+        2035: find what you have, protect long-lived data first with hybrid key establishment, make systems
+        crypto-agile so later changes are configuration, and verify each step.
+    - q: How do I contribute to PQBlocks?
+      a: >-
+        Open an issue or pull request on the relevant repository under
+        [github.com/PQBlocks](https://github.com/PQBlocks), following the
+        [contributing guide](https://github.com/PQBlocks/.github/blob/main/CONTRIBUTING.md). Every change to
+        cryptographic code must follow the [cryptography policy](https://github.com/PQBlocks/.github/blob/main/CRYPTO-POLICY.md):
+        no novel cryptography, official vectors as the reference, and no overclaiming.
