@@ -1,35 +1,31 @@
 /**
- * Construct: twenty-six modules lie scattered on the orbits of a round platform.
- * The module under the pointer lifts and takes the bright stroke. Bring the
- * pointer to the core pad and the modules fly in, lowest first: twenty become
- * the four columns of a frame, six become a processor chip with five qubits.
- * Then the machine grows round them: beams and a hanger, and the five stages of
- * a quantum computer's cryostat, widest at the top, narrowing down to the chip,
- * each stage joined to the next by a ring of coaxial lines. The centre qubit
+ * Construct: twenty-six modules lie on the orbits of a round circuit platform,
+ * its deck etched with traces that end in vias. The module under the pointer
+ * lifts. At the core pad the modules fly in, lowest first: twenty become the
+ * frame's four columns, six the processor chip with five qubits. Then a quantum
+ * computer grows round them: beams and a hanger, five cryostat stages narrowing
+ * to the chip, coaxial lines between them, and once it stands, the cryostat
+ * turns slowly, its stage markers and lines turning with it. The centre qubit
  * takes the bright stroke. The slider is the arc of the flight.
  *
- * The pattern: one of many plus a field. One spring for the build, each module
- * offset by its height, fittings gated on the build's last fifth, hit tests on
- * rest poses and on the ground plane, guides behind the plates.
+ * The pattern: one of many plus a field, then ambient motion that runs only
+ * while built and visible, and never under reduced motion.
  */
 const {
   Cam, circ, clamp, facing, fit, flatDot, lerp, mk, open, place, pointer, poly, prism, proj, put, rad,
-  register, ringAt, rrect, disposer, solid, spring, stepS, tween, tset, tval, tdone, unproj,
+  reducedMotion, register, ringAt, rrect, disposer, solid, spring, stepS, tween, tset, tval, tdone, unproj,
 } = HL;
 
 const R_PLATE = 104, PLATE_H = 5, R_PAD = 52, PAD_H = 2.4, BASE = PLATE_H + PAD_H, CORE = 30;
-const ORBITS = [76, 95], COL = 46, COL_H = 16, TOP = 5 * COL_H;
-// the cryostat's stages, top down: [height above the pad, radius]
-const STAGES = [[74, 34], [60, 28], [46, 22], [32, 17], [18, 12]];
+const ORBITS = [76, 95], COL = 46, COL_H = 16, TOP = 5 * COL_H, SPIN = 0.35;
+const STAGES = [[74, 34], [60, 28], [46, 22], [32, 17], [18, 12]];       // [height, radius], top down
+const AXES = [[COL, 0], [0, COL], [-COL, 0], [0, -COL]];
 
-// [x, y, z above the pad, size, height, turn in degrees]: where each module goes
-const SLOTS = [];
-[[COL, 0], [0, COL], [-COL, 0], [0, -COL]].forEach(([x, y]) => {
-  for (let k = 0; k < 5; k++) SLOTS.push([x, y, k * COL_H, 8, COL_H, 0]);
-});
+const SLOTS = [];                                                        // [x, y, z, size, height, turn]
+AXES.forEach(([x, y]) => { for (let k = 0; k < 5; k++) SLOTS.push([x, y, k * COL_H, 8, COL_H, 0]); });
 SLOTS.push([0, 0, 2, 16, 2.6, 45]);                                      // the chip
 [[0, 0], [3.6, 0], [-3.6, 0], [0, 3.6], [0, -3.6]].forEach(([x, y]) => SLOTS.push([x, y, 4.6, 2.8, 3, 0]));
-const HIGH = TOP, QUBIT = SLOTS.length - 5;
+const QUBIT = SLOTS.length - 5;
 
 const turn = (ring, cx, cy, th) => {
   const c = Math.cos(th), s = Math.sin(th);
@@ -37,63 +33,66 @@ const turn = (ring, cx, cy, th) => {
 };
 const box = (w, d, r = 1.2) => [rrect(-w / 2, -d / 2, w / 2, d / 2, Math.min(r, w / 2, d / 2), 4),
   rrect(-w / 2 + 0.6, -d / 2 + 0.6, w / 2 - 0.6, d / 2 - 0.6, Math.max(0.2, Math.min(r, w / 2, d / 2) - 0.6), 4)];
+const polar = (r, a) => [Math.cos(a) * r, Math.sin(a) * r];
 
 // the machine that grows once the modules have landed; depth decides paint order
 const FITTINGS = [];
-STAGES.forEach(([z, r]) => FITTINGS.push({ kind: "disc", x: 0, y: 0, z: BASE + z, r, h: 2.2, depth: z + 2 }));
+STAGES.forEach(([z, r]) => FITTINGS.push({ kind: "disc", z: BASE + z, r, h: 2.2, depth: z + 2 }));
 STAGES.forEach(([z, r], k) => {                                          // coax lines down to the next stage
-  const [z1, r1] = STAGES[k + 1] || [7.6, 6];
-  const n = k === STAGES.length - 1 ? 4 : 6, rr = Math.max(4.5, r1 * 0.72);
+  const last = k === STAGES.length - 1, [z1, r1] = STAGES[k + 1] || [7.6, 6];
+  const n = last ? 4 : 6, pr = Math.max(4.5, r1 * 0.72), lo = z1 + (last ? 0 : 2.2);
   for (let i = 0; i < n; i++) {
-    const a = rad(i * (360 / n) + k * 15), x = Math.cos(a) * rr, y = Math.sin(a) * rr;
-    FITTINGS.push({ kind: "rod", x, y, z: BASE + z1 + (k === STAGES.length - 1 ? 0 : 2.2), h: z - z1 - (k === STAGES.length - 1 ? 0 : 2.2), w: 1.8, depth: z1 + 2.5 + (x + y) * 0.001 });
+    FITTINGS.push({ kind: "rod", pr, pa: rad(i * (360 / n) + k * 15), z: BASE + lo, h: z - lo, w: 1.8, depth: z1 + 2.5 + i * 0.001 });
   }
 });
-FITTINGS.push({ kind: "rod", x: 0, y: 0, z: BASE + 76.2, h: TOP - 76.2 + 3, w: 3, depth: 77 });   // the hanger
-[[COL, 0], [0, COL], [-COL, 0], [0, -COL]].forEach(([x, y]) => {
-  const L = Math.hypot(x, y) - 6;
-  FITTINGS.push({ kind: "beam", x: x / 2, y: y / 2, z: BASE + TOP, th: Math.atan2(y, x), L, w: 4, h: 3, depth: TOP + (x + y) * 0.5 });
-});
+FITTINGS.push({ kind: "rod", pr: 0, pa: 0, z: BASE + 76.2, h: TOP - 73.2, w: 3, depth: 77 });          // the hanger
+AXES.forEach(([x, y]) => FITTINGS.push({ kind: "beam", x: x / 2, y: y / 2, z: BASE + TOP, th: Math.atan2(y, x),
+  L: COL - 6, w: 4, h: 3, depth: TOP + (x + y) * 0.5 }));
 
 function mount({ stage, svg, read }, value) {
   const bag = disposer();
-  let arc = value;
-  let seed = 11;
+  let arc = value, spin = 0, seed = 11;
   const rnd = () => ((seed = (seed * 16807) % 2147483647) / 2147483647) * 2 - 1;
   const blocks = SLOTS.map(([tx, ty, tz, size, h, tdeg], i) => {
-    const a = rad(i * (360 / SLOTS.length) + rnd() * 4), r = ORBITS[i % 2] + rnd() * 4;
-    const rs = 12, rh = 9;                                               // at rest every module is the same block
-    const [ring, inner] = box(size, size, Math.min(2.4, size * 0.2)), [rring, rinner] = box(rs, rs, 2.2);
-    return { h, rh, ring, inner, rring, rinner, tx, ty, tz: BASE + tz, tth: rad(tdeg), order: tz / HIGH,
-      rx: Math.cos(a) * r, ry: Math.sin(a) * r, rth: rad(rnd() * 40), lift: tween(0), drawn: "" };
+    const [rx, ry] = polar(ORBITS[i % 2] + rnd() * 4, rad(i * (360 / SLOTS.length) + rnd() * 4));
+    const [ring, inner] = box(size, size, Math.min(2.4, size * 0.2)), [rring, rinner] = box(12, 12, 2.2);
+    return { h, rh: 9, ring, inner, rring, rinner, tx, ty, tz: BASE + tz, tth: rad(tdeg), order: tz / TOP,
+      rx, ry, rth: rad(rnd() * 40), lift: tween(0), drawn: "" };
   });
 
   const C = Cam(45, 0.5, 1.3);
-  fit(C, [[-R_PLATE, -R_PLATE, 0], [R_PLATE, R_PLATE, 0], [R_PLATE, -R_PLATE, 0], [-R_PLATE, R_PLATE, 0],
-    [0, 0, BASE + TOP + 4]], 200, 172);
-  const P = proj(C), front = facing(C);
+  fit(C, [[-R_PLATE, -R_PLATE, 0], [R_PLATE, R_PLATE, 0], [R_PLATE, -R_PLATE, 0], [-R_PLATE, R_PLATE, 0], [0, 0, BASE + TOP + 4]], 200, 172);
+  const P = proj(C), front = facing(C), at = (r, a, z) => P(...polar(r, a), z);
 
   const g = mk("g", {}, svg);
   put(solid(g), prism(P, front, circ(R_PLATE, 44), circ(R_PLATE - 2.6, 44), 0, PLATE_H));
   mk("path", { d: poly(ringAt(P, circ(R_PLATE - 9, 44), PLATE_H)), class: "nf lo" }, g);
   ORBITS.forEach((r) => mk("path", { d: poly(ringAt(P, circ(r, 44), PLATE_H)), class: "nf dash" }, g));
-  let spokes = "";
-  for (let k = 0; k < 8; k++) {
-    const a = rad(22.5 + k * 45);
-    spokes += open([P(Math.cos(a) * (R_PAD + 4), Math.sin(a) * (R_PAD + 4), PLATE_H), P(Math.cos(a) * (R_PLATE - 12), Math.sin(a) * (R_PLATE - 12), PLATE_H)]);
+  // circuit traces on the deck: out from the pad, a 45-degree jog, and a via at the end
+  let traces = "";
+  for (let k = 0; k < 24; k++) {
+    const a = rad(k * 15 + 7.5), jog = rad(k % 2 ? 6 : -6), r1 = R_PAD + 6 + (k % 3) * 4, r2 = r1 + 9;
+    traces += open([at(R_PAD + 1, a, PLATE_H), at(r1, a, PLATE_H), at(r2, a + jog, PLATE_H), at(r2 + 5, a + jog, PLATE_H)]);
+    place(flatDot(g, C, 0.85, k % 4 ? "dot off" : "dot m"), at(r2 + 6.2, a + jog, PLATE_H));
   }
-  mk("path", { d: spokes, class: "nf dash" }, g);
-  for (let k = 0; k < 16; k++) {
-    const a = rad(k * 22.5), d = flatDot(g, C, 0.9, "dot off");
-    place(d, P(Math.cos(a) * (R_PLATE - 5), Math.sin(a) * (R_PLATE - 5), PLATE_H));
-  }
+  mk("path", { d: traces, class: "nf lo" }, g);
   const pad = solid(g);
   put(pad, prism(P, front, circ(R_PAD, 32), circ(R_PAD - 2.2, 32), PLATE_H, BASE));
-  mk("path", { d: poly(ringAt(P, circ(R_PAD - 8, 32), BASE)), class: "nf lo" }, g);
+  // the pad's top: an etched die outline, a bus ring, and traces from the die to the columns
+  mk("path", { d: poly(ringAt(P, circ(R_PAD - 8, 32), BASE)) + poly(ringAt(P, turn(box(26, 26, 2)[0], 0, 0, rad(45)), BASE)), class: "nf lo" }, g);
+  let bus = "";
+  for (let k = 0; k < 8; k++) {
+    const a = rad(k * 45 + 22.5);
+    bus += open([at(13, a, BASE), at(22, a, BASE), at(30, a + rad(k % 2 ? 9 : -9), BASE), at(R_PAD - 9, a + rad(k % 2 ? 9 : -9), BASE)]);
+  }
+  mk("path", { d: bus, class: "nf dash" }, g);
 
   const layer = mk("g", {}, g);
   blocks.forEach((b, k) => { b.el = solid(mk("g", { "data-k": "b" + k }, layer)); });
-  const fits = FITTINGS.map((f, k) => ({ ...f, el: solid(mk("g", { "data-k": "f" + k }, layer)), drawn: "" }));
+  const fits = FITTINGS.map((f, k) => {
+    const el = solid(mk("g", { "data-k": "f" + k }, layer));
+    return { ...f, el, marks: [], drawn: "" };
+  });
   const build = spring(0, { eps: 0.002 });
 
   function poseBlock(b, now) {
@@ -106,14 +105,14 @@ function mount({ stage, svg, read }, value) {
   function fitPaths(f, e) {
     if (f.kind === "disc") {
       const r = Math.max(1, f.r * e);
-      return prism(P, front, circ(r, 30).map((q) => ({ ...q })), circ(Math.max(0.5, r - 1.8), 30), f.z, f.z + f.h);
+      if (!f.marks.length) f.marks = [0, 1, 2].map(() => flatDot(f.el.g, C, 0.9, "dot m"));   // stage markers
+      f.marks.forEach((el, k) => place(el, at(r - 3, spin + k * rad(120), f.z + f.h)));
+      return prism(P, front, circ(r, 30), circ(Math.max(0.5, r - 1.8), 30), f.z, f.z + f.h);
     }
-    if (f.kind === "beam") {
-      const [o, i] = box(Math.max(1, f.L * e), f.w);
-      return prism(P, front, turn(o, f.x, f.y, f.th), turn(i, f.x, f.y, f.th), f.z, f.z + f.h);
-    }
-    const [o, i] = box(f.w, f.w, f.w / 2);
-    return prism(P, front, turn(o, f.x, f.y, 0), turn(i, f.x, f.y, 0), f.z + f.h * (1 - e), f.z + f.h);
+    const [o, i] = f.kind === "beam" ? box(Math.max(1, f.L * e), f.w) : box(f.w, f.w, f.w / 2);
+    if (f.kind === "beam") return prism(P, front, turn(o, f.x, f.y, f.th), turn(i, f.x, f.y, f.th), f.z, f.z + f.h);
+    const [x, y] = polar(f.pr, f.pa + spin);
+    return prism(P, front, turn(o, x, y, 0), turn(i, x, y, 0), f.z + f.h * (1 - e), f.z + f.h);
   }
 
   let order = "";
@@ -129,8 +128,12 @@ function mount({ stage, svg, read }, value) {
       items.push({ el: b.el.g, depth: q.x + q.y + q.z });
     });
     fits.forEach((f) => {
-      const key = e.toFixed(3);
-      if (key !== f.drawn) { f.drawn = key; put(f.el, e <= 0.01 ? { sil: "", crease: "" } : fitPaths(f, e)); }
+      const key = e.toFixed(3) + (f.kind === "beam" ? "" : spin.toFixed(3));
+      if (key !== f.drawn) {
+        f.drawn = key;
+        if (e <= 0.01) { put(f.el, { sil: "", crease: "" }); f.marks.forEach((el) => el.remove()); f.marks = []; }
+        else put(f.el, fitPaths(f, e));
+      }
       items.push({ el: f.el.g, depth: f.depth });
     });
     items.sort((a, b) => a.depth - b.depth);
@@ -141,6 +144,7 @@ function mount({ stage, svg, read }, value) {
   const B = register(stage, (dt, now) => {
     let m = stepS(build, dt);
     blocks.forEach((b) => { if (!tdone(b.lift, now)) m = true; });
+    if (grown() > 0.98 && build.t > 0 && !reducedMotion()) { spin += dt * SPIN; m = true; }   // ambient: only while built
     draw(now);
     return m;
   });
@@ -154,12 +158,7 @@ function mount({ stage, svg, read }, value) {
   }
 
   let lit = null;
-  function light(el) {
-    if (el === lit) return;
-    if (lit) lit.classList.remove("hi");
-    lit = el;
-    if (lit) lit.classList.add("hi");
-  }
+  const light = (el) => { if (el === lit) return; if (lit) lit.classList.remove("hi"); lit = el; if (lit) lit.classList.add("hi"); };
   light(pad.sil);
 
   let picked = -1;
@@ -187,8 +186,8 @@ function mount({ stage, svg, read }, value) {
 
 hairline({
   name: "construct",
-  means: "Modules scattered on a platform: one lifts under the pointer; at the core they fly in and a quantum computer grows round them.",
-  rules: [1, 3, 5, 6],
+  means: "Modules on a circuit platform: one lifts under the pointer; at the core they fly in and a quantum computer grows round them.",
+  rules: [1, 3, 5, 7],
   range: [8, 22, 40],
   tour: [[290, 240], [200, 196], [120, 210], null],
   mount,

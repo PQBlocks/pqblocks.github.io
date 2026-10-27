@@ -89,9 +89,9 @@ FIGURES = {
 }
 
 
-def figure(slug):
+def figure(slug, size=""):
     name, label = FIGURES[slug]
-    return '<div class="pqb-figure" data-figure="%s" data-label="%s"></div>\n' % (name, label)
+    return '<div class="pqb-figure%s" data-figure="%s" data-label="%s"></div>\n' % (size, name, label)
 
 
 def short(pkg):
@@ -261,7 +261,7 @@ def index_page(pkgs):
     out = [front("Package catalog", "Every PQBlocks package across post-quantum cryptography, migration, "
                  "interoperability, conformance and quantum-inspired optimisation, with install lines that work today.",
                  schema),
-           "# Package catalog\n", figure("index"),
+           "# Package catalog\n", figure("index", " pqb-figure--large"),
            '<p class="pqb-lead">%d packages across five areas of the post-quantum transition. Each one installs '
            "on its own, ships its own tests and evidence, and states what it does not do.</p>\n" % len(pkgs),
            '<div class="grid cards" markdown>\n']
@@ -347,7 +347,7 @@ def faq_pages():
             out += ["### %s\n" % i["q"], '<div class="pqb-answer" markdown>\n\n%s\n\n</div>\n' % i["a"].strip()]
     open(os.path.join(DOCS, "faq.md"), "w", encoding="utf-8").write("\n".join(out))
     home = [i for i in every if i.get("home")]
-    inc = ['??? question "%s"\n\n%s\n' % (i["q"].replace('"', "'"),
+    inc = ['??? pqb-faq "%s"\n\n%s\n' % (i["q"].replace('"', "'"),
                                             "\n".join("    " + l for l in i["a"].strip().splitlines())) for i in home]
     inc.append("[All questions](faq.md){ .md-button }\n")
     open(os.path.join(DOCS, "includes", "faq-home.md"), "w", encoding="utf-8").write("\n".join(inc))

@@ -5,7 +5,7 @@ description: How PQBlocks verifies its packages, the cryptography rules every pa
 
 # Security and verification
 
-<div class="pqb-figure" data-figure="padlock" data-label="A padlock: as the pointer comes near, the shackle lifts and swings open."></div>
+<div class="pqb-figure pqb-figure--large" data-figure="merkle" data-label="A Merkle hash tree on stepped tiers. Point at a leaf: its path to the root rises level by level, and the sibling hashes that form its proof rise halfway."></div>
 
 <p class="pqb-lead">PQBlocks publishes security software, so it says exactly what was verified, against which standard, and what was not.</p>
 

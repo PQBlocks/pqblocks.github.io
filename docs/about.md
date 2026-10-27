@@ -5,6 +5,8 @@ description: PQBlocks is an open-source engineering organisation for the post-qu
 
 # About PQBlocks
 
+<div class="pqb-figure" data-figure="mark" data-label="The PQBlocks mark built as four blocks. Point at a block and it rises while the others settle."></div>
+
 <p class="pqb-lead">PQBlocks is an open-source engineering organisation for the post-quantum (PQ) era. It is a <strong>QubitRock</strong> project.</p>
 
 ## What we build

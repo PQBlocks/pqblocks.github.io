@@ -91,6 +91,8 @@ extra_javascript:
   - assets/figures/assemble.js
   - assets/figures/lattice.js
   - assets/figures/construct.js
+  - assets/figures/merkle.js
+  - assets/figures/mark.js
   - path: javascripts/figures.js
     type: module
 

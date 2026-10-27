@@ -1,0 +1,108 @@
+/**
+ * Merkle: a hash tree built as blocks on stepped tiers, eight leaves in front
+ * and the root at the top of the steps. The leaf under the pointer lifts; its
+ * path to the root rises after it, one level at a time, and the sibling at each
+ * level (the authentication path, the hashes a verifier needs) rises halfway.
+ * That is how a Merkle proof is checked, and how SLH-DSA signs. The read-out
+ * names the leaf and how many hashes its proof holds. The slider is the lift.
+ *
+ * The pattern: one of many, with a stagger up the tree. Tweens, hit tests on
+ * the leaves' resting centres, links painted behind the plates, the root lit at rest.
+ */
+const { Cam, clamp, facing, fit, mk, open, pointer, prism, proj, put, register, rings, disposer, solid, tween, tset, tval, tdone } = HL;
+
+const LEVELS = 4, PITCH = 17, ROW = 26, STEP = 9, PLATE = 4;
+const SIZE = [12, 13, 14, 16], H = [6, 7, 8, 10];
+
+function mount({ stage, svg, read }, value) {
+  const bag = disposer();
+  let lift = value;
+
+  // nodes: level 0 is the leaves (front row), level 3 the root (back, highest step)
+  const nodes = [];
+  for (let L = 0; L < LEVELS; L++) {
+    const n = 8 >> L;
+    for (let i = 0; i < n; i++) {
+      const x = (i + 0.5) * PITCH * (1 << L), y = -L * ROW, z = PLATE + L * STEP;
+      nodes.push({ L, i, x, y, z, s: SIZE[L], h: H[L], t: tween(0) });
+    }
+  }
+  const at = (L, i) => nodes.find((n) => n.L === L && n.i === i);
+  const W = 8 * PITCH;
+
+  const C = Cam(45, 0.5, 1.6);
+  fit(C, [[-8, 12, 0], [W + 8, 12, 0], [-8, -(LEVELS - 1) * ROW - 14, 0], [W + 8, -(LEVELS - 1) * ROW - 14, 0],
+    [W / 2, -(LEVELS - 1) * ROW, PLATE + 3 * STEP + 10 + 20]], 200, 170);
+  const P = proj(C), front = facing(C);
+
+  const g = mk("g", {}, svg);
+  // the steps: one plinth per level, each higher and further back
+  for (let L = LEVELS - 1; L >= 0; L--) {
+    const y0 = -L * ROW - 12, y1 = 12 - L * ROW, [r, ri] = rings(-8, y0, W + 8, y1, 5, 1.4);
+    put(solid(g), prism(P, front, r, ri, 0, PLATE + L * STEP));
+  }
+  // links child to parent, painted before the blocks so every plate covers them
+  let links = "";
+  nodes.filter((n) => n.L > 0).forEach((p) => [0, 1].forEach((c) => {
+    const ch = at(p.L - 1, p.i * 2 + c);
+    links += open([P(ch.x, ch.y, ch.z + ch.h), P(ch.x, (ch.y + p.y) / 2, ch.z + ch.h), P(p.x, (ch.y + p.y) / 2, p.z), P(p.x, p.y, p.z)]);
+  }));
+  mk("path", { d: links, class: "nf dash" }, g);
+
+  // back to front: higher levels (further back) first, then left to right
+  nodes.slice().sort((a, b) => (a.x + a.y) - (b.x + b.y)).forEach((n) => { n.el = solid(g); n.drawn = NaN; });
+  const draw = (n, now) => {
+    const z = n.z + tval(n.t, now);
+    if (z === n.drawn) return;
+    n.drawn = z;
+    const [r, ri] = rings(n.x - n.s / 2, n.y - n.s / 2, n.x + n.s / 2, n.y + n.s / 2, 2.6, 1);
+    put(n.el, prism(P, front, r, ri, z, z + n.h));
+  };
+
+  const B = register(stage, (_dt, now) => {
+    let m = false;
+    nodes.forEach((n) => { draw(n, now); if (!tdone(n.t, now)) m = true; });
+    return m;
+  });
+  bag.add(B.unregister);
+
+  const root = at(LEVELS - 1, 0);
+  let lit = null;
+  const light = (n) => { if (lit) lit.el.sil.classList.remove("hi"); lit = n; n.el.sil.classList.add("hi"); };
+  light(root);
+
+  // hit test: the leaves' RESTING centres, which never move
+  const leaves = nodes.filter((n) => n.L === 0), rest = leaves.map((n) => P(n.x, n.y, n.z + n.h / 2));
+  const pick = ([sx, sy]) => {
+    let best = -1, bd = 16;
+    rest.forEach(([x, y], k) => { const d = Math.hypot(x - sx, y - sy); if (d < bd) { bd = d; best = k; } });
+    return best;
+  };
+
+  let chosen = -2;
+  function choose(k) {
+    if (k === chosen) return;
+    chosen = k;
+    const now = performance.now();
+    nodes.forEach((n) => {
+      const idx = k >> n.L, onPath = k >= 0 && n.i === idx, sibling = k >= 0 && n.i === (idx ^ 1) && n.L < LEVELS - 1;
+      tset(n.t, onPath ? lift : sibling ? lift * 0.45 : 0, now, onPath || sibling ? n.L * 90 : 0);
+    });
+    light(k >= 0 ? leaves[k] : root);
+    read.textContent = k >= 0 ? "leaf " + (k + 1) + " · " + (LEVELS - 1) + " hashes" : "rest";
+    B.wake();
+  }
+
+  bag.add(pointer(stage, { move: (p) => choose(pick(p)), leave: () => choose(-1) }));
+  bag.add(() => svg.replaceChildren());
+  return { set: (v) => { lift = clamp(v, 0, 24); }, destroy: bag.dispose };
+}
+
+hairline({
+  name: "merkle",
+  means: "A hash tree on stepped tiers: the leaf under the pointer lifts, and its path and proof hashes rise to the root.",
+  rules: [1, 2, 4, 5],
+  range: [6, 12, 20],
+  tour: [[150, 200], [230, 240], [290, 270], null],
+  mount,
+});
