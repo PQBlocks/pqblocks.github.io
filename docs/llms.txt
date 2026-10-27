@@ -1,0 +1,18 @@
+# PQBlocks: Post-Quantum Building Blocks
+
+> Research-backed, self-verified post-quantum cryptography packages and quantum-inspired optimization for Python and JavaScript.
+
+## Core Documentation
+- [Project Overview](https://pqblocks.github.io): Architecture, transition map, standards.
+- [Package Catalog](https://pqblocks.github.io/packages): Complete directory of the 26 packages.
+- [Recipes](https://pqblocks.github.io/recipes): End-to-end code tutorials for FastAPI, JWT, TLS, and CBOM.
+- [Security & Verification](https://pqblocks.github.io/security): Threat models, constant-time caveats, ACVP vector proof.
+
+## Essential Packages
+- [pqblocks-jwe](https://github.com/PQBlocks/hybrid-jwe): Compact five-part wire format for post-quantum hybrid JWE (ML-KEM-768 + X25519).
+- [pqblocks-jose](https://github.com/PQBlocks/hybrid-jose): Post-quantum hybrid JOSE with ML-DSA-65 / Ed25519 signatures.
+- [pqblocks-core](https://github.com/PQBlocks/hybrid-sdk): Core post-quantum hybrid key encapsulation and signature primitives.
+- [pqblocks-scan](https://github.com/PQBlocks/cbom-scanner): Static analysis cryptography inventory scanner.
+- [pqblocks-cbom](https://github.com/PQBlocks/cbom-enricher): CycloneDX 1.5 CBOM enricher and quantum readiness scorer.
+- [pqblocks-policy](https://github.com/PQBlocks/crypto-policy-engine): Policy-as-code gate enforcing CNSA 2.0 and NIST requirements.
+- [pqblocks-bifurcation](https://github.com/PQBlocks/simulated-bifurcation): Heuristic Simulated Bifurcation algorithm for large-scale QUBO/Ising optimization.

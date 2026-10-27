@@ -1,0 +1,71 @@
+site_name: PQBlocks
+site_description: Research-backed, self-verified building blocks for the post-quantum transition and quantum-inspired optimization.
+site_url: https://pqblocks.github.io
+repo_url: https://github.com/PQBlocks/.github
+repo_name: PQBlocks
+
+theme:
+  name: material
+  palette:
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: cyan
+      accent: deep purple
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: cyan
+      accent: deep purple
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.tabbed:
+      alternate_style: true
+  - tables
+  - attr_list
+
+nav:
+  - Home: index.md
+  - Transition Map: transition-map.md
+  - Packages:
+    - Overview: packages/index.md
+    - Cryptography: packages/crypto.md
+    - Migration & Readiness: packages/migration.md
+    - Interoperability: packages/interop.md
+    - Conformance: packages/conformance.md
+    - Quantum-Inspired: packages/optimization.md
+  - Recipes:
+    - FastAPI Authentication: recipes/fastapi-pqc.md
+    - ML-DSA JWT Signing: recipes/jwt-ml-dsa.md
+    - Hybrid KEM Key Exchange: recipes/hybrid-kem.md
+    - Codebase Crypto Audit: recipes/crypto-audit.md
+  - Security & Verification:
+    - Verification Standard: security/verification-reports.md
+    - Security Caveats & Limits: security/security-notes.md
+  - AI Assistants:
+    - Overview: ai/index.md
+    - MCP Server: ai/mcp.md
+    - Cursor & Claude: ai/skills.md
+  - LLMs Feed: llms.txt
