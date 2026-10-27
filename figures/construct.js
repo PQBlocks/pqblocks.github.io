@@ -1,62 +1,59 @@
 /**
- * Construct: twenty-six blocks lie scattered on the orbits of a round platform.
- * The block under the pointer lifts and takes the bright stroke. Bring the
- * pointer to the core pad and every block flies in, lowest first, to raise an
- * arcology: a twisting main tower, a diamond tower, a stepped tower and a
- * podium. Once the blocks land, the rest grows out of them: two skybridges, an
- * antenna mast with a crown, a mast and a landing plate on the other roofs,
- * and two halo rings round the main tower. The slider is the arc of the flight.
+ * Construct: twenty-six modules lie scattered on the orbits of a round platform.
+ * The module under the pointer lifts and takes the bright stroke. Bring the
+ * pointer to the core pad and the modules fly in, lowest first: twenty become
+ * the four columns of a frame, six become a processor chip with five qubits.
+ * Then the machine grows round them: beams and a hanger, and the five stages of
+ * a quantum computer's cryostat, widest at the top, narrowing down to the chip,
+ * each stage joined to the next by a ring of coaxial lines. The centre qubit
+ * takes the bright stroke. The slider is the arc of the flight.
  *
- * The pattern: one of many (a block answers) and a field (the build answers
- * the distance to the core). One spring for the build, each block offset by its
- * height so the city rises bottom-up, the fittings gated on the build's last
- * quarter, hit tests on rest poses and on the ground plane, guides behind the
- * plates, and a scattered rest.
+ * The pattern: one of many plus a field. One spring for the build, each module
+ * offset by its height, fittings gated on the build's last fifth, hit tests on
+ * rest poses and on the ground plane, guides behind the plates.
  */
 const {
   Cam, circ, clamp, facing, fit, flatDot, lerp, mk, open, place, pointer, poly, prism, proj, put, rad,
   register, ringAt, rrect, disposer, solid, spring, stepS, tween, tset, tval, tdone, unproj,
 } = HL;
 
-const R_PLATE = 112, PLATE_H = 6, R_PAD = 48, PAD_H = 2.6, BASE = PLATE_H + PAD_H, CORE = 36;
-const ORBITS = [70, 94];
-const A = [-6, -6], Bt = [-30, 10], Ct = [10, -30], Dt = [22, 22];
+const R_PLATE = 104, PLATE_H = 5, R_PAD = 52, PAD_H = 2.4, BASE = PLATE_H + PAD_H, CORE = 30;
+const ORBITS = [76, 95], COL = 46, COL_H = 16, TOP = 5 * COL_H;
+// the cryostat's stages, top down: [height above the pad, radius]
+const STAGES = [[74, 34], [60, 28], [46, 22], [32, 17], [18, 12]];
 
-// [x, y, z above the pad, size, height, turn in degrees]: the blocks' places in the city
+// [x, y, z above the pad, size, height, turn in degrees]: where each module goes
 const SLOTS = [];
-const stack = ([x, y], sizes, h, turns, z0 = 0) => {
-  let z = z0;
-  sizes.forEach((s, k) => { SLOTS.push([x, y, z, s, h, turns(k)]); z += h; });
-  return z;
-};
-const topA = stack(A, [24, 22, 20, 20, 17, 15, 12, 9], 10, (k) => (Math.floor(k / 2) % 2 ? 45 : 0));
-const topB = stack(Bt, [17, 16, 14, 13, 11, 9], 9, () => 45);
-const topC = stack(Ct, [18, 16, 16, 13, 11, 8], 10, (k) => (k > 3 ? 45 : 0));
-[[16, 16], [30, 16], [16, 30], [30, 30]].forEach(([x, y]) => SLOTS.push([x, y, 0, 13, 7, 0]));
-const topD = stack(Dt, [12, 8], 9, () => 45, 7);
-const HIGH = Math.max(...SLOTS.map((s) => s[2]));
+[[COL, 0], [0, COL], [-COL, 0], [0, -COL]].forEach(([x, y]) => {
+  for (let k = 0; k < 5; k++) SLOTS.push([x, y, k * COL_H, 8, COL_H, 0]);
+});
+SLOTS.push([0, 0, 2, 16, 2.6, 45]);                                      // the chip
+[[0, 0], [3.6, 0], [-3.6, 0], [0, 3.6], [0, -3.6]].forEach(([x, y]) => SLOTS.push([x, y, 4.6, 2.8, 3, 0]));
+const HIGH = TOP, QUBIT = SLOTS.length - 5;
 
 const turn = (ring, cx, cy, th) => {
   const c = Math.cos(th), s = Math.sin(th);
   return ring.map((q) => ({ u: cx + q.u * c - q.v * s, v: cy + q.u * s + q.v * c, nu: q.nu * c - q.nv * s, nv: q.nu * s + q.nv * c }));
 };
 const box = (w, d, r = 1.2) => [rrect(-w / 2, -d / 2, w / 2, d / 2, Math.min(r, w / 2, d / 2), 4),
-  rrect(-w / 2 + 0.8, -d / 2 + 0.8, w / 2 - 0.8, d / 2 - 0.8, Math.max(0.3, Math.min(r, w / 2, d / 2) - 0.8), 4)];
+  rrect(-w / 2 + 0.6, -d / 2 + 0.6, w / 2 - 0.6, d / 2 - 0.6, Math.max(0.2, Math.min(r, w / 2, d / 2) - 0.6), 4)];
 
-/** A skybridge between two tower centres at height z: a long thin box along the line between them. */
-function bridge(p, q, z, w, inset) {
-  const dx = q[0] - p[0], dy = q[1] - p[1], L = Math.hypot(dx, dy) - inset;
-  return { x: (p[0] + q[0]) / 2, y: (p[1] + q[1]) / 2, z: BASE + z, th: Math.atan2(dy, dx), shape: box(L, w), h: 4, grow: "len", L };
-}
-// the fittings that grow out of the city once the blocks have landed
-const FITTINGS = [
-  bridge(A, Bt, 46, 5, 18), bridge(A, Ct, 32, 5, 18),
-  { x: A[0], y: A[1], z: BASE + topA, th: 0, shape: box(2.6, 2.6, 1.2), h: 40, grow: "up", mast: true },
-  { x: A[0], y: A[1], z: BASE + topA + 22, th: rad(45), shape: box(9, 9, 2.4), h: 2.2, grow: "up" },
-  { x: Bt[0], y: Bt[1], z: BASE + topB, th: 0, shape: box(2.2, 2.2, 1), h: 18, grow: "up" },
-  { x: Ct[0], y: Ct[1], z: BASE + topC, th: 0, shape: [circ(8, 20), circ(6.6, 20)], h: 1.8, grow: "up" },
-  { x: Dt[0], y: Dt[1], z: BASE + topD, th: 0, shape: box(3, 3, 1.2), h: 9, grow: "up" },
-];
+// the machine that grows once the modules have landed; depth decides paint order
+const FITTINGS = [];
+STAGES.forEach(([z, r]) => FITTINGS.push({ kind: "disc", x: 0, y: 0, z: BASE + z, r, h: 2.2, depth: z + 2 }));
+STAGES.forEach(([z, r], k) => {                                          // coax lines down to the next stage
+  const [z1, r1] = STAGES[k + 1] || [7.6, 6];
+  const n = k === STAGES.length - 1 ? 4 : 6, rr = Math.max(4.5, r1 * 0.72);
+  for (let i = 0; i < n; i++) {
+    const a = rad(i * (360 / n) + k * 15), x = Math.cos(a) * rr, y = Math.sin(a) * rr;
+    FITTINGS.push({ kind: "rod", x, y, z: BASE + z1 + (k === STAGES.length - 1 ? 0 : 2.2), h: z - z1 - (k === STAGES.length - 1 ? 0 : 2.2), w: 1.8, depth: z1 + 2.5 + (x + y) * 0.001 });
+  }
+});
+FITTINGS.push({ kind: "rod", x: 0, y: 0, z: BASE + 76.2, h: TOP - 76.2 + 3, w: 3, depth: 77 });   // the hanger
+[[COL, 0], [0, COL], [-COL, 0], [0, -COL]].forEach(([x, y]) => {
+  const L = Math.hypot(x, y) - 6;
+  FITTINGS.push({ kind: "beam", x: x / 2, y: y / 2, z: BASE + TOP, th: Math.atan2(y, x), L, w: 4, h: 3, depth: TOP + (x + y) * 0.5 });
+});
 
 function mount({ stage, svg, read }, value) {
   const bag = disposer();
@@ -64,15 +61,16 @@ function mount({ stage, svg, read }, value) {
   let seed = 11;
   const rnd = () => ((seed = (seed * 16807) % 2147483647) / 2147483647) * 2 - 1;
   const blocks = SLOTS.map(([tx, ty, tz, size, h, tdeg], i) => {
-    const a = rad(i * (360 / SLOTS.length) + rnd() * 5), r = ORBITS[i % 2] + rnd() * 5;
-    const [ring, inner] = box(size, size, Math.min(3, size * 0.2));
-    return { h, ring, inner, tx, ty, tz: BASE + tz, tth: rad(tdeg), order: tz / HIGH,
+    const a = rad(i * (360 / SLOTS.length) + rnd() * 4), r = ORBITS[i % 2] + rnd() * 4;
+    const rs = 12, rh = 9;                                               // at rest every module is the same block
+    const [ring, inner] = box(size, size, Math.min(2.4, size * 0.2)), [rring, rinner] = box(rs, rs, 2.2);
+    return { h, rh, ring, inner, rring, rinner, tx, ty, tz: BASE + tz, tth: rad(tdeg), order: tz / HIGH,
       rx: Math.cos(a) * r, ry: Math.sin(a) * r, rth: rad(rnd() * 40), lift: tween(0), drawn: "" };
   });
 
-  const C = Cam(45, 0.5, 1.36);
+  const C = Cam(45, 0.5, 1.3);
   fit(C, [[-R_PLATE, -R_PLATE, 0], [R_PLATE, R_PLATE, 0], [R_PLATE, -R_PLATE, 0], [-R_PLATE, R_PLATE, 0],
-    [A[0], A[1], BASE + topA + 40]], 200, 186);
+    [0, 0, BASE + TOP + 4]], 200, 172);
   const P = proj(C), front = facing(C);
 
   const g = mk("g", {}, svg);
@@ -92,8 +90,6 @@ function mount({ stage, svg, read }, value) {
   const pad = solid(g);
   put(pad, prism(P, front, circ(R_PAD, 32), circ(R_PAD - 2.2, 32), PLATE_H, BASE));
   mk("path", { d: poly(ringAt(P, circ(R_PAD - 8, 32), BASE)), class: "nf lo" }, g);
-  // halo rings round the main tower: guides, so they sit behind every plate
-  const halos = [30, 58].map(() => mk("path", { class: "nf dash" }, g));
 
   const layer = mk("g", {}, g);
   blocks.forEach((b, k) => { b.el = solid(mk("g", { "data-k": "b" + k }, layer)); });
@@ -102,37 +98,41 @@ function mount({ stage, svg, read }, value) {
 
   function poseBlock(b, now) {
     const s = clamp(build.x * 1.7 - b.order * 0.7, 0, 1);
-    return { x: lerp(b.rx, b.tx, s), y: lerp(b.ry, b.ty, s), th: lerp(b.rth, b.tth, s),
+    return { s, x: lerp(b.rx, b.tx, s), y: lerp(b.ry, b.ty, s), th: lerp(b.rth, b.tth, s),
       z: lerp(PLATE_H, b.tz, s) + Math.sin(Math.PI * s) * arc + tval(b.lift, now) * (1 - s) };
   }
   const grown = () => clamp((build.x - 0.8) / 0.2, 0, 1);
+
+  function fitPaths(f, e) {
+    if (f.kind === "disc") {
+      const r = Math.max(1, f.r * e);
+      return prism(P, front, circ(r, 30).map((q) => ({ ...q })), circ(Math.max(0.5, r - 1.8), 30), f.z, f.z + f.h);
+    }
+    if (f.kind === "beam") {
+      const [o, i] = box(Math.max(1, f.L * e), f.w);
+      return prism(P, front, turn(o, f.x, f.y, f.th), turn(i, f.x, f.y, f.th), f.z, f.z + f.h);
+    }
+    const [o, i] = box(f.w, f.w, f.w / 2);
+    return prism(P, front, turn(o, f.x, f.y, 0), turn(i, f.x, f.y, 0), f.z + f.h * (1 - e), f.z + f.h);
+  }
 
   let order = "";
   function draw(now) {
     const e = grown(), items = [];
     blocks.forEach((b) => {
-      const q = poseBlock(b, now), key = [q.x, q.y, q.z, q.th].map((v) => v.toFixed(2)).join();
+      const q = poseBlock(b, now), key = [q.x, q.y, q.z, q.th, q.s].map((v) => v.toFixed(2)).join();
       if (key !== b.drawn) {
         b.drawn = key;
-        put(b.el, prism(P, front, turn(b.ring, q.x, q.y, q.th), turn(b.inner, q.x, q.y, q.th), q.z, q.z + b.h));
+        const done = q.s > 0.98, h = done ? b.h : lerp(b.rh, b.h, q.s);
+        put(b.el, prism(P, front, turn(done ? b.ring : b.rring, q.x, q.y, q.th), turn(done ? b.inner : b.rinner, q.x, q.y, q.th), q.z, q.z + h));
       }
-      items.push({ el: b.el.g, depth: q.x + q.y + q.z * 1.5 });
+      items.push({ el: b.el.g, depth: q.x + q.y + q.z });
     });
     fits.forEach((f) => {
       const key = e.toFixed(3);
-      if (key !== f.drawn) {
-        f.drawn = key;
-        if (e <= 0.01) put(f.el, { sil: "", crease: "" });       // not grown yet: nothing drawn
-        else {
-          const shape = f.grow === "len" ? box(Math.max(1, f.L * e), 5) : f.shape;
-          const h = f.grow === "up" ? Math.max(0.3, f.h * e) : f.h;
-          put(f.el, prism(P, front, turn(shape[0], f.x, f.y, f.th), turn(shape[1], f.x, f.y, f.th), f.z, f.z + h));
-        }
-      }
-      items.push({ el: f.el.g, depth: f.x + f.y + f.z * 1.5 + (f.mast ? 0.1 : 0) });
+      if (key !== f.drawn) { f.drawn = key; put(f.el, e <= 0.01 ? { sil: "", crease: "" } : fitPaths(f, e)); }
+      items.push({ el: f.el.g, depth: f.depth });
     });
-    halos.forEach((el, k) => el.setAttribute("d", e > 0.5
-      ? poly(ringAt(P, circ(20 + k * 6, 40).map((q) => ({ ...q, u: q.u + A[0], v: q.v + A[1] })), BASE + [30, 58][k])) : ""));
     items.sort((a, b) => a.depth - b.depth);
     const key = items.map((i) => i.el.getAttribute("data-k")).join();
     if (key !== order) { order = key; items.forEach((i) => layer.appendChild(i.el)); }
@@ -146,9 +146,9 @@ function mount({ stage, svg, read }, value) {
   });
   bag.add(B.unregister);
 
-  const restC = blocks.map((b) => P(b.rx, b.ry, PLATE_H + b.h / 2));
+  const restC = blocks.map((b) => P(b.rx, b.ry, PLATE_H + b.rh / 2));
   function pickBlock([sx, sy]) {
-    let best = -1, bd = 15;
+    let best = -1, bd = 13;
     restC.forEach(([x, y], k) => { const d = Math.hypot(x - sx, y - sy); if (d < bd) { bd = d; best = k; } });
     return best;
   }
@@ -174,8 +174,8 @@ function mount({ stage, svg, read }, value) {
       if (k >= 0) tset(blocks[k].lift, 9, now, 0);
       picked = k;
     }
-    if (build.t > 0) { light(fits[2].el.sil); read.textContent = "build"; }
-    else if (k >= 0) { light(blocks[k].el.sil); read.textContent = "block " + String(k + 1).padStart(2, "0"); }
+    if (build.t > 0) { light(blocks[QUBIT].el.sil); read.textContent = "qubit"; }
+    else if (k >= 0) { light(blocks[k].el.sil); read.textContent = "module " + String(k + 1).padStart(2, "0"); }
     else { light(pad.sil); read.textContent = "rest"; }
     B.wake();
   }
@@ -187,9 +187,9 @@ function mount({ stage, svg, read }, value) {
 
 hairline({
   name: "construct",
-  means: "Blocks scattered on a platform: the one under the pointer lifts; at the core they fly in and raise a city of towers.",
+  means: "Modules scattered on a platform: one lifts under the pointer; at the core they fly in and a quantum computer grows round them.",
   rules: [1, 3, 5, 6],
   range: [8, 22, 40],
-  tour: [[290, 249], [200, 201], [130, 215], null],
+  tour: [[290, 240], [200, 196], [120, 210], null],
   mount,
 });

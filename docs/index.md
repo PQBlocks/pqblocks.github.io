@@ -26,8 +26,8 @@ PQBlocks is an open-source engineering organisation for the post-quantum (PQ) er
 </div>
 
 <figure class="pqb-hero__figure" markdown>
-<div class="pqb-figure pqb-figure--hero" data-figure="construct" data-label="Building blocks scattered on a round platform. Point at a block and it lifts; point at the core and every block flies in to build one structure: a square base, a star tier, a cross and a spire."></div>
-<figcaption>Separate blocks, one structure. Point at a block, then at the core.</figcaption>
+<div class="pqb-figure pqb-figure--hero" data-figure="construct" data-label="Modules scattered on a round platform. Point at a module and it lifts; point at the core and they fly in to form the frame and processor chip of a quantum computer, and its cryostat stages and coaxial lines grow round them."></div>
+<figcaption>Separate blocks, one machine. Point at a block, then at the core.</figcaption>
 </figure>
 
 </div>
@@ -67,21 +67,12 @@ ML-KEM and ML-DSA, the two main NIST post-quantum standards, are built on **latt
 
 ## Crypto agility: replace one block at a time
 
-<div class="pqb-feature pqb-feature--flip" markdown>
-
-<figure class="pqb-feature__figure" markdown>
-<div class="pqb-figure pqb-figure--wide" data-figure="swap" data-label="Seven building blocks in a tray. The block under the pointer lifts out of its slot and its neighbours part: one block replaced without touching the rest."></div>
-<figcaption>Point at a block: it lifts out of its slot while the rest stay in place.</figcaption>
-</figure>
-
 <div class="pqb-feature__text" markdown>
 
 The post-quantum migration will not be the last. Algorithms will be retired again, parameters will change and new standards such as FN-DSA and HQC will arrive. Systems that can change an algorithm through configuration, without a redesign, are **crypto-agile**, and they make every future change cheap. PQBlocks packages are built that way: each one does one job, a policy pins the algorithms in use, and downgrades to classical-only cryptography are refused unless you allow them explicitly.
 
 [Score your crypto agility](packages/agility.md){ .md-button }
 [Policy-as-code](packages/policy.md){ .md-button }
-
-</div>
 
 </div>
 
