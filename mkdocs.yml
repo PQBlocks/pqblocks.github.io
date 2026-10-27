@@ -1,71 +1,190 @@
 site_name: PQBlocks
-site_description: Research-backed, self-verified building blocks for the post-quantum transition and quantum-inspired optimization.
-site_url: https://pqblocks.github.io
-repo_url: https://github.com/PQBlocks/.github
+site_url: https://pqblocks.github.io/
+site_description: >-
+  PQBlocks is an open engineering organisation for the post-quantum era: verified building blocks for
+  post-quantum cryptography, migration, interoperability, conformance and quantum-inspired optimisation.
+site_author: PQBlocks
+copyright: >-
+  Copyright &copy; 2026 PQBlocks, a QubitRock project · Code under Apache-2.0 ·
+  <a href="https://github.com/PQBlocks">github.com/PQBlocks</a>
+repo_url: https://github.com/PQBlocks
 repo_name: PQBlocks
+edit_uri: https://github.com/PQBlocks/pqblocks.github.io/edit/main/docs/
 
 theme:
   name: material
+  custom_dir: overrides
+  language: en
+  logo: assets/logo.svg
+  favicon: assets/favicon.svg
+  icon:
+    repo: fontawesome/brands/github
+  font:
+    text: Inter
+    code: JetBrains Mono
   palette:
-    # Palette toggle for light mode
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: cyan
-      accent: deep purple
+      primary: custom
+      accent: custom
       toggle:
-        icon: material/brightness-7
+        icon: material/weather-night
         name: Switch to dark mode
-    # Palette toggle for dark mode
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
-      primary: cyan
-      accent: deep purple
+      primary: custom
+      accent: custom
       toggle:
-        icon: material/brightness-4
+        icon: material/weather-sunny
         name: Switch to light mode
   features:
     - navigation.instant
+    - navigation.instant.prefetch
     - navigation.tracking
     - navigation.tabs
+    - navigation.tabs.sticky
     - navigation.sections
+    - navigation.indexes
+    - navigation.path
     - navigation.top
+    - navigation.footer
+    - toc.follow
     - search.suggest
     - search.highlight
+    - search.share
     - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+    - content.tooltips
+    - content.action.edit
+
+plugins:
+  - search
+  - social:
+      cards_layout_options:
+        background_color: "#0b1220"
+        color: "#e2e8f0"
+  - git-revision-date-localized:
+      type: date
+      enable_creation_date: true
+      fallback_to_build_date: true
+      strict: false
+
+extra:
+  generator: false
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/PQBlocks
+      name: PQBlocks on GitHub
+    - icon: fontawesome/brands/python
+      link: https://pypi.org/search/?q=pqblocks
+      name: PQBlocks on PyPI
+
+extra_css:
+  - stylesheets/extra.css
 
 markdown_extensions:
+  - abbr
   - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+      permalink_title: Link to this section
+  - pymdownx.betterem
+  - pymdownx.caret
+  - pymdownx.critic
   - pymdownx.details
-  - pymdownx.superfences
   - pymdownx.highlight:
       anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
   - pymdownx.inlinehilite
-  - pymdownx.snippets
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.snippets:
+      base_path: [docs]
+      check_paths: true
+      auto_append:
+        - includes/abbreviations.md
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.tabbed:
       alternate_style: true
-  - tables
-  - attr_list
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+exclude_docs: |
+  includes/
 
 nav:
   - Home: index.md
-  - Transition Map: transition-map.md
+  - Transition map: transition-map.md
   - Packages:
-    - Overview: packages/index.md
-    - Cryptography: packages/crypto.md
-    - Migration & Readiness: packages/migration.md
-    - Interoperability: packages/interop.md
-    - Conformance: packages/conformance.md
-    - Quantum-Inspired: packages/optimization.md
+    - packages/index.md
+    - PQ cryptography:
+      - Overview: packages/crypto.md
+      - pqblocks-core: packages/core.md
+      - pqblocks-files: packages/files.md
+      - pqblocks-jose: packages/jose.md
+      - pqblocks-primitives: packages/primitives.md
+    - Migration & readiness:
+      - Overview: packages/migration.md
+      - pqblocks-agility: packages/agility.md
+      - pqblocks-cbom: packages/cbom.md
+      - pqblocks-cnsa-evidence: packages/cnsa-evidence.md
+      - pqblocks-jwe-audit: packages/jwe-audit.md
+      - pqblocks-lint: packages/lint.md
+      - pqblocks-policy: packages/policy.md
+      - pqblocks-scan: packages/scan.md
+    - Interoperability:
+      - Overview: packages/interop.md
+      - pqblocks-csr-pop: packages/csr-pop.md
+      - pqblocks-jwe: packages/jwe.md
+      - pqblocks-tls-interop: packages/tls-interop.md
+      - pqblocks-wire: packages/wire.md
+    - Conformance:
+      - Overview: packages/conformance.md
+      - pqblocks-acvp: packages/acvp.md
+      - pqblocks-fips-check: packages/fips-check.md
+    - Quantum-inspired:
+      - Overview: packages/optimization.md
+      - pqblocks-anneal-sa: packages/anneal-sa.md
+      - pqblocks-anneal-schedule: packages/anneal-schedule.md
+      - pqblocks-anneal-sqa: packages/anneal-sqa.md
+      - pqblocks-bifurcation: packages/bifurcation.md
+      - pqblocks-digital-anneal: packages/digital-anneal.md
+      - pqblocks-population-anneal: packages/population-anneal.md
+      - pqblocks-qiea: packages/qiea.md
+      - pqblocks-qubo: packages/qubo.md
+      - pqblocks-qubo-bench: packages/qubo-bench.md
   - Recipes:
-    - FastAPI Authentication: recipes/fastapi-pqc.md
-    - ML-DSA JWT Signing: recipes/jwt-ml-dsa.md
-    - Hybrid KEM Key Exchange: recipes/hybrid-kem.md
-    - Codebase Crypto Audit: recipes/crypto-audit.md
-  - Security & Verification:
-    - Verification Standard: security/verification-reports.md
-    - Security Caveats & Limits: security/security-notes.md
-  - AI Assistants:
-    - Overview: ai/index.md
-    - MCP Server: ai/mcp.md
-    - Cursor & Claude: ai/skills.md
-  - LLMs Feed: llms.txt
+    - recipes/index.md
+    - How to sign JWTs with ML-DSA: recipes/jwt-ml-dsa.md
+    - How to add post-quantum tokens to FastAPI: recipes/fastapi-pqc.md
+    - How to do hybrid X25519 + ML-KEM: recipes/hybrid-kem.md
+    - How to encrypt files post-quantum: recipes/encrypt-files.md
+    - How to find RSA and ECC in code: recipes/crypto-audit.md
+    - How to solve Max-Cut quantum-inspired: recipes/qubo-maxcut.md
+  - Security & verification:
+    - security/index.md
+    - How we verify: security/verification-reports.md
+    - Security posture and limits: security/security-notes.md
+  - AI assistants:
+    - ai/index.md
+    - MCP server: ai/mcp.md
+    - Claude skill and Cursor rules: ai/skills.md
+  - About: about.md

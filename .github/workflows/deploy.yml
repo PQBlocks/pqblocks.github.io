@@ -1,4 +1,4 @@
-name: Deploy Documentation
+name: Deploy documentation
 
 on:
   push:
@@ -8,13 +8,31 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
         with:
-          python-version: '3.12'
-      - run: pip install mkdocs-material
-      - run: mkdocs gh-deploy --force
+          fetch-depth: 0              # full history: "last updated" dates on every page
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0  # v7.1.0
+        with:
+          python-version: "3.12"
+      - name: System libraries for social cards
+        run: sudo apt-get update && sudo apt-get install -y libcairo2-dev libfreetype6-dev libffi-dev libjpeg-dev libpng-dev libz-dev
+      - run: pip install -r requirements-docs.txt
+      - name: Regenerate pages from the catalog and fail if they drift
+        run: |
+          python3 scripts/gen_docs.py
+          python3 scripts/gen_diagrams.py
+          git diff --exit-code -- docs data || { echo "generated pages are stale: run scripts/gen_docs.py and commit"; exit 1; }
+      - run: mkdocs build --strict
+        env:
+          NO_MKDOCS_2_WARNING: "1"
+      - run: mkdocs gh-deploy --force --no-history
+        env:
+          NO_MKDOCS_2_WARNING: "1"

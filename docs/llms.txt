@@ -1,18 +1,64 @@
-# PQBlocks: Post-Quantum Building Blocks
+# PQBlocks
 
-> Research-backed, self-verified post-quantum cryptography packages and quantum-inspired optimization for Python and JavaScript.
+> PQBlocks is an open-source engineering organisation for the post-quantum (PQ) era: verified building blocks for post-quantum cryptography, migration and readiness, protocol interoperability, conformance testing and quantum-inspired optimisation. Apache-2.0.
 
-## Core Documentation
-- [Project Overview](https://pqblocks.github.io): Architecture, transition map, standards.
-- [Package Catalog](https://pqblocks.github.io/packages): Complete directory of the 26 packages.
-- [Recipes](https://pqblocks.github.io/recipes): End-to-end code tutorials for FastAPI, JWT, TLS, and CBOM.
-- [Security & Verification](https://pqblocks.github.io/security): Threat models, constant-time caveats, ACVP vector proof.
+Install lines below are the ones that work today. Use the documented API only; every quickstart was executed against the package source. Never hand-roll ML-KEM or ML-DSA; prefer hybrid modes during the transition; never log private keys.
 
-## Essential Packages
-- [pqblocks-jwe](https://github.com/PQBlocks/hybrid-jwe): Compact five-part wire format for post-quantum hybrid JWE (ML-KEM-768 + X25519).
-- [pqblocks-jose](https://github.com/PQBlocks/hybrid-jose): Post-quantum hybrid JOSE with ML-DSA-65 / Ed25519 signatures.
-- [pqblocks-core](https://github.com/PQBlocks/hybrid-sdk): Core post-quantum hybrid key encapsulation and signature primitives.
-- [pqblocks-scan](https://github.com/PQBlocks/cbom-scanner): Static analysis cryptography inventory scanner.
-- [pqblocks-cbom](https://github.com/PQBlocks/cbom-enricher): CycloneDX 1.5 CBOM enricher and quantum readiness scorer.
-- [pqblocks-policy](https://github.com/PQBlocks/crypto-policy-engine): Policy-as-code gate enforcing CNSA 2.0 and NIST requirements.
-- [pqblocks-bifurcation](https://github.com/PQBlocks/simulated-bifurcation): Heuristic Simulated Bifurcation algorithm for large-scale QUBO/Ising optimization.
+## Start here
+
+- [Home](https://pqblocks.github.io/): what PQBlocks is and how the areas fit together
+- [Package catalog](https://pqblocks.github.io/packages/): all packages by area
+- [Transition map](https://pqblocks.github.io/transition-map/): which package for which migration phase
+- [Recipes](https://pqblocks.github.io/recipes/): complete, tested solutions to common tasks
+- [AI assistants](https://pqblocks.github.io/ai/): MCP server, Claude skill and Cursor rules
+
+## PQ cryptography
+
+ML-KEM, ML-DSA and SLH-DSA through maintained implementations, hybrid key establishment and signatures, and safe defaults for files and tokens.
+
+- [pqblocks-core](https://pqblocks.github.io/packages/core/): Post-quantum hybrid cryptography core SDK with C shared libraries and policy enforcement. Install: `pip install git+https://github.com/PQBlocks/hybrid-sdk`. Import: `pqblocks_core`.
+- [pqblocks-files](https://pqblocks.github.io/packages/files/): Hybrid post-quantum file encryption: ML-KEM-768 plus X25519 key encapsulation with chunked ChaCha20-Poly1305 in the pfsh v1 format. Install: `pip install git+https://github.com/PQBlocks/hybrid-file-encryption`. Import: `pqblocks_files`.
+- [pqblocks-jose](https://pqblocks.github.io/packages/jose/): Post-quantum hybrid JOSE library supporting ML-KEM and ML-DSA JWE and JWS tokens. Install: `pip install git+https://github.com/PQBlocks/hybrid-jose`. Import: `pqblocks_jose`.
+- [pqblocks-primitives](https://pqblocks.github.io/packages/primitives/): Production-ready integrated post-quantum cryptographic primitives (ML-KEM, ML-DSA, SLH-DSA, and hybrid schemes). Install: `pip install git+https://github.com/PQBlocks/fips-pqc-primitives`. Import: `pqblocks_primitives`.
+
+## Migration & readiness
+
+Find cryptography in code and on the wire, emit CBOMs, score readiness, gate CI with policy-as-code and assemble compliance evidence.
+
+- [pqblocks-agility](https://pqblocks.github.io/packages/agility/): Cryptographic Agility Readiness Scoring (CARS) and CI/CD regression firewall for CycloneDX 1.6 CBOM inventories. Install: `pip install pqblocks-agility`. Import: `pqblocks_agility`.
+- [pqblocks-cbom](https://pqblocks.github.io/packages/cbom/): CycloneDX 1.5 CBOM metadata enrichment engine injecting quantum-safe classifications and CNSA 2.0 compliance properties. Install: `pip install git+https://github.com/PQBlocks/cbom-enricher`. Import: `pqblocks_cbom`.
+- [pqblocks-cnsa-evidence](https://pqblocks.github.io/packages/cnsa-evidence/): CNSA 2.0 evidence pack generator for quantum-safe compliance, CBOM generation, and migration scheduling. Install: `pip install git+https://github.com/PQBlocks/cnsa-evidence-pack`. Import: `pqblocks_cnsa_evidence`.
+- [pqblocks-jwe-audit](https://pqblocks.github.io/packages/jwe-audit/): High-throughput JSON Web Encryption (JWE) cryptographic policy auditor enforcing CNSA 2.0 and NIST FIPS 203 PQC standards. Install: `pip install git+https://github.com/PQBlocks/jwe-policy-auditor`. Import: `pqblocks_jwe_audit`.
+- [pqblocks-lint](https://pqblocks.github.io/packages/lint/): Static analysis for Python source that finds classical and post-quantum cryptographic primitives with a source-to-sink taint pass and reports them as a CycloneDX 1.6 CBOM or a SARIF 2.1.0 log. Install: `pip install git+https://github.com/PQBlocks/pqc-lint`. Import: `pqblocks_lint`.
+- [pqblocks-policy](https://pqblocks.github.io/packages/policy/): Policy-as-code engine for post-quantum cryptography compliance and CBOM verification. Install: `pip install git+https://github.com/PQBlocks/crypto-policy-engine`. Import: `pqblocks_policy`.
+- [pqblocks-scan](https://pqblocks.github.io/packages/scan/): Cryptography inventory scanner: finds classical and post-quantum algorithms in source code or a TLS endpoint and writes a CycloneDX 1.6 CBOM, a SARIF 2.1.0 report and a readiness grade. Install: `pip install git+https://github.com/PQBlocks/cbom-scanner`. Import: `pqblocks_scan`.
+
+## Interoperability
+
+Wire formats, JOSE, X.509/CSR and TLS hybrid groups that carry larger post-quantum keys, ciphertexts and signatures through real protocols.
+
+- [pqblocks-csr-pop](https://pqblocks.github.io/packages/csr-pop/): ML-KEM (FIPS 203) PKCS#10 Certificate Signing Request (CSR) generator with RFC 9883 Proof of Possession (PoP). Install: `pip install git+https://github.com/PQBlocks/mlkem-csr-pop`. Import: `pqblocks_csr_pop`.
+- [pqblocks-jwe](https://pqblocks.github.io/packages/jwe/): Compact five-part wire format, with a serializer and structural parser, for hybrid ML-KEM-768 + X25519 JWE-style tokens; it performs no encryption itself. Install: `pip install git+https://github.com/PQBlocks/hybrid-jwe`. Import: `pqblocks_jwe`.
+- [pqblocks-tls-interop](https://pqblocks.github.io/packages/tls-interop/): TLS 1.3 hybrid key exchange (X25519MLKEM768 / RFC 10024) endpoint probe, downgrade detector, and key material validator. Install: `pip install git+https://github.com/PQBlocks/tls-hybrid-interop`. Import: `pqblocks_tls_interop`.
+- [pqblocks-wire](https://pqblocks.github.io/packages/wire/): Length-prefixed container format (PQCWF1) for ML-KEM ciphertexts and ML-DSA / SLH-DSA signatures, with thin wrappers over liboqs-python and pyca/cryptography; it implements no primitive itself. Install: `pip install git+https://github.com/PQBlocks/pqc-wireformat`. Import: `pqblocks_wire`.
+
+## Conformance
+
+Official NIST ACVP vectors and strict FIPS 203/204 boundary checks that prove an implementation and a migration are correct.
+
+- [pqblocks-acvp](https://pqblocks.github.io/packages/acvp/): Cross-implementation NIST ACVP conformance harness for FIPS 203 (ML-KEM) and FIPS 204 (ML-DSA). Install: `pip install pqblocks-acvp`. Import: `pqblocks_acvp`.
+- [pqblocks-fips-check](https://pqblocks.github.io/packages/fips-check/): FIPS 203/204 boundary validator and hybrid key exchange (X25519 + ML-KEM-768) with ML-DSA-65 signatures and CBOM reporting. Install: `pip install git+https://github.com/PQBlocks/fips-boundary-validator`. Import: `pqblocks_fips_check`.
+
+## Quantum-inspired
+
+Classical solvers modelled on quantum dynamics for Ising and QUBO problems. Kept separate from security: no cryptographic claims.
+
+- [pqblocks-anneal-sa](https://pqblocks.github.io/packages/anneal-sa/): Simulated Annealing heuristic solver for Ising and QUBO optimization problems. Quantum-inspired classical optimization, not cryptography. Install: `pip install pqblocks-anneal-sa`. Import: `pqblocks_anneal_sa`.
+- [pqblocks-anneal-schedule](https://pqblocks.github.io/packages/anneal-schedule/): Quantum-inspired instance-adaptive simulated annealing with statistics-driven schedule generation for Ising and QUBO optimization problems. Quantum-inspired classical optimization, not cryptography. Install: `pip install pqblocks-anneal-schedule`. Import: `pqblocks_anneal_schedule`.
+- [pqblocks-anneal-sqa](https://pqblocks.github.io/packages/anneal-sqa/): Simulated Quantum Annealing (Path-Integral Monte Carlo via Suzuki-Trotter decomposition) heuristic solver for Ising and QUBO optimization. Quantum-inspired classical optimization, not cryptography. Install: `pip install git+https://github.com/PQBlocks/simulated-quantum-annealing`. Import: `pqblocks_anneal_sqa`.
+- [pqblocks-bifurcation](https://pqblocks.github.io/packages/bifurcation/): Simulated Bifurcation (ballistic and discrete) heuristic solver for Ising and QUBO problems. Quantum-inspired classical optimization, not cryptography. Install: `pip install git+https://github.com/PQBlocks/simulated-bifurcation`. Import: `pqblocks_bifurcation`.
+- [pqblocks-digital-anneal](https://pqblocks.github.io/packages/digital-anneal/): Digital Annealer-style parallel-trial heuristic solver for Ising and QUBO optimization problems. Quantum-inspired classical optimization, not cryptography. Install: `pip install git+https://github.com/PQBlocks/digital-annealing`. Import: `pqblocks_digital_anneal`.
+- [pqblocks-population-anneal](https://pqblocks.github.io/packages/population-anneal/): Population Annealing Monte Carlo heuristic solver for Ising models and QUBO combinatorial optimization. Quantum-inspired classical optimization, not cryptography. Install: `pip install git+https://github.com/PQBlocks/population-annealing`. Import: `pqblocks_population_anneal`.
+- [pqblocks-qiea](https://pqblocks.github.io/packages/qiea/): Quantum-Inspired Evolutionary Algorithm (QIEA) with Q-bit representations and quantum rotation gates for Ising and QUBO optimization problems. Quantum-inspired classical optimization, not… Install: `pip install git+https://github.com/PQBlocks/quantum-inspired-evolutionary`. Import: `pqblocks_qiea`.
+- [pqblocks-qubo](https://pqblocks.github.io/packages/qubo/): Unified mathematical representation and converter library for Quadratic Unconstrained Binary Optimization (QUBO) and Ising formulations. Install: `pip install git+https://github.com/PQBlocks/qubo-core`. Import: `pqblocks_qubo`.
+- [pqblocks-qubo-bench](https://pqblocks.github.io/packages/qubo-bench/): Benchmarking harness and standard instance loaders for quantum-inspired optimization algorithms against classical baselines. Install: `pip install git+https://github.com/PQBlocks/qubo-benchmark-harness`. Import: `pqblocks_qubo_bench`.

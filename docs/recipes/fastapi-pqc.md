@@ -1,63 +1,66 @@
-# How to Add Post-Quantum Encryption to FastAPI
+---
+title: How to add post-quantum tokens to FastAPI
+description: Issue and verify hybrid ML-DSA-65 + Ed25519 signed bearer tokens in a FastAPI service with pqblocks-jose. Complete, tested code including a tamper check.
+---
 
-Learn how to secure FastAPI API endpoints using post-quantum hybrid JSON Web Encryption (JWE) tokens with ML-KEM-768 and X25519.
+# How to add post-quantum tokens to FastAPI
 
-## The Problem
+<p class="pqb-lead">A FastAPI service that issues bearer tokens signed with hybrid ML-DSA-65 + Ed25519 and rejects any token that fails verification. The file runs its own self-check with FastAPI's test client.</p>
 
-Standard JWTs using HMAC or classical RSA/ECDSA can be recorded today and decrypted by an adversary with access to a future cryptographically relevant quantum computer. Sensitive session tokens and authorization payloads must transition to quantum-safe hybrid encryption.
+## The problem
 
-## Installation
+Most FastAPI authentication uses JWTs signed with HS256, RS256 or ES256. RS256 and ES256 rely on RSA and elliptic curves, which a quantum computer breaks. You want the same bearer-token flow with signatures that stay unforgeable, without changing how clients send the token.
+
+## Install
 
 ```bash
-pip install fastapi uvicorn pqblocks-jwe
+pip install fastapi httpx git+https://github.com/PQBlocks/hybrid-jose
 ```
 
-## Complete Working Code
+`httpx` is only needed for the self-check at the bottom of the file.
 
-```python
-from fastapi import FastAPI, Depends, HTTPException, Security
-from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
-from pqblocks_jwe import encrypt_jwe, decrypt_jwe, generate_hybrid_keypair
+## Complete working code
 
-app = FastAPI(title="Quantum-Safe Authentication API")
-security = HTTPBearer()
-
-# Generate or load the server's post-quantum hybrid keypair
-# (In production, load the private key from secure environment storage)
-SERVER_PRIVATE_KEY, SERVER_PUBLIC_KEY = generate_hybrid_keypair()
-
-@app.post("/auth/login")
-def login(username: str):
-    """Issues a post-quantum encrypted JWE token upon login."""
-    # Build session claims
-    claims = f'{{"user":"{username}","role":"admin"}}'.encode("utf-8")
-    
-    # Encrypt into compact 5-part JWE token using server public key
-    token = encrypt_jwe(claims, SERVER_PUBLIC_KEY)
-    return {"access_token": token, "token_type": "Bearer"}
-
-def verify_token(credentials: HTTPAuthorizationCredentials = Security(security)):
-    """Validates and decrypts the JWE token."""
-    token = credentials.credentials
-    try:
-        decrypted_payload = decrypt_jwe(token, SERVER_PRIVATE_KEY)
-        return decrypted_payload.decode("utf-8")
-    except Exception as e:
-        raise HTTPException(status_code=401, detail="Invalid or unreadable post-quantum token")
-
-@app.get("/api/v1/secure-data")
-def get_secure_data(user_claims: str = Depends(verify_token)):
-    """Protected endpoint only accessible with a valid post-quantum JWE token."""
-    return {"message": "Access granted to quantum-safe vault", "claims": user_claims}
+```python title="fastapi_pqc.py"
+--8<-- "recipes/code/fastapi_pqc.py"
 ```
 
-## How It Works
+Run the self-check with `python fastapi_pqc.py`, or serve it with `uvicorn fastapi_pqc:app`. Output of the self-check:
 
-1. **Hybrid Key Encapsulation:** When generating the token, `encrypt_jwe` encapsulates a symmetric content encryption key (AES-256-GCM) using both **ML-KEM-768** (FIPS 203) and **X25519** (RFC 7748).
-2. **Compact RFC 7516 Token:** The token conforms to the 5-part base64url JWE standard: `header.encrypted_key.iv.ciphertext.tag`.
-3. **Defense-in-Depth:** An attacker must break *both* lattice cryptography and classical elliptic curves to recover the decrypted claims.
+```text
+issued, accepted, tampered token rejected: OK
+```
 
-## Security Notes
+## How it works
 
-- The server's private key must remain in memory or hardware HSM and never be committed to source repositories.
-- Use TLS 1.3 in transport to prevent active man-in-the-middle manipulation.
+```mermaid
+sequenceDiagram
+    autonumber
+    participant C as Client
+    participant A as FastAPI service
+    C->>A: POST /token?user=alice
+    A->>A: encode_jws(claims, POLICY, ML-DSA-65 + Ed25519 private key)
+    A-->>C: access_token (compact JWS)
+    C->>A: GET /me  Authorization: Bearer <token>
+    A->>A: decode_jws(token, POLICY, public key)
+    alt both signatures valid
+        A-->>C: 200 {"ok": true}
+    else any check fails
+        A-->>C: 401 invalid token
+    end
+```
+
+1. `/token` signs the claims with the service's composite private key.
+2. `verified_token` is a FastAPI dependency: it decodes the bearer token against the pinned `POLICY` and the public key, and turns every failure into `401`.
+3. Any route that depends on `verified_token` is protected; the handler only runs for a valid token.
+
+## Things to know
+
+- **Load keys, do not generate them per process.** With several workers, each would otherwise have its own key and reject the others' tokens. Load the private key from a secret store at start-up and share the public key with verifiers.
+- **Token size.** Hybrid ML-DSA-65 tokens are about 4.6 KB. Raise header limits on proxies (for example nginx `large_client_header_buffers`) if needed.
+- **Add the usual JWT checks.** This recipe shows the signature layer. Add expiry (`exp`), audience and issuer checks for your application.
+
+## Related
+
+- [How to sign JWTs with ML-DSA in Python](jwt-ml-dsa.md)
+- [`pqblocks-jose`](../packages/jose.md) · [`pqblocks-policy`](../packages/policy.md)

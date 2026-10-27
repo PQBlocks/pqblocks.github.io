@@ -1,0 +1,98 @@
+/* PQBlocks brand layer on Material for MkDocs. Tokens first; components use only tokens. */
+:root,
+[data-md-color-scheme="default"] {
+  --pqb-cyan: #0891b2;
+  --pqb-violet: #7c3aed;
+  --pqb-ink: #0f172a;
+  --pqb-muted: #475569;
+  --pqb-line: #e2e8f0;
+  --pqb-panel: #f8fafc;
+  --md-primary-fg-color: #0b1220;
+  --md-primary-fg-color--light: #1e293b;
+  --md-primary-fg-color--dark: #020617;
+  --md-primary-bg-color: #e2e8f0;
+  --md-accent-fg-color: var(--pqb-cyan);
+  --md-typeset-a-color: #0e7490;
+}
+[data-md-color-scheme="slate"] {
+  --pqb-cyan: #22d3ee;
+  --pqb-violet: #a78bfa;
+  --pqb-ink: #e2e8f0;
+  --pqb-muted: #94a3b8;
+  --pqb-line: #1e293b;
+  --pqb-panel: #0f172a;
+  --md-default-bg-color: #0b1220;
+  --md-primary-fg-color: #0b1220;
+  --md-accent-fg-color: var(--pqb-cyan);
+  --md-typeset-a-color: #67e8f9;
+  --md-code-bg-color: #0f172a;
+}
+
+.md-header, .md-tabs { background: linear-gradient(90deg, #0b1220 0%, #111a2e 100%); }
+.md-header { box-shadow: 0 1px 0 rgba(148, 163, 184, .15); }
+.md-tabs__link { font-weight: 500; }
+
+.md-typeset h1 { font-weight: 800; letter-spacing: -.02em; color: var(--pqb-ink); }
+.md-typeset h2 { font-weight: 700; letter-spacing: -.01em; }
+.md-typeset .pqb-lead { font-size: 1.12rem; line-height: 1.6; color: var(--pqb-muted); max-width: 48rem; margin-top: -.4rem; }
+
+/* gradient rule under the main title */
+.md-typeset h1::after {
+  content: ""; display: block; width: 4.5rem; height: 4px; margin-top: .55rem; border-radius: 2px;
+  background: linear-gradient(90deg, var(--pqb-cyan), var(--pqb-violet));
+}
+
+/* cards: hierarchy and depth, not uniform boxes */
+.md-typeset .grid.cards > ul > li,
+.md-typeset .grid > .card {
+  border: 1px solid var(--pqb-line); border-radius: .7rem; background: var(--pqb-panel);
+  transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+}
+.md-typeset .grid.cards > ul > li:hover,
+.md-typeset .grid > .card:hover {
+  transform: translateY(-2px); border-color: var(--pqb-cyan);
+  box-shadow: 0 10px 30px -12px rgba(8, 145, 178, .45);
+}
+.md-typeset .grid.cards .lg { color: var(--pqb-cyan); }
+
+/* hero */
+.pqb-hero { padding: 1.2rem 0 .4rem; }
+.pqb-hero h1 { font-size: 2.6rem; line-height: 1.12; margin-bottom: .6rem; }
+.pqb-hero h1::after { display: none; }
+.pqb-hero .pqb-kicker {
+  display: inline-block; font-size: .72rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--pqb-cyan); margin-bottom: .6rem;
+}
+.pqb-hero .md-button { margin: .3rem .4rem .3rem 0; }
+.md-typeset .md-button--primary {
+  background: linear-gradient(90deg, var(--pqb-cyan), var(--pqb-violet)); border: 0; color: #fff;
+}
+.md-typeset .md-button:focus-visible { outline: 2px solid var(--pqb-violet); outline-offset: 2px; }
+
+/* stat strip */
+.pqb-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr)); gap: .8rem; margin: 1.4rem 0; }
+.pqb-stats div { border: 1px solid var(--pqb-line); border-radius: .7rem; padding: .8rem 1rem; background: var(--pqb-panel); }
+.pqb-stats strong { display: block; font-size: 1.7rem; font-weight: 800; color: var(--pqb-ink); line-height: 1.1; }
+.pqb-stats span { font-size: .78rem; color: var(--pqb-muted); }
+
+.md-typeset img[src*="diagrams/"] { width: 100%; height: auto; border-radius: .9rem; }
+.md-typeset img[src*="shields.io"] { margin: 0 .15rem .2rem 0; }
+.md-typeset table:not([class]) { font-size: .74rem; border-radius: .5rem; }
+
+@media screen and (max-width: 44.9375em) {
+  .pqb-hero h1 { font-size: 1.9rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .md-typeset .grid.cards > ul > li, .md-typeset .grid > .card { transition: none; }
+}
+
+/* secondary buttons stay visible in both schemes */
+.md-typeset .md-button:not(.md-button--primary) { color: var(--pqb-cyan); border-color: var(--pqb-cyan); }
+.md-typeset .md-button:not(.md-button--primary):hover { background: var(--pqb-cyan); color: #0b1220; }
+
+/* abbreviations: keep the tooltip, drop the dotted underline noise */
+.md-typeset abbr { text-decoration: none; border-bottom: 0; cursor: help; }
+
+/* two-column grids for paired content */
+.md-typeset .grid.pqb-two { grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr)); }
+@media screen and (min-width: 60em) { .md-typeset .grid.pqb-two { grid-template-columns: repeat(2, 1fr); } }
