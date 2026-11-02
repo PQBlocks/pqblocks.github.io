@@ -10,7 +10,7 @@ schema: {"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name"
 
 <p class="pqb-lead" markdown>FIPS 203/204 boundary validator and hybrid key exchange (X25519 + ML-KEM-768) with ML-DSA-65 signatures and CBOM reporting.</p>
 
-![Install from GitHub](https://img.shields.io/badge/install-GitHub-334155?style=flat-square) ![Area](https://img.shields.io/badge/area-Conformance-0e7490?style=flat-square) ![Status](https://img.shields.io/badge/status-Alpha-b45309?style=flat-square) ![Python](https://img.shields.io/badge/python-%3E%3D3.11-1e40af?style=flat-square) ![Licence](https://img.shields.io/badge/licence-Apache--2.0-334155?style=flat-square) [![Source](https://img.shields.io/badge/source-fips--boundary--validator-111827?style=flat-square&logo=github)](https://github.com/PQBlocks/fips-boundary-validator)
+[![PyPI](https://img.shields.io/pypi/v/pqblocks-fips-check?style=flat-square&label=PyPI&color=0f766e)](https://pypi.org/project/pqblocks-fips-check/) ![Area](https://img.shields.io/badge/area-Conformance-0e7490?style=flat-square) ![Status](https://img.shields.io/badge/status-Alpha-b45309?style=flat-square) ![Python](https://img.shields.io/badge/python-%3E%3D3.11-1e40af?style=flat-square) ![Licence](https://img.shields.io/badge/licence-Apache--2.0-334155?style=flat-square) [![Source](https://img.shields.io/badge/source-fips--boundary--validator-111827?style=flat-square&logo=github)](https://github.com/PQBlocks/fips-boundary-validator)
 
 !!! abstract "At a glance"
 
@@ -31,6 +31,18 @@ FIPS 203/204 boundary validator and hybrid post-quantum key exchange (X25519 + M
 
 ## Install
 
+=== "pip"
+
+    ```bash
+    pip install pqblocks-fips-check
+    ```
+
+=== "uv"
+
+    ```bash
+    uv add pqblocks-fips-check
+    ```
+
 === "pip (from GitHub)"
 
     ```bash
@@ -42,9 +54,6 @@ FIPS 203/204 boundary validator and hybrid post-quantum key exchange (X25519 + M
     ```bash
     uv add git+https://github.com/PQBlocks/fips-boundary-validator
     ```
-
-!!! note "PyPI release staged"
-    `pqblocks-fips-check` installs from its GitHub repository while the PyPI release is staged. The import name and API are identical either way.
 
 !!! info "Native dependency: liboqs"
     The post-quantum primitives come from [liboqs](https://openquantumsafe.org/liboqs/) (Open Quantum Safe). The package README explains how the library is located: [install notes](https://github.com/PQBlocks/fips-boundary-validator/blob/main/README.md).
@@ -157,3 +166,4 @@ Every PQBlocks package ships the same evidence set, so each claim can be checked
 ## Related packages in Conformance
 
 - [`pqblocks-acvp`](acvp.md): Cross-implementation NIST ACVP conformance harness for FIPS 203 (ML-KEM) and FIPS 204 (ML-DSA).
+- [`pqblocks-browser-pqc-verifier`](browser-pqc-verifier.md): Post-quantum certificate and chain verifier for browsers and Node.js using ML-DSA/SLH-DSA from @noble/post-quantum.

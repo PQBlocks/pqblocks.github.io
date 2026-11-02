@@ -10,7 +10,7 @@ schema: {"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name"
 
 <p class="pqb-lead" markdown>CNSA 2.0 evidence pack generator for quantum-safe compliance, CBOM generation, and migration scheduling.</p>
 
-![Install from GitHub](https://img.shields.io/badge/install-GitHub-334155?style=flat-square) ![Area](https://img.shields.io/badge/area-Migration%20%26%20readiness-0e7490?style=flat-square) ![Status](https://img.shields.io/badge/status-Alpha-b45309?style=flat-square) ![Python](https://img.shields.io/badge/python-%3E%3D3.11-1e40af?style=flat-square) ![Licence](https://img.shields.io/badge/licence-Apache--2.0-334155?style=flat-square) [![Source](https://img.shields.io/badge/source-cnsa--evidence--pack-111827?style=flat-square&logo=github)](https://github.com/PQBlocks/cnsa-evidence-pack)
+[![PyPI](https://img.shields.io/pypi/v/pqblocks-cnsa-evidence?style=flat-square&label=PyPI&color=0f766e)](https://pypi.org/project/pqblocks-cnsa-evidence/) ![Area](https://img.shields.io/badge/area-Migration%20%26%20readiness-0e7490?style=flat-square) ![Status](https://img.shields.io/badge/status-Alpha-b45309?style=flat-square) ![Python](https://img.shields.io/badge/python-%3E%3D3.11-1e40af?style=flat-square) ![Licence](https://img.shields.io/badge/licence-Apache--2.0-334155?style=flat-square) [![Source](https://img.shields.io/badge/source-cnsa--evidence--pack-111827?style=flat-square&logo=github)](https://github.com/PQBlocks/cnsa-evidence-pack)
 
 !!! abstract "At a glance"
 
@@ -33,6 +33,18 @@ CNSA 2.0 Procurement Evidence Pack Generator for federal contractors and enterpr
 
 ## Install
 
+=== "pip"
+
+    ```bash
+    pip install pqblocks-cnsa-evidence
+    ```
+
+=== "uv"
+
+    ```bash
+    uv add pqblocks-cnsa-evidence
+    ```
+
 === "pip (from GitHub)"
 
     ```bash
@@ -44,9 +56,6 @@ CNSA 2.0 Procurement Evidence Pack Generator for federal contractors and enterpr
     ```bash
     uv add git+https://github.com/PQBlocks/cnsa-evidence-pack
     ```
-
-!!! note "PyPI release staged"
-    `pqblocks-cnsa-evidence` installs from its GitHub repository while the PyPI release is staged. The import name and API are identical either way.
 
 ## Quickstart
 

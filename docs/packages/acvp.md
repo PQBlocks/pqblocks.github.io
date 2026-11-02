@@ -150,4 +150,5 @@ Every PQBlocks package ships the same evidence set, so each claim can be checked
 
 ## Related packages in Conformance
 
+- [`pqblocks-browser-pqc-verifier`](browser-pqc-verifier.md): Post-quantum certificate and chain verifier for browsers and Node.js using ML-DSA/SLH-DSA from @noble/post-quantum.
 - [`pqblocks-fips-check`](fips-check.md): FIPS 203/204 boundary validator and hybrid key exchange (X25519 + ML-KEM-768) with ML-DSA-65 signatures and CBOM…

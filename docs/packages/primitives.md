@@ -10,7 +10,7 @@ schema: {"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name"
 
 <p class="pqb-lead" markdown>Production-ready integrated post-quantum cryptographic primitives (ML-KEM, ML-DSA, SLH-DSA, and hybrid schemes).</p>
 
-![Install from GitHub](https://img.shields.io/badge/install-GitHub-334155?style=flat-square) ![Area](https://img.shields.io/badge/area-PQ%20cryptography-0e7490?style=flat-square) ![Status](https://img.shields.io/badge/status-Alpha-b45309?style=flat-square) ![Python](https://img.shields.io/badge/python-%3E%3D3.11-1e40af?style=flat-square) ![Licence](https://img.shields.io/badge/licence-Apache--2.0-334155?style=flat-square) [![Source](https://img.shields.io/badge/source-fips--pqc--primitives-111827?style=flat-square&logo=github)](https://github.com/PQBlocks/fips-pqc-primitives)
+[![PyPI](https://img.shields.io/pypi/v/pqblocks-primitives?style=flat-square&label=PyPI&color=0f766e)](https://pypi.org/project/pqblocks-primitives/) ![Area](https://img.shields.io/badge/area-PQ%20cryptography-0e7490?style=flat-square) ![Status](https://img.shields.io/badge/status-Alpha-b45309?style=flat-square) ![Python](https://img.shields.io/badge/python-%3E%3D3.11-1e40af?style=flat-square) ![Licence](https://img.shields.io/badge/licence-Apache--2.0-334155?style=flat-square) [![Source](https://img.shields.io/badge/source-fips--pqc--primitives-111827?style=flat-square&logo=github)](https://github.com/PQBlocks/fips-pqc-primitives)
 
 !!! abstract "At a glance"
 
@@ -31,6 +31,18 @@ Production-ready integrated post-quantum cryptographic primitives (ML-KEM, ML-DS
 
 ## Install
 
+=== "pip"
+
+    ```bash
+    pip install pqblocks-primitives
+    ```
+
+=== "uv"
+
+    ```bash
+    uv add pqblocks-primitives
+    ```
+
 === "pip (from GitHub)"
 
     ```bash
@@ -42,9 +54,6 @@ Production-ready integrated post-quantum cryptographic primitives (ML-KEM, ML-DS
     ```bash
     uv add git+https://github.com/PQBlocks/fips-pqc-primitives
     ```
-
-!!! note "PyPI release staged"
-    `pqblocks-primitives` installs from its GitHub repository while the PyPI release is staged. The import name and API are identical either way.
 
 !!! info "Native dependency: liboqs"
     The post-quantum primitives come from [liboqs](https://openquantumsafe.org/liboqs/) (Open Quantum Safe). The package README explains how the library is located: [install notes](https://github.com/PQBlocks/fips-pqc-primitives/blob/main/README.md).

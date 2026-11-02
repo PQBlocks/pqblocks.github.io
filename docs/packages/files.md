@@ -10,7 +10,7 @@ schema: {"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name"
 
 <p class="pqb-lead" markdown>Hybrid post-quantum file encryption: ML-KEM-768 plus X25519 key encapsulation with chunked ChaCha20-Poly1305 in the pfsh v1 format.</p>
 
-![Install from GitHub](https://img.shields.io/badge/install-GitHub-334155?style=flat-square) ![Area](https://img.shields.io/badge/area-PQ%20cryptography-0e7490?style=flat-square) ![Status](https://img.shields.io/badge/status-Alpha-b45309?style=flat-square) ![Python](https://img.shields.io/badge/python-%3E%3D3.11-1e40af?style=flat-square) ![Licence](https://img.shields.io/badge/licence-Apache--2.0-334155?style=flat-square) [![Source](https://img.shields.io/badge/source-hybrid--file--encryption-111827?style=flat-square&logo=github)](https://github.com/PQBlocks/hybrid-file-encryption)
+[![PyPI](https://img.shields.io/pypi/v/pqblocks-files?style=flat-square&label=PyPI&color=0f766e)](https://pypi.org/project/pqblocks-files/) ![Area](https://img.shields.io/badge/area-PQ%20cryptography-0e7490?style=flat-square) ![Status](https://img.shields.io/badge/status-Alpha-b45309?style=flat-square) ![Python](https://img.shields.io/badge/python-%3E%3D3.11-1e40af?style=flat-square) ![Licence](https://img.shields.io/badge/licence-Apache--2.0-334155?style=flat-square) [![Source](https://img.shields.io/badge/source-hybrid--file--encryption-111827?style=flat-square&logo=github)](https://github.com/PQBlocks/hybrid-file-encryption)
 
 !!! abstract "At a glance"
 
@@ -35,6 +35,18 @@ Implements NIST FIPS 203 (ML-KEM-768, via liboqs), RFC 7748 (X25519), RFC 8439 (
 
 ## Install
 
+=== "pip"
+
+    ```bash
+    pip install pqblocks-files
+    ```
+
+=== "uv"
+
+    ```bash
+    uv add pqblocks-files
+    ```
+
 === "pip (from GitHub)"
 
     ```bash
@@ -46,9 +58,6 @@ Implements NIST FIPS 203 (ML-KEM-768, via liboqs), RFC 7748 (X25519), RFC 8439 (
     ```bash
     uv add git+https://github.com/PQBlocks/hybrid-file-encryption
     ```
-
-!!! note "PyPI release staged"
-    `pqblocks-files` installs from its GitHub repository while the PyPI release is staged. The import name and API are identical either way.
 
 !!! info "Native dependency: liboqs"
     The post-quantum primitives come from [liboqs](https://openquantumsafe.org/liboqs/) (Open Quantum Safe). The package README explains how the library is located: [install notes](https://github.com/PQBlocks/hybrid-file-encryption/blob/main/README.md).

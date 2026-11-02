@@ -172,6 +172,7 @@ nav:
     - Conformance:
       - Overview: packages/conformance.md
       - pqblocks-acvp: packages/acvp.md
+      - pqblocks-browser-pqc-verifier: packages/browser-pqc-verifier.md
       - pqblocks-fips-check: packages/fips-check.md
     - Quantum-inspired:
       - Overview: packages/optimization.md
@@ -186,6 +187,8 @@ nav:
       - pqblocks-qubo-bench: packages/qubo-bench.md
   - Recipes:
     - recipes/index.md
+    - How to verify post-quantum chains in Node & Browser: recipes/browser-verification.md
+    - How to add hybrid auth to Express: recipes/express-hybrid-auth.md
     - How to sign JWTs with ML-DSA: recipes/jwt-ml-dsa.md
     - How to add post-quantum tokens to FastAPI: recipes/fastapi-pqc.md
     - How to do hybrid X25519 + ML-KEM: recipes/hybrid-kem.md

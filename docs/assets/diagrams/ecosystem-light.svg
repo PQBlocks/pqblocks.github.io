@@ -2,7 +2,7 @@
 <defs><linearGradient id="acc" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0891b2"/><stop offset="1" stop-color="#7c3aed"/></linearGradient></defs>
 <rect width="1200" height="579" rx="16" fill="#ffffff"/>
 <text x="600" y="52" font-size="26" font-weight="700" fill="#0f172a" text-anchor="middle">PQBlocks ecosystem</text>
-<text x="600" y="80" font-size="15" font-weight="400" fill="#475569" text-anchor="middle">26 packages across five areas of the post-quantum transition</text>
+<text x="600" y="80" font-size="15" font-weight="400" fill="#475569" text-anchor="middle">27 packages across five areas of the post-quantum transition</text>
 <rect x="30" y="116" width="212" height="317" rx="12" fill="#f8fafc" stroke="#cbd5e1"/>
 <rect x="30" y="116" width="212" height="5" rx="2" fill="url(#acc)"/>
 <text x="136" y="152" font-size="15" font-weight="700" fill="#0f172a" text-anchor="middle">PQ cryptography</text>
@@ -48,11 +48,13 @@
 <rect x="726" y="116" width="212" height="317" rx="12" fill="#f8fafc" stroke="#cbd5e1"/>
 <rect x="726" y="116" width="212" height="5" rx="2" fill="url(#acc)"/>
 <text x="832" y="152" font-size="15" font-weight="700" fill="#0f172a" text-anchor="middle">Conformance</text>
-<text x="832" y="174" font-size="13" font-weight="400" fill="#475569" text-anchor="middle">2 packages</text>
+<text x="832" y="174" font-size="13" font-weight="400" fill="#475569" text-anchor="middle">3 packages</text>
 <rect x="742" y="190" width="180" height="22" rx="11" fill="#e2e8f0"/>
 <text x="832" y="205" font-size="12" font-weight="500" fill="#0f172a" text-anchor="middle">acvp</text>
 <rect x="742" y="215" width="180" height="22" rx="11" fill="#e2e8f0"/>
-<text x="832" y="230" font-size="12" font-weight="500" fill="#0f172a" text-anchor="middle">fips-check</text>
+<text x="832" y="230" font-size="12" font-weight="500" fill="#0f172a" text-anchor="middle">browser-pqc-verifier</text>
+<rect x="742" y="240" width="180" height="22" rx="11" fill="#e2e8f0"/>
+<text x="832" y="255" font-size="12" font-weight="500" fill="#0f172a" text-anchor="middle">fips-check</text>
 <rect x="958" y="116" width="212" height="317" rx="12" fill="#f8fafc" stroke="#cbd5e1"/>
 <rect x="958" y="116" width="212" height="5" rx="2" fill="url(#acc)"/>
 <text x="1064" y="152" font-size="15" font-weight="700" fill="#0f172a" text-anchor="middle">Quantum-inspired</text>

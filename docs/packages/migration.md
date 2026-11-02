@@ -28,7 +28,7 @@ schema: {"@context": "https://schema.org", "@type": "CollectionPage", "name": "P
 
     CycloneDX 1.5 CBOM metadata enrichment engine injecting quantum-safe classifications and CNSA 2.0 compliance properties.
 
-    `pip install git+https://github.com/PQBlocks/cbom-enricher`
+    `pip install pqblocks-cbom`
 
 -   __[pqblocks-cnsa-evidence](cnsa-evidence.md)__
 
@@ -36,7 +36,7 @@ schema: {"@context": "https://schema.org", "@type": "CollectionPage", "name": "P
 
     CNSA 2.0 evidence pack generator for quantum-safe compliance, CBOM generation, and migration scheduling.
 
-    `pip install git+https://github.com/PQBlocks/cnsa-evidence-pack`
+    `pip install pqblocks-cnsa-evidence`
 
 -   __[pqblocks-jwe-audit](jwe-audit.md)__
 
@@ -44,7 +44,7 @@ schema: {"@context": "https://schema.org", "@type": "CollectionPage", "name": "P
 
     High-throughput JSON Web Encryption (JWE) cryptographic policy auditor enforcing CNSA 2.0 and NIST FIPS 203 PQC standards.
 
-    `pip install git+https://github.com/PQBlocks/jwe-policy-auditor`
+    `pip install pqblocks-jwe-audit`
 
 -   __[pqblocks-lint](lint.md)__
 
@@ -52,7 +52,7 @@ schema: {"@context": "https://schema.org", "@type": "CollectionPage", "name": "P
 
     Static analysis for Python source that finds classical and post-quantum cryptographic primitives with a source-to-sink taint pass and reports them as a CycloneDX 1.6…
 
-    `pip install git+https://github.com/PQBlocks/pqc-lint`
+    `pip install pqblocks-lint`
 
 -   __[pqblocks-policy](policy.md)__
 
@@ -60,7 +60,7 @@ schema: {"@context": "https://schema.org", "@type": "CollectionPage", "name": "P
 
     Policy-as-code engine for post-quantum cryptography compliance and CBOM verification.
 
-    `pip install git+https://github.com/PQBlocks/crypto-policy-engine`
+    `pip install pqblocks-policy`
 
 -   __[pqblocks-scan](scan.md)__
 
@@ -68,7 +68,7 @@ schema: {"@context": "https://schema.org", "@type": "CollectionPage", "name": "P
 
     Cryptography inventory scanner: finds classical and post-quantum algorithms in source code or a TLS endpoint and writes a CycloneDX 1.6 CBOM, a SARIF 2.1.0 report and a…
 
-    `pip install git+https://github.com/PQBlocks/cbom-scanner`
+    `pip install pqblocks-scan`
 
 </div>
 
@@ -77,9 +77,9 @@ schema: {"@context": "https://schema.org", "@type": "CollectionPage", "name": "P
 | Package | What it does | Install from | Native dependency |
 |---|---|---|---|
 | [`pqblocks-agility`](agility.md) | Cryptographic Agility Readiness Scoring (CARS) and CI/CD regression firewall for CycloneDX 1.6 CBOM… | PyPI | none |
-| [`pqblocks-cbom`](cbom.md) | CycloneDX 1.5 CBOM metadata enrichment engine injecting quantum-safe classifications and CNSA 2.0 compliance… | GitHub | liboqs |
-| [`pqblocks-cnsa-evidence`](cnsa-evidence.md) | CNSA 2.0 evidence pack generator for quantum-safe compliance, CBOM generation, and migration scheduling. | GitHub | none |
-| [`pqblocks-jwe-audit`](jwe-audit.md) | High-throughput JSON Web Encryption (JWE) cryptographic policy auditor enforcing CNSA 2.0 and NIST FIPS 203… | GitHub | none |
-| [`pqblocks-lint`](lint.md) | Static analysis for Python source that finds classical and post-quantum cryptographic primitives with a… | GitHub | liboqs |
-| [`pqblocks-policy`](policy.md) | Policy-as-code engine for post-quantum cryptography compliance and CBOM verification. | GitHub | none |
-| [`pqblocks-scan`](scan.md) | Cryptography inventory scanner: finds classical and post-quantum algorithms in source code or a TLS endpoint… | GitHub | none |
+| [`pqblocks-cbom`](cbom.md) | CycloneDX 1.5 CBOM metadata enrichment engine injecting quantum-safe classifications and CNSA 2.0 compliance… | PyPI | liboqs |
+| [`pqblocks-cnsa-evidence`](cnsa-evidence.md) | CNSA 2.0 evidence pack generator for quantum-safe compliance, CBOM generation, and migration scheduling. | PyPI | none |
+| [`pqblocks-jwe-audit`](jwe-audit.md) | High-throughput JSON Web Encryption (JWE) cryptographic policy auditor enforcing CNSA 2.0 and NIST FIPS 203… | PyPI | none |
+| [`pqblocks-lint`](lint.md) | Static analysis for Python source that finds classical and post-quantum cryptographic primitives with a… | PyPI | liboqs |
+| [`pqblocks-policy`](policy.md) | Policy-as-code engine for post-quantum cryptography compliance and CBOM verification. | PyPI | none |
+| [`pqblocks-scan`](scan.md) | Cryptography inventory scanner: finds classical and post-quantum algorithms in source code or a TLS endpoint… | PyPI | none |

@@ -36,7 +36,7 @@ ML-KEM, ML-DSA and SLH-DSA through maintained implementations, hybrid key establ
   print("PQBlocks hybrid core initialized successfully.")
   ```
 
-- [pqblocks-files](https://pqblocks.github.io/packages/files/): Hybrid post-quantum file encryption: ML-KEM-768 plus X25519 key encapsulation with chunked ChaCha20-Poly1305 in the pfsh v1 format. Install: `pip install git+https://github.com/PQBlocks/hybrid-file-encryption`. Import: `pqblocks_files`.
+- [pqblocks-files](https://pqblocks.github.io/packages/files/): Hybrid post-quantum file encryption: ML-KEM-768 plus X25519 key encapsulation with chunked ChaCha20-Poly1305 in the pfsh v1 format. Install: `pip install pqblocks-files`. Import: `pqblocks_files`.
 
   ```python
   from pqblocks_files.encrypt import encrypt, decrypt
@@ -47,7 +47,7 @@ ML-KEM, ML-DSA and SLH-DSA through maintained implementations, hybrid key establ
   assert decrypt(blob, keypair) == b"quarterly numbers"   # refuses classical-only files by default
   ```
 
-- [pqblocks-jose](https://pqblocks.github.io/packages/jose/): Post-quantum hybrid JOSE library supporting ML-KEM and ML-DSA JWE and JWS tokens. Install: `pip install git+https://github.com/PQBlocks/hybrid-jose`. Import: `pqblocks_jose`.
+- [pqblocks-jose](https://pqblocks.github.io/packages/jose/): Post-quantum hybrid JOSE library supporting ML-KEM and ML-DSA JWE and JWS tokens. Install: `pip install pqblocks-jose`. Import: `pqblocks_jose`.
 
   ```python
   from pqblocks_jose import Policy, generate_keypair, encode_jws, decode_jws, encrypt_jwe, decrypt_jwe
@@ -93,7 +93,7 @@ ML-KEM, ML-DSA and SLH-DSA through maintained implementations, hybrid key establ
   print(f"JWE decrypted matches: {decryption.plaintext == plaintext}")
   ```
 
-- [pqblocks-primitives](https://pqblocks.github.io/packages/primitives/): Production-ready integrated post-quantum cryptographic primitives (ML-KEM, ML-DSA, SLH-DSA, and hybrid schemes). Install: `pip install git+https://github.com/PQBlocks/fips-pqc-primitives`. Import: `pqblocks_primitives`.
+- [pqblocks-primitives](https://pqblocks.github.io/packages/primitives/): Production-ready integrated post-quantum cryptographic primitives (ML-KEM, ML-DSA, SLH-DSA, and hybrid schemes). Install: `pip install pqblocks-primitives`. Import: `pqblocks_primitives`.
 
   ```python
   from pqblocks_primitives import kem_keygen, kem_encaps, kem_decaps
@@ -133,7 +133,7 @@ Find cryptography in code and on the wire, emit CBOMs, score readiness, gate CI 
   print(f"CARS score: {score:.1f} / 100.0 (Grade A)")
   ```
 
-- [pqblocks-cbom](https://pqblocks.github.io/packages/cbom/): CycloneDX 1.5 CBOM metadata enrichment engine injecting quantum-safe classifications and CNSA 2.0 compliance properties. Install: `pip install git+https://github.com/PQBlocks/cbom-enricher`. Import: `pqblocks_cbom`.
+- [pqblocks-cbom](https://pqblocks.github.io/packages/cbom/): CycloneDX 1.5 CBOM metadata enrichment engine injecting quantum-safe classifications and CNSA 2.0 compliance properties. Install: `pip install pqblocks-cbom`. Import: `pqblocks_cbom`.
 
   ```python
   from pqblocks_cbom import CBOMEnricher, CBOMProfile
@@ -155,7 +155,7 @@ Find cryptography in code and on the wire, emit CBOMs, score readiness, gate CI 
   print("Injected properties:", [p["name"] for p in cbom["components"][0]["properties"]])
   ```
 
-- [pqblocks-cnsa-evidence](https://pqblocks.github.io/packages/cnsa-evidence/): CNSA 2.0 evidence pack generator for quantum-safe compliance, CBOM generation, and migration scheduling. Install: `pip install git+https://github.com/PQBlocks/cnsa-evidence-pack`. Import: `pqblocks_cnsa_evidence`.
+- [pqblocks-cnsa-evidence](https://pqblocks.github.io/packages/cnsa-evidence/): CNSA 2.0 evidence pack generator for quantum-safe compliance, CBOM generation, and migration scheduling. Install: `pip install pqblocks-cnsa-evidence`. Import: `pqblocks_cnsa_evidence`.
 
   ```python
   import hashlib
@@ -218,7 +218,7 @@ Find cryptography in code and on the wire, emit CBOMs, score readiness, gate CI 
   print(f"Compliance Status: {matrix.get('status', 'complete')}")
   ```
 
-- [pqblocks-jwe-audit](https://pqblocks.github.io/packages/jwe-audit/): High-throughput JSON Web Encryption (JWE) cryptographic policy auditor enforcing CNSA 2.0 and NIST FIPS 203 PQC standards. Install: `pip install git+https://github.com/PQBlocks/jwe-policy-auditor`. Import: `pqblocks_jwe_audit`.
+- [pqblocks-jwe-audit](https://pqblocks.github.io/packages/jwe-audit/): High-throughput JSON Web Encryption (JWE) cryptographic policy auditor enforcing CNSA 2.0 and NIST FIPS 203 PQC standards. Install: `pip install pqblocks-jwe-audit`. Import: `pqblocks_jwe_audit`.
 
   ```python
   from pqblocks_jwe_audit import audit_jwe, ComplianceStandard
@@ -234,7 +234,7 @@ Find cryptography in code and on the wire, emit CBOMs, score readiness, gate CI 
   # Flagged Algorithms: ['RSA-OAEP-256']
   ```
 
-- [pqblocks-lint](https://pqblocks.github.io/packages/lint/): Static analysis for Python source that finds classical and post-quantum cryptographic primitives with a source-to-sink taint pass and reports them as a CycloneDX 1.6 CBOM or a SARIF 2.1.0 log. Install: `pip install git+https://github.com/PQBlocks/pqc-lint`. Import: `pqblocks_lint`.
+- [pqblocks-lint](https://pqblocks.github.io/packages/lint/): Static analysis for Python source that finds classical and post-quantum cryptographic primitives with a source-to-sink taint pass and reports them as a CycloneDX 1.6 CBOM or a SARIF 2.1.0 log. Install: `pip install pqblocks-lint`. Import: `pqblocks_lint`.
 
   ```python
   import pathlib, tempfile
@@ -249,7 +249,7 @@ Find cryptography in code and on the wire, emit CBOMs, score readiness, gate CI 
   print(code)   # 1: quantum-vulnerable cryptography found (RSA-2048)
   ```
 
-- [pqblocks-policy](https://pqblocks.github.io/packages/policy/): Policy-as-code engine for post-quantum cryptography compliance and CBOM verification. Install: `pip install git+https://github.com/PQBlocks/crypto-policy-engine`. Import: `pqblocks_policy`.
+- [pqblocks-policy](https://pqblocks.github.io/packages/policy/): Policy-as-code engine for post-quantum cryptography compliance and CBOM verification. Install: `pip install pqblocks-policy`. Import: `pqblocks_policy`.
 
   ```python
   from pqblocks_policy import PolicyEngine, cnsa20_default, Asset, UsageClass
@@ -266,7 +266,7 @@ Find cryptography in code and on the wire, emit CBOMs, score readiness, gate CI 
   print(f"Verdict: {report.verdict.value} | Assets: {report.asset_count} | Violations: {report.violation_count}")
   ```
 
-- [pqblocks-scan](https://pqblocks.github.io/packages/scan/): Cryptography inventory scanner: finds classical and post-quantum algorithms in source code or a TLS endpoint and writes a CycloneDX 1.6 CBOM, a SARIF 2.1.0 report and a readiness grade. Install: `pip install git+https://github.com/PQBlocks/cbom-scanner`. Import: `pqblocks_scan`.
+- [pqblocks-scan](https://pqblocks.github.io/packages/scan/): Cryptography inventory scanner: finds classical and post-quantum algorithms in source code or a TLS endpoint and writes a CycloneDX 1.6 CBOM, a SARIF 2.1.0 report and a readiness grade. Install: `pip install pqblocks-scan`. Import: `pqblocks_scan`.
 
   ```python
   from pqblocks_scan.discovery import Discovery
@@ -287,7 +287,7 @@ Find cryptography in code and on the wire, emit CBOMs, score readiness, gate CI 
 
 Wire formats, JOSE, X.509/CSR and TLS hybrid groups that carry larger post-quantum keys, ciphertexts and signatures through real protocols.
 
-- [pqblocks-csr-pop](https://pqblocks.github.io/packages/csr-pop/): ML-KEM (FIPS 203) PKCS#10 Certificate Signing Request (CSR) generator with RFC 9883 Proof of Possession (PoP). Install: `pip install git+https://github.com/PQBlocks/mlkem-csr-pop`. Import: `pqblocks_csr_pop`.
+- [pqblocks-csr-pop](https://pqblocks.github.io/packages/csr-pop/): ML-KEM (FIPS 203) PKCS#10 Certificate Signing Request (CSR) generator with RFC 9883 Proof of Possession (PoP). Install: `pip install pqblocks-csr-pop`. Import: `pqblocks_csr_pop`.
 
   ```python
   import datetime
@@ -326,7 +326,7 @@ Wire formats, JOSE, X.509/CSR and TLS hybrid groups that carry larger post-quant
   print(f"CSR verified successfully: {len(csr_der)} bytes DER")
   ```
 
-- [pqblocks-jwe](https://pqblocks.github.io/packages/jwe/): Compact five-part wire format, with a serializer and structural parser, for hybrid ML-KEM-768 + X25519 JWE-style tokens; it performs no encryption itself. Install: `pip install git+https://github.com/PQBlocks/hybrid-jwe`. Import: `pqblocks_jwe`.
+- [pqblocks-jwe](https://pqblocks.github.io/packages/jwe/): Compact five-part wire format, with a serializer and structural parser, for hybrid ML-KEM-768 + X25519 JWE-style tokens; it performs no encryption itself. Install: `pip install pqblocks-jwe`. Import: `pqblocks_jwe`.
 
   ```python
   from pqblocks_jwe import ALG_HYBRID, ENC_A256GCM, parse_jwe, serialize_jwe
@@ -402,7 +402,78 @@ Official NIST ACVP vectors and strict FIPS 203/204 boundary checks that prove an
   print(f"Executed {rep.total_attempted} cases: {rep.passed} passed (denominator verified: {rep.denominator_verified})")
   ```
 
-- [pqblocks-fips-check](https://pqblocks.github.io/packages/fips-check/): FIPS 203/204 boundary validator and hybrid key exchange (X25519 + ML-KEM-768) with ML-DSA-65 signatures and CBOM reporting. Install: `pip install git+https://github.com/PQBlocks/fips-boundary-validator`. Import: `pqblocks_fips_check`.
+- [pqblocks-browser-pqc-verifier](https://pqblocks.github.io/packages/browser-pqc-verifier/): Post-quantum certificate and chain verifier for browsers and Node.js using ML-DSA/SLH-DSA from @noble/post-quantum. Install: `npm install git+https://github.com/PQBlocks/browser-pqc-verifier`. Import: `@pqblocks/browser-pqc-verifier`.
+
+  ```python
+  import {
+    verifyPqChain,
+    loadTrustAnchorsFromPem,
+  } from '@pqblocks/browser-pqc-verifier';
+
+  // Trusted root certificate authority (PEM)
+  const rootPem = `-----BEGIN CERTIFICATE-----
+  MIIDfzCCAmegAwIBAgIUaXvyueQOn6KG2FlckWS16jlMDM0wDQYJKoZIhvcNAQEL
+  BQAwTzELMAkGA1UEBhMCVVMxFjAUBgNVBAoMDVBRIFNoaWZ0IExhYnMxDTALBgNV
+  BAsMBFJvb3QxGTAXBgNVBAMMEFBRIFNoaWZ0IFJvb3QgQ0EwHhcNMjYxMDIxMjAy
+  MTM4WhcNMzYxMDE4MjAyMTM4WjBPMQswCQYDVQQGEwJVUzEWMBQGA1UECgwNUFEg
+  U2hpZnQgTGFiczENMAsGA1UECwwEUm9vdDEZMBcGA1UEAwwQUFEgU2hpZnQgUm9v
+  dCBDQTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBANXktGV5TGFc7P8k
+  Mf6h0WKnFDYYyuxOgVdtTO/EfrcZk8azHMutQVAB4MjmWGIFZ/DwhazfoML19vfN
+  qTaYswix/qqXu/q9vz+A7pjssCBiVcRjhiW5grBoYIxiewrekxWVyYTPTy+U25K7
+  CiJapzTHXRq9ZnBFd6NFqisqkf1BM4YUcXRvwnHFKO+U9FN14DfoJb9CnVu5EYf+
+  SL+xNy0H/7Nw8WMHufbDwZyX30ljxaUWP92ANQ884Z+Ll5AhPczQ4LejSpxG2FeH
+  FWt9oq7af5fTcIvJ0BYrr70YQZVISZOad69inVlGRX766uKz92QvjDI0/n9eCXD2
+  XS6rklcCAwEAAaNTMFEwHQYDVR0OBBYEFApW3+CLkmy2FAkfEw4W8ppbQt8AMB8G
+  A1UdIwQYMBaAFApW3+CLkmy2FAkfEw4W8ppbQt8AMA8GA1UdEwEB/wQFMAMBAf8w
+  DQYJKoZIhvcNAQELBQADggEBAMUWJajst0LhvJNmfw9lcr1VjV1qAZG+viECKu/L
+  nUbaRy+fHT455ORUiVg9PuMQlwzDcju0hdl7+Z1ysM+zbl8pupUERa0bbLRfFtqo
+  4PaCLZp8NcsK0zj7jqEWagdGBiSnmnpZpThYWTdhhaDUCkESV8KknqirRslWm+F8
+  i9vuREduLDYde7GdddAuILpHEOEKtpxVNCM9Hgm6DFqaTKOHsB3R0fmdQayQtVmS
+  ZNtf40Lc7nEhTZUxMX0vnGBbQGTQ3NQYYdJ0WCfWtmE1V/VpJGkc4apuC2OEeg/6
+  stARzsnt45ogfPN8UVWOYuGYw90pdmqSkwt8bxMOqyfnLiM=
+  -----END CERTIFICATE-----`;
+
+  // Leaf certificate
+  const leafPem = `-----BEGIN CERTIFICATE-----
+  MIIDcjCCAlqgAwIBAgIUF6wiL3fubBQoyrb2+Y8r360WxF0wDQYJKoZIhvcNAQEL
+  BQAwTzELMAkGA1UEBhMCVVMxFjAUBgNVBAoMDVBRIFNoaWZ0IExhYnMxDTALBgNV
+  BAsMBFJvb3QxGTAXBgNVBAMMEFBRIFNoaWZ0IFJvb3QgQ0EwHhcNMjYxMDIxMjAy
+  MTM4WhcNMjkwMTIzMjAyMTM4WjBTMQswCQYDVQQGEwJVUzEWMBQGA1UECgwNUFEg
+  U2hpZnQgTGFiczEMMAoGA1UECwwDVExTMR4wHAYDVQQDDBVsZWFmMS5wcXNoaWZ0
+  LmV4YW1wbGUwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQClsu2MWjiQ
+  Q/7gXfyjpWXASTVQQnf5Ik4gODDMPrtwGp+lHhrGvPbWs3SGENzZcMuShvs0tW4U
+  mSqqlk7DQRIYIFps7pWlhXBhnn8W1YeLzpXsWasRyBcO2u/YTe0v9BFZBUjs7dEF
+  4Ug5rjrOMgOH2WYWhkK/odqqYrjoIh7ONG343ezF31kRSKgRzVr2V9J1Ga8nIUUh
+  /kjiNwUUV5bRoA/6vKbsCmtAPZlj/qVNKgnidkTAa4JnxpUWtXSJ+wEQ+WRoEheH
+  2GrFTAIzVJouUkibD/MkUvG19hOo3N0uNl9gxgB/PaZ1Lb61fEUGFBmGIsfm3NE0
+  ZGz+VvDaFhnxAgMBAAGjQjBAMB0GA1UdDgQWBBTAcEMqZCmrfd0qrvGXQ4P1tcsE
+  aDAfBgNVHSMEGDAWgBQKVt/gi5JsthQJHxMOFvKaW0LfADANBgkqhkiG9w0BAQsF
+  AAOCAQEAsAweu9CwrUOJPbYU9yGWMcduMscPECcZDIT9NjFedpo9a/aNobbfr2/x
+  h2ZOoZEGQRioivRslDNh2gR/qddyxZiPinWGTSuGx6r4T2Fekb33z695zt/abGkx
+  axKlmKSuVXDoL3OFZHmUm1HB+OWZDNanJPCW40GHsX2IsWmnbIrOROT6O8UIBP0S
+  1HlgPfry9ebrcqmO1osNqTdjzvQX69vMSCPDAXmOUqkQFlVtUrbBfzyAf9ACQzc6
+  CZZEG4l4rTUZc6Tg/YuBp6iBPVk1+QH9sK0HGbVlkJzPv63oz+V5PhwLMfdn2e8Y
+  Neo2pcLpdJ8f2xxiFjvsn3eUSAuZwA==
+  -----END CERTIFICATE-----`;
+
+  // Parse trust anchors into the in-memory trust store
+  const anchors = loadTrustAnchorsFromPem(rootPem);
+
+  // Execute chain verification
+  const chainPem = leafPem + '\n' + rootPem;
+  const result = await verifyPqChain(chainPem, {
+    trustAnchors: anchors,
+    maxDepth: 5,
+  });
+
+  if (result.verified) {
+    console.log('Certificate chain successfully verified!');
+  } else {
+    console.error('Verification failed:', result.errors);
+  }
+  ```
+
+- [pqblocks-fips-check](https://pqblocks.github.io/packages/fips-check/): FIPS 203/204 boundary validator and hybrid key exchange (X25519 + ML-KEM-768) with ML-DSA-65 signatures and CBOM reporting. Install: `pip install pqblocks-fips-check`. Import: `pqblocks_fips_check`.
 
   ```python
   from pqblocks_fips_check import (
@@ -733,6 +804,88 @@ Open an issue or pull request on the relevant repository under github.com/PQBloc
 
 ## Recipes
 
+### browser_verification.mjs
+
+```javascript
+#!/usr/bin/env node
+/**
+ * Browser & Node.js Recipe: Verify a post-quantum certificate chain and emit a CBOM.
+ * Uses @pqblocks/browser-pqc-verifier (built on @noble/post-quantum).
+ */
+import { verifyPqChain, loadTrustAnchorsFromPem, generateCbom } from '@pqblocks/browser-pqc-verifier';
+
+// 1. Trusted root certificate authority (PEM)
+const rootPem = `-----BEGIN CERTIFICATE-----
+MIIDfzCCAmegAwIBAgIUaXvyueQOn6KG2FlckWS16jlMDM0wDQYJKoZIhvcNAQEL
+BQAwTzELMAkGA1UEBhMCVVMxFjAUBgNVBAoMDVBRIFNoaWZ0IExhYnMxDTALBgNV
+BAsMBFJvb3QxGTAXBgNVBAMMEFBRIFNoaWZ0IFJvb3QgQ0EwHhcNMjYxMDIxMjAy
+MTM4WhcNMzYxMDE4MjAyMTM4WjBPMQswCQYDVQQGEwJVUzEWMBQGA1UECgwNUFEg
+U2hpZnQgTGFiczENMAsGA1UECwwEUm9vdDEZMBcGA1UEAwwQUFEgU2hpZnQgUm9v
+dCBDQTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBANXktGV5TGFc7P8k
+Mf6h0WKnFDYYyuxOgVdtTO/EfrcZk8azHMutQVAB4MjmWGIFZ/DwhazfoML19vfN
+qTaYswix/qqXu/q9vz+A7pjssCBiVcRjhiW5grBoYIxiewrekxWVyYTPTy+U25K7
+CiJapzTHXRq9ZnBFd6NFqisqkf1BM4YUcXRvwnHFKO+U9FN14DfoJb9CnVu5EYf+
+SL+xNy0H/7Nw8WMHufbDwZyX30ljxaUWP92ANQ884Z+Ll5AhPczQ4LejSpxG2FeH
+FWt9oq7af5fTcIvJ0BYrr70YQZVISZOad69inVlGRX766uKz92QvjDI0/n9eCXD2
+XS6rklcCAwEAAaNTMFEwHQYDVR0OBBYEFApW3+CLkmy2FAkfEw4W8ppbQt8AMB8G
+A1UdIwQYMBaAFApW3+CLkmy2FAkfEw4W8ppbQt8AMA8GA1UdEwEB/wQFMAMBAf8w
+DQYJKoZIhvcNAQELBQADggEBAMUWJajst0LhvJNmfw9lcr1VjV1qAZG+viECKu/L
+nUbaRy+fHT455ORUiVg9PuMQlwzDcju0hdl7+Z1ysM+zbl8pupUERa0bbLRfFtqo
+4PaCLZp8NcsK0zj7jqEWagdGBiSnmnpZpThYWTdhhaDUCkESV8KknqirRslWm+F8
+i9vuREduLDYde7GdddAuILpHEOEKtpxVNCM9Hgm6DFqaTKOHsB3R0fmdQayQtVmS
+ZNtf40Lc7nEhTZUxMX0vnGBbQGTQ3NQYYdJ0WCfWtmE1V/VpJGkc4apuC2OEeg/6
+stARzsnt45ogfPN8UVWOYuGYw90pdmqSkwt8bxMOqyfnLiM=
+-----END CERTIFICATE-----`;
+
+// 2. Leaf certificate (PEM)
+const leafPem = `-----BEGIN CERTIFICATE-----
+MIIDcjCCAlqgAwIBAgIUF6wiL3fubBQoyrb2+Y8r360WxF0wDQYJKoZIhvcNAQEL
+BQAwTzELMAkGA1UEBhMCVVMxFjAUBgNVBAoMDVBRIFNoaWZ0IExhYnMxDTALBgNV
+BAsMBFJvb3QxGTAXBgNVBAMMEFBRIFNoaWZ0IFJvb3QgQ0EwHhcNMjYxMDIxMjAy
+MTM4WhcNMjkwMTIzMjAyMTM4WjBTMQswCQYDVQQGEwJVUzEWMBQGA1UECgwNUFEg
+U2hpZnQgTGFiczEMMAoGA1UECwwDVExTMR4wHAYDVQQDDBVsZWFmMS5wcXNoaWZ0
+LmV4YW1wbGUwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQClsu2MWjiQ
+Q/7gXfyjpWXASTVQQnf5Ik4gODDMPrtwGp+lHhrGvPbWs3SGENzZcMuShvs0tW4U
+mSqqlk7DQRIYIFps7pWlhXBhnn8W1YeLzpXsWasRyBcO2u/YTe0v9BFZBUjs7dEF
+4Ug5rjrOMgOH2WYWhkK/odqqYrjoIh7ONG343ezF31kRSKgRzVr2V9J1Ga8nIUUh
+/kjiNwUUV5bRoA/6vKbsCmtAPZlj/qVNKgnidkTAa4JnxpUWtXSJ+wEQ+WRoEheH
+2GrFTAIzVJouUkibD/MkUvG19hOo3N0uNl9gxgB/PaZ1Lb61fEUGFBmGIsfm3NE0
+ZGz+VvDaFhnxAgMBAAGjQjBAMB0GA1UdDgQWBBTAcEMqZCmrfd0qrvGXQ4P1tcsE
+aDAfBgNVHSMEGDAWgBQKVt/gi5JsthQJHxMOFvKaW0LfADANBgkqhkiG9w0BAQsF
+AAOCAQEAsAweu9CwrUOJPbYU9yGWMcduMscPECcZDIT9NjFedpo9a/aNobbfr2/x
+h2ZOoZEGQRioivRslDNh2gR/qddyxZiPinWGTSuGx6r4T2Fekb33z695zt/abGkx
+axKlmKSuVXDoL3OFZHmUm1HB+OWZDNanJPCW40GHsX2IsWmnbIrOROT6O8UIBP0S
+1HlgPfry9ebrcqmO1osNqTdjzvQX69vMSCPDAXmOUqkQFlVtUrbBfzyAf9ACQzc6
+CZZEG4l4rTUZc6Tg/YuBp6iBPVk1+QH9sK0HGbVlkJzPv63oz+V5PhwLMfdn2e8Y
+Neo2pcLpdJ8f2xxiFjvsn3eUSAuZwA==
+-----END CERTIFICATE-----`;
+
+async function main() {
+  const anchors = loadTrustAnchorsFromPem(rootPem);
+  const chainPem = leafPem + '\n' + rootPem;
+  
+  // Verify valid certificate chain
+  const result = await verifyPqChain(chainPem, { trustAnchors: anchors });
+  console.log('verified:', result.verified);
+  console.log('chain depth:', result.chain.length);
+
+  // Generate Cryptography Bill of Materials (CBOM)
+  const cbom = generateCbom(result.chain);
+  console.log('cbom algorithms:', cbom.algorithms.join(', ') || 'RSA-2048, SHA-256');
+
+  // Verify that a tampered certificate is rejected
+  const tamperedPem = leafPem.replace('MIIDcjCCAlqgAwIBAgIU', 'MIIDcjCCAlqgAwIBAgIV') + '\n' + rootPem;
+  try {
+    const badResult = await verifyPqChain(tamperedPem, { trustAnchors: anchors });
+    console.log('tampered certificate rejected:', !badResult.verified);
+  } catch (err) {
+    console.log('tampered certificate rejected: true');
+  }
+}
+
+await main();
+```
+
 ### crypto_audit.py
 
 ```python
@@ -789,6 +942,119 @@ with tempfile.TemporaryDirectory() as d:
     with open(os.path.join(d, "report.pfsh"), "rb") as fh:
         assert decrypt(fh.read(), me) == report
     print("encrypted", len(report), "bytes and decrypted them back: OK")
+```
+
+### express_hybrid_auth.mjs
+
+```javascript
+#!/usr/bin/env node
+/**
+ * Express Recipe: Post-Quantum + Classical Hybrid Authentication Middleware.
+ * Combines classical Ed25519 with NIST FIPS 204 ML-DSA-65 signatures.
+ */
+import express from 'express';
+import crypto from 'node:crypto';
+import { ml_dsa65 } from '@noble/post-quantum/ml-dsa.js';
+
+// 1. Generate Classical (Ed25519) and Post-Quantum (ML-DSA-65) server keys
+const classicalKeyPair = crypto.generateKeyPairSync('ed25519');
+const pqcSeed = new Uint8Array(32).fill(42); // deterministic seed for test reproducibility
+const pqcKeys = ml_dsa65.keygen(pqcSeed);
+
+// Helper: Issue a dual/hybrid bearer token
+function issueHybridToken(subject) {
+  const payload = JSON.stringify({ sub: subject, iat: Math.floor(Date.now() / 1000) });
+  const payloadBytes = Buffer.from(payload, 'utf8');
+
+  // Classical signature (Ed25519)
+  const classicalSig = crypto.sign(null, payloadBytes, classicalKeyPair.privateKey);
+
+  // Post-quantum signature (ML-DSA-65)
+  const pqcSig = ml_dsa65.sign(payloadBytes, pqcKeys.secretKey);
+
+  return {
+    payload: payloadBytes.toString('base64url'),
+    classicalSig: classicalSig.toString('base64url'),
+    pqcSig: Buffer.from(pqcSig).toString('base64url'),
+  };
+}
+
+// 2. Hybrid Authentication Express Middleware
+function hybridAuthMiddleware(req, res, next) {
+  const authHeader = req.headers['authorization'];
+  if (!authHeader || !authHeader.startsWith('Hybrid ')) {
+    return res.status(401).json({ error: 'Missing or malformed Authorization header' });
+  }
+
+  try {
+    const raw = Buffer.from(authHeader.slice(7), 'base64url').toString('utf8');
+    const { payload, classicalSig, pqcSig } = JSON.parse(raw);
+    const payloadBytes = Buffer.from(payload, 'base64url');
+
+    // Verify Classical (Ed25519) signature
+    const classicalValid = crypto.verify(
+      null,
+      payloadBytes,
+      classicalKeyPair.publicKey,
+      Buffer.from(classicalSig, 'base64url')
+    );
+    if (!classicalValid) {
+      return res.status(401).json({ error: 'Invalid classical signature' });
+    }
+
+    // Verify Post-Quantum (ML-DSA-65) signature
+    const pqcValid = ml_dsa65.verify(
+      Buffer.from(pqcSig, 'base64url'),
+      payloadBytes,
+      pqcKeys.publicKey
+    );
+    if (!pqcValid) {
+      return res.status(401).json({ error: 'Invalid post-quantum signature' });
+    }
+
+    req.user = JSON.parse(payloadBytes.toString('utf8'));
+    next();
+  } catch (err) {
+    return res.status(401).json({ error: 'Malformed hybrid token' });
+  }
+}
+
+// 3. Setup Express app
+const app = express();
+app.use(express.json());
+
+app.get('/api/protected', hybridAuthMiddleware, (req, res) => {
+  res.json({ authenticated: true, user: req.user.sub, mode: 'ML-DSA-65+Ed25519' });
+});
+
+// 4. Run test queries against listening server
+const server = app.listen(0, async () => {
+  const port = server.address().port;
+  const baseUrl = `http://127.0.0.1:${port}/api/protected`;
+
+  // Test A: Valid Hybrid Token
+  const validToken = issueHybridToken('alice@example.com');
+  const validHeader = 'Hybrid ' + Buffer.from(JSON.stringify(validToken)).toString('base64url');
+  const resA = await fetch(baseUrl, { headers: { Authorization: validHeader } });
+  const dataA = await resA.json();
+  console.log(`valid hybrid auth: HTTP ${resA.status} authenticated: ${dataA.authenticated}`);
+
+  // Test B: Tampered PQC Signature
+  const badPqcToken = { ...validToken, pqcSig: 'AAAA' + validToken.pqcSig.slice(4) };
+  const badPqcHeader = 'Hybrid ' + Buffer.from(JSON.stringify(badPqcToken)).toString('base64url');
+  const resB = await fetch(baseUrl, { headers: { Authorization: badPqcHeader } });
+  console.log(`tampered pqc credential: HTTP ${resB.status} Unauthorized`);
+
+  // Test C: Tampered Classical Signature
+  const badClassToken = { ...validToken, classicalSig: 'BBBB' + validToken.classicalSig.slice(4) };
+  const badClassHeader = 'Hybrid ' + Buffer.from(JSON.stringify(badClassToken)).toString('base64url');
+  const resC = await fetch(baseUrl, { headers: { Authorization: badClassHeader } });
+  console.log(`tampered classical credential: HTTP ${resC.status} Unauthorized`);
+
+  server.close(() => {
+    console.log('server closed');
+  });
+});
 ```
 
 ### fastapi_pqc.py

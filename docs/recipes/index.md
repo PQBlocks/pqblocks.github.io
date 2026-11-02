@@ -1,6 +1,6 @@
 ---
 title: Post-quantum recipes
-description: Complete, tested solutions to common post-quantum tasks in Python - sign JWTs with ML-DSA, hybrid X25519 + ML-KEM, encrypt files, find RSA and ECC in code, solve Max-Cut.
+description: Complete, tested solutions to common post-quantum tasks in JavaScript, TypeScript, and Python - verify certificate chains, hybrid Express auth, sign JWTs with ML-DSA, hybrid X25519 + ML-KEM, encrypt files, find RSA and ECC in code, solve Max-Cut.
 ---
 
 # Recipes
@@ -10,6 +10,18 @@ description: Complete, tested solutions to common post-quantum tasks in Python -
 <p class="pqb-lead">One page per question developers actually ask. Every recipe is a complete program that was executed against the package source before this site was published, and each page shows the output it printed.</p>
 
 <div class="grid cards" markdown>
+
+-   :material-language-javascript:{ .lg .middle } __[How to verify post-quantum certificate chains in Node.js and the browser](browser-verification.md)__
+
+    ---
+
+    Validate ML-DSA / SLH-DSA certificate chains and emit a CBOM with `@pqblocks/browser-pqc-verifier` and `@noble/post-quantum`.
+
+-   :material-server-security:{ .lg .middle } __[How to implement post-quantum hybrid authentication in Express](express-hybrid-auth.md)__
+
+    ---
+
+    Protect Express routes with composite ML-DSA-65 + Ed25519 dual-signature hybrid bearer authentication middleware.
 
 -   :material-signature-freehand:{ .lg .middle } __[How to sign JWTs with ML-DSA in Python](jwt-ml-dsa.md)__
 

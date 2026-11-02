@@ -10,7 +10,7 @@ schema: {"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name"
 
 <p class="pqb-lead" markdown>High-throughput JSON Web Encryption (JWE) cryptographic policy auditor enforcing CNSA 2.0 and NIST FIPS 203 PQC standards.</p>
 
-![Install from GitHub](https://img.shields.io/badge/install-GitHub-334155?style=flat-square) ![Area](https://img.shields.io/badge/area-Migration%20%26%20readiness-0e7490?style=flat-square) ![Status](https://img.shields.io/badge/status-Alpha-b45309?style=flat-square) ![Python](https://img.shields.io/badge/python-%3E%3D3.11-1e40af?style=flat-square) ![Licence](https://img.shields.io/badge/licence-Apache--2.0-334155?style=flat-square) [![Source](https://img.shields.io/badge/source-jwe--policy--auditor-111827?style=flat-square&logo=github)](https://github.com/PQBlocks/jwe-policy-auditor)
+[![PyPI](https://img.shields.io/pypi/v/pqblocks-jwe-audit?style=flat-square&label=PyPI&color=0f766e)](https://pypi.org/project/pqblocks-jwe-audit/) ![Area](https://img.shields.io/badge/area-Migration%20%26%20readiness-0e7490?style=flat-square) ![Status](https://img.shields.io/badge/status-Alpha-b45309?style=flat-square) ![Python](https://img.shields.io/badge/python-%3E%3D3.11-1e40af?style=flat-square) ![Licence](https://img.shields.io/badge/licence-Apache--2.0-334155?style=flat-square) [![Source](https://img.shields.io/badge/source-jwe--policy--auditor-111827?style=flat-square&logo=github)](https://github.com/PQBlocks/jwe-policy-auditor)
 
 !!! abstract "At a glance"
 
@@ -31,6 +31,18 @@ High-throughput JSON Web Encryption (JWE) cryptographic policy auditor enforcing
 
 ## Install
 
+=== "pip"
+
+    ```bash
+    pip install pqblocks-jwe-audit
+    ```
+
+=== "uv"
+
+    ```bash
+    uv add pqblocks-jwe-audit
+    ```
+
 === "pip (from GitHub)"
 
     ```bash
@@ -42,9 +54,6 @@ High-throughput JSON Web Encryption (JWE) cryptographic policy auditor enforcing
     ```bash
     uv add git+https://github.com/PQBlocks/jwe-policy-auditor
     ```
-
-!!! note "PyPI release staged"
-    `pqblocks-jwe-audit` installs from its GitHub repository while the PyPI release is staged. The import name and API are identical either way.
 
 ## Quickstart
 

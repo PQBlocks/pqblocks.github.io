@@ -10,7 +10,7 @@ schema: {"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name"
 
 <p class="pqb-lead" markdown>Post-quantum hybrid JOSE library supporting ML-KEM and ML-DSA JWE and JWS tokens.</p>
 
-![Install from GitHub](https://img.shields.io/badge/install-GitHub-334155?style=flat-square) ![Area](https://img.shields.io/badge/area-PQ%20cryptography-0e7490?style=flat-square) ![Status](https://img.shields.io/badge/status-Alpha-b45309?style=flat-square) ![Python](https://img.shields.io/badge/python-%3E%3D3.11-1e40af?style=flat-square) ![Licence](https://img.shields.io/badge/licence-Apache--2.0-334155?style=flat-square) [![Source](https://img.shields.io/badge/source-hybrid--jose-111827?style=flat-square&logo=github)](https://github.com/PQBlocks/hybrid-jose)
+[![PyPI](https://img.shields.io/pypi/v/pqblocks-jose?style=flat-square&label=PyPI&color=0f766e)](https://pypi.org/project/pqblocks-jose/) ![Area](https://img.shields.io/badge/area-PQ%20cryptography-0e7490?style=flat-square) ![Status](https://img.shields.io/badge/status-Alpha-b45309?style=flat-square) ![Python](https://img.shields.io/badge/python-%3E%3D3.11-1e40af?style=flat-square) ![Licence](https://img.shields.io/badge/licence-Apache--2.0-334155?style=flat-square) [![Source](https://img.shields.io/badge/source-hybrid--jose-111827?style=flat-square&logo=github)](https://github.com/PQBlocks/hybrid-jose)
 
 !!! abstract "At a glance"
 
@@ -33,6 +33,18 @@ Post-quantum hybrid JOSE (Javascript Object Signing and Encryption) library prov
 
 ## Install
 
+=== "pip"
+
+    ```bash
+    pip install pqblocks-jose
+    ```
+
+=== "uv"
+
+    ```bash
+    uv add pqblocks-jose
+    ```
+
 === "pip (from GitHub)"
 
     ```bash
@@ -44,9 +56,6 @@ Post-quantum hybrid JOSE (Javascript Object Signing and Encryption) library prov
     ```bash
     uv add git+https://github.com/PQBlocks/hybrid-jose
     ```
-
-!!! note "PyPI release staged"
-    `pqblocks-jose` installs from its GitHub repository while the PyPI release is staged. The import name and API are identical either way.
 
 !!! info "Native dependency: liboqs"
     The post-quantum primitives come from [liboqs](https://openquantumsafe.org/liboqs/) (Open Quantum Safe). The package README explains how the library is located: [install notes](https://github.com/PQBlocks/hybrid-jose/blob/main/README.md).

@@ -20,7 +20,7 @@ schema: {"@context": "https://schema.org", "@type": "CollectionPage", "name": "P
 
     ML-KEM (FIPS 203) PKCS#10 Certificate Signing Request (CSR) generator with RFC 9883 Proof of Possession (PoP).
 
-    `pip install git+https://github.com/PQBlocks/mlkem-csr-pop`
+    `pip install pqblocks-csr-pop`
 
 -   __[pqblocks-jwe](jwe.md)__
 
@@ -28,7 +28,7 @@ schema: {"@context": "https://schema.org", "@type": "CollectionPage", "name": "P
 
     Compact five-part wire format, with a serializer and structural parser, for hybrid ML-KEM-768 + X25519 JWE-style tokens; it performs no encryption itself.
 
-    `pip install git+https://github.com/PQBlocks/hybrid-jwe`
+    `pip install pqblocks-jwe`
 
 -   __[pqblocks-tls-interop](tls-interop.md)__
 
@@ -52,7 +52,7 @@ schema: {"@context": "https://schema.org", "@type": "CollectionPage", "name": "P
 
 | Package | What it does | Install from | Native dependency |
 |---|---|---|---|
-| [`pqblocks-csr-pop`](csr-pop.md) | ML-KEM (FIPS 203) PKCS#10 Certificate Signing Request (CSR) generator with RFC 9883 Proof of Possession (PoP). | GitHub | none |
-| [`pqblocks-jwe`](jwe.md) | Compact five-part wire format, with a serializer and structural parser, for hybrid ML-KEM-768 + X25519… | GitHub | none |
+| [`pqblocks-csr-pop`](csr-pop.md) | ML-KEM (FIPS 203) PKCS#10 Certificate Signing Request (CSR) generator with RFC 9883 Proof of Possession (PoP). | PyPI | none |
+| [`pqblocks-jwe`](jwe.md) | Compact five-part wire format, with a serializer and structural parser, for hybrid ML-KEM-768 + X25519… | PyPI | none |
 | [`pqblocks-tls-interop`](tls-interop.md) | TLS 1.3 hybrid key exchange (X25519MLKEM768 / RFC 10024) endpoint probe, downgrade detector, and key… | GitHub | none |
 | [`pqblocks-wire`](wire.md) | Length-prefixed container format (PQCWF1) for ML-KEM ciphertexts and ML-DSA / SLH-DSA signatures, with thin… | GitHub | liboqs |

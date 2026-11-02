@@ -126,6 +126,8 @@ def front(title, description, schema=None):
 
 
 def software_schema(p):
+    lang_name = "JavaScript" if p.get("ecosystem") == "npm" else ("C" if p.get("has_c_sdk") and not p.get("python") else "Python")
+    platform = "Node.js / Modern Browsers" if p.get("ecosystem") == "npm" else ("Python %s" % (p["python"] or "3"))
     return {
         "@context": "https://schema.org",
         "@type": "SoftwareSourceCode",
@@ -133,8 +135,8 @@ def software_schema(p):
         "description": p["summary"],
         "codeRepository": p["url"],
         "url": "%s/packages/%s/" % (SITE, short(p)),
-        "programmingLanguage": {"@type": "ComputerLanguage", "name": "Python"},
-        "runtimePlatform": "Python %s" % (p["python"] or "3"),
+        "programmingLanguage": {"@type": "ComputerLanguage", "name": lang_name},
+        "runtimePlatform": platform,
         "license": "https://www.apache.org/licenses/LICENSE-2.0",
         "version": p["version"],
         "keywords": ", ".join(sorted(set(p["keywords"] + p["topics"]))),
@@ -148,14 +150,22 @@ def badges(p):
     def q(s):
         return s.replace("-", "--").replace(" ", "%20").replace("&", "%26").replace(">", "%3E").replace("=", "%3D")
     b = []
-    if p["on_pypi"]:
+    if p.get("on_pypi"):
         b.append("[![PyPI](https://img.shields.io/pypi/v/%s?style=flat-square&label=PyPI&color=0f766e)](https://pypi.org/project/%s/)"
                  % (p["package"], p["package"]))
+    elif p.get("on_npm"):
+        b.append("[![npm](https://img.shields.io/npm/v/%s?style=flat-square&label=npm&color=0f766e)](https://www.npmjs.com/package/%s)"
+                 % (p.get("import_npm", p["package"]), p.get("import_npm", p["package"])))
     else:
         b.append("![Install from GitHub](https://img.shields.io/badge/install-GitHub-334155?style=flat-square)")
     b.append("![Area](https://img.shields.io/badge/area-%s-0e7490?style=flat-square)" % q(p["area"]))
     b.append("![Status](https://img.shields.io/badge/status-%s-b45309?style=flat-square)" % q(p["status"] or "alpha"))
-    b.append("![Python](https://img.shields.io/badge/python-%s-1e40af?style=flat-square)" % q(p["python"] or "3"))
+    if p.get("ecosystem") == "npm":
+        b.append("![Runtime](https://img.shields.io/badge/runtime-Node.js%20%7C%20Browser-0284c7?style=flat-square)")
+    elif p.get("python"):
+        b.append("![Python](https://img.shields.io/badge/python-%s-1e40af?style=flat-square)" % q(p["python"] or "3"))
+    elif p.get("has_c_sdk"):
+        b.append("![Native SDK](https://img.shields.io/badge/SDK-C11%20%2F%20C%2B%2B-475569?style=flat-square)")
     b.append("![Licence](https://img.shields.io/badge/licence-Apache--2.0-334155?style=flat-square)")
     b.append("[![Source](https://img.shields.io/badge/source-%s-111827?style=flat-square&logo=github)](%s)"
              % (q(p["repo"].split("/")[1]), p["url"]))
@@ -164,18 +174,48 @@ def badges(p):
 
 def install_tabs(p):
     lines = []
-    if p["on_pypi"]:
-        lines += ['=== "pip"\n', "    ```bash\n    pip install %s\n    ```\n" % p["package"],
-                  '=== "uv"\n', "    ```bash\n    uv add %s\n    ```\n" % p["package"]]
-    lines += ['=== "pip (from GitHub)"\n', "    ```bash\n    pip install git+%s\n    ```\n" % p["url"],
-              '=== "uv (from GitHub)"\n', "    ```bash\n    uv add git+%s\n    ```\n" % p["url"]]
-    if not p["on_pypi"]:
-        lines.append('!!! note "PyPI release staged"\n    `%s` installs from its GitHub repository while the '
-                     "PyPI release is staged. The import name and API are identical either way.\n" % p["package"])
-    if p["needs_liboqs"]:
+    # npm ecosystem
+    if p.get("install_npm") or p.get("ecosystem") == "npm":
+        pkg_npm = p.get("import_npm") or p["package"]
+        if p.get("on_npm"):
+            lines += [
+                '=== "npm"\n', "    ```bash\n    npm i %s\n    ```\n" % pkg_npm,
+                '=== "pnpm"\n', "    ```bash\n    pnpm add %s\n    ```\n" % pkg_npm,
+                '=== "yarn"\n', "    ```bash\n    yarn add %s\n    ```\n" % pkg_npm,
+                '=== "bun"\n', "    ```bash\n    bun add %s\n    ```\n" % pkg_npm,
+            ]
+        lines += [
+            '=== "npm (from GitHub)"\n', "    ```bash\n    npm i git+%s\n    ```\n" % p["url"],
+            '=== "pnpm (from GitHub)"\n', "    ```bash\n    pnpm add git+%s\n    ```\n" % p["url"],
+            '=== "bun (from GitHub)"\n', "    ```bash\n    bun add git+%s\n    ```\n" % p["url"],
+        ]
+        if not p.get("on_npm"):
+            lines.append('!!! note "npm release staged"\n    `%s` installs from its GitHub repository while the '
+                         "npm release is staged. The package name and API are identical either way.\n" % pkg_npm)
+
+    # python / pip ecosystem
+    if p.get("install_pip") or p.get("ecosystem") == "python" or p.get("python"):
+        if p.get("on_pypi"):
+            lines += ['=== "pip"\n', "    ```bash\n    pip install %s\n    ```\n" % p["package"],
+                      '=== "uv"\n', "    ```bash\n    uv add %s\n    ```\n" % p["package"]]
+        lines += ['=== "pip (from GitHub)"\n', "    ```bash\n    pip install git+%s\n    ```\n" % p["url"],
+                  '=== "uv (from GitHub)"\n', "    ```bash\n    uv add git+%s\n    ```\n" % p["url"]]
+        if not p.get("on_pypi"):
+            lines.append('!!! note "PyPI release staged"\n    `%s` installs from its GitHub repository while the '
+                         "PyPI release is staged. The import name and API are identical either way.\n" % p["package"])
+
+    # native C SDK
+    if p.get("has_c_sdk") or p.get("install_c"):
+        headers_str = ", ".join("`%s`" % h for h in p.get("c_headers", [])) or "headers in `include/`"
+        lines += [
+            '=== "C / Native SDK"\n',
+            "    ```bash\n    # Clone and build native library with CMake (%s)\n    git clone %s.git\n    cmake -B build -S . && cmake --build build\n    ```\n" % (headers_str, p["url"])
+        ]
+
+    if p.get("needs_liboqs"):
         lines.append('!!! info "Native dependency: liboqs"\n    The post-quantum primitives come from '
                      "[liboqs](https://openquantumsafe.org/liboqs/) (Open Quantum Safe). The package README "
-                     "explains how the library is located: [install notes](%s).\n" % p["docs"]["README.md"])
+                     "explains how the library is located: [install notes](%s).\n" % p["docs"].get("README.md", p["url"]))
     return "\n".join(lines)
 
 
@@ -192,6 +232,22 @@ def package_page(p, siblings):
     a = area_of(p["area"])
     intro = [l for l in p["intro"] if not l.lower().startswith(("**status", "status:"))]
     title = "%s: %s" % (p["package"], TITLES.get(p["package"]) or headline(p["summary"]))
+    if p.get("import_npm"):
+        import_spec = "`import ... from '%s'`" % p["import_npm"]
+    elif p.get("import"):
+        import_spec = "`import %s`" % p["import"]
+    else:
+        import_spec = "n/a"
+
+    if p.get("ecosystem") == "npm":
+        runtime_row = "    | **Runtime** | Node.js >=18 / Browser |"
+    elif p.get("python"):
+        runtime_row = "    | **Python** | %s |" % p["python"]
+    elif p.get("has_c_sdk"):
+        runtime_row = "    | **Native** | C11 / C++ |"
+    else:
+        runtime_row = "    | **Python** | %s |" % (p.get("python") or "3")
+
     body = [front(title, p["summary"], software_schema(p)),
             "# %s\n" % p["package"],
             '<p class="pqb-lead" markdown>%s</p>\n' % p["summary"],
@@ -199,10 +255,10 @@ def package_page(p, siblings):
             '!!! abstract "At a glance"\n',
             "    | | |\n    |---|---|",
             "    | **Area** | :%s: [%s](%s.md) |" % (a[2], a[0], a[1]),
-            "    | **Import** | `import %s` |" % p["import"],
+            "    | **Import** | %s |" % import_spec,
             "    | **Command line** | %s |" % (", ".join("`%s`" % c for c in p.get("cli", [])) or "library only"),
             "    | **Version** | %s (%s) |" % (p["version"], p["status"] or "Alpha"),
-            "    | **Python** | %s |" % (p["python"] or "3"),
+            runtime_row,
             "    | **Native dependency** | %s |" % ("liboqs" if p["needs_liboqs"] else "none"),
             "    | **Repository** | [%s](%s) |" % (p["repo"], p["url"]),
             "    | **Licence** | Apache-2.0 |\n"]
@@ -211,11 +267,14 @@ def package_page(p, siblings):
     if p["kind"] == "optimizer":
         body.append('!!! warning "Not cryptography"\n    Quantum-inspired classical optimisation: not cryptography, '
                     "no security claim.\n")
+    qs_lang = p.get("quickstart_lang", "python")
+    qs_file = "quickstart.js" if qs_lang in ("javascript", "typescript") else ("quickstart.c" if qs_lang == "c" else "quickstart.py")
+
     body += ["## Install\n", install_tabs(p),
              "## Quickstart\n",
              '!!! success "Executed, not just written"\n    This is the quickstart from the package README. '
              "It was run against the package source when this page was generated.\n",
-             '```python title="quickstart.py"\n%s```\n' % p["quickstart"]]
+             '```%s title="%s"\n%s```\n' % (qs_lang, qs_file, p["quickstart"])]
     if re.search(r"(?:keypair|keygen)\([^)]*\bseed\s*=", p["quickstart"]):
         body.append('!!! danger "Remove the seed in production"\n    This quickstart passes `seed=` so its output is '
                     "reproducible. Production keys must come from the operating system's random source: call the "
@@ -310,8 +369,9 @@ def llms(pkgs, full):
         head += ["## Recipes", ""]
         rdir = os.path.join(DOCS, "recipes", "code")
         for f in sorted(os.listdir(rdir)):
-            if f.endswith(".py"):
-                head += ["### %s" % f, "", "```python", open(os.path.join(rdir, f)).read().rstrip(), "```", ""]
+            if f.endswith((".py", ".mjs", ".js", ".ts")):
+                lang = "javascript" if f.endswith((".mjs", ".js", ".ts")) else "python"
+                head += ["### %s" % f, "", "```%s" % lang, open(os.path.join(rdir, f)).read().rstrip(), "```", ""]
     return "\n".join(head).rstrip() + "\n"
 
 
@@ -384,9 +444,15 @@ def releases_page(pkgs):
            "0.x a minor release may change the API, and each change is listed in the package's changelog.</p>\n",
            "| Package | Version | Status | Install from | Changelog |", "|---|---|---|---|---|"]
     for p in sorted(pkgs, key=lambda p: p["package"]):
+        if p.get("on_pypi"):
+            inst = "[PyPI](https://pypi.org/project/%s/)" % p["package"]
+        elif p.get("on_npm"):
+            inst = "[npm](https://www.npmjs.com/package/%s)" % (p.get("import_npm") or p["package"])
+        else:
+            inst = "GitHub"
         out.append("| [`%s`](packages/%s.md) | %s | %s | %s | [CHANGELOG](%s) |" % (
             p["package"], short(p), p["version"], p["status"] or "Alpha",
-            "[PyPI](https://pypi.org/project/%s/)" % p["package"] if p["on_pypi"] else "GitHub",
+            inst,
             p["docs"].get("CHANGELOG.md", p["url"])))
     out += ["", "## Versioning and deprecation\n",
             "- **Semantic versioning.** `0.x` while APIs settle; `1.0` only when a package's API is stable.",
@@ -425,7 +491,9 @@ def main():
     inc = os.path.join(DOCS, "includes", "quickstart")
     os.makedirs(inc, exist_ok=True)
     for p in pkgs:
-        open(os.path.join(inc, short(p) + ".py"), "w", encoding="utf-8").write(p["quickstart"])
+        qs_lang = p.get("quickstart_lang", "python")
+        ext = ".js" if qs_lang in ("javascript", "typescript") else (".c" if qs_lang == "c" else ".py")
+        open(os.path.join(inc, short(p) + ext), "w", encoding="utf-8").write(p["quickstart"])
     open(os.path.join(DOCS, "llms.txt"), "w", encoding="utf-8").write(llms(pkgs, False))
     open(os.path.join(DOCS, "llms-full.txt"), "w", encoding="utf-8").write(llms(pkgs, True))
     # the published catalog: what the MCP server and the skills repository sync from

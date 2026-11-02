@@ -50,6 +50,14 @@ Standards implemented: NIST FIPS 203 (ML-KEM), NIST FIPS 204 (ML-DSA), RFC 7748 
 !!! note "PyPI release staged"
     `pqblocks-core` installs from its GitHub repository while the PyPI release is staged. The import name and API are identical either way.
 
+=== "C / Native SDK"
+
+    ```bash
+    # Clone and build native library with CMake (`pqblocks_errors.h`, `pqblocks_hsm.h`, `pqblocks_kem.h`, `pqblocks_policy.h`, `pqblocks_sig.h`)
+    git clone https://github.com/PQBlocks/hybrid-sdk.git
+    cmake -B build -S . && cmake --build build
+    ```
+
 !!! info "Native dependency: liboqs"
     The post-quantum primitives come from [liboqs](https://openquantumsafe.org/liboqs/) (Open Quantum Safe). The package README explains how the library is located: [install notes](https://github.com/PQBlocks/hybrid-sdk/blob/main/README.md).
 

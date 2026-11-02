@@ -28,7 +28,7 @@ schema: {"@context": "https://schema.org", "@type": "CollectionPage", "name": "P
 
     Hybrid post-quantum file encryption: ML-KEM-768 plus X25519 key encapsulation with chunked ChaCha20-Poly1305 in the pfsh v1 format.
 
-    `pip install git+https://github.com/PQBlocks/hybrid-file-encryption`
+    `pip install pqblocks-files`
 
 -   __[pqblocks-jose](jose.md)__
 
@@ -36,7 +36,7 @@ schema: {"@context": "https://schema.org", "@type": "CollectionPage", "name": "P
 
     Post-quantum hybrid JOSE library supporting ML-KEM and ML-DSA JWE and JWS tokens.
 
-    `pip install git+https://github.com/PQBlocks/hybrid-jose`
+    `pip install pqblocks-jose`
 
 -   __[pqblocks-primitives](primitives.md)__
 
@@ -44,7 +44,7 @@ schema: {"@context": "https://schema.org", "@type": "CollectionPage", "name": "P
 
     Production-ready integrated post-quantum cryptographic primitives (ML-KEM, ML-DSA, SLH-DSA, and hybrid schemes).
 
-    `pip install git+https://github.com/PQBlocks/fips-pqc-primitives`
+    `pip install pqblocks-primitives`
 
 </div>
 
@@ -53,6 +53,6 @@ schema: {"@context": "https://schema.org", "@type": "CollectionPage", "name": "P
 | Package | What it does | Install from | Native dependency |
 |---|---|---|---|
 | [`pqblocks-core`](core.md) | Post-quantum hybrid cryptography core SDK with C shared libraries and policy enforcement. | GitHub | liboqs |
-| [`pqblocks-files`](files.md) | Hybrid post-quantum file encryption: ML-KEM-768 plus X25519 key encapsulation with chunked ChaCha20-Poly1305… | GitHub | liboqs |
-| [`pqblocks-jose`](jose.md) | Post-quantum hybrid JOSE library supporting ML-KEM and ML-DSA JWE and JWS tokens. | GitHub | liboqs |
-| [`pqblocks-primitives`](primitives.md) | Production-ready integrated post-quantum cryptographic primitives (ML-KEM, ML-DSA, SLH-DSA, and hybrid… | GitHub | liboqs |
+| [`pqblocks-files`](files.md) | Hybrid post-quantum file encryption: ML-KEM-768 plus X25519 key encapsulation with chunked ChaCha20-Poly1305… | PyPI | liboqs |
+| [`pqblocks-jose`](jose.md) | Post-quantum hybrid JOSE library supporting ML-KEM and ML-DSA JWE and JWS tokens. | PyPI | liboqs |
+| [`pqblocks-primitives`](primitives.md) | Production-ready integrated post-quantum cryptographic primitives (ML-KEM, ML-DSA, SLH-DSA, and hybrid… | PyPI | liboqs |

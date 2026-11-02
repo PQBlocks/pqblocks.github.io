@@ -26,6 +26,7 @@ concurrency:
 env:
   NO_MKDOCS_2_WARNING: "1"
   LIBOQS_TAG: "0.16.0"
+  GH_TOKEN: ${{ github.token }}
 
 jobs:
   publish:
@@ -37,6 +38,9 @@ jobs:
       - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0  # v7.1.0
         with:
           python-version: "3.12"
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1  # v7.1.0
+        with:
+          node-version: "22"
       - name: System libraries (social cards, liboqs build)
         run: sudo apt-get update && sudo apt-get install -y libcairo2-dev libfreetype6-dev libffi-dev libjpeg-dev libpng-dev libz-dev cmake ninja-build libssl-dev
 
@@ -67,6 +71,11 @@ jobs:
           ../venv/bin/pip install --quiet --upgrade pip
           python3 scripts/build_catalog.py ../packages --print-deps > ../deps.txt
           ../venv/bin/pip install --quiet -r ../deps.txt fastapi httpx
+          for pkg in ../packages/*; do
+            if [ -f "$pkg/package.json" ]; then
+              (cd "$pkg" && npm install --no-audit --no-fund --silent)
+            fi
+          done
           ../venv/bin/python scripts/build_catalog.py ../packages --verify
           ../venv/bin/python scripts/check_recipes.py ../packages
 
@@ -91,7 +100,7 @@ jobs:
         run: |
           git add data docs mkdocs.yml
           if git diff --cached --quiet; then echo "catalog unchanged"; exit 0; fi
-          git -c user.name=MrGovindDubey -c user.email=govinddubeycse@gmail.com commit -m "docs: refresh package catalog"
+          git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" commit -m "docs: refresh package catalog [skip ci]"
           git push
 
       - run: mkdocs build --strict
