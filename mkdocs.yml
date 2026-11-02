@@ -152,6 +152,7 @@ nav:
       - Overview: packages/crypto.md
       - pqblocks-core: packages/core.md
       - pqblocks-files: packages/files.md
+      - pqblocks-fips-dualmode: packages/fips-dualmode.md
       - pqblocks-jose: packages/jose.md
       - pqblocks-primitives: packages/primitives.md
     - Migration & readiness:
@@ -185,6 +186,7 @@ nav:
       - pqblocks-qiea: packages/qiea.md
       - pqblocks-qubo: packages/qubo.md
       - pqblocks-qubo-bench: packages/qubo-bench.md
+      - pqblocks-sparse-bifurcation: packages/sparse-bifurcation.md
   - Recipes:
     - recipes/index.md
     - How to verify post-quantum chains in Node & Browser: recipes/browser-verification.md

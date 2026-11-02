@@ -57,7 +57,6 @@
     "pqblocks_sig.h"
    ],
    "c_libs": [
-    "liboqs.so",
     "libpqblocks_errors.so",
     "libpqblocks_kem.so",
     "libpqblocks_policy.so",
@@ -168,6 +167,84 @@
     "API reference",
     "Limitations",
     "Security notes",
+    "Verification",
+    "Part of PQBlocks"
+   ],
+   "verified": true
+  },
+  {
+   "package": "pqblocks-fips-dualmode",
+   "import": "pqblocks_fips_dualmode",
+   "import_npm": null,
+   "version": "0.1.0",
+   "repo": "PQBlocks/fips-dualmode",
+   "url": "https://github.com/PQBlocks/fips-dualmode",
+   "area": "PQ cryptography",
+   "kind": "pq",
+   "ecosystem": "python",
+   "summary": "Dual-mode cryptographic abstraction switching between FIPS 140-3 classical crypto (ECDH/AES-GCM) and post-quantum crypto (ML-KEM/ML-DSA).",
+   "intro": [
+    "A unified dual-mode cryptographic abstraction providing seamless switching between classical FIPS 140-3 approved algorithms and modern post-quantum cryptography."
+   ],
+   "keywords": [
+    "aes-gcm",
+    "dual-mode",
+    "ecdh",
+    "fips-140-3",
+    "ml-dsa",
+    "ml-kem",
+    "post-quantum",
+    "pqc"
+   ],
+   "topics": [
+    "aes-gcm",
+    "dual-mode",
+    "ecdh",
+    "fips-140-3",
+    "ml-dsa",
+    "ml-kem",
+    "post-quantum",
+    "pqblocks",
+    "pqc",
+    "python"
+   ],
+   "python": ">=3.11",
+   "cli": [],
+   "status": "Alpha",
+   "on_pypi": null,
+   "on_npm": null,
+   "install": "pip install git+https://github.com/PQBlocks/fips-dualmode",
+   "install_pip": "pip install git+https://github.com/PQBlocks/fips-dualmode",
+   "install_npm": null,
+   "install_c": null,
+   "has_c_sdk": false,
+   "c_headers": [],
+   "c_libs": [],
+   "needs_liboqs": true,
+   "quickstart": "from pqblocks_fips_dualmode import CryptoEnvelope\n\n# Initialize classical FIPS mode\nenv = CryptoEnvelope(mode=\"fips\")\n\n# Generate an ECDH P-256 keypair\nkey = env.generate_key()\n\n# Encrypt sensitive payload using AES-256-GCM\nplaintext = b\"Sensitive transactional payload data\"\naad = b\"tenant-id=1084;classification=restricted\"\nenvelope = env.encrypt(key, plaintext, associated_data=aad)\n\n# Decrypt and verify ciphertext and authentication tag\ndecrypted = env.decrypt(key, envelope)\nassert decrypted == plaintext\nprint(\"FIPS Mode decryption successful!\")\n",
+   "quickstart_lang": "python",
+   "examples": [
+    "01_fips_encryption.py",
+    "02_pqc_signatures.py"
+   ],
+   "docs": {
+    "README.md": "https://github.com/PQBlocks/fips-dualmode/blob/main/README.md",
+    "AGENTS.md": "https://github.com/PQBlocks/fips-dualmode/blob/main/AGENTS.md",
+    "SECURITY_NOTES.md": "https://github.com/PQBlocks/fips-dualmode/blob/main/SECURITY_NOTES.md",
+    "TESTING.md": "https://github.com/PQBlocks/fips-dualmode/blob/main/TESTING.md",
+    "BENCHMARKS.md": "https://github.com/PQBlocks/fips-dualmode/blob/main/BENCHMARKS.md",
+    "EVIDENCE.md": "https://github.com/PQBlocks/fips-dualmode/blob/main/EVIDENCE.md",
+    "VERIFICATION_REPORT.md": "https://github.com/PQBlocks/fips-dualmode/blob/main/VERIFICATION_REPORT.md",
+    "USE_CASES.md": "https://github.com/PQBlocks/fips-dualmode/blob/main/USE_CASES.md",
+    "CHANGELOG.md": "https://github.com/PQBlocks/fips-dualmode/blob/main/CHANGELOG.md"
+   },
+   "sections": [
+    "Why PQBlocks Dual-Mode",
+    "Installation",
+    "Usage",
+    "API Reference",
+    "Limitations",
+    "Security Considerations",
     "Verification",
     "Part of PQBlocks"
    ],
@@ -2147,6 +2224,85 @@
     "Fair Benchmarking Disclaimer",
     "Verification & Testing",
     "License"
+   ],
+   "verified": true
+  },
+  {
+   "package": "pqblocks-sparse-bifurcation",
+   "import": "pqblocks_sparse_bifurcation",
+   "import_npm": null,
+   "version": "0.1.0",
+   "repo": "PQBlocks/sparse-bifurcation",
+   "url": "https://github.com/PQBlocks/sparse-bifurcation",
+   "area": "Quantum-inspired",
+   "kind": "optimizer",
+   "ecosystem": "python",
+   "summary": "Sparse Discrete Simulated Bifurcation (dSB) heuristic solver for large-scale Ising and QUBO combinatorial optimization.",
+   "intro": [
+    "quantum-inspired classical optimization — not cryptography, no security claim",
+    "High-performance sparse matrix Discrete Simulated Bifurcation (dSB) heuristic solver for large-scale Quadratic Unconstrained Binary Optimization (QUBO) and Ising problems."
+   ],
+   "keywords": [
+    "bifurcation",
+    "ising",
+    "optimization",
+    "quantum-inspired",
+    "qubo",
+    "simulated-bifurcation",
+    "sparse"
+   ],
+   "topics": [
+    "ising",
+    "optimization",
+    "pqblocks",
+    "python",
+    "quantum-inspired",
+    "qubo",
+    "simulated-bifurcation",
+    "sparse-matrix"
+   ],
+   "python": ">=3.11",
+   "cli": [
+    "pqblocks-sparse-bifurcation",
+    "sparse_dsb_cli"
+   ],
+   "status": "Alpha",
+   "on_pypi": null,
+   "on_npm": null,
+   "install": "pip install git+https://github.com/PQBlocks/sparse-bifurcation",
+   "install_pip": "pip install git+https://github.com/PQBlocks/sparse-bifurcation",
+   "install_npm": null,
+   "install_c": null,
+   "has_c_sdk": false,
+   "c_headers": [],
+   "c_libs": [],
+   "needs_liboqs": false,
+   "quickstart": "import numpy as np\nimport scipy.sparse as sp\nfrom pqblocks_sparse_bifurcation import SparseStructureAwareDSB\n\n# Create sparse coupling matrix (CSR)\nJ = sp.csr_matrix([[0, 1, 0], [1, 0, 1], [0, 1, 0]])\nh = np.array([0.0, 0.0, 0.0])\n\nsolver = SparseStructureAwareDSB(num_sweeps=1000, execution_mode=\"csr\", seed=42)\nsampleset = solver.sample_ising(h, J)\n\nprint(\"Best energy:\", sampleset.first.energy)\nprint(\"Best sample:\", sampleset.first.sample)\n",
+   "quickstart_lang": "python",
+   "examples": [
+    "quickstart.py",
+    "sparse_maxcut.py"
+   ],
+   "docs": {
+    "README.md": "https://github.com/PQBlocks/sparse-bifurcation/blob/main/README.md",
+    "AGENTS.md": "https://github.com/PQBlocks/sparse-bifurcation/blob/main/AGENTS.md",
+    "SECURITY_NOTES.md": "https://github.com/PQBlocks/sparse-bifurcation/blob/main/SECURITY_NOTES.md",
+    "TESTING.md": "https://github.com/PQBlocks/sparse-bifurcation/blob/main/TESTING.md",
+    "BENCHMARKS.md": "https://github.com/PQBlocks/sparse-bifurcation/blob/main/BENCHMARKS.md",
+    "EVIDENCE.md": "https://github.com/PQBlocks/sparse-bifurcation/blob/main/EVIDENCE.md",
+    "VERIFICATION_REPORT.md": "https://github.com/PQBlocks/sparse-bifurcation/blob/main/VERIFICATION_REPORT.md",
+    "USE_CASES.md": "https://github.com/PQBlocks/sparse-bifurcation/blob/main/USE_CASES.md",
+    "CHANGELOG.md": "https://github.com/PQBlocks/sparse-bifurcation/blob/main/CHANGELOG.md"
+   },
+   "sections": [
+    "Why",
+    "Installation",
+    "Usage",
+    "API reference",
+    "Limitations",
+    "Security",
+    "Verification",
+    "Part of PQBlocks"
    ],
    "verified": true
   }

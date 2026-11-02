@@ -148,5 +148,6 @@ Every PQBlocks package ships the same evidence set, so each claim can be checked
 ## Related packages in PQ cryptography
 
 - [`pqblocks-core`](core.md): Post-quantum hybrid cryptography core SDK with C shared libraries and policy enforcement.
+- [`pqblocks-fips-dualmode`](fips-dualmode.md): Dual-mode cryptographic abstraction switching between FIPS 140-3 classical crypto (ECDH/AES-GCM) and post-quantum…
 - [`pqblocks-jose`](jose.md): Post-quantum hybrid JOSE library supporting ML-KEM and ML-DSA JWE and JWS tokens.
 - [`pqblocks-primitives`](primitives.md): Production-ready integrated post-quantum cryptographic primitives (ML-KEM, ML-DSA, SLH-DSA, and hybrid schemes).

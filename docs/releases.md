@@ -25,6 +25,7 @@ description: "Current version, status and install channel of every PQBlocks pack
 | [`pqblocks-digital-anneal`](packages/digital-anneal.md) | 0.1.0 | Alpha | GitHub | [CHANGELOG](https://github.com/PQBlocks/digital-annealing/blob/main/CHANGELOG.md) |
 | [`pqblocks-files`](packages/files.md) | 0.1.0 | Alpha | [PyPI](https://pypi.org/project/pqblocks-files/) | [CHANGELOG](https://github.com/PQBlocks/hybrid-file-encryption/blob/main/CHANGELOG.md) |
 | [`pqblocks-fips-check`](packages/fips-check.md) | 0.1.0 | Alpha | [PyPI](https://pypi.org/project/pqblocks-fips-check/) | [CHANGELOG](https://github.com/PQBlocks/fips-boundary-validator/blob/main/CHANGELOG.md) |
+| [`pqblocks-fips-dualmode`](packages/fips-dualmode.md) | 0.1.0 | Alpha | GitHub | [CHANGELOG](https://github.com/PQBlocks/fips-dualmode/blob/main/CHANGELOG.md) |
 | [`pqblocks-jose`](packages/jose.md) | 0.1.0 | Alpha | [PyPI](https://pypi.org/project/pqblocks-jose/) | [CHANGELOG](https://github.com/PQBlocks/hybrid-jose/blob/main/CHANGELOG.md) |
 | [`pqblocks-jwe`](packages/jwe.md) | 0.1.0 | Alpha | [PyPI](https://pypi.org/project/pqblocks-jwe/) | [CHANGELOG](https://github.com/PQBlocks/hybrid-jwe/blob/main/CHANGELOG.md) |
 | [`pqblocks-jwe-audit`](packages/jwe-audit.md) | 0.1.0 | Alpha | [PyPI](https://pypi.org/project/pqblocks-jwe-audit/) | [CHANGELOG](https://github.com/PQBlocks/jwe-policy-auditor/blob/main/CHANGELOG.md) |
@@ -36,6 +37,7 @@ description: "Current version, status and install channel of every PQBlocks pack
 | [`pqblocks-qubo`](packages/qubo.md) | 0.1.0 | Alpha | GitHub | [CHANGELOG](https://github.com/PQBlocks/qubo-core/blob/main/CHANGELOG.md) |
 | [`pqblocks-qubo-bench`](packages/qubo-bench.md) | 0.1.0 | Alpha | GitHub | [CHANGELOG](https://github.com/PQBlocks/qubo-benchmark-harness/blob/main/CHANGELOG.md) |
 | [`pqblocks-scan`](packages/scan.md) | 0.1.0 | Alpha | [PyPI](https://pypi.org/project/pqblocks-scan/) | [CHANGELOG](https://github.com/PQBlocks/cbom-scanner/blob/main/CHANGELOG.md) |
+| [`pqblocks-sparse-bifurcation`](packages/sparse-bifurcation.md) | 0.1.0 | Alpha | GitHub | [CHANGELOG](https://github.com/PQBlocks/sparse-bifurcation/blob/main/CHANGELOG.md) |
 | [`pqblocks-tls-interop`](packages/tls-interop.md) | 0.1.0 | Alpha | GitHub | [CHANGELOG](https://github.com/PQBlocks/tls-hybrid-interop/blob/main/CHANGELOG.md) |
 | [`pqblocks-wire`](packages/wire.md) | 0.1.0 | Alpha | GitHub | [CHANGELOG](https://github.com/PQBlocks/pqc-wireformat/blob/main/CHANGELOG.md) |
 
