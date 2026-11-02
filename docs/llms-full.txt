@@ -760,7 +760,11 @@ Start by finding the cryptography you already run. pqblocks-scan inventories RSA
 
 ### How do I install PQBlocks packages?
 
-Each package installs on its own with pip. Packages already on PyPI install with pip install pqblocks-<name>; the rest install from their GitHub repository with pip install git+https://github.com/PQBlocks/<repository> while their PyPI release is staged. Every package page shows the exact command that works today. Packages that use post-quantum primitives need the liboqs shared library; their README explains how it is found.
+Each package installs on its own through its native ecosystem: npm for JavaScript and TypeScript packages (npm i @pqblocks/<name> or npm i git+https://github.com/PQBlocks/<repo>), pip or uv for Python packages (pip install pqblocks-<name> or pip install git+https://github.com/PQBlocks/<repo>), and CMake for native C SDKs. Every package page shows the exact command across npm, pnpm, yarn, bun, pip and uv that works today. Packages wrapping post-quantum primitives in Python link against liboqs, while browser/Node.js packages use constant-time pure JavaScript implementations.
+
+### Does PQBlocks support JavaScript, TypeScript, and web browsers?
+
+Yes. In addition to Python, PQBlocks delivers first-class JavaScript and TypeScript components such as @pqblocks/browser-pqc-verifier, providing pure-JS post-quantum X.509 certificate validation, CBOM generation, and hybrid Express authentication middleware that run in web browsers, Edge workers, and Node.js without native C compilation dependencies.
 
 ### Are PQBlocks packages production-ready?
 

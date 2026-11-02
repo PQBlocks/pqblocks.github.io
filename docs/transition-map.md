@@ -41,6 +41,7 @@ flowchart LR
     end
     subgraph V[6 · Verify]
         K --> AC[pqblocks-acvp<br/>NIST vectors]
+        K --> BPV[browser-pqc-verifier<br/>browser & client chains]
         W --> FC[pqblocks-fips-check<br/>boundary checks]
     end
 ```
@@ -54,7 +55,7 @@ flowchart LR
 | **3. Govern** | How do we stop new classical-only code and prove progress to auditors? | [`policy`](packages/policy.md), [`jwe-audit`](packages/jwe-audit.md), [`cnsa-evidence`](packages/cnsa-evidence.md) |
 | **4. Migrate** | What replaces the old primitives in tokens, files and key exchange? | [`primitives`](packages/primitives.md), [`core`](packages/core.md), [`jose`](packages/jose.md), [`files`](packages/files.md) |
 | **5. Interoperate** | How do larger keys, ciphertexts and signatures travel through protocols and formats? | [`tls-interop`](packages/tls-interop.md), [`wire`](packages/wire.md), [`jwe`](packages/jwe.md), [`csr-pop`](packages/csr-pop.md) |
-| **6. Verify** | Is the new implementation correct, and did the migration actually land? | [`acvp`](packages/acvp.md), [`fips-check`](packages/fips-check.md) |
+| **6. Verify** | Is the new implementation correct, and did the migration actually land? | [`acvp`](packages/acvp.md), [`browser-pqc-verifier`](packages/browser-pqc-verifier.md), [`fips-check`](packages/fips-check.md) |
 
 ## Which deadlines drive the timeline?
 

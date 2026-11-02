@@ -6,6 +6,10 @@
 
     Start by finding the cryptography you already run. [`pqblocks-scan`](packages/scan.md) inventories RSA, elliptic curves, weak hashes and post-quantum algorithms in source code and TLS endpoints, and writes a CycloneDX 1.6 CBOM and a SARIF report. For new code, use [`pqblocks-primitives`](packages/primitives.md) for ML-KEM, ML-DSA and SLH-DSA, [`pqblocks-jose`](packages/jose.md) for post-quantum JWS and JWE tokens, and [`pqblocks-files`](packages/files.md) for file encryption. The [recipes](recipes/index.md) are complete, tested programs for the common tasks.
 
+??? pqb-faq "Does PQBlocks support JavaScript, TypeScript, and web browsers?"
+
+    Yes. In addition to Python, PQBlocks delivers first-class JavaScript and TypeScript components such as [`@pqblocks/browser-pqc-verifier`](packages/browser-pqc-verifier.md), providing pure-JS post-quantum X.509 certificate validation, CBOM generation, and hybrid Express authentication middleware that run in web browsers, Edge workers, and Node.js without native C compilation dependencies.
+
 ??? pqb-faq "Are PQBlocks packages FIPS validated?"
 
     No. PQBlocks packages implement or wire to the NIST standards FIPS 203, 204 and 205 and test against official vectors where those exist, but none of them is a FIPS 140-3 / CMVP validated cryptographic module, and none claims to be. If you need a validated module, use one, and treat PQBlocks components as the integration, inventory and verification layer around it.
