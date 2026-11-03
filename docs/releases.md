@@ -15,8 +15,8 @@ description: "Current version, status and install channel of every PQBlocks pack
 | [`pqblocks-agility`](packages/agility.md) | 0.1.0 | Alpha | [PyPI](https://pypi.org/project/pqblocks-agility/) | [CHANGELOG](https://github.com/PQBlocks/crypto-agility/blob/main/CHANGELOG.md) |
 | [`pqblocks-anneal-sa`](packages/anneal-sa.md) | 0.1.0 | Alpha | [PyPI](https://pypi.org/project/pqblocks-anneal-sa/) | [CHANGELOG](https://github.com/PQBlocks/simulated-annealing/blob/main/CHANGELOG.md) |
 | [`pqblocks-anneal-schedule`](packages/anneal-schedule.md) | 0.1.0 | Alpha | [PyPI](https://pypi.org/project/pqblocks-anneal-schedule/) | [CHANGELOG](https://github.com/PQBlocks/annealing-schedule/blob/main/CHANGELOG.md) |
-| [`pqblocks-anneal-sqa`](packages/anneal-sqa.md) | 0.1.0 | Alpha | GitHub | [CHANGELOG](https://github.com/PQBlocks/simulated-quantum-annealing/blob/main/CHANGELOG.md) |
-| [`pqblocks-bifurcation`](packages/bifurcation.md) | 0.1.0 | Alpha | GitHub | [CHANGELOG](https://github.com/PQBlocks/simulated-bifurcation/blob/main/CHANGELOG.md) |
+| [`pqblocks-anneal-sqa`](packages/anneal-sqa.md) | 0.1.0 | Alpha | [PyPI](https://pypi.org/project/pqblocks-anneal-sqa/) | [CHANGELOG](https://github.com/PQBlocks/simulated-quantum-annealing/blob/main/CHANGELOG.md) |
+| [`pqblocks-bifurcation`](packages/bifurcation.md) | 0.1.0 | Alpha | [PyPI](https://pypi.org/project/pqblocks-bifurcation/) | [CHANGELOG](https://github.com/PQBlocks/simulated-bifurcation/blob/main/CHANGELOG.md) |
 | [`pqblocks-browser-pqc-verifier`](packages/browser-pqc-verifier.md) | 0.1.0 | alpha | GitHub | [CHANGELOG](https://github.com/PQBlocks/browser-pqc-verifier/blob/main/CHANGELOG.md) |
 | [`pqblocks-cbom`](packages/cbom.md) | 0.1.0 | Alpha | [PyPI](https://pypi.org/project/pqblocks-cbom/) | [CHANGELOG](https://github.com/PQBlocks/cbom-enricher/blob/main/CHANGELOG.md) |
 | [`pqblocks-cnsa-evidence`](packages/cnsa-evidence.md) | 0.1.0 | Alpha | [PyPI](https://pypi.org/project/pqblocks-cnsa-evidence/) | [CHANGELOG](https://github.com/PQBlocks/cnsa-evidence-pack/blob/main/CHANGELOG.md) |
@@ -38,8 +38,8 @@ description: "Current version, status and install channel of every PQBlocks pack
 | [`pqblocks-qubo-bench`](packages/qubo-bench.md) | 0.1.0 | Alpha | GitHub | [CHANGELOG](https://github.com/PQBlocks/qubo-benchmark-harness/blob/main/CHANGELOG.md) |
 | [`pqblocks-scan`](packages/scan.md) | 0.1.0 | Alpha | [PyPI](https://pypi.org/project/pqblocks-scan/) | [CHANGELOG](https://github.com/PQBlocks/cbom-scanner/blob/main/CHANGELOG.md) |
 | [`pqblocks-sparse-bifurcation`](packages/sparse-bifurcation.md) | 0.1.0 | Alpha | GitHub | [CHANGELOG](https://github.com/PQBlocks/sparse-bifurcation/blob/main/CHANGELOG.md) |
-| [`pqblocks-tls-interop`](packages/tls-interop.md) | 0.1.0 | Alpha | GitHub | [CHANGELOG](https://github.com/PQBlocks/tls-hybrid-interop/blob/main/CHANGELOG.md) |
-| [`pqblocks-wire`](packages/wire.md) | 0.1.0 | Alpha | GitHub | [CHANGELOG](https://github.com/PQBlocks/pqc-wireformat/blob/main/CHANGELOG.md) |
+| [`pqblocks-tls-interop`](packages/tls-interop.md) | 0.1.0 | Alpha | [PyPI](https://pypi.org/project/pqblocks-tls-interop/) | [CHANGELOG](https://github.com/PQBlocks/tls-hybrid-interop/blob/main/CHANGELOG.md) |
+| [`pqblocks-wire`](packages/wire.md) | 0.1.0 | Alpha | [PyPI](https://pypi.org/project/pqblocks-wire/) | [CHANGELOG](https://github.com/PQBlocks/pqc-wireformat/blob/main/CHANGELOG.md) |
 
 ## Versioning and deprecation
 

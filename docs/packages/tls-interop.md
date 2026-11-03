@@ -10,7 +10,7 @@ schema: {"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name"
 
 <p class="pqb-lead" markdown>TLS 1.3 hybrid key exchange (X25519MLKEM768 / RFC 10024) endpoint probe, downgrade detector, and key material validator.</p>
 
-![Install from GitHub](https://img.shields.io/badge/install-GitHub-334155?style=flat-square) ![Area](https://img.shields.io/badge/area-Interoperability-0e7490?style=flat-square) ![Status](https://img.shields.io/badge/status-Alpha-b45309?style=flat-square) ![Python](https://img.shields.io/badge/python-%3E%3D3.11-1e40af?style=flat-square) ![Licence](https://img.shields.io/badge/licence-Apache--2.0-334155?style=flat-square) [![Source](https://img.shields.io/badge/source-tls--hybrid--interop-111827?style=flat-square&logo=github)](https://github.com/PQBlocks/tls-hybrid-interop)
+[![PyPI](https://img.shields.io/pypi/v/pqblocks-tls-interop?style=flat-square&label=PyPI&color=0f766e)](https://pypi.org/project/pqblocks-tls-interop/) ![Area](https://img.shields.io/badge/area-Interoperability-0e7490?style=flat-square) ![Status](https://img.shields.io/badge/status-Alpha-b45309?style=flat-square) ![Python](https://img.shields.io/badge/python-%3E%3D3.11-1e40af?style=flat-square) ![Licence](https://img.shields.io/badge/licence-Apache--2.0-334155?style=flat-square) [![Source](https://img.shields.io/badge/source-tls--hybrid--interop-111827?style=flat-square&logo=github)](https://github.com/PQBlocks/tls-hybrid-interop)
 
 !!! abstract "At a glance"
 
@@ -31,6 +31,18 @@ TLS 1.3 hybrid key exchange (X25519MLKEM768 / RFC 10024) endpoint probe, downgra
 
 ## Install
 
+=== "pip"
+
+    ```bash
+    pip install pqblocks-tls-interop
+    ```
+
+=== "uv"
+
+    ```bash
+    uv add pqblocks-tls-interop
+    ```
+
 === "pip (from GitHub)"
 
     ```bash
@@ -42,9 +54,6 @@ TLS 1.3 hybrid key exchange (X25519MLKEM768 / RFC 10024) endpoint probe, downgra
     ```bash
     uv add git+https://github.com/PQBlocks/tls-hybrid-interop
     ```
-
-!!! note "PyPI release staged"
-    `pqblocks-tls-interop` installs from its GitHub repository while the PyPI release is staged. The import name and API are identical either way.
 
 ## Quickstart
 

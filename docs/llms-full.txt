@@ -363,7 +363,7 @@ Wire formats, JOSE, X.509/CSR and TLS hybrid groups that carry larger post-quant
   print(len(token), parsed["aad"], len(parsed["kem_ct"]))   # 1697 b'settlement-v1' 1120
   ```
 
-- [pqblocks-tls-interop](https://pqblocks.github.io/packages/tls-interop/): TLS 1.3 hybrid key exchange (X25519MLKEM768 / RFC 10024) endpoint probe, downgrade detector, and key material validator. Install: `pip install git+https://github.com/PQBlocks/tls-hybrid-interop`. Import: `pqblocks_tls_interop`.
+- [pqblocks-tls-interop](https://pqblocks.github.io/packages/tls-interop/): TLS 1.3 hybrid key exchange (X25519MLKEM768 / RFC 10024) endpoint probe, downgrade detector, and key material validator. Install: `pip install pqblocks-tls-interop`. Import: `pqblocks_tls_interop`.
 
   ```python
   from pqblocks_tls_interop import derive_shared_secret_10024, derive_key_material_rfc9954
@@ -391,7 +391,7 @@ Wire formats, JOSE, X.509/CSR and TLS hybrid groups that carry larger post-quant
       print(f"Warning: Endpoint downgraded to classical ({result.error_reason})")
   ```
 
-- [pqblocks-wire](https://pqblocks.github.io/packages/wire/): Length-prefixed container format (PQCWF1) for ML-KEM ciphertexts and ML-DSA / SLH-DSA signatures, with thin wrappers over liboqs-python and pyca/cryptography; it implements no primitive itself. Install: `pip install git+https://github.com/PQBlocks/pqc-wireformat`. Import: `pqblocks_wire`.
+- [pqblocks-wire](https://pqblocks.github.io/packages/wire/): Length-prefixed container format (PQCWF1) for ML-KEM ciphertexts and ML-DSA / SLH-DSA signatures, with thin wrappers over liboqs-python and pyca/cryptography; it implements no primitive itself. Install: `pip install pqblocks-wire`. Import: `pqblocks_wire`.
 
   ```python
   from pqblocks_wire import (generate_mlkem_keypair, encapsulate_mlkem, decapsulate_mlkem,
@@ -587,7 +587,7 @@ Classical solvers modelled on quantum dynamics for Ising and QUBO problems. Kept
   print("Best Config:", result.best_config)
   ```
 
-- [pqblocks-anneal-sqa](https://pqblocks.github.io/packages/anneal-sqa/): Simulated Quantum Annealing (Path-Integral Monte Carlo via Suzuki-Trotter decomposition) heuristic solver for Ising and QUBO optimization. Quantum-inspired classical optimization, not cryptography. Install: `pip install git+https://github.com/PQBlocks/simulated-quantum-annealing`. Import: `pqblocks_anneal_sqa`.
+- [pqblocks-anneal-sqa](https://pqblocks.github.io/packages/anneal-sqa/): Simulated Quantum Annealing (Path-Integral Monte Carlo via Suzuki-Trotter decomposition) heuristic solver for Ising and QUBO optimization. Quantum-inspired classical optimization, not cryptography. Install: `pip install pqblocks-anneal-sqa`. Import: `pqblocks_anneal_sqa`.
 
   ```python
   from pqblocks_anneal_sqa import SimulatedQuantumAnnealingSampler
@@ -611,7 +611,7 @@ Classical solvers modelled on quantum dynamics for Ising and QUBO problems. Kept
   print(f"Best Energy: {energies[0]:.6f}")
   ```
 
-- [pqblocks-bifurcation](https://pqblocks.github.io/packages/bifurcation/): Simulated Bifurcation (ballistic and discrete) heuristic solver for Ising and QUBO problems. Quantum-inspired classical optimization, not cryptography. Install: `pip install git+https://github.com/PQBlocks/simulated-bifurcation`. Import: `pqblocks_bifurcation`.
+- [pqblocks-bifurcation](https://pqblocks.github.io/packages/bifurcation/): Simulated Bifurcation (ballistic and discrete) heuristic solver for Ising and QUBO problems. Quantum-inspired classical optimization, not cryptography. Install: `pip install pqblocks-bifurcation`. Import: `pqblocks_bifurcation`.
 
   ```python
   import numpy as np

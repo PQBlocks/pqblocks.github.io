@@ -36,7 +36,7 @@ schema: {"@context": "https://schema.org", "@type": "CollectionPage", "name": "P
 
     Simulated Quantum Annealing (Path-Integral Monte Carlo via Suzuki-Trotter decomposition) heuristic solver for Ising and QUBO optimization. Quantum-inspired classical…
 
-    `pip install git+https://github.com/PQBlocks/simulated-quantum-annealing`
+    `pip install pqblocks-anneal-sqa`
 
 -   __[pqblocks-bifurcation](bifurcation.md)__
 
@@ -44,7 +44,7 @@ schema: {"@context": "https://schema.org", "@type": "CollectionPage", "name": "P
 
     Simulated Bifurcation (ballistic and discrete) heuristic solver for Ising and QUBO problems. Quantum-inspired classical optimization, not cryptography.
 
-    `pip install git+https://github.com/PQBlocks/simulated-bifurcation`
+    `pip install pqblocks-bifurcation`
 
 -   __[pqblocks-digital-anneal](digital-anneal.md)__
 
@@ -102,8 +102,8 @@ schema: {"@context": "https://schema.org", "@type": "CollectionPage", "name": "P
 |---|---|---|---|
 | [`pqblocks-anneal-sa`](anneal-sa.md) | Simulated Annealing heuristic solver for Ising and QUBO optimization problems. Quantum-inspired classical… | PyPI | none |
 | [`pqblocks-anneal-schedule`](anneal-schedule.md) | Quantum-inspired instance-adaptive simulated annealing with statistics-driven schedule generation for Ising… | PyPI | none |
-| [`pqblocks-anneal-sqa`](anneal-sqa.md) | Simulated Quantum Annealing (Path-Integral Monte Carlo via Suzuki-Trotter decomposition) heuristic solver… | GitHub | none |
-| [`pqblocks-bifurcation`](bifurcation.md) | Simulated Bifurcation (ballistic and discrete) heuristic solver for Ising and QUBO problems.… | GitHub | none |
+| [`pqblocks-anneal-sqa`](anneal-sqa.md) | Simulated Quantum Annealing (Path-Integral Monte Carlo via Suzuki-Trotter decomposition) heuristic solver… | PyPI | none |
+| [`pqblocks-bifurcation`](bifurcation.md) | Simulated Bifurcation (ballistic and discrete) heuristic solver for Ising and QUBO problems.… | PyPI | none |
 | [`pqblocks-digital-anneal`](digital-anneal.md) | Digital Annealer-style parallel-trial heuristic solver for Ising and QUBO optimization problems.… | GitHub | none |
 | [`pqblocks-population-anneal`](population-anneal.md) | Population Annealing Monte Carlo heuristic solver for Ising models and QUBO combinatorial optimization.… | GitHub | none |
 | [`pqblocks-qiea`](qiea.md) | Quantum-Inspired Evolutionary Algorithm (QIEA) with Q-bit representations and quantum rotation gates for… | GitHub | none |

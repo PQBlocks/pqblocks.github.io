@@ -250,15 +250,18 @@ def build(pkg_root, run_verify):
                         existing_entries[item["package"]] = item
         except Exception:
             pass
-    if len(existing_entries) < 20:
-        try:
-            raw = subprocess.check_output(["git", "show", "HEAD:data/catalog.json"], stderr=subprocess.DEVNULL)
-            prev = json.loads(raw)
-            for item in prev.get("packages", []):
-                if "package" in item and item.get("verified") is True and item["package"] not in existing_entries:
-                    existing_entries[item["package"]] = item
-        except Exception:
-            pass
+    try:
+        raw = subprocess.check_output(
+            ["git", "show", "HEAD:data/catalog.json"],
+            stderr=subprocess.DEVNULL,
+            cwd=os.path.dirname(os.path.abspath(__file__))
+        )
+        prev = json.loads(raw)
+        for item in prev.get("packages", []):
+            if "package" in item and item.get("verified") is True and item["package"] not in existing_entries:
+                existing_entries[item["package"]] = item
+    except Exception:
+        pass
     out = []
     for name in sorted(os.listdir(pkg_root)):
         d = os.path.join(pkg_root, name)

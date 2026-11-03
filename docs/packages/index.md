@@ -74,8 +74,8 @@ schema: {"@context": "https://schema.org", "@type": "ItemList", "name": "PQBlock
 |---|---|---|
 | [`pqblocks-csr-pop`](csr-pop.md) | ML-KEM (FIPS 203) PKCS#10 Certificate Signing Request (CSR) generator with RFC 9883 Proof of Possession (PoP). | `pip install pqblocks-csr-pop` |
 | [`pqblocks-jwe`](jwe.md) | Compact five-part wire format, with a serializer and structural parser, for hybrid ML-KEM-768 + X25519 JWE-style… | `pip install pqblocks-jwe` |
-| [`pqblocks-tls-interop`](tls-interop.md) | TLS 1.3 hybrid key exchange (X25519MLKEM768 / RFC 10024) endpoint probe, downgrade detector, and key material validator. | `pip install git+https://github.com/PQBlocks/tls-hybrid-interop` |
-| [`pqblocks-wire`](wire.md) | Length-prefixed container format (PQCWF1) for ML-KEM ciphertexts and ML-DSA / SLH-DSA signatures, with thin wrappers… | `pip install git+https://github.com/PQBlocks/pqc-wireformat` |
+| [`pqblocks-tls-interop`](tls-interop.md) | TLS 1.3 hybrid key exchange (X25519MLKEM768 / RFC 10024) endpoint probe, downgrade detector, and key material validator. | `pip install pqblocks-tls-interop` |
+| [`pqblocks-wire`](wire.md) | Length-prefixed container format (PQCWF1) for ML-KEM ciphertexts and ML-DSA / SLH-DSA signatures, with thin wrappers… | `pip install pqblocks-wire` |
 
 ## :material-check-decagram-outline: Conformance
 
@@ -91,8 +91,8 @@ schema: {"@context": "https://schema.org", "@type": "ItemList", "name": "PQBlock
 |---|---|---|
 | [`pqblocks-anneal-sa`](anneal-sa.md) | Simulated Annealing heuristic solver for Ising and QUBO optimization problems. Quantum-inspired classical… | `pip install pqblocks-anneal-sa` |
 | [`pqblocks-anneal-schedule`](anneal-schedule.md) | Quantum-inspired instance-adaptive simulated annealing with statistics-driven schedule generation for Ising and QUBO… | `pip install pqblocks-anneal-schedule` |
-| [`pqblocks-anneal-sqa`](anneal-sqa.md) | Simulated Quantum Annealing (Path-Integral Monte Carlo via Suzuki-Trotter decomposition) heuristic solver for Ising… | `pip install git+https://github.com/PQBlocks/simulated-quantum-annealing` |
-| [`pqblocks-bifurcation`](bifurcation.md) | Simulated Bifurcation (ballistic and discrete) heuristic solver for Ising and QUBO problems. Quantum-inspired… | `pip install git+https://github.com/PQBlocks/simulated-bifurcation` |
+| [`pqblocks-anneal-sqa`](anneal-sqa.md) | Simulated Quantum Annealing (Path-Integral Monte Carlo via Suzuki-Trotter decomposition) heuristic solver for Ising… | `pip install pqblocks-anneal-sqa` |
+| [`pqblocks-bifurcation`](bifurcation.md) | Simulated Bifurcation (ballistic and discrete) heuristic solver for Ising and QUBO problems. Quantum-inspired… | `pip install pqblocks-bifurcation` |
 | [`pqblocks-digital-anneal`](digital-anneal.md) | Digital Annealer-style parallel-trial heuristic solver for Ising and QUBO optimization problems. Quantum-inspired… | `pip install git+https://github.com/PQBlocks/digital-annealing` |
 | [`pqblocks-population-anneal`](population-anneal.md) | Population Annealing Monte Carlo heuristic solver for Ising models and QUBO combinatorial optimization.… | `pip install git+https://github.com/PQBlocks/population-annealing` |
 | [`pqblocks-qiea`](qiea.md) | Quantum-Inspired Evolutionary Algorithm (QIEA) with Q-bit representations and quantum rotation gates for Ising and… | `pip install git+https://github.com/PQBlocks/quantum-inspired-evolutionary` |
