@@ -10,7 +10,7 @@ schema: {"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name"
 
 <p class="pqb-lead" markdown>Quantum-Inspired Evolutionary Algorithm (QIEA) with Q-bit representations and quantum rotation gates for Ising and QUBO optimization problems. Quantum-inspired classical optimization, not cryptography.</p>
 
-![Install from GitHub](https://img.shields.io/badge/install-GitHub-334155?style=flat-square) ![Area](https://img.shields.io/badge/area-Quantum--inspired-0e7490?style=flat-square) ![Status](https://img.shields.io/badge/status-Alpha-b45309?style=flat-square) ![Python](https://img.shields.io/badge/python-%3E%3D3.11-1e40af?style=flat-square) ![Licence](https://img.shields.io/badge/licence-Apache--2.0-334155?style=flat-square) [![Source](https://img.shields.io/badge/source-quantum--inspired--evolutionary-111827?style=flat-square&logo=github)](https://github.com/PQBlocks/quantum-inspired-evolutionary)
+[![PyPI](https://img.shields.io/pypi/v/pqblocks-qiea?style=flat-square&label=PyPI&color=0f766e)](https://pypi.org/project/pqblocks-qiea/) ![Area](https://img.shields.io/badge/area-Quantum--inspired-0e7490?style=flat-square) ![Status](https://img.shields.io/badge/status-Alpha-b45309?style=flat-square) ![Python](https://img.shields.io/badge/python-%3E%3D3.11-1e40af?style=flat-square) ![Licence](https://img.shields.io/badge/licence-Apache--2.0-334155?style=flat-square) [![Source](https://img.shields.io/badge/source-quantum--inspired--evolutionary-111827?style=flat-square&logo=github)](https://github.com/PQBlocks/quantum-inspired-evolutionary)
 
 !!! abstract "At a glance"
 
@@ -36,6 +36,18 @@ Quantum-Inspired Evolutionary Algorithm (QIEA) with Q-bit representations and qu
 
 ## Install
 
+=== "pip"
+
+    ```bash
+    pip install pqblocks-qiea
+    ```
+
+=== "uv"
+
+    ```bash
+    uv add pqblocks-qiea
+    ```
+
 === "pip (from GitHub)"
 
     ```bash
@@ -47,9 +59,6 @@ Quantum-Inspired Evolutionary Algorithm (QIEA) with Q-bit representations and qu
     ```bash
     uv add git+https://github.com/PQBlocks/quantum-inspired-evolutionary
     ```
-
-!!! note "PyPI release staged"
-    `pqblocks-qiea` installs from its GitHub repository while the PyPI release is staged. The import name and API are identical either way.
 
 ## Quickstart
 

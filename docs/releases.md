@@ -22,7 +22,7 @@ description: "Current version, status and install channel of every PQBlocks pack
 | [`pqblocks-cnsa-evidence`](packages/cnsa-evidence.md) | 0.1.0 | Alpha | [PyPI](https://pypi.org/project/pqblocks-cnsa-evidence/) | [CHANGELOG](https://github.com/PQBlocks/cnsa-evidence-pack/blob/main/CHANGELOG.md) |
 | [`pqblocks-core`](packages/core.md) | 0.1.0 | Alpha | GitHub | [CHANGELOG](https://github.com/PQBlocks/hybrid-sdk/blob/main/CHANGELOG.md) |
 | [`pqblocks-csr-pop`](packages/csr-pop.md) | 0.1.0 | Alpha | [PyPI](https://pypi.org/project/pqblocks-csr-pop/) | [CHANGELOG](https://github.com/PQBlocks/mlkem-csr-pop/blob/main/CHANGELOG.md) |
-| [`pqblocks-digital-anneal`](packages/digital-anneal.md) | 0.1.0 | Alpha | GitHub | [CHANGELOG](https://github.com/PQBlocks/digital-annealing/blob/main/CHANGELOG.md) |
+| [`pqblocks-digital-anneal`](packages/digital-anneal.md) | 0.1.0 | Alpha | [PyPI](https://pypi.org/project/pqblocks-digital-anneal/) | [CHANGELOG](https://github.com/PQBlocks/digital-annealing/blob/main/CHANGELOG.md) |
 | [`pqblocks-files`](packages/files.md) | 0.1.0 | Alpha | [PyPI](https://pypi.org/project/pqblocks-files/) | [CHANGELOG](https://github.com/PQBlocks/hybrid-file-encryption/blob/main/CHANGELOG.md) |
 | [`pqblocks-fips-check`](packages/fips-check.md) | 0.1.0 | Alpha | [PyPI](https://pypi.org/project/pqblocks-fips-check/) | [CHANGELOG](https://github.com/PQBlocks/fips-boundary-validator/blob/main/CHANGELOG.md) |
 | [`pqblocks-fips-dualmode`](packages/fips-dualmode.md) | 0.1.0 | Alpha | GitHub | [CHANGELOG](https://github.com/PQBlocks/fips-dualmode/blob/main/CHANGELOG.md) |
@@ -31,10 +31,10 @@ description: "Current version, status and install channel of every PQBlocks pack
 | [`pqblocks-jwe-audit`](packages/jwe-audit.md) | 0.1.0 | Alpha | [PyPI](https://pypi.org/project/pqblocks-jwe-audit/) | [CHANGELOG](https://github.com/PQBlocks/jwe-policy-auditor/blob/main/CHANGELOG.md) |
 | [`pqblocks-lint`](packages/lint.md) | 0.1.0 | Alpha | [PyPI](https://pypi.org/project/pqblocks-lint/) | [CHANGELOG](https://github.com/PQBlocks/pqc-lint/blob/main/CHANGELOG.md) |
 | [`pqblocks-policy`](packages/policy.md) | 0.1.0 | Alpha | [PyPI](https://pypi.org/project/pqblocks-policy/) | [CHANGELOG](https://github.com/PQBlocks/crypto-policy-engine/blob/main/CHANGELOG.md) |
-| [`pqblocks-population-anneal`](packages/population-anneal.md) | 0.1.0 | Alpha | GitHub | [CHANGELOG](https://github.com/PQBlocks/population-annealing/blob/main/CHANGELOG.md) |
+| [`pqblocks-population-anneal`](packages/population-anneal.md) | 0.1.0 | Alpha | [PyPI](https://pypi.org/project/pqblocks-population-anneal/) | [CHANGELOG](https://github.com/PQBlocks/population-annealing/blob/main/CHANGELOG.md) |
 | [`pqblocks-primitives`](packages/primitives.md) | 0.1.0 | Alpha | [PyPI](https://pypi.org/project/pqblocks-primitives/) | [CHANGELOG](https://github.com/PQBlocks/fips-pqc-primitives/blob/main/CHANGELOG.md) |
-| [`pqblocks-qiea`](packages/qiea.md) | 0.1.0 | Alpha | GitHub | [CHANGELOG](https://github.com/PQBlocks/quantum-inspired-evolutionary/blob/main/CHANGELOG.md) |
-| [`pqblocks-qubo`](packages/qubo.md) | 0.1.0 | Alpha | GitHub | [CHANGELOG](https://github.com/PQBlocks/qubo-core/blob/main/CHANGELOG.md) |
+| [`pqblocks-qiea`](packages/qiea.md) | 0.1.0 | Alpha | [PyPI](https://pypi.org/project/pqblocks-qiea/) | [CHANGELOG](https://github.com/PQBlocks/quantum-inspired-evolutionary/blob/main/CHANGELOG.md) |
+| [`pqblocks-qubo`](packages/qubo.md) | 0.1.0 | Alpha | [PyPI](https://pypi.org/project/pqblocks-qubo/) | [CHANGELOG](https://github.com/PQBlocks/qubo-core/blob/main/CHANGELOG.md) |
 | [`pqblocks-qubo-bench`](packages/qubo-bench.md) | 0.1.0 | Alpha | GitHub | [CHANGELOG](https://github.com/PQBlocks/qubo-benchmark-harness/blob/main/CHANGELOG.md) |
 | [`pqblocks-scan`](packages/scan.md) | 0.1.0 | Alpha | [PyPI](https://pypi.org/project/pqblocks-scan/) | [CHANGELOG](https://github.com/PQBlocks/cbom-scanner/blob/main/CHANGELOG.md) |
 | [`pqblocks-sparse-bifurcation`](packages/sparse-bifurcation.md) | 0.1.0 | Alpha | GitHub | [CHANGELOG](https://github.com/PQBlocks/sparse-bifurcation/blob/main/CHANGELOG.md) |

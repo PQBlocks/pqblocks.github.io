@@ -10,7 +10,7 @@ schema: {"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name"
 
 <p class="pqb-lead" markdown>Population Annealing Monte Carlo heuristic solver for Ising models and QUBO combinatorial optimization. Quantum-inspired classical optimization, not cryptography.</p>
 
-![Install from GitHub](https://img.shields.io/badge/install-GitHub-334155?style=flat-square) ![Area](https://img.shields.io/badge/area-Quantum--inspired-0e7490?style=flat-square) ![Status](https://img.shields.io/badge/status-Alpha-b45309?style=flat-square) ![Python](https://img.shields.io/badge/python-%3E%3D3.11-1e40af?style=flat-square) ![Licence](https://img.shields.io/badge/licence-Apache--2.0-334155?style=flat-square) [![Source](https://img.shields.io/badge/source-population--annealing-111827?style=flat-square&logo=github)](https://github.com/PQBlocks/population-annealing)
+[![PyPI](https://img.shields.io/pypi/v/pqblocks-population-anneal?style=flat-square&label=PyPI&color=0f766e)](https://pypi.org/project/pqblocks-population-anneal/) ![Area](https://img.shields.io/badge/area-Quantum--inspired-0e7490?style=flat-square) ![Status](https://img.shields.io/badge/status-Alpha-b45309?style=flat-square) ![Python](https://img.shields.io/badge/python-%3E%3D3.11-1e40af?style=flat-square) ![Licence](https://img.shields.io/badge/licence-Apache--2.0-334155?style=flat-square) [![Source](https://img.shields.io/badge/source-population--annealing-111827?style=flat-square&logo=github)](https://github.com/PQBlocks/population-annealing)
 
 !!! abstract "At a glance"
 
@@ -36,6 +36,18 @@ Quantum-inspired Population Annealing Monte Carlo heuristic solver for Ising and
 
 ## Install
 
+=== "pip"
+
+    ```bash
+    pip install pqblocks-population-anneal
+    ```
+
+=== "uv"
+
+    ```bash
+    uv add pqblocks-population-anneal
+    ```
+
 === "pip (from GitHub)"
 
     ```bash
@@ -47,9 +59,6 @@ Quantum-inspired Population Annealing Monte Carlo heuristic solver for Ising and
     ```bash
     uv add git+https://github.com/PQBlocks/population-annealing
     ```
-
-!!! note "PyPI release staged"
-    `pqblocks-population-anneal` installs from its GitHub repository while the PyPI release is staged. The import name and API are identical either way.
 
 ## Quickstart
 
