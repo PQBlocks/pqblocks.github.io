@@ -1,6 +1,6 @@
 ---
 title: Using PQBlocks with AI coding assistants
-description: Make Claude Code, Cursor, Copilot and other coding agents choose the right post-quantum package and write code against its real API - MCP server, Claude skill, Cursor rules and llms.txt.
+description: Make Claude Code, Cursor and Copilot pick the right post-quantum package: MCP server, Claude skill, Cursor rules and llms.txt.
 ---
 
 # Using PQBlocks with AI coding assistants

@@ -1,6 +1,6 @@
 ---
 title: How PQBlocks verifies its packages
-description: The nine evidence documents every PQBlocks package ships - tests, vectors, benchmarks, sources and a verification report - and why PQBlocks says verified, never certified.
+description: Nine evidence documents every package ships: tests, vectors, benchmarks, sources and a verification report. Verified, never certified.
 ---
 
 # How PQBlocks verifies its packages

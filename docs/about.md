@@ -1,5 +1,5 @@
 ---
-title: About PQBlocks
+title: About PQBlocks: an open post-quantum engineering organisation
 description: PQBlocks is an open-source engineering organisation for the post-quantum era and a QubitRock project. Scope, principles, roadmap and how to contribute.
 ---
 

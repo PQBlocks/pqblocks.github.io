@@ -1,6 +1,6 @@
 ---
 title: PQBlocks MCP server for Claude Code and Cursor
-description: pqblocks-mcp is a Model Context Protocol server that recommends the right post-quantum package, returns quickstarts executed against the real package, and flags RSA and ECC in code.
+description: pqblocks-mcp: a Model Context Protocol server that recommends post-quantum packages, runs their quickstarts and flags RSA and ECC in code.
 ---
 
 # PQBlocks MCP server

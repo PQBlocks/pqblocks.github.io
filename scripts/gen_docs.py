@@ -317,7 +317,7 @@ def index_page(pkgs):
               "numberOfItems": len(pkgs),
               "itemListElement": [{"@type": "ListItem", "position": i + 1, "url": "%s/packages/%s/" % (SITE, short(p)),
                                    "name": p["package"]} for i, p in enumerate(pkgs)]}
-    out = [front("Package catalog", "Every PQBlocks package across post-quantum cryptography, migration, "
+    out = [front("Post-quantum package catalog: open-source libraries and tools", "Every PQBlocks package across post-quantum cryptography, migration, "
                  "interoperability, conformance and quantum-inspired optimisation, with install lines that work today.",
                  schema),
            "# Package catalog\n", figure("index", " pqb-figure--large"),

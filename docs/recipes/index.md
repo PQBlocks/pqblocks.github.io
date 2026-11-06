@@ -1,6 +1,6 @@
 ---
 title: Post-quantum recipes
-description: Complete, tested solutions to common post-quantum tasks in JavaScript, TypeScript, and Python - verify certificate chains, hybrid Express auth, sign JWTs with ML-DSA, hybrid X25519 + ML-KEM, encrypt files, find RSA and ECC in code, solve Max-Cut.
+description: Tested post-quantum recipes in JavaScript, TypeScript and Python: certificate chains, hybrid key exchange, ML-DSA JWTs, file encryption and Max-Cut.
 ---
 
 # Recipes
