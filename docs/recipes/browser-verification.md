@@ -1,6 +1,6 @@
 ---
-title: How to verify post-quantum certificate chains in Node.js and the browser
-description: Verify ML-DSA and SLH-DSA certificate chains and build a CBOM in Node.js and browsers with @pqblocks/browser-pqc-verifier. Tested code.
+title: "How to verify post-quantum certificate chains in Node.js and the browser"
+description: "Verify ML-DSA and SLH-DSA certificate chains and build a CBOM in Node.js and browsers with @pqblocks/browser-pqc-verifier. Tested code."
 ---
 
 # How to verify post-quantum certificate chains in Node.js and the browser

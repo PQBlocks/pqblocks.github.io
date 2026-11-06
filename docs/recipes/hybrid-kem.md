@@ -1,6 +1,6 @@
 ---
-title: How to do hybrid X25519 + ML-KEM key exchange in Python
-description: Hybrid X25519 + ML-KEM-768 key exchange with an HKDF-SHA256 combiner in Python using pqblocks-primitives. Tested code and byte sizes.
+title: "How to do hybrid X25519 + ML-KEM key exchange in Python"
+description: "Hybrid X25519 + ML-KEM-768 key exchange with an HKDF-SHA256 combiner in Python using pqblocks-primitives. Tested code and byte sizes."
 ---
 
 # How to do hybrid X25519 + ML-KEM key exchange in Python

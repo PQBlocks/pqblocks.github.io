@@ -1,6 +1,6 @@
 ---
-title: Post-quantum recipes
-description: Tested post-quantum recipes in JavaScript, TypeScript and Python: certificate chains, hybrid key exchange, ML-DSA JWTs, file encryption and Max-Cut.
+title: "Post-quantum recipes"
+description: "Tested post-quantum recipes in JavaScript, TypeScript and Python: certificate chains, hybrid key exchange, ML-DSA JWTs, file encryption and Max-Cut."
 ---
 
 # Recipes

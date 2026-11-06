@@ -1,6 +1,6 @@
 ---
-title: PQBlocks Claude skill, Cursor rule and AGENTS.md
-description: Drop-in guidance that makes Claude Code, Cursor and other agents use PQBlocks packages correctly, generated from executed quickstarts.
+title: "PQBlocks Claude skill, Cursor rule and AGENTS.md"
+description: "Drop-in guidance that makes Claude Code, Cursor and other agents use PQBlocks packages correctly, generated from executed quickstarts."
 ---
 
 # Claude skill, Cursor rule and AGENTS.md
