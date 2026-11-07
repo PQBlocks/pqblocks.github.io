@@ -716,7 +716,7 @@ Classical solvers modelled on quantum dynamics for Ising and QUBO problems. Kept
   print(f"QUBO Energy: {bqm_qubo.energy(sample)}")
   ```
 
-- [pqblocks-qubo-bench](https://pqblocks.github.io/packages/qubo-bench/): Benchmarking harness and standard instance loaders for quantum-inspired optimization algorithms against classical baselines. Install: `pip install git+https://github.com/PQBlocks/qubo-benchmark-harness`. Import: `pqblocks_qubo_bench`.
+- [pqblocks-qubo-bench](https://pqblocks.github.io/packages/qubo-bench/): Benchmarking harness and standard instance loaders for quantum-inspired optimization algorithms against classical baselines. Install: `pip install pqblocks-qubo-bench`. Import: `pqblocks_qubo_bench`.
 
   ```python
   from pqblocks_qubo_bench.tts_engine import calculate_tts

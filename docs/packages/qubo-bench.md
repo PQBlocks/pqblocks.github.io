@@ -10,7 +10,7 @@ schema: {"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name"
 
 <p class="pqb-lead" markdown>Benchmarking harness and standard instance loaders for quantum-inspired optimization algorithms against classical baselines.</p>
 
-![Install from GitHub](https://img.shields.io/badge/install-GitHub-334155?style=flat-square) ![Area](https://img.shields.io/badge/area-Quantum--inspired-0e7490?style=flat-square) ![Status](https://img.shields.io/badge/status-Alpha-b45309?style=flat-square) ![Python](https://img.shields.io/badge/python-%3E%3D3.11-1e40af?style=flat-square) ![Licence](https://img.shields.io/badge/licence-Apache--2.0-334155?style=flat-square) [![Source](https://img.shields.io/badge/source-qubo--benchmark--harness-111827?style=flat-square&logo=github)](https://github.com/PQBlocks/qubo-benchmark-harness)
+[![PyPI](https://img.shields.io/pypi/v/pqblocks-qubo-bench?style=flat-square&label=PyPI&color=0f766e)](https://pypi.org/project/pqblocks-qubo-bench/) ![Area](https://img.shields.io/badge/area-Quantum--inspired-0e7490?style=flat-square) ![Status](https://img.shields.io/badge/status-Alpha-b45309?style=flat-square) ![Python](https://img.shields.io/badge/python-%3E%3D3.11-1e40af?style=flat-square) ![Licence](https://img.shields.io/badge/licence-Apache--2.0-334155?style=flat-square) [![Source](https://img.shields.io/badge/source-qubo--benchmark--harness-111827?style=flat-square&logo=github)](https://github.com/PQBlocks/qubo-benchmark-harness)
 
 !!! abstract "At a glance"
 
@@ -36,6 +36,18 @@ Standardized benchmarking harness, instance loaders, and metric evaluators for q
 
 ## Install
 
+=== "pip"
+
+    ```bash
+    pip install pqblocks-qubo-bench
+    ```
+
+=== "uv"
+
+    ```bash
+    uv add pqblocks-qubo-bench
+    ```
+
 === "pip (from GitHub)"
 
     ```bash
@@ -47,9 +59,6 @@ Standardized benchmarking harness, instance loaders, and metric evaluators for q
     ```bash
     uv add git+https://github.com/PQBlocks/qubo-benchmark-harness
     ```
-
-!!! note "PyPI release staged"
-    `pqblocks-qubo-bench` installs from its GitHub repository while the PyPI release is staged. The import name and API are identical either way.
 
 ## Quickstart
 

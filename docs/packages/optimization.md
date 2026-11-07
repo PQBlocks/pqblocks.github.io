@@ -84,7 +84,7 @@ schema: {"@context": "https://schema.org", "@type": "CollectionPage", "name": "P
 
     Benchmarking harness and standard instance loaders for quantum-inspired optimization algorithms against classical baselines.
 
-    `pip install git+https://github.com/PQBlocks/qubo-benchmark-harness`
+    `pip install pqblocks-qubo-bench`
 
 -   __[pqblocks-sparse-bifurcation](sparse-bifurcation.md)__
 
@@ -108,5 +108,5 @@ schema: {"@context": "https://schema.org", "@type": "CollectionPage", "name": "P
 | [`pqblocks-population-anneal`](population-anneal.md) | Population Annealing Monte Carlo heuristic solver for Ising models and QUBO combinatorial optimization.… | PyPI | none |
 | [`pqblocks-qiea`](qiea.md) | Quantum-Inspired Evolutionary Algorithm (QIEA) with Q-bit representations and quantum rotation gates for… | PyPI | none |
 | [`pqblocks-qubo`](qubo.md) | Unified mathematical representation and converter library for Quadratic Unconstrained Binary Optimization… | PyPI | none |
-| [`pqblocks-qubo-bench`](qubo-bench.md) | Benchmarking harness and standard instance loaders for quantum-inspired optimization algorithms against… | GitHub | none |
+| [`pqblocks-qubo-bench`](qubo-bench.md) | Benchmarking harness and standard instance loaders for quantum-inspired optimization algorithms against… | PyPI | none |
 | [`pqblocks-sparse-bifurcation`](sparse-bifurcation.md) | Sparse Discrete Simulated Bifurcation (dSB) heuristic solver for large-scale Ising and QUBO combinatorial… | GitHub | none |

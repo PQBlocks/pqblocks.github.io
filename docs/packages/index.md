@@ -97,5 +97,5 @@ schema: {"@context": "https://schema.org", "@type": "ItemList", "name": "PQBlock
 | [`pqblocks-population-anneal`](population-anneal.md) | Population Annealing Monte Carlo heuristic solver for Ising models and QUBO combinatorial optimization.… | `pip install pqblocks-population-anneal` |
 | [`pqblocks-qiea`](qiea.md) | Quantum-Inspired Evolutionary Algorithm (QIEA) with Q-bit representations and quantum rotation gates for Ising and… | `pip install pqblocks-qiea` |
 | [`pqblocks-qubo`](qubo.md) | Unified mathematical representation and converter library for Quadratic Unconstrained Binary Optimization (QUBO) and… | `pip install pqblocks-qubo` |
-| [`pqblocks-qubo-bench`](qubo-bench.md) | Benchmarking harness and standard instance loaders for quantum-inspired optimization algorithms against classical… | `pip install git+https://github.com/PQBlocks/qubo-benchmark-harness` |
+| [`pqblocks-qubo-bench`](qubo-bench.md) | Benchmarking harness and standard instance loaders for quantum-inspired optimization algorithms against classical… | `pip install pqblocks-qubo-bench` |
 | [`pqblocks-sparse-bifurcation`](sparse-bifurcation.md) | Sparse Discrete Simulated Bifurcation (dSB) heuristic solver for large-scale Ising and QUBO combinatorial optimization. | `pip install git+https://github.com/PQBlocks/sparse-bifurcation` |

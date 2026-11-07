@@ -35,7 +35,7 @@ description: "Current version, status and install channel of every PQBlocks pack
 | [`pqblocks-primitives`](packages/primitives.md) | 0.1.0 | Alpha | [PyPI](https://pypi.org/project/pqblocks-primitives/) | [CHANGELOG](https://github.com/PQBlocks/fips-pqc-primitives/blob/main/CHANGELOG.md) |
 | [`pqblocks-qiea`](packages/qiea.md) | 0.1.0 | Alpha | [PyPI](https://pypi.org/project/pqblocks-qiea/) | [CHANGELOG](https://github.com/PQBlocks/quantum-inspired-evolutionary/blob/main/CHANGELOG.md) |
 | [`pqblocks-qubo`](packages/qubo.md) | 0.1.0 | Alpha | [PyPI](https://pypi.org/project/pqblocks-qubo/) | [CHANGELOG](https://github.com/PQBlocks/qubo-core/blob/main/CHANGELOG.md) |
-| [`pqblocks-qubo-bench`](packages/qubo-bench.md) | 0.1.0 | Alpha | GitHub | [CHANGELOG](https://github.com/PQBlocks/qubo-benchmark-harness/blob/main/CHANGELOG.md) |
+| [`pqblocks-qubo-bench`](packages/qubo-bench.md) | 0.1.0 | Alpha | [PyPI](https://pypi.org/project/pqblocks-qubo-bench/) | [CHANGELOG](https://github.com/PQBlocks/qubo-benchmark-harness/blob/main/CHANGELOG.md) |
 | [`pqblocks-scan`](packages/scan.md) | 0.1.0 | Alpha | [PyPI](https://pypi.org/project/pqblocks-scan/) | [CHANGELOG](https://github.com/PQBlocks/cbom-scanner/blob/main/CHANGELOG.md) |
 | [`pqblocks-sparse-bifurcation`](packages/sparse-bifurcation.md) | 0.1.0 | Alpha | GitHub | [CHANGELOG](https://github.com/PQBlocks/sparse-bifurcation/blob/main/CHANGELOG.md) |
 | [`pqblocks-tls-interop`](packages/tls-interop.md) | 0.1.0 | Alpha | [PyPI](https://pypi.org/project/pqblocks-tls-interop/) | [CHANGELOG](https://github.com/PQBlocks/tls-hybrid-interop/blob/main/CHANGELOG.md) |
