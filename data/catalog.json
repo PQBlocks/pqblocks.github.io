@@ -1552,6 +1552,18 @@
    "held": null
   },
   {
+   "package": "pqblocks-pqc-acvp-runner",
+   "repo": "PQBlocks/pqc-acvp-runner",
+   "url": "https://github.com/PQBlocks/pqc-acvp-runner",
+   "held": "no area topic (add one of: pq-crypto, pq-migration, pq-interop, pq-conformance, quantum-inspired)"
+  },
+  {
+   "package": "pqblocks-pqc-compat-registry",
+   "repo": "PQBlocks/pqc-compat-registry",
+   "url": "https://github.com/PQBlocks/pqc-compat-registry",
+   "held": "no area topic (add one of: pq-crypto, pq-migration, pq-interop, pq-conformance, quantum-inspired)"
+  },
+  {
    "package": "pqblocks-lint",
    "import": "pqblocks_lint",
    "import_npm": null,
