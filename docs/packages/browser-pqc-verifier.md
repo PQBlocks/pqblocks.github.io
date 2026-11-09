@@ -10,7 +10,7 @@ schema: {"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name"
 
 <p class="pqb-lead" markdown>Post-quantum certificate and chain verifier for browsers and Node.js using ML-DSA/SLH-DSA from @noble/post-quantum.</p>
 
-![Install from GitHub](https://img.shields.io/badge/install-GitHub-334155?style=flat-square) ![Area](https://img.shields.io/badge/area-Conformance-0e7490?style=flat-square) ![Status](https://img.shields.io/badge/status-alpha-b45309?style=flat-square) ![Runtime](https://img.shields.io/badge/runtime-Node.js%20%7C%20Browser-0284c7?style=flat-square) ![Licence](https://img.shields.io/badge/licence-Apache--2.0-334155?style=flat-square) [![Source](https://img.shields.io/badge/source-browser--pqc--verifier-111827?style=flat-square&logo=github)](https://github.com/PQBlocks/browser-pqc-verifier)
+[![npm](https://img.shields.io/npm/v/@pqblocks/browser-pqc-verifier?style=flat-square&label=npm&color=0f766e)](https://www.npmjs.com/package/@pqblocks/browser-pqc-verifier) ![Area](https://img.shields.io/badge/area-Conformance-0e7490?style=flat-square) ![Status](https://img.shields.io/badge/status-alpha-b45309?style=flat-square) ![Runtime](https://img.shields.io/badge/runtime-Node.js%20%7C%20Browser-0284c7?style=flat-square) ![Licence](https://img.shields.io/badge/licence-Apache--2.0-334155?style=flat-square) [![Source](https://img.shields.io/badge/source-browser--pqc--verifier-111827?style=flat-square&logo=github)](https://github.com/PQBlocks/browser-pqc-verifier)
 
 !!! abstract "At a glance"
 
@@ -31,6 +31,30 @@ A high-performance post-quantum X.509 certificate and chain verification library
 
 ## Install
 
+=== "npm"
+
+    ```bash
+    npm i @pqblocks/browser-pqc-verifier
+    ```
+
+=== "pnpm"
+
+    ```bash
+    pnpm add @pqblocks/browser-pqc-verifier
+    ```
+
+=== "yarn"
+
+    ```bash
+    yarn add @pqblocks/browser-pqc-verifier
+    ```
+
+=== "bun"
+
+    ```bash
+    bun add @pqblocks/browser-pqc-verifier
+    ```
+
 === "npm (from GitHub)"
 
     ```bash
@@ -48,9 +72,6 @@ A high-performance post-quantum X.509 certificate and chain verification library
     ```bash
     bun add git+https://github.com/PQBlocks/browser-pqc-verifier
     ```
-
-!!! note "npm release staged"
-    `@pqblocks/browser-pqc-verifier` installs from its GitHub repository while the npm release is staged. The package name and API are identical either way.
 
 ## Quickstart
 

@@ -17,7 +17,7 @@ description: "Current version, status and install channel of every PQBlocks pack
 | [`pqblocks-anneal-schedule`](packages/anneal-schedule.md) | 0.1.0 | Alpha | [PyPI](https://pypi.org/project/pqblocks-anneal-schedule/) | [CHANGELOG](https://github.com/PQBlocks/annealing-schedule/blob/main/CHANGELOG.md) |
 | [`pqblocks-anneal-sqa`](packages/anneal-sqa.md) | 0.1.0 | Alpha | [PyPI](https://pypi.org/project/pqblocks-anneal-sqa/) | [CHANGELOG](https://github.com/PQBlocks/simulated-quantum-annealing/blob/main/CHANGELOG.md) |
 | [`pqblocks-bifurcation`](packages/bifurcation.md) | 0.1.0 | Alpha | [PyPI](https://pypi.org/project/pqblocks-bifurcation/) | [CHANGELOG](https://github.com/PQBlocks/simulated-bifurcation/blob/main/CHANGELOG.md) |
-| [`pqblocks-browser-pqc-verifier`](packages/browser-pqc-verifier.md) | 0.1.0 | alpha | GitHub | [CHANGELOG](https://github.com/PQBlocks/browser-pqc-verifier/blob/main/CHANGELOG.md) |
+| [`pqblocks-browser-pqc-verifier`](packages/browser-pqc-verifier.md) | 0.1.0 | alpha | [npm](https://www.npmjs.com/package/@pqblocks/browser-pqc-verifier) | [CHANGELOG](https://github.com/PQBlocks/browser-pqc-verifier/blob/main/CHANGELOG.md) |
 | [`pqblocks-cbom`](packages/cbom.md) | 0.1.0 | Alpha | [PyPI](https://pypi.org/project/pqblocks-cbom/) | [CHANGELOG](https://github.com/PQBlocks/cbom-enricher/blob/main/CHANGELOG.md) |
 | [`pqblocks-cnsa-evidence`](packages/cnsa-evidence.md) | 0.1.0 | Alpha | [PyPI](https://pypi.org/project/pqblocks-cnsa-evidence/) | [CHANGELOG](https://github.com/PQBlocks/cnsa-evidence-pack/blob/main/CHANGELOG.md) |
 | [`pqblocks-core`](packages/core.md) | 0.1.0 | Alpha | GitHub | [CHANGELOG](https://github.com/PQBlocks/hybrid-sdk/blob/main/CHANGELOG.md) |

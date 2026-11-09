@@ -82,7 +82,7 @@ schema: {"@context": "https://schema.org", "@type": "ItemList", "name": "PQBlock
 | Package | What it does | Install |
 |---|---|---|
 | [`pqblocks-acvp`](acvp.md) | Cross-implementation NIST ACVP conformance harness for FIPS 203 (ML-KEM) and FIPS 204 (ML-DSA). | `pip install pqblocks-acvp` |
-| [`pqblocks-browser-pqc-verifier`](browser-pqc-verifier.md) | Post-quantum certificate and chain verifier for browsers and Node.js using ML-DSA/SLH-DSA from @noble/post-quantum. | `npm install git+https://github.com/PQBlocks/browser-pqc-verifier` |
+| [`pqblocks-browser-pqc-verifier`](browser-pqc-verifier.md) | Post-quantum certificate and chain verifier for browsers and Node.js using ML-DSA/SLH-DSA from @noble/post-quantum. | `npm install @pqblocks/browser-pqc-verifier` |
 | [`pqblocks-fips-check`](fips-check.md) | FIPS 203/204 boundary validator and hybrid key exchange (X25519 + ML-KEM-768) with ML-DSA-65 signatures and CBOM… | `pip install pqblocks-fips-check` |
 
 ## :material-chart-bell-curve-cumulative: Quantum-inspired

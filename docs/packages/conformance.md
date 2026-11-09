@@ -28,7 +28,7 @@ schema: {"@context": "https://schema.org", "@type": "CollectionPage", "name": "P
 
     Post-quantum certificate and chain verifier for browsers and Node.js using ML-DSA/SLH-DSA from @noble/post-quantum.
 
-    `npm install git+https://github.com/PQBlocks/browser-pqc-verifier`
+    `npm install @pqblocks/browser-pqc-verifier`
 
 -   __[pqblocks-fips-check](fips-check.md)__
 

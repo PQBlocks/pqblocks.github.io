@@ -424,7 +424,7 @@ Official NIST ACVP vectors and strict FIPS 203/204 boundary checks that prove an
   print(f"Executed {rep.total_attempted} cases: {rep.passed} passed (denominator verified: {rep.denominator_verified})")
   ```
 
-- [pqblocks-browser-pqc-verifier](https://pqblocks.github.io/packages/browser-pqc-verifier/): Post-quantum certificate and chain verifier for browsers and Node.js using ML-DSA/SLH-DSA from @noble/post-quantum. Install: `npm install git+https://github.com/PQBlocks/browser-pqc-verifier`. Import: `@pqblocks/browser-pqc-verifier`.
+- [pqblocks-browser-pqc-verifier](https://pqblocks.github.io/packages/browser-pqc-verifier/): Post-quantum certificate and chain verifier for browsers and Node.js using ML-DSA/SLH-DSA from @noble/post-quantum. Install: `npm install @pqblocks/browser-pqc-verifier`. Import: `@pqblocks/browser-pqc-verifier`.
 
   ```python
   import {
