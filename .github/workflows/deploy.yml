@@ -73,7 +73,7 @@ jobs:
           ../venv/bin/pip install --quiet -r ../deps.txt fastapi httpx
           for pkg in ../packages/*; do
             if [ -f "$pkg/package.json" ]; then
-              (cd "$pkg" && npm install --no-audit --no-fund --silent)
+              (cd "$pkg" && npm install --no-audit --no-fund --silent && npm run build --if-present)
             fi
           done
           ../venv/bin/python scripts/build_catalog.py ../packages --verify

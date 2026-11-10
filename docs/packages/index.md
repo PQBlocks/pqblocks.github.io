@@ -1,7 +1,7 @@
 ---
 title: "Post-quantum package catalog: open-source libraries and tools"
 description: "Every PQBlocks package across post-quantum cryptography, migration, interoperability, conformance and quantum-inspired optimisation, with install lines\u2026"
-schema: {"@context": "https://schema.org", "@type": "ItemList", "name": "PQBlocks package catalog", "numberOfItems": 30, "itemListElement": [{"@type": "ListItem", "position": 1, "url": "https://pqblocks.github.io/packages/core/", "name": "pqblocks-core"}, {"@type": "ListItem", "position": 2, "url": "https://pqblocks.github.io/packages/files/", "name": "pqblocks-files"}, {"@type": "ListItem", "position": 3, "url": "https://pqblocks.github.io/packages/fips-dualmode/", "name": "pqblocks-fips-dualmode"}, {"@type": "ListItem", "position": 4, "url": "https://pqblocks.github.io/packages/jose/", "name": "pqblocks-jose"}, {"@type": "ListItem", "position": 5, "url": "https://pqblocks.github.io/packages/primitives/", "name": "pqblocks-primitives"}, {"@type": "ListItem", "position": 6, "url": "https://pqblocks.github.io/packages/agility/", "name": "pqblocks-agility"}, {"@type": "ListItem", "position": 7, "url": "https://pqblocks.github.io/packages/cbom/", "name": "pqblocks-cbom"}, {"@type": "ListItem", "position": 8, "url": "https://pqblocks.github.io/packages/cnsa-evidence/", "name": "pqblocks-cnsa-evidence"}, {"@type": "ListItem", "position": 9, "url": "https://pqblocks.github.io/packages/jwe-audit/", "name": "pqblocks-jwe-audit"}, {"@type": "ListItem", "position": 10, "url": "https://pqblocks.github.io/packages/lint/", "name": "pqblocks-lint"}, {"@type": "ListItem", "position": 11, "url": "https://pqblocks.github.io/packages/policy/", "name": "pqblocks-policy"}, {"@type": "ListItem", "position": 12, "url": "https://pqblocks.github.io/packages/scan/", "name": "pqblocks-scan"}, {"@type": "ListItem", "position": 13, "url": "https://pqblocks.github.io/packages/csr-pop/", "name": "pqblocks-csr-pop"}, {"@type": "ListItem", "position": 14, "url": "https://pqblocks.github.io/packages/jwe/", "name": "pqblocks-jwe"}, {"@type": "ListItem", "position": 15, "url": "https://pqblocks.github.io/packages/tls-interop/", "name": "pqblocks-tls-interop"}, {"@type": "ListItem", "position": 16, "url": "https://pqblocks.github.io/packages/wire/", "name": "pqblocks-wire"}, {"@type": "ListItem", "position": 17, "url": "https://pqblocks.github.io/packages/acvp/", "name": "pqblocks-acvp"}, {"@type": "ListItem", "position": 18, "url": "https://pqblocks.github.io/packages/browser-pqc-verifier/", "name": "pqblocks-browser-pqc-verifier"}, {"@type": "ListItem", "position": 19, "url": "https://pqblocks.github.io/packages/fips-check/", "name": "pqblocks-fips-check"}, {"@type": "ListItem", "position": 20, "url": "https://pqblocks.github.io/packages/pqc-acvp-runner/", "name": "pqblocks-pqc-acvp-runner"}, {"@type": "ListItem", "position": 21, "url": "https://pqblocks.github.io/packages/anneal-sa/", "name": "pqblocks-anneal-sa"}, {"@type": "ListItem", "position": 22, "url": "https://pqblocks.github.io/packages/anneal-schedule/", "name": "pqblocks-anneal-schedule"}, {"@type": "ListItem", "position": 23, "url": "https://pqblocks.github.io/packages/anneal-sqa/", "name": "pqblocks-anneal-sqa"}, {"@type": "ListItem", "position": 24, "url": "https://pqblocks.github.io/packages/bifurcation/", "name": "pqblocks-bifurcation"}, {"@type": "ListItem", "position": 25, "url": "https://pqblocks.github.io/packages/digital-anneal/", "name": "pqblocks-digital-anneal"}, {"@type": "ListItem", "position": 26, "url": "https://pqblocks.github.io/packages/population-anneal/", "name": "pqblocks-population-anneal"}, {"@type": "ListItem", "position": 27, "url": "https://pqblocks.github.io/packages/qiea/", "name": "pqblocks-qiea"}, {"@type": "ListItem", "position": 28, "url": "https://pqblocks.github.io/packages/qubo/", "name": "pqblocks-qubo"}, {"@type": "ListItem", "position": 29, "url": "https://pqblocks.github.io/packages/qubo-bench/", "name": "pqblocks-qubo-bench"}, {"@type": "ListItem", "position": 30, "url": "https://pqblocks.github.io/packages/sparse-bifurcation/", "name": "pqblocks-sparse-bifurcation"}]}
+schema: {"@context": "https://schema.org", "@type": "ItemList", "name": "PQBlocks package catalog", "numberOfItems": 32, "itemListElement": [{"@type": "ListItem", "position": 1, "url": "https://pqblocks.github.io/packages/core/", "name": "pqblocks-core"}, {"@type": "ListItem", "position": 2, "url": "https://pqblocks.github.io/packages/files/", "name": "pqblocks-files"}, {"@type": "ListItem", "position": 3, "url": "https://pqblocks.github.io/packages/fips-dualmode/", "name": "pqblocks-fips-dualmode"}, {"@type": "ListItem", "position": 4, "url": "https://pqblocks.github.io/packages/jose/", "name": "pqblocks-jose"}, {"@type": "ListItem", "position": 5, "url": "https://pqblocks.github.io/packages/primitives/", "name": "pqblocks-primitives"}, {"@type": "ListItem", "position": 6, "url": "https://pqblocks.github.io/packages/qse-sdk/", "name": "pqblocks-qse-sdk"}, {"@type": "ListItem", "position": 7, "url": "https://pqblocks.github.io/packages/agility/", "name": "pqblocks-agility"}, {"@type": "ListItem", "position": 8, "url": "https://pqblocks.github.io/packages/cbom/", "name": "pqblocks-cbom"}, {"@type": "ListItem", "position": 9, "url": "https://pqblocks.github.io/packages/cnsa-evidence/", "name": "pqblocks-cnsa-evidence"}, {"@type": "ListItem", "position": 10, "url": "https://pqblocks.github.io/packages/jwe-audit/", "name": "pqblocks-jwe-audit"}, {"@type": "ListItem", "position": 11, "url": "https://pqblocks.github.io/packages/lint/", "name": "pqblocks-lint"}, {"@type": "ListItem", "position": 12, "url": "https://pqblocks.github.io/packages/policy/", "name": "pqblocks-policy"}, {"@type": "ListItem", "position": 13, "url": "https://pqblocks.github.io/packages/pqc-compat-registry/", "name": "pqblocks-pqc-compat-registry"}, {"@type": "ListItem", "position": 14, "url": "https://pqblocks.github.io/packages/scan/", "name": "pqblocks-scan"}, {"@type": "ListItem", "position": 15, "url": "https://pqblocks.github.io/packages/csr-pop/", "name": "pqblocks-csr-pop"}, {"@type": "ListItem", "position": 16, "url": "https://pqblocks.github.io/packages/jwe/", "name": "pqblocks-jwe"}, {"@type": "ListItem", "position": 17, "url": "https://pqblocks.github.io/packages/tls-interop/", "name": "pqblocks-tls-interop"}, {"@type": "ListItem", "position": 18, "url": "https://pqblocks.github.io/packages/wire/", "name": "pqblocks-wire"}, {"@type": "ListItem", "position": 19, "url": "https://pqblocks.github.io/packages/acvp/", "name": "pqblocks-acvp"}, {"@type": "ListItem", "position": 20, "url": "https://pqblocks.github.io/packages/browser-pqc-verifier/", "name": "pqblocks-browser-pqc-verifier"}, {"@type": "ListItem", "position": 21, "url": "https://pqblocks.github.io/packages/fips-check/", "name": "pqblocks-fips-check"}, {"@type": "ListItem", "position": 22, "url": "https://pqblocks.github.io/packages/pqc-acvp-runner/", "name": "pqblocks-pqc-acvp-runner"}, {"@type": "ListItem", "position": 23, "url": "https://pqblocks.github.io/packages/anneal-sa/", "name": "pqblocks-anneal-sa"}, {"@type": "ListItem", "position": 24, "url": "https://pqblocks.github.io/packages/anneal-schedule/", "name": "pqblocks-anneal-schedule"}, {"@type": "ListItem", "position": 25, "url": "https://pqblocks.github.io/packages/anneal-sqa/", "name": "pqblocks-anneal-sqa"}, {"@type": "ListItem", "position": 26, "url": "https://pqblocks.github.io/packages/bifurcation/", "name": "pqblocks-bifurcation"}, {"@type": "ListItem", "position": 27, "url": "https://pqblocks.github.io/packages/digital-anneal/", "name": "pqblocks-digital-anneal"}, {"@type": "ListItem", "position": 28, "url": "https://pqblocks.github.io/packages/population-anneal/", "name": "pqblocks-population-anneal"}, {"@type": "ListItem", "position": 29, "url": "https://pqblocks.github.io/packages/qiea/", "name": "pqblocks-qiea"}, {"@type": "ListItem", "position": 30, "url": "https://pqblocks.github.io/packages/qubo/", "name": "pqblocks-qubo"}, {"@type": "ListItem", "position": 31, "url": "https://pqblocks.github.io/packages/qubo-bench/", "name": "pqblocks-qubo-bench"}, {"@type": "ListItem", "position": 32, "url": "https://pqblocks.github.io/packages/sparse-bifurcation/", "name": "pqblocks-sparse-bifurcation"}]}
 ---
 <!-- GENERATED by scripts/gen_docs.py from data/catalog.json - do not edit by hand -->
 
@@ -10,23 +10,23 @@ schema: {"@context": "https://schema.org", "@type": "ItemList", "name": "PQBlock
 
 <div class="pqb-figure pqb-figure--large" data-figure="assemble" data-label="A core block and one loose block per package: as the pointer nears they slide into one branch per area."></div>
 
-<p class="pqb-lead">30 packages across five areas of the post-quantum transition. Each one installs on its own, ships its own tests and evidence, and states what it does not do.</p>
+<p class="pqb-lead">32 packages across five areas of the post-quantum transition. Each one installs on its own, ships its own tests and evidence, and states what it does not do.</p>
 
 <div class="grid cards" markdown>
 
--   :material-cube-scan:{ .lg .middle } __[Software Development Kits](sdks.md)__ · 3 SDKs
+-   :material-cube-scan:{ .lg .middle } __[Software Development Kits](sdks.md)__ · 4 SDKs
 
     ---
 
     End-to-end development kits bundling native C acceleration, client runtimes, and policy governance.
 
--   :material-shield-key-outline:{ .lg .middle } __[PQ cryptography](crypto.md)__ · 5 packages
+-   :material-shield-key-outline:{ .lg .middle } __[PQ cryptography](crypto.md)__ · 6 packages
 
     ---
 
     ML-KEM, ML-DSA and SLH-DSA through maintained implementations, hybrid key establishment and signatures, and safe defaults for files and tokens.
 
--   :material-radar:{ .lg .middle } __[Migration & readiness](migration.md)__ · 7 packages
+-   :material-radar:{ .lg .middle } __[Migration & readiness](migration.md)__ · 8 packages
 
     ---
 
@@ -59,6 +59,7 @@ Full-featured development kits providing high-level APIs, client runtimes, and p
 | SDK | What it provides | Language & Runtime | Install |
 |---|---|---|---|
 | [`pqblocks-core`](core.md) | Post-quantum hybrid cryptography core SDK with C shared libraries and policy enforcement. | Python + Native C (`libpqblocks`) | `pip install git+https://github.com/PQBlocks/hybrid-sdk` |
+| [`pqblocks-qse-sdk`](qse-sdk.md) | Post-quantum cryptography SDK for ML-KEM, ML-DSA, and SLH-DSA (FIPS 203/204/205) | Python (CLI & Library) | `pip install git+https://github.com/PQBlocks/pqblock-qse-sdk` |
 | [`pqblocks-browser-pqc-verifier`](browser-pqc-verifier.md) | Post-quantum certificate and chain verifier for browsers and Node.js using ML-DSA/SLH-DSA from @noble/post-quantum. | JavaScript / TypeScript (Browser & Node.js) | `npm install @pqblocks/browser-pqc-verifier` |
 | [`pqblocks-fips-check`](fips-check.md) | FIPS 203/204 boundary validator and hybrid key exchange (X25519 + ML-KEM-768) with ML-DSA-65 signatures and CBOM… | Python (CLI & Library) | `pip install pqblocks-fips-check` |
 
@@ -68,7 +69,6 @@ The following end-to-end SDKs are in active development across endpoint, governa
 
 | Upcoming SDK | Target Runtime | Primary Role | Status |
 |---|---|---|:---:|
-| `pqblock-qse-sdk` | Python / C Client | Quantum-Safe Endpoint client SDK: automated TLS 1.3 hybrid negotiation and policy sync. | In development |
 | `pqc-cbom-cyclonedx-cli-sdk` | TypeScript & Python | Programmatic SDK for CycloneDX 1.6 CBOM generation and CNSA 2.0 readiness scoring. | In development |
 | `pqc-attestation-sdk` | Python & Rust | Hardware enclave attestation quote verification and post-quantum token derivation. | Planned |
 
@@ -85,6 +85,7 @@ The following end-to-end SDKs are in active development across endpoint, governa
 | [`pqblocks-fips-dualmode`](fips-dualmode.md) | Dual-mode cryptographic abstraction switching between FIPS 140-3 classical crypto (ECDH/AES-GCM) and post-quantum… | `pip install git+https://github.com/PQBlocks/fips-dualmode` |
 | [`pqblocks-jose`](jose.md) | Post-quantum hybrid JOSE library supporting ML-KEM and ML-DSA JWE and JWS tokens. | `pip install pqblocks-jose` |
 | [`pqblocks-primitives`](primitives.md) | Production-ready integrated post-quantum cryptographic primitives (ML-KEM, ML-DSA, SLH-DSA, and hybrid schemes). | `pip install pqblocks-primitives` |
+| [`pqblocks-qse-sdk`](qse-sdk.md) | Post-quantum cryptography SDK for ML-KEM, ML-DSA, and SLH-DSA (FIPS 203/204/205) | `pip install git+https://github.com/PQBlocks/pqblock-qse-sdk` |
 
 ### :material-radar: Migration & readiness
 
@@ -96,6 +97,7 @@ The following end-to-end SDKs are in active development across endpoint, governa
 | [`pqblocks-jwe-audit`](jwe-audit.md) | High-throughput JSON Web Encryption (JWE) cryptographic policy auditor enforcing CNSA 2.0 and NIST FIPS 203 PQC… | `pip install pqblocks-jwe-audit` |
 | [`pqblocks-lint`](lint.md) | Static analysis for Python source that finds classical and post-quantum cryptographic primitives with a source-to-sink… | `pip install pqblocks-lint` |
 | [`pqblocks-policy`](policy.md) | Policy-as-code engine for post-quantum cryptography compliance and CBOM verification. | `pip install pqblocks-policy` |
+| [`pqblocks-pqc-compat-registry`](pqc-compat-registry.md) | A machine-readable registry of NIST post-quantum algorithm identifiers (FIPS 203/204/205 OIDs) for compliance tooling. | `npm install @pqblocks/pqc-compat-registry` |
 | [`pqblocks-scan`](scan.md) | Cryptography inventory scanner: finds classical and post-quantum algorithms in source code or a TLS endpoint and… | `pip install pqblocks-scan` |
 
 ### :material-transit-connection-variant: Interoperability

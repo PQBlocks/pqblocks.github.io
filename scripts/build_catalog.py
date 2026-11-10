@@ -412,7 +412,7 @@ def build(pkg_root, run_verify):
             entry["verified"] = existing_entries[dist]["verified"]
             if "verify_output" in existing_entries[dist]:
                 entry["verify_output"] = existing_entries[dist]["verify_output"]
-        elif lang in ("javascript", "typescript"):
+        elif lang in ("javascript", "typescript") or dist not in existing_entries:
             entry["verified"], entry["verify_output"] = verify(d, quick, lang=lang)
 
         public = "\n".join([entry["summary"], quick] + intro)

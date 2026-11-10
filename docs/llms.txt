@@ -24,6 +24,7 @@ ML-KEM, ML-DSA and SLH-DSA through maintained implementations, hybrid key establ
 - [pqblocks-fips-dualmode](https://pqblocks.github.io/packages/fips-dualmode/): Dual-mode cryptographic abstraction switching between FIPS 140-3 classical crypto (ECDH/AES-GCM) and post-quantum crypto (ML-KEM/ML-DSA). Install: `pip install git+https://github.com/PQBlocks/fips-dualmode`. Import: `pqblocks_fips_dualmode`.
 - [pqblocks-jose](https://pqblocks.github.io/packages/jose/): Post-quantum hybrid JOSE library supporting ML-KEM and ML-DSA JWE and JWS tokens. Install: `pip install pqblocks-jose`. Import: `pqblocks_jose`.
 - [pqblocks-primitives](https://pqblocks.github.io/packages/primitives/): Production-ready integrated post-quantum cryptographic primitives (ML-KEM, ML-DSA, SLH-DSA, and hybrid schemes). Install: `pip install pqblocks-primitives`. Import: `pqblocks_primitives`.
+- [pqblocks-qse-sdk](https://pqblocks.github.io/packages/qse-sdk/): Post-quantum cryptography SDK for ML-KEM, ML-DSA, and SLH-DSA (FIPS 203/204/205) Install: `pip install git+https://github.com/PQBlocks/pqblock-qse-sdk`. Import: `pqblocks_qse_sdk`.
 
 ## Migration & readiness
 
@@ -35,6 +36,7 @@ Find cryptography in code and on the wire, emit CBOMs, score readiness, gate CI 
 - [pqblocks-jwe-audit](https://pqblocks.github.io/packages/jwe-audit/): High-throughput JSON Web Encryption (JWE) cryptographic policy auditor enforcing CNSA 2.0 and NIST FIPS 203 PQC standards. Install: `pip install pqblocks-jwe-audit`. Import: `pqblocks_jwe_audit`.
 - [pqblocks-lint](https://pqblocks.github.io/packages/lint/): Static analysis for Python source that finds classical and post-quantum cryptographic primitives with a source-to-sink taint pass and reports them as a CycloneDX 1.6 CBOM or a SARIF 2.1.0 log. Install: `pip install pqblocks-lint`. Import: `pqblocks_lint`.
 - [pqblocks-policy](https://pqblocks.github.io/packages/policy/): Policy-as-code engine for post-quantum cryptography compliance and CBOM verification. Install: `pip install pqblocks-policy`. Import: `pqblocks_policy`.
+- [pqblocks-pqc-compat-registry](https://pqblocks.github.io/packages/pqc-compat-registry/): A machine-readable registry of NIST post-quantum algorithm identifiers (FIPS 203/204/205 OIDs) for compliance tooling. Install: `npm install @pqblocks/pqc-compat-registry`. Import: `@pqblocks/pqc-compat-registry`.
 - [pqblocks-scan](https://pqblocks.github.io/packages/scan/): Cryptography inventory scanner: finds classical and post-quantum algorithms in source code or a TLS endpoint and writes a CycloneDX 1.6 CBOM, a SARIF 2.1.0 report and a readiness grade. Install: `pip install pqblocks-scan`. Import: `pqblocks_scan`.
 
 ## Interoperability

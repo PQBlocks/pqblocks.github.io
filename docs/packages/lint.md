@@ -33,7 +33,7 @@ Use it to build a first inventory of the cryptography in a Python codebase as a 
 
 How it works: it parses the code with Python's `ast` module (the code is never executed), builds a data-flow graph, follows values from key-generation calls to encrypt, sign, exchange and derive calls, and matches the result against a fixed table of name patterns. It is a static-analysis heuristic, **not** a cryptographic module.
 
-**Read [Limitations](#limitations) before using the verdict as a CI gate.** Ed25519, DSA and finite-field DH are not detected, so a file using only those gets `NO_CRYPTO_DETECTED`.
+**Read [Limitations](https://github.com/PQBlocks/pqc-lint#limitations) before using the verdict as a CI gate.** Ed25519, DSA and finite-field DH are not detected, so a file using only those gets `NO_CRYPTO_DETECTED`.
 
 ## Install
 
@@ -159,4 +159,5 @@ Every PQBlocks package ships the same evidence set, so each claim can be checked
 - [`pqblocks-cnsa-evidence`](cnsa-evidence.md): CNSA 2.0 evidence pack generator for quantum-safe compliance, CBOM generation, and migration scheduling.
 - [`pqblocks-jwe-audit`](jwe-audit.md): High-throughput JSON Web Encryption (JWE) cryptographic policy auditor enforcing CNSA 2.0 and NIST FIPS 203 PQC…
 - [`pqblocks-policy`](policy.md): Policy-as-code engine for post-quantum cryptography compliance and CBOM verification.
+- [`pqblocks-pqc-compat-registry`](pqc-compat-registry.md): A machine-readable registry of NIST post-quantum algorithm identifiers (FIPS 203/204/205 OIDs) for compliance tooling.
 - [`pqblocks-scan`](scan.md): Cryptography inventory scanner: finds classical and post-quantum algorithms in source code or a TLS endpoint and…

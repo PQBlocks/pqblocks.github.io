@@ -156,3 +156,4 @@ Every PQBlocks package ships the same evidence set, so each claim can be checked
 - [`pqblocks-fips-dualmode`](fips-dualmode.md): Dual-mode cryptographic abstraction switching between FIPS 140-3 classical crypto (ECDH/AES-GCM) and post-quantum…
 - [`pqblocks-jose`](jose.md): Post-quantum hybrid JOSE library supporting ML-KEM and ML-DSA JWE and JWS tokens.
 - [`pqblocks-primitives`](primitives.md): Production-ready integrated post-quantum cryptographic primitives (ML-KEM, ML-DSA, SLH-DSA, and hybrid schemes).
+- [`pqblocks-qse-sdk`](qse-sdk.md): Post-quantum cryptography SDK for ML-KEM, ML-DSA, and SLH-DSA (FIPS 203/204/205)

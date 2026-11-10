@@ -151,6 +151,7 @@ nav:
     - Software Development Kits (SDKs):
       - Overview: packages/sdks.md
       - pqblocks-core: packages/core.md
+      - pqblocks-qse-sdk: packages/qse-sdk.md
       - pqblocks-browser-pqc-verifier: packages/browser-pqc-verifier.md
       - pqblocks-fips-check: packages/fips-check.md
     - PQ cryptography:
@@ -167,6 +168,7 @@ nav:
       - pqblocks-jwe-audit: packages/jwe-audit.md
       - pqblocks-lint: packages/lint.md
       - pqblocks-policy: packages/policy.md
+      - pqblocks-pqc-compat-registry: packages/pqc-compat-registry.md
       - pqblocks-scan: packages/scan.md
     - Interoperability:
       - Overview: packages/interop.md

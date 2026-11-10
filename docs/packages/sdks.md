@@ -1,7 +1,7 @@
 ---
 title: "Software Development Kits (SDKs)"
 description: "End-to-end post-quantum software development kits providing unified APIs, client runtimes, native acceleration, and policy enforcement across backends, browsers, and endpoints."
-schema: {"@context": "https://schema.org", "@type": "CollectionPage", "name": "PQBlocks: Software Development Kits (SDKs)", "description": "End-to-end post-quantum software development kits providing unified APIs, client runtimes, native acceleration, and policy enforcement across backends, browsers, and endpoints.", "url": "https://pqblocks.github.io/packages/sdks/", "hasPart": [{"@type": "SoftwareSourceCode", "name": "pqblocks-core", "codeRepository": "https://github.com/PQBlocks/hybrid-sdk"}, {"@type": "SoftwareSourceCode", "name": "pqblocks-browser-pqc-verifier", "codeRepository": "https://github.com/PQBlocks/browser-pqc-verifier"}, {"@type": "SoftwareSourceCode", "name": "pqblocks-fips-check", "codeRepository": "https://github.com/PQBlocks/fips-boundary-validator"}]}
+schema: {"@context": "https://schema.org", "@type": "CollectionPage", "name": "PQBlocks: Software Development Kits (SDKs)", "description": "End-to-end post-quantum software development kits providing unified APIs, client runtimes, native acceleration, and policy enforcement across backends, browsers, and endpoints.", "url": "https://pqblocks.github.io/packages/sdks/", "hasPart": [{"@type": "SoftwareSourceCode", "name": "pqblocks-core", "codeRepository": "https://github.com/PQBlocks/hybrid-sdk"}, {"@type": "SoftwareSourceCode", "name": "pqblocks-qse-sdk", "codeRepository": "https://github.com/PQBlocks/pqblock-qse-sdk"}, {"@type": "SoftwareSourceCode", "name": "pqblocks-browser-pqc-verifier", "codeRepository": "https://github.com/PQBlocks/browser-pqc-verifier"}, {"@type": "SoftwareSourceCode", "name": "pqblocks-fips-check", "codeRepository": "https://github.com/PQBlocks/fips-boundary-validator"}]}
 ---
 
 # :material-cube-scan: Software Development Kits (SDKs)
@@ -19,9 +19,9 @@ Select the SDK tailored to your runtime environment and workload:
 | SDK | Platform / Runtime | Primary Scope | Status | Repository |
 |---|---|---|:---:|---|
 | **[`pqblocks-core`](core.md)** | Python + Native C | Core hybrid KEM (ML-KEM-768 + X25519) and composite signatures (ML-DSA-65 + Ed25519) with C-speed shared libraries. | **Live** | [`PQBlocks/hybrid-sdk`](https://github.com/PQBlocks/hybrid-sdk) |
+| **[`pqblocks-qse-sdk`](qse-sdk.md)** | Python (>=3.11) | Post-Quantum Cryptography SDK: Unified FIPS 203 (ML-KEM), FIPS 204 (ML-DSA), and FIPS 205 (SLH-DSA) façades with ACVP corpus generation. | **Live** | [`PQBlocks/pqblock-qse-sdk`](https://github.com/PQBlocks/pqblock-qse-sdk) |
 | **[`pqblocks-browser-pqc-verifier`](browser-pqc-verifier.md)** | Browser / Edge / Node.js | Pure JavaScript/TypeScript client SDK for validating post-quantum X.509 chains, ML-DSA, and SLH-DSA certificates. | **Live** | [`PQBlocks/browser-pqc-verifier`](https://github.com/PQBlocks/browser-pqc-verifier) |
 | **[`pqblocks-fips-check`](fips-check.md)** | Python CLI & Library | Cryptographic boundary validator and dual-mode hybrid exchange conformance engine. | **Live** | [`PQBlocks/fips-boundary-validator`](https://github.com/PQBlocks/fips-boundary-validator) |
-| **`pqblock-qse-sdk`** | Python / C Client | Quantum-Safe Endpoint client SDK: automated TLS 1.3 hybrid group negotiation and policy synchronization. | *In Development* | [Roadmap](#upcoming-sdk-roadmap) |
 | **`pqc-cbom-cyclonedx-cli-sdk`** | TypeScript & Python | Programmatic SDK for CycloneDX 1.6 CBOM generation, CNSA 2.0 readiness scoring, and CI gates. | *In Development* | [Roadmap](#upcoming-sdk-roadmap) |
 | **`pqc-attestation-sdk`** | Python & Rust | Hardware enclave attestation quote verification and post-quantum token derivation. | *Planned* | [Roadmap](#upcoming-sdk-roadmap) |
 
@@ -113,6 +113,21 @@ pip install pqblocks-fips-check
 
 ---
 
+### 4. Post-Quantum Cryptography SDK: [`pqblocks-qse-sdk`](qse-sdk.md) (`pqblock-qse-sdk`)
+
+Unified post-quantum cryptography SDK providing standard façades for NIST FIPS 203, FIPS 204, and FIPS 205:
+
+* **Unified Cryptographic Façades:** High-level `keypair()`, `encapsulate()`, `decapsulate()`, `sign()`, and `verify()` across ML-KEM-512/768/1024, ML-DSA-44/65/87, and SLH-DSA variants.
+* **Deterministic Test Vector Corpus:** Built-in `corpus_generate()` yielding reproducible multi-algorithm test corpora via 64-bit SplitMix PRNG and SHA-256 derivation.
+* **Static Analysis AST Guard:** Built-in `harden_check_unsafe_api()` static analyzer detects deprecated classical RSA/ECC cryptography imports in codebase targets.
+* **Cross-Language Interoperability:** Output equivalence verified byte-for-byte across Python, Java, and .NET.
+
+```bash
+pip install git+https://github.com/PQBlocks/pqblock-qse-sdk
+```
+
+---
+
 ## SDK Quickstarts
 
 === "Core SDK (Python)"
@@ -130,6 +145,25 @@ pip install pqblocks-fips-check
     kem = lib.PQBLOCKS_KEM_X25519_MLKEM768_new()
     assert kem is not None
     print("PQBlocks hybrid core initialized successfully.")
+    ```
+
+=== "QSE SDK (Python)"
+
+    ```python title="Unified ML-KEM & ML-DSA quickstart"
+    from pqblocks_qse_sdk import keypair, encapsulate, decapsulate, sign, verify
+
+    # 1. Key encapsulation (ML-KEM-768)
+    pk_kem, sk_kem = keypair("ml-kem-768")
+    ct, ss_sender = encapsulate(pk_kem, "ml-kem-768")
+    ss_receiver = decapsulate(sk_kem, ct, "ml-kem-768")
+    assert ss_sender == ss_receiver
+
+    # 2. Digital signature (ML-DSA-65)
+    pk_sig, sk_sig = keypair("ml-dsa-65")
+    sig = sign(sk_sig, b"Authenticated message", "ml-dsa-65")
+    valid = verify(pk_sig, sig, b"Authenticated message", "ml-dsa-65")
+    assert valid is True
+    print("QSE post-quantum operations verified.")
     ```
 
 === "Browser SDK (JavaScript)"
@@ -193,15 +227,11 @@ pip install pqblocks-fips-check
 
 PQBlocks is actively expanding its SDK portfolio to cover additional enterprise application surfaces:
 
-### 1. `pqblock-qse-sdk` (Quantum-Safe Endpoint Client SDK)
-* **Target Environment:** Python & C client daemons running on endpoint nodes, workstations, and IoT gateways.
-* **Core Capabilities:** Automates client-side hybrid TLS 1.3 group negotiation (`X25519MLKEM768`), continuous cryptographic posture checks, and synchronization with enterprise policy controllers.
-
-### 2. `pqc-cbom-cyclonedx-cli-sdk` (CycloneDX CBOM & Governance SDK)
+### 1. `pqc-cbom-cyclonedx-cli-sdk` (CycloneDX CBOM & Governance SDK)
 * **Target Environment:** Node.js / TypeScript & Python CLI for continuous integration (CI) and build pipelines.
 * **Core Capabilities:** Programmatic API to scan source trees, binary symbols, and lockfiles to generate compliant CycloneDX 1.6 CBOM inventories. Embeds CNSA 2.0 migration countdown scoring and automated CI merge blocking.
 
-### 3. `pqc-attestation-sdk` (Hardware Enclave & KMS Attestation SDK)
+### 2. `pqc-attestation-sdk` (Hardware Enclave & KMS Attestation SDK)
 * **Target Environment:** Python & Rust applications running in confidential computing environments (AWS Nitro Enclaves, GCP Confidential Space, AMD SEV-SNP).
 * **Core Capabilities:** Validates ML-DSA signed hardware enclave quotes and enables post-quantum key derivation rooted in hardware trust anchors.
 

@@ -248,6 +248,7 @@ def doc_cards(p):
 def package_page(p, siblings):
     a = area_of(p["area"])
     intro = [l for l in p["intro"] if not l.lower().startswith(("**status", "status:"))]
+    intro = [re.sub(r"\[([^\]]+)\]\(#([^\)]+)\)", lambda m: "[%s](%s#%s)" % (m.group(1), p["url"], m.group(2)), l) for l in intro]
     title = "%s: %s" % (p["package"], TITLES.get(p["package"]) or headline(p["summary"]))
     if p.get("import_npm"):
         import_spec = "`import ... from '%s'`" % p["import_npm"]
@@ -368,7 +369,6 @@ def index_page(pkgs):
             "The following end-to-end SDKs are in active development across endpoint, governance, and confidential computing tiers:\n",
             "| Upcoming SDK | Target Runtime | Primary Role | Status |",
             "|---|---|---|:---:|",
-            "| `pqblock-qse-sdk` | Python / C Client | Quantum-Safe Endpoint client SDK: automated TLS 1.3 hybrid negotiation and policy sync. | In development |",
             "| `pqc-cbom-cyclonedx-cli-sdk` | TypeScript & Python | Programmatic SDK for CycloneDX 1.6 CBOM generation and CNSA 2.0 readiness scoring. | In development |",
             "| `pqc-attestation-sdk` | Python & Rust | Hardware enclave attestation quote verification and post-quantum token derivation. | Planned |",
             "",
