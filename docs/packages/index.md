@@ -14,6 +14,12 @@ schema: {"@context": "https://schema.org", "@type": "ItemList", "name": "PQBlock
 
 <div class="grid cards" markdown>
 
+-   :material-cube-scan:{ .lg .middle } __[Software Development Kits](sdks.md)__ · 1 SDK
+
+    ---
+
+    End-to-end development kits bundling native C acceleration, multi-language bindings, and policy governance.
+
 -   :material-shield-key-outline:{ .lg .middle } __[PQ cryptography](crypto.md)__ · 5 packages
 
     ---
@@ -46,7 +52,17 @@ schema: {"@context": "https://schema.org", "@type": "ItemList", "name": "PQBlock
 
 </div>
 
-## :material-shield-key-outline: PQ cryptography
+## :material-cube-scan: Software Development Kits (SDKs)
+
+Full-featured development kits providing high-level APIs, C shared libraries, and policy enforcement:
+
+| SDK | What it provides | Language & Native Bindings | Install |
+|---|---|---|---|
+| [`pqblocks-core`](core.md) | Post-quantum hybrid cryptography core SDK with C shared libraries and policy enforcement. | Python + Native C (`libpqblocks`) | `pip install git+https://github.com/PQBlocks/hybrid-sdk` |
+
+## :material-view-grid-outline: Modular Building Blocks by Area
+
+### :material-shield-key-outline: PQ cryptography
 
 | Package | What it does | Install |
 |---|---|---|
@@ -56,7 +72,7 @@ schema: {"@context": "https://schema.org", "@type": "ItemList", "name": "PQBlock
 | [`pqblocks-jose`](jose.md) | Post-quantum hybrid JOSE library supporting ML-KEM and ML-DSA JWE and JWS tokens. | `pip install pqblocks-jose` |
 | [`pqblocks-primitives`](primitives.md) | Production-ready integrated post-quantum cryptographic primitives (ML-KEM, ML-DSA, SLH-DSA, and hybrid schemes). | `pip install pqblocks-primitives` |
 
-## :material-radar: Migration & readiness
+### :material-radar: Migration & readiness
 
 | Package | What it does | Install |
 |---|---|---|
@@ -69,7 +85,7 @@ schema: {"@context": "https://schema.org", "@type": "ItemList", "name": "PQBlock
 | [`pqblocks-pqc-compat-registry`](pqc-compat-registry.md) | A machine-readable registry of NIST post-quantum algorithm identifiers (FIPS 203/204/205 OIDs) for compliance tooling. | `npm install @pqblocks/pqc-compat-registry` |
 | [`pqblocks-scan`](scan.md) | Cryptography inventory scanner: finds classical and post-quantum algorithms in source code or a TLS endpoint and… | `pip install pqblocks-scan` |
 
-## :material-transit-connection-variant: Interoperability
+### :material-transit-connection-variant: Interoperability
 
 | Package | What it does | Install |
 |---|---|---|
@@ -78,7 +94,7 @@ schema: {"@context": "https://schema.org", "@type": "ItemList", "name": "PQBlock
 | [`pqblocks-tls-interop`](tls-interop.md) | TLS 1.3 hybrid key exchange (X25519MLKEM768 / RFC 10024) endpoint probe, downgrade detector, and key material validator. | `pip install pqblocks-tls-interop` |
 | [`pqblocks-wire`](wire.md) | Length-prefixed container format (PQCWF1) for ML-KEM ciphertexts and ML-DSA / SLH-DSA signatures, with thin wrappers… | `pip install pqblocks-wire` |
 
-## :material-check-decagram-outline: Conformance
+### :material-check-decagram-outline: Conformance
 
 | Package | What it does | Install |
 |---|---|---|
@@ -87,7 +103,7 @@ schema: {"@context": "https://schema.org", "@type": "ItemList", "name": "PQBlock
 | [`pqblocks-fips-check`](fips-check.md) | FIPS 203/204 boundary validator and hybrid key exchange (X25519 + ML-KEM-768) with ML-DSA-65 signatures and CBOM… | `pip install pqblocks-fips-check` |
 | [`pqblocks-pqc-acvp-runner`](pqc-acvp-runner.md) | NIST FIPS 203 and 204 ACVP Known Answer Test runner and Wycheproof harness in Node.js. | `npm install @pqblocks/pqc-acvp-runner` |
 
-## :material-chart-bell-curve-cumulative: Quantum-inspired
+### :material-chart-bell-curve-cumulative: Quantum-inspired
 
 | Package | What it does | Install |
 |---|---|---|

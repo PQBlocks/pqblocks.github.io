@@ -148,9 +148,11 @@ nav:
   - Transition map: transition-map.md
   - Packages:
     - packages/index.md
+    - Software Development Kits (SDKs):
+      - Overview: packages/sdks.md
+      - pqblocks-core: packages/core.md
     - PQ cryptography:
       - Overview: packages/crypto.md
-      - pqblocks-core: packages/core.md
       - pqblocks-files: packages/files.md
       - pqblocks-fips-dualmode: packages/fips-dualmode.md
       - pqblocks-jose: packages/jose.md

@@ -94,6 +94,17 @@ def figure(slug, size=""):
     return '<div class="pqb-figure%s" data-figure="%s" data-label="%s"></div>\n' % (size, name, label)
 
 
+def is_sdk(p):
+    """True if package is an end-to-end Software Development Kit rather than an individual dependency."""
+    return (
+        p.get("has_c_sdk") is True
+        or "-sdk" in p.get("repo", "").lower()
+        or "crypto-sdk" in p.get("keywords", [])
+        or "sdk" in p.get("keywords", [])
+        or "sdk" in p["package"].lower()
+    )
+
+
 def short(pkg):
     return pkg["package"][len("pqblocks-"):]
 
@@ -324,12 +335,26 @@ def index_page(pkgs):
            '<p class="pqb-lead">%d packages across five areas of the post-quantum transition. Each one installs '
            "on its own, ships its own tests and evidence, and states what it does not do.</p>\n" % len(pkgs),
            '<div class="grid cards" markdown>\n']
+    sdks = [p for p in pkgs if is_sdk(p)]
+    if sdks:
+        out.append("-   :material-cube-scan:{ .lg .middle } __[Software Development Kits](sdks.md)__ · %d SDK\n\n    ---\n\n    "
+                   "End-to-end development kits bundling native C acceleration, multi-language bindings, and policy governance.\n" % len(sdks))
     for name, slug, icon, scope in AREAS:
         n = sum(1 for p in pkgs if p["area"] == name)
         out.append("-   :%s:{ .lg .middle } __[%s](%s.md)__ · %d packages\n\n    ---\n\n    %s\n" % (icon, name, slug, n, scope))
     out.append("</div>\n")
+    if sdks:
+        out += ["## :material-cube-scan: Software Development Kits (SDKs)\n",
+                "Full-featured development kits providing high-level APIs, C shared libraries, and policy enforcement:\n",
+                "| SDK | What it provides | Language & Native Bindings | Install |",
+                "|---|---|---|---|"]
+        for p in sdks:
+            bindings = "Python + Native C (`libpqblocks`)" if p.get("has_c_sdk") else p.get("ecosystem", "Python")
+            out += ["| [`%s`](%s.md) | %s | %s | `%s` |" % (p["package"], short(p), desc(p["summary"], 120), bindings, p["install"])]
+        out.append("")
+        out.append("## :material-view-grid-outline: Modular Building Blocks by Area\n")
     for name, slug, icon, _ in AREAS:
-        out += ["## :%s: %s\n" % (icon, name), "| Package | What it does | Install |", "|---|---|---|"]
+        out += ["### :%s: %s\n" % (icon, name), "| Package | What it does | Install |", "|---|---|---|"]
         out += ["| [`%s`](%s.md) | %s | `%s` |" % (p["package"], short(p), desc(p["summary"], 120), p["install"])
                 for p in pkgs if p["area"] == name]
         out.append("")
@@ -474,7 +499,7 @@ def main():
         if p.get("held"):
             print("held back: %s (%s)" % (p["package"], p["held"]))
     stale = [f for f in os.listdir(os.path.join(DOCS, "packages"))
-             if f.endswith(".md") and f[:-3] not in {short(p) for p in pkgs} | {a[1] for a in AREAS} | {"index"}]
+             if f.endswith(".md") and f[:-3] not in {short(p) for p in pkgs} | {a[1] for a in AREAS} | {"index", "sdks"}]
     os.makedirs(os.path.join(ROOT, ".cache"), exist_ok=True)
     for f in stale:                                # a package that is no longer published loses its page
         os.replace(os.path.join(DOCS, "packages", f), os.path.join(ROOT, ".cache", "retired-" + f))
@@ -521,9 +546,14 @@ def main():
 def write_nav(pkgs):
     """Rewrite the Packages section of mkdocs.yml so new packages appear without hand edits."""
     nav = ["  - Packages:", "    - packages/index.md"]
+    sdks = [p for p in pkgs if is_sdk(p)]
+    if sdks:
+        nav += ["    - Software Development Kits (SDKs):", "      - Overview: packages/sdks.md"]
+        for p in sdks:
+            nav += ["      - %s: packages/%s.md" % (p["package"], short(p))]
     for name, slug, _, _ in AREAS:
         nav += ["    - %s:" % name, "      - Overview: packages/%s.md" % slug]
-        nav += ["      - %s: packages/%s.md" % (p["package"], short(p)) for p in pkgs if p["area"] == name]
+        nav += ["      - %s: packages/%s.md" % (p["package"], short(p)) for p in pkgs if p["area"] == name and not is_sdk(p)]
     path = os.path.join(ROOT, "mkdocs.yml")
     text = open(path, encoding="utf-8").read()
     new = re.sub(r"  - Packages:\n(?:    .*\n)+", lambda _: "\n".join(nav) + "\n", text, count=1)
