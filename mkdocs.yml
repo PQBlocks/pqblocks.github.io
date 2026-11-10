@@ -167,7 +167,6 @@ nav:
       - pqblocks-jwe-audit: packages/jwe-audit.md
       - pqblocks-lint: packages/lint.md
       - pqblocks-policy: packages/policy.md
-      - pqblocks-pqc-compat-registry: packages/pqc-compat-registry.md
       - pqblocks-scan: packages/scan.md
     - Interoperability:
       - Overview: packages/interop.md
