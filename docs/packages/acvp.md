@@ -152,3 +152,4 @@ Every PQBlocks package ships the same evidence set, so each claim can be checked
 
 - [`pqblocks-browser-pqc-verifier`](browser-pqc-verifier.md): Post-quantum certificate and chain verifier for browsers and Node.js using ML-DSA/SLH-DSA from @noble/post-quantum.
 - [`pqblocks-fips-check`](fips-check.md): FIPS 203/204 boundary validator and hybrid key exchange (X25519 + ML-KEM-768) with ML-DSA-65 signatures and CBOM…
+- [`pqblocks-pqc-acvp-runner`](pqc-acvp-runner.md): NIST FIPS 203 and 204 ACVP Known Answer Test runner and Wycheproof harness in Node.js.

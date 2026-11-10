@@ -163,6 +163,7 @@ nav:
       - pqblocks-jwe-audit: packages/jwe-audit.md
       - pqblocks-lint: packages/lint.md
       - pqblocks-policy: packages/policy.md
+      - pqblocks-pqc-compat-registry: packages/pqc-compat-registry.md
       - pqblocks-scan: packages/scan.md
     - Interoperability:
       - Overview: packages/interop.md
@@ -175,6 +176,7 @@ nav:
       - pqblocks-acvp: packages/acvp.md
       - pqblocks-browser-pqc-verifier: packages/browser-pqc-verifier.md
       - pqblocks-fips-check: packages/fips-check.md
+      - pqblocks-pqc-acvp-runner: packages/pqc-acvp-runner.md
     - Quantum-inspired:
       - Overview: packages/optimization.md
       - pqblocks-anneal-sa: packages/anneal-sa.md

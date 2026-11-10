@@ -32,6 +32,8 @@ description: "Current version, status and install channel of every PQBlocks pack
 | [`pqblocks-lint`](packages/lint.md) | 0.1.0 | Alpha | [PyPI](https://pypi.org/project/pqblocks-lint/) | [CHANGELOG](https://github.com/PQBlocks/pqc-lint/blob/main/CHANGELOG.md) |
 | [`pqblocks-policy`](packages/policy.md) | 0.1.0 | Alpha | [PyPI](https://pypi.org/project/pqblocks-policy/) | [CHANGELOG](https://github.com/PQBlocks/crypto-policy-engine/blob/main/CHANGELOG.md) |
 | [`pqblocks-population-anneal`](packages/population-anneal.md) | 0.1.0 | Alpha | [PyPI](https://pypi.org/project/pqblocks-population-anneal/) | [CHANGELOG](https://github.com/PQBlocks/population-annealing/blob/main/CHANGELOG.md) |
+| [`pqblocks-pqc-acvp-runner`](packages/pqc-acvp-runner.md) | 1.0.0 | alpha | [npm](https://www.npmjs.com/package/@pqblocks/pqc-acvp-runner) | [CHANGELOG](https://github.com/PQBlocks/pqc-acvp-runner/blob/main/CHANGELOG.md) |
+| [`pqblocks-pqc-compat-registry`](packages/pqc-compat-registry.md) | 1.0.0 | alpha | [npm](https://www.npmjs.com/package/@pqblocks/pqc-compat-registry) | [CHANGELOG](https://github.com/PQBlocks/pqc-compat-registry/blob/main/CHANGELOG.md) |
 | [`pqblocks-primitives`](packages/primitives.md) | 0.1.0 | Alpha | [PyPI](https://pypi.org/project/pqblocks-primitives/) | [CHANGELOG](https://github.com/PQBlocks/fips-pqc-primitives/blob/main/CHANGELOG.md) |
 | [`pqblocks-qiea`](packages/qiea.md) | 0.1.0 | Alpha | [PyPI](https://pypi.org/project/pqblocks-qiea/) | [CHANGELOG](https://github.com/PQBlocks/quantum-inspired-evolutionary/blob/main/CHANGELOG.md) |
 | [`pqblocks-qubo`](packages/qubo.md) | 0.1.0 | Alpha | [PyPI](https://pypi.org/project/pqblocks-qubo/) | [CHANGELOG](https://github.com/PQBlocks/qubo-core/blob/main/CHANGELOG.md) |

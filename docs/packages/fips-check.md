@@ -167,3 +167,4 @@ Every PQBlocks package ships the same evidence set, so each claim can be checked
 
 - [`pqblocks-acvp`](acvp.md): Cross-implementation NIST ACVP conformance harness for FIPS 203 (ML-KEM) and FIPS 204 (ML-DSA).
 - [`pqblocks-browser-pqc-verifier`](browser-pqc-verifier.md): Post-quantum certificate and chain verifier for browsers and Node.js using ML-DSA/SLH-DSA from @noble/post-quantum.
+- [`pqblocks-pqc-acvp-runner`](pqc-acvp-runner.md): NIST FIPS 203 and 204 ACVP Known Answer Test runner and Wycheproof harness in Node.js.
