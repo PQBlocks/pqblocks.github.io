@@ -1,5 +1,5 @@
 ---
-title: "pqblocks-pqc-acvp-runner: NIST FIPS 203 and 204 ACVP Known Answer Test"
+title: "pqblocks-pqc-acvp-runner: Node.js FIPS 203/204 ACVP test runner"
 description: "NIST FIPS 203 and 204 ACVP Known Answer Test runner and Wycheproof harness in Node.js."
 schema: {"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "pqblocks-pqc-acvp-runner", "description": "NIST FIPS 203 and 204 ACVP Known Answer Test runner and Wycheproof harness in Node.js.", "codeRepository": "https://github.com/PQBlocks/pqc-acvp-runner", "url": "https://pqblocks.github.io/packages/pqc-acvp-runner/", "programmingLanguage": {"@type": "ComputerLanguage", "name": "JavaScript"}, "runtimePlatform": "Node.js / Modern Browsers", "license": "https://www.apache.org/licenses/LICENSE-2.0", "version": "1.0.0", "keywords": "acvp, javascript, ml-dsa, ml-kem, post-quantum, pq-conformance, pqblocks, pqc, wycheproof", "applicationCategory": "Conformance", "isAccessibleForFree": true, "author": {"@type": "Organization", "name": "PQBlocks", "url": "https://pqblocks.github.io"}}
 ---

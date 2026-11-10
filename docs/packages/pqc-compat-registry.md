@@ -1,5 +1,5 @@
 ---
-title: "pqblocks-pqc-compat-registry: A machine-readable registry of NIST"
+title: "pqblocks-pqc-compat-registry: machine-readable registry of NIST post-quantum OIDs"
 description: "A machine-readable registry of NIST post-quantum algorithm identifiers (FIPS 203/204/205 OIDs) for compliance tooling."
 schema: {"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "pqblocks-pqc-compat-registry", "description": "A machine-readable registry of NIST post-quantum algorithm identifiers (FIPS 203/204/205 OIDs) for compliance tooling.", "codeRepository": "https://github.com/PQBlocks/pqc-compat-registry", "url": "https://pqblocks.github.io/packages/pqc-compat-registry/", "programmingLanguage": {"@type": "ComputerLanguage", "name": "JavaScript"}, "runtimePlatform": "Node.js / Modern Browsers", "license": "https://www.apache.org/licenses/LICENSE-2.0", "version": "1.0.0", "keywords": "fips-203, fips-204, fips-205, javascript, ml-kem, post-quantum, pq-migration, pqblocks, pqc, registry", "applicationCategory": "Migration & readiness", "isAccessibleForFree": true, "author": {"@type": "Organization", "name": "PQBlocks", "url": "https://pqblocks.github.io"}}
 ---

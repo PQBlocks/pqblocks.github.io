@@ -1,5 +1,5 @@
 ---
-title: "pqblocks-fips-check: FIPS 203/204 input and boundary validation"
+title: "pqblocks-fips-check: FIPS 203/204 boundary validation and conformance SDK"
 description: "FIPS 203/204 boundary validator and hybrid key exchange (X25519 + ML-KEM-768) with ML-DSA-65 signatures and CBOM reporting."
 schema: {"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "pqblocks-fips-check", "description": "FIPS 203/204 boundary validator and hybrid key exchange (X25519 + ML-KEM-768) with ML-DSA-65 signatures and CBOM reporting.", "codeRepository": "https://github.com/PQBlocks/fips-boundary-validator", "url": "https://pqblocks.github.io/packages/fips-check/", "programmingLanguage": {"@type": "ComputerLanguage", "name": "Python"}, "runtimePlatform": "Python >=3.11", "license": "https://www.apache.org/licenses/LICENSE-2.0", "version": "0.1.0", "keywords": "boundary-validation, cnsa, fips-203, fips-204, ml-dsa, ml-kem, post-quantum, pq-conformance, pqblocks, pqc, python", "applicationCategory": "Conformance", "isAccessibleForFree": true, "author": {"@type": "Organization", "name": "PQBlocks", "url": "https://pqblocks.github.io"}}
 ---

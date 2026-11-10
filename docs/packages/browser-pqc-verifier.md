@@ -1,5 +1,5 @@
 ---
-title: "pqblocks-browser-pqc-verifier: Post-quantum certificate and chain verifier"
+title: "pqblocks-browser-pqc-verifier: browser & Node.js post-quantum verifier SDK"
 description: "Post-quantum certificate and chain verifier for browsers and Node.js using ML-DSA/SLH-DSA from @noble/post-quantum."
 schema: {"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "pqblocks-browser-pqc-verifier", "description": "Post-quantum certificate and chain verifier for browsers and Node.js using ML-DSA/SLH-DSA from @noble/post-quantum.", "codeRepository": "https://github.com/PQBlocks/browser-pqc-verifier", "url": "https://pqblocks.github.io/packages/browser-pqc-verifier/", "programmingLanguage": {"@type": "ComputerLanguage", "name": "JavaScript"}, "runtimePlatform": "Node.js / Modern Browsers", "license": "https://www.apache.org/licenses/LICENSE-2.0", "version": "0.1.0", "keywords": "certificate, chain, javascript, ml-dsa, post-quantum, pq-conformance, pq-crypto, pqblocks, pqc, slh-dsa, verification", "applicationCategory": "Conformance", "isAccessibleForFree": true, "author": {"@type": "Organization", "name": "PQBlocks", "url": "https://pqblocks.github.io"}}
 ---

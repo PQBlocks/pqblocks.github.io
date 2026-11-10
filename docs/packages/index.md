@@ -14,11 +14,11 @@ schema: {"@context": "https://schema.org", "@type": "ItemList", "name": "PQBlock
 
 <div class="grid cards" markdown>
 
--   :material-cube-scan:{ .lg .middle } __[Software Development Kits](sdks.md)__ · 1 SDK
+-   :material-cube-scan:{ .lg .middle } __[Software Development Kits](sdks.md)__ · 3 SDKs
 
     ---
 
-    End-to-end development kits bundling native C acceleration, multi-language bindings, and policy governance.
+    End-to-end development kits bundling native C acceleration, client runtimes, and policy governance.
 
 -   :material-shield-key-outline:{ .lg .middle } __[PQ cryptography](crypto.md)__ · 5 packages
 
@@ -54,11 +54,25 @@ schema: {"@context": "https://schema.org", "@type": "ItemList", "name": "PQBlock
 
 ## :material-cube-scan: Software Development Kits (SDKs)
 
-Full-featured development kits providing high-level APIs, C shared libraries, and policy enforcement:
+Full-featured development kits providing high-level APIs, client runtimes, and policy enforcement across environments:
 
-| SDK | What it provides | Language & Native Bindings | Install |
+| SDK | What it provides | Language & Runtime | Install |
 |---|---|---|---|
 | [`pqblocks-core`](core.md) | Post-quantum hybrid cryptography core SDK with C shared libraries and policy enforcement. | Python + Native C (`libpqblocks`) | `pip install git+https://github.com/PQBlocks/hybrid-sdk` |
+| [`pqblocks-browser-pqc-verifier`](browser-pqc-verifier.md) | Post-quantum certificate and chain verifier for browsers and Node.js using ML-DSA/SLH-DSA from @noble/post-quantum. | JavaScript / TypeScript (Browser & Node.js) | `npm install @pqblocks/browser-pqc-verifier` |
+| [`pqblocks-fips-check`](fips-check.md) | FIPS 203/204 boundary validator and hybrid key exchange (X25519 + ML-KEM-768) with ML-DSA-65 signatures and CBOM… | Python (CLI & Library) | `pip install pqblocks-fips-check` |
+
+### Upcoming SDK Roadmap
+
+The following end-to-end SDKs are in active development across endpoint, governance, and confidential computing tiers:
+
+| Upcoming SDK | Target Runtime | Primary Role | Status |
+|---|---|---|:---:|
+| `pqblock-qse-sdk` | Python / C Client | Quantum-Safe Endpoint client SDK: automated TLS 1.3 hybrid negotiation and policy sync. | In development |
+| `pqc-cbom-cyclonedx-cli-sdk` | TypeScript & Python | Programmatic SDK for CycloneDX 1.6 CBOM generation and CNSA 2.0 readiness scoring. | In development |
+| `pqc-attestation-sdk` | Python & Rust | Hardware enclave attestation quote verification and post-quantum token derivation. | Planned |
+
+[Explore the complete SDK portfolio, architecture, and guides →](sdks.md){ .md-button }
 
 ## :material-view-grid-outline: Modular Building Blocks by Area
 

@@ -39,6 +39,12 @@ AREAS = [  # (catalog area, page slug, material icon, one-line scope)
 # search titles: what someone types, in under ~60 characters with the package name
 TITLES = {
     "pqblocks-core": "hybrid ML-KEM + X25519 and ML-DSA + Ed25519 SDK",
+    "pqblocks-browser-pqc-verifier": "browser & Node.js post-quantum verifier SDK",
+    "pqblocks-fips-check": "FIPS 203/204 boundary validation and conformance SDK",
+    "pqblocks-fips-dualmode": "dual-mode FIPS 140-3 and post-quantum crypto envelope",
+    "pqblocks-pqc-acvp-runner": "Node.js FIPS 203/204 ACVP test runner",
+    "pqblocks-pqc-compat-registry": "machine-readable registry of NIST post-quantum OIDs",
+    "pqblocks-sparse-bifurcation": "sparse Simulated Bifurcation solver for Ising and QUBO",
     "pqblocks-primitives": "ML-KEM, ML-DSA and SLH-DSA in Python",
     "pqblocks-jose": "post-quantum JWS and JWE (ML-DSA, ML-KEM)",
     "pqblocks-files": "post-quantum file encryption (ML-KEM + X25519)",
@@ -54,7 +60,6 @@ TITLES = {
     "pqblocks-tls-interop": "TLS 1.3 X25519MLKEM768 probe and checks",
     "pqblocks-csr-pop": "ML-KEM CSR with proof of possession",
     "pqblocks-acvp": "NIST ACVP conformance for ML-KEM and ML-DSA",
-    "pqblocks-fips-check": "FIPS 203/204 input and boundary validation",
     "pqblocks-qubo": "QUBO and Ising models and conversions",
     "pqblocks-qubo-bench": "benchmark harness for QUBO and Ising solvers",
     "pqblocks-bifurcation": "Simulated Bifurcation solver for QUBO and Ising",
@@ -99,6 +104,7 @@ def is_sdk(p):
     return (
         p.get("has_c_sdk") is True
         or "-sdk" in p.get("repo", "").lower()
+        or p["package"] in ("pqblocks-core", "pqblocks-browser-pqc-verifier", "pqblocks-fips-check")
         or "crypto-sdk" in p.get("keywords", [])
         or "sdk" in p.get("keywords", [])
         or "sdk" in p["package"].lower()
@@ -337,22 +343,38 @@ def index_page(pkgs):
            '<div class="grid cards" markdown>\n']
     sdks = [p for p in pkgs if is_sdk(p)]
     if sdks:
-        out.append("-   :material-cube-scan:{ .lg .middle } __[Software Development Kits](sdks.md)__ · %d SDK\n\n    ---\n\n    "
-                   "End-to-end development kits bundling native C acceleration, multi-language bindings, and policy governance.\n" % len(sdks))
+        out.append("-   :material-cube-scan:{ .lg .middle } __[Software Development Kits](sdks.md)__ · %d SDKs\n\n    ---\n\n    "
+                   "End-to-end development kits bundling native C acceleration, client runtimes, and policy governance.\n" % len(sdks))
     for name, slug, icon, scope in AREAS:
         n = sum(1 for p in pkgs if p["area"] == name)
         out.append("-   :%s:{ .lg .middle } __[%s](%s.md)__ · %d packages\n\n    ---\n\n    %s\n" % (icon, name, slug, n, scope))
     out.append("</div>\n")
     if sdks:
         out += ["## :material-cube-scan: Software Development Kits (SDKs)\n",
-                "Full-featured development kits providing high-level APIs, C shared libraries, and policy enforcement:\n",
-                "| SDK | What it provides | Language & Native Bindings | Install |",
+                "Full-featured development kits providing high-level APIs, client runtimes, and policy enforcement across environments:\n",
+                "| SDK | What it provides | Language & Runtime | Install |",
                 "|---|---|---|---|"]
         for p in sdks:
-            bindings = "Python + Native C (`libpqblocks`)" if p.get("has_c_sdk") else p.get("ecosystem", "Python")
+            if p.get("has_c_sdk"):
+                bindings = "Python + Native C (`libpqblocks`)"
+            elif p.get("ecosystem") == "npm":
+                bindings = "JavaScript / TypeScript (Browser & Node.js)"
+            else:
+                bindings = "Python (CLI & Library)"
             out += ["| [`%s`](%s.md) | %s | %s | `%s` |" % (p["package"], short(p), desc(p["summary"], 120), bindings, p["install"])]
         out.append("")
-        out.append("## :material-view-grid-outline: Modular Building Blocks by Area\n")
+        out += [
+            "### Upcoming SDK Roadmap\n",
+            "The following end-to-end SDKs are in active development across endpoint, governance, and confidential computing tiers:\n",
+            "| Upcoming SDK | Target Runtime | Primary Role | Status |",
+            "|---|---|---|:---:|",
+            "| `pqblock-qse-sdk` | Python / C Client | Quantum-Safe Endpoint client SDK: automated TLS 1.3 hybrid negotiation and policy sync. | In development |",
+            "| `pqc-cbom-cyclonedx-cli-sdk` | TypeScript & Python | Programmatic SDK for CycloneDX 1.6 CBOM generation and CNSA 2.0 readiness scoring. | In development |",
+            "| `pqc-attestation-sdk` | Python & Rust | Hardware enclave attestation quote verification and post-quantum token derivation. | Planned |",
+            "",
+            "[Explore the complete SDK portfolio, architecture, and guides →](sdks.md){ .md-button }\n",
+            "## :material-view-grid-outline: Modular Building Blocks by Area\n"
+        ]
     for name, slug, icon, _ in AREAS:
         out += ["### :%s: %s\n" % (icon, name), "| Package | What it does | Install |", "|---|---|---|"]
         out += ["| [`%s`](%s.md) | %s | `%s` |" % (p["package"], short(p), desc(p["summary"], 120), p["install"])

@@ -1,5 +1,5 @@
 ---
-title: "pqblocks-fips-dualmode: Dual-mode cryptographic abstraction switching"
+title: "pqblocks-fips-dualmode: dual-mode FIPS 140-3 and post-quantum crypto envelope"
 description: "Dual-mode cryptographic abstraction switching between FIPS 140-3 classical crypto (ECDH/AES-GCM) and post-quantum crypto (ML-KEM/ML-DSA)."
 schema: {"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "pqblocks-fips-dualmode", "description": "Dual-mode cryptographic abstraction switching between FIPS 140-3 classical crypto (ECDH/AES-GCM) and post-quantum crypto (ML-KEM/ML-DSA).", "codeRepository": "https://github.com/PQBlocks/fips-dualmode", "url": "https://pqblocks.github.io/packages/fips-dualmode/", "programmingLanguage": {"@type": "ComputerLanguage", "name": "Python"}, "runtimePlatform": "Python >=3.11", "license": "https://www.apache.org/licenses/LICENSE-2.0", "version": "0.1.0", "keywords": "aes-gcm, dual-mode, ecdh, fips-140-3, ml-dsa, ml-kem, post-quantum, pqblocks, pqc, python", "applicationCategory": "PQ cryptography", "isAccessibleForFree": true, "author": {"@type": "Organization", "name": "PQBlocks", "url": "https://pqblocks.github.io"}}
 ---

@@ -45,38 +45,40 @@ A cryptographically relevant quantum computer (CRQC) running Shor's algorithm wo
 
 Coding assistants can use the same catalog through the [MCP server, Claude skill and Cursor rules](ai/index.md).
 
-## Core Software Development Kit (SDK)
+## Software Development Kits (SDKs)
 
 <div class="pqb-feature" markdown>
 
 <div class="pqb-feature__text" markdown>
 
-While individual PQBlocks libraries provide targeted point solutions (such as ACVP test runners or CBOM scanners), the **PQBlocks Core SDK** ([`pqblocks-core`](packages/core.md) / [`hybrid-sdk`](https://github.com/PQBlocks/hybrid-sdk)) serves as the comprehensive foundation for post-quantum application development.
+While individual PQBlocks libraries provide targeted point solutions (such as ACVP test runners or CBOM scanners), **PQBlocks SDKs** serve as comprehensive end-to-end toolkits tailored across backend, browser, and security boundary tiers:
 
-It delivers:
+- **Core Hybrid SDK ([`pqblocks-core`](packages/core.md))**: Native C shared libraries (`libpqblocks_kem.so`, `libpqblocks_sig.so`) bound to Python for high-throughput hybrid KEM (ML-KEM-768 + X25519) and composite signatures (ML-DSA-65 + Ed25519).
+- **Browser & Edge Client SDK ([`browser-pqc-verifier`](packages/browser-pqc-verifier.md))**: Zero-dependency JavaScript/TypeScript client SDK for validating post-quantum X.509 certificate chains and ML-DSA signatures directly in client browsers and edge runtimes.
+- **FIPS Boundary & Conformance SDK ([`pqblocks-fips-check`](packages/fips-check.md))**: Cryptographic boundary inspection, dual-mode hybrid exchange, and compliance reporting engine.
 
-- **Dual-Layer Architecture:** Native C shared libraries (`libpqblocks_kem.so`, `libpqblocks_sig.so`) bound to high-level Python APIs.
-- **Production Hybrid Schemes:** Implements NIST FIPS 203 (ML-KEM-768 + X25519) key encapsulation and NIST FIPS 204 (ML-DSA-65 + Ed25519) composite signatures.
-- **Policy-as-Code Governance:** Active cryptographic policy enforcement preventing silent downgrades to classical-only cryptography.
-- **C/C++ Header Tooling:** Ships standard C headers (`pqblocks_kem.h`, `pqblocks_sig.h`, `pqblocks_policy.h`, `pqblocks_hsm.h`) and CMake configuration.
-
-[Software Development Kits (SDKs)](packages/sdks.md){ .md-button .md-button--primary }
-[Core SDK documentation](packages/core.md){ .md-button }
-[SDK repository](https://github.com/PQBlocks/hybrid-sdk){ .md-button }
+[Explore All SDKs](packages/sdks.md){ .md-button .md-button--primary }
+[Package catalog](packages/index.md){ .md-button }
 
 </div>
 
 <div class="pqb-feature__figure" markdown>
 
-=== "Python"
+=== "Core SDK (Python)"
 
     ```python title="Hybrid KEM with pqblocks-core"
     --8<-- "includes/quickstart/core.py"
     ```
 
-=== "C / Native CMake"
+=== "Browser SDK (JavaScript)"
 
-    ```bash title="Build native SDK shared libraries"
+    ```javascript title="Verify post-quantum chain in browser"
+    --8<-- "includes/quickstart/browser-pqc-verifier.js"
+    ```
+
+=== "Native C / CMake"
+
+    ```bash title="Build native Core SDK"
     git clone https://github.com/PQBlocks/hybrid-sdk.git
     cd hybrid-sdk
     cmake -B build -S . && cmake --build build

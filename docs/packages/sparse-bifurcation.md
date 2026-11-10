@@ -1,5 +1,5 @@
 ---
-title: "pqblocks-sparse-bifurcation: Sparse Discrete Simulated Bifurcation"
+title: "pqblocks-sparse-bifurcation: sparse Simulated Bifurcation solver for Ising and QUBO"
 description: "Sparse Discrete Simulated Bifurcation (dSB) heuristic solver for large-scale Ising and QUBO combinatorial optimization."
 schema: {"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "pqblocks-sparse-bifurcation", "description": "Sparse Discrete Simulated Bifurcation (dSB) heuristic solver for large-scale Ising and QUBO combinatorial optimization.", "codeRepository": "https://github.com/PQBlocks/sparse-bifurcation", "url": "https://pqblocks.github.io/packages/sparse-bifurcation/", "programmingLanguage": {"@type": "ComputerLanguage", "name": "Python"}, "runtimePlatform": "Python >=3.11", "license": "https://www.apache.org/licenses/LICENSE-2.0", "version": "0.1.0", "keywords": "bifurcation, ising, optimization, pqblocks, python, quantum-inspired, qubo, simulated-bifurcation, sparse, sparse-matrix", "applicationCategory": "Quantum-inspired", "isAccessibleForFree": true, "author": {"@type": "Organization", "name": "PQBlocks", "url": "https://pqblocks.github.io"}}
 ---

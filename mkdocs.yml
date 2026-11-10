@@ -151,6 +151,8 @@ nav:
     - Software Development Kits (SDKs):
       - Overview: packages/sdks.md
       - pqblocks-core: packages/core.md
+      - pqblocks-browser-pqc-verifier: packages/browser-pqc-verifier.md
+      - pqblocks-fips-check: packages/fips-check.md
     - PQ cryptography:
       - Overview: packages/crypto.md
       - pqblocks-files: packages/files.md
@@ -176,8 +178,6 @@ nav:
     - Conformance:
       - Overview: packages/conformance.md
       - pqblocks-acvp: packages/acvp.md
-      - pqblocks-browser-pqc-verifier: packages/browser-pqc-verifier.md
-      - pqblocks-fips-check: packages/fips-check.md
       - pqblocks-pqc-acvp-runner: packages/pqc-acvp-runner.md
     - Quantum-inspired:
       - Overview: packages/optimization.md
