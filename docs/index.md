@@ -45,6 +45,47 @@ A cryptographically relevant quantum computer (CRQC) running Shor's algorithm wo
 
 Coding assistants can use the same catalog through the [MCP server, Claude skill and Cursor rules](ai/index.md).
 
+## Core Software Development Kit (SDK)
+
+<div class="pqb-feature" markdown>
+
+<div class="pqb-feature__text" markdown>
+
+While individual PQBlocks libraries provide targeted point solutions (such as ACVP test runners or CBOM scanners), the **PQBlocks Core SDK** ([`pqblocks-core`](packages/core.md) / [`hybrid-sdk`](https://github.com/PQBlocks/hybrid-sdk)) serves as the comprehensive foundation for post-quantum application development.
+
+It delivers:
+
+- **Dual-Layer Architecture:** Native C shared libraries (`libpqblocks_kem.so`, `libpqblocks_sig.so`) bound to high-level Python APIs.
+- **Production Hybrid Schemes:** Implements NIST FIPS 203 (ML-KEM-768 + X25519) key encapsulation and NIST FIPS 204 (ML-DSA-65 + Ed25519) composite signatures.
+- **Policy-as-Code Governance:** Active cryptographic policy enforcement preventing silent downgrades to classical-only cryptography.
+- **C/C++ Header Tooling:** Ships standard C headers (`pqblocks_kem.h`, `pqblocks_sig.h`, `pqblocks_policy.h`, `pqblocks_hsm.h`) and CMake configuration.
+
+[Software Development Kits (SDKs)](packages/sdks.md){ .md-button .md-button--primary }
+[Core SDK documentation](packages/core.md){ .md-button }
+[SDK repository](https://github.com/PQBlocks/hybrid-sdk){ .md-button }
+
+</div>
+
+<div class="pqb-feature__figure" markdown>
+
+=== "Python"
+
+    ```python title="Hybrid KEM with pqblocks-core"
+    --8<-- "includes/quickstart/core.py"
+    ```
+
+=== "C / Native CMake"
+
+    ```bash title="Build native SDK shared libraries"
+    git clone https://github.com/PQBlocks/hybrid-sdk.git
+    cd hybrid-sdk
+    cmake -B build -S . && cmake --build build
+    ```
+
+</div>
+
+</div>
+
 ## Why lattices?
 
 <div class="pqb-feature" markdown>
@@ -79,6 +120,14 @@ The post-quantum migration will not be the last. Algorithms will be retired agai
 ## Start in a minute
 
 Each tab is the package's own quickstart, executed against the package source before this site was published.
+
+=== "Core SDK (hybrid-sdk)"
+
+    ```python title="Native hybrid KEM with pqblocks-core"
+    --8<-- "includes/quickstart/core.py"
+    ```
+
+    [Software Development Kits (SDKs)](packages/sdks.md) · [Core SDK documentation](packages/core.md) · [Source](https://github.com/PQBlocks/hybrid-sdk)
 
 === "Post-quantum KEM"
 
