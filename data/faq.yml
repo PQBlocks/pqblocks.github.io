@@ -12,8 +12,7 @@
         evidence), interoperability (TLS, JOSE, wire formats, certificate requests), conformance testing
         against NIST ACVP vectors, and quantum-inspired optimisation. Each package lives in its own
         repository under [github.com/PQBlocks](https://github.com/PQBlocks), is licensed Apache-2.0,
-        and ships its tests, benchmarks, primary sources and a verification report. PQBlocks is a
-        QubitRock project.
+        and ships its tests, benchmarks, primary sources and a verification report.
     - q: Which PQBlocks package should I start with?
       home: true
       a: >-

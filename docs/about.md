@@ -1,13 +1,13 @@
 ---
 title: "About PQBlocks: an open post-quantum engineering organisation"
-description: "PQBlocks is an open-source engineering organisation for the post-quantum era and a QubitRock project. Scope, principles, roadmap and how to contribute."
+description: "PQBlocks is an open-source engineering organisation for the post-quantum era. Scope, principles, roadmap and how to contribute."
 ---
 
 # About PQBlocks
 
 <div class="pqb-figure" data-figure="mark" data-label="The PQBlocks mark built as four blocks. Point at a block and it rises while the others settle."></div>
 
-<p class="pqb-lead">PQBlocks is an open-source engineering organisation for the post-quantum (PQ) era. It is a <strong>QubitRock</strong> project.</p>
+<p class="pqb-lead">PQBlocks is an open-source engineering organisation for the post-quantum (PQ) era.</p>
 
 ## What we build
 

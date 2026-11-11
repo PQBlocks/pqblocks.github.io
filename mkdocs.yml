@@ -5,7 +5,7 @@ site_description: >-
   post-quantum cryptography, migration, interoperability, conformance and quantum-inspired optimisation.
 site_author: PQBlocks
 copyright: >-
-  Copyright &copy; 2026 PQBlocks, a QubitRock project · Code under Apache-2.0 ·
+  Copyright &copy; 2026 PQBlocks · Code under Apache-2.0 ·
   <a href="https://github.com/PQBlocks">github.com/PQBlocks</a>
 repo_url: https://github.com/PQBlocks
 repo_name: PQBlocks

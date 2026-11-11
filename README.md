@@ -46,4 +46,4 @@ CI regenerates the pages, fails if the committed ones are stale, and builds with
 - Generated social cards, canonical URLs, `sitemap.xml`, per-page meta descriptions and last-updated dates
 - `robots.txt` open to search and AI crawlers, `llms.txt` and `llms-full.txt` for agents
 
-Part of [PQBlocks](https://github.com/PQBlocks), a QubitRock project. Content licensed under Apache-2.0.
+Part of [PQBlocks](https://github.com/PQBlocks). Content licensed under Apache-2.0.
