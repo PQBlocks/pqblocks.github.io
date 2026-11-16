@@ -18,11 +18,27 @@ import glob
 import json
 import os
 import re
+import socket
 import subprocess
 import sys
 import tempfile
+import time
 import tomllib
 import urllib.request
+
+HOST_MAP = {
+    "pypi.org": "151.101.64.223",
+    "files.pythonhosted.org": "151.101.64.223",
+    "api.github.com": "20.207.73.85",
+    "github.com": "20.207.73.82",
+    "registry.npmjs.org": "104.16.27.35"
+}
+orig_getaddrinfo = socket.getaddrinfo
+def getaddrinfo_mapped(host, port, family=0, type=0, proto=0, flags=0):
+    if host in HOST_MAP and os.environ.get("GITHUB_ACTIONS") != "true":
+        return orig_getaddrinfo(HOST_MAP[host], port, socket.AF_INET, type, proto, flags)
+    return orig_getaddrinfo(host, port, family, type, proto, flags)
+socket.getaddrinfo = getaddrinfo_mapped
 
 ORG = "PQBlocks"
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -38,6 +54,9 @@ AREAS = {
     "quantum-inspired": "Quantum-inspired"
 }
 FALLBACK_AREAS = {
+    "pqblock-qse-sdk": "PQ cryptography",
+    "pqblocks-qse-sdk": "PQ cryptography",
+    "qse-sdk": "PQ cryptography",
     "browser-pqc-verifier": "PQ cryptography",
     "pqblocks-browser-verifier": "PQ cryptography",
     "fips-dualmode": "PQ cryptography",

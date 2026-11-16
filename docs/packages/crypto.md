@@ -20,7 +20,7 @@ schema: {"@context": "https://schema.org", "@type": "CollectionPage", "name": "P
 
     Post-quantum hybrid cryptography core SDK with C shared libraries and policy enforcement.
 
-    `pip install git+https://github.com/PQBlocks/hybrid-sdk`
+    `pip install pqblocks-core`
 
 -   __[pqblocks-files](files.md)__
 
@@ -36,7 +36,7 @@ schema: {"@context": "https://schema.org", "@type": "CollectionPage", "name": "P
 
     Dual-mode cryptographic abstraction switching between FIPS 140-3 classical crypto (ECDH/AES-GCM) and post-quantum crypto (ML-KEM/ML-DSA).
 
-    `pip install git+https://github.com/PQBlocks/fips-dualmode`
+    `pip install pqblocks-fips-dualmode`
 
 -   __[pqblocks-jose](jose.md)__
 
@@ -60,7 +60,7 @@ schema: {"@context": "https://schema.org", "@type": "CollectionPage", "name": "P
 
     Post-quantum cryptography SDK for ML-KEM, ML-DSA, and SLH-DSA (FIPS 203/204/205)
 
-    `pip install git+https://github.com/PQBlocks/pqblock-qse-sdk`
+    `pip install pqblocks-qse-sdk`
 
 </div>
 
@@ -68,9 +68,9 @@ schema: {"@context": "https://schema.org", "@type": "CollectionPage", "name": "P
 
 | Package | What it does | Install from | Native dependency |
 |---|---|---|---|
-| [`pqblocks-core`](core.md) | Post-quantum hybrid cryptography core SDK with C shared libraries and policy enforcement. | GitHub | liboqs |
+| [`pqblocks-core`](core.md) | Post-quantum hybrid cryptography core SDK with C shared libraries and policy enforcement. | PyPI | liboqs |
 | [`pqblocks-files`](files.md) | Hybrid post-quantum file encryption: ML-KEM-768 plus X25519 key encapsulation with chunked ChaCha20-Poly1305… | PyPI | liboqs |
-| [`pqblocks-fips-dualmode`](fips-dualmode.md) | Dual-mode cryptographic abstraction switching between FIPS 140-3 classical crypto (ECDH/AES-GCM) and… | GitHub | liboqs |
+| [`pqblocks-fips-dualmode`](fips-dualmode.md) | Dual-mode cryptographic abstraction switching between FIPS 140-3 classical crypto (ECDH/AES-GCM) and… | PyPI | liboqs |
 | [`pqblocks-jose`](jose.md) | Post-quantum hybrid JOSE library supporting ML-KEM and ML-DSA JWE and JWS tokens. | PyPI | liboqs |
 | [`pqblocks-primitives`](primitives.md) | Production-ready integrated post-quantum cryptographic primitives (ML-KEM, ML-DSA, SLH-DSA, and hybrid… | PyPI | liboqs |
-| [`pqblocks-qse-sdk`](qse-sdk.md) | Post-quantum cryptography SDK for ML-KEM, ML-DSA, and SLH-DSA (FIPS 203/204/205) | GitHub | none |
+| [`pqblocks-qse-sdk`](qse-sdk.md) | Post-quantum cryptography SDK for ML-KEM, ML-DSA, and SLH-DSA (FIPS 203/204/205) | PyPI | none |

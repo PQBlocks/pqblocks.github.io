@@ -58,8 +58,8 @@ Full-featured development kits providing high-level APIs, client runtimes, and p
 
 | SDK | What it provides | Language & Runtime | Install |
 |---|---|---|---|
-| [`pqblocks-core`](core.md) | Post-quantum hybrid cryptography core SDK with C shared libraries and policy enforcement. | Python + Native C (`libpqblocks`) | `pip install git+https://github.com/PQBlocks/hybrid-sdk` |
-| [`pqblocks-qse-sdk`](qse-sdk.md) | Post-quantum cryptography SDK for ML-KEM, ML-DSA, and SLH-DSA (FIPS 203/204/205) | Python (CLI & Library) | `pip install git+https://github.com/PQBlocks/pqblock-qse-sdk` |
+| [`pqblocks-core`](core.md) | Post-quantum hybrid cryptography core SDK with C shared libraries and policy enforcement. | Python + Native C (`libpqblocks`) | `pip install pqblocks-core` |
+| [`pqblocks-qse-sdk`](qse-sdk.md) | Post-quantum cryptography SDK for ML-KEM, ML-DSA, and SLH-DSA (FIPS 203/204/205) | Python (CLI & Library) | `pip install pqblocks-qse-sdk` |
 | [`pqblocks-browser-pqc-verifier`](browser-pqc-verifier.md) | Post-quantum certificate and chain verifier for browsers and Node.js using ML-DSA/SLH-DSA from @noble/post-quantum. | JavaScript / TypeScript (Browser & Node.js) | `npm install @pqblocks/browser-pqc-verifier` |
 | [`pqblocks-fips-check`](fips-check.md) | FIPS 203/204 boundary validator and hybrid key exchange (X25519 + ML-KEM-768) with ML-DSA-65 signatures and CBOM… | Python (CLI & Library) | `pip install pqblocks-fips-check` |
 
@@ -80,12 +80,12 @@ The following end-to-end SDKs are in active development across endpoint, governa
 
 | Package | What it does | Install |
 |---|---|---|
-| [`pqblocks-core`](core.md) | Post-quantum hybrid cryptography core SDK with C shared libraries and policy enforcement. | `pip install git+https://github.com/PQBlocks/hybrid-sdk` |
+| [`pqblocks-core`](core.md) | Post-quantum hybrid cryptography core SDK with C shared libraries and policy enforcement. | `pip install pqblocks-core` |
 | [`pqblocks-files`](files.md) | Hybrid post-quantum file encryption: ML-KEM-768 plus X25519 key encapsulation with chunked ChaCha20-Poly1305 in the… | `pip install pqblocks-files` |
-| [`pqblocks-fips-dualmode`](fips-dualmode.md) | Dual-mode cryptographic abstraction switching between FIPS 140-3 classical crypto (ECDH/AES-GCM) and post-quantum… | `pip install git+https://github.com/PQBlocks/fips-dualmode` |
+| [`pqblocks-fips-dualmode`](fips-dualmode.md) | Dual-mode cryptographic abstraction switching between FIPS 140-3 classical crypto (ECDH/AES-GCM) and post-quantum… | `pip install pqblocks-fips-dualmode` |
 | [`pqblocks-jose`](jose.md) | Post-quantum hybrid JOSE library supporting ML-KEM and ML-DSA JWE and JWS tokens. | `pip install pqblocks-jose` |
 | [`pqblocks-primitives`](primitives.md) | Production-ready integrated post-quantum cryptographic primitives (ML-KEM, ML-DSA, SLH-DSA, and hybrid schemes). | `pip install pqblocks-primitives` |
-| [`pqblocks-qse-sdk`](qse-sdk.md) | Post-quantum cryptography SDK for ML-KEM, ML-DSA, and SLH-DSA (FIPS 203/204/205) | `pip install git+https://github.com/PQBlocks/pqblock-qse-sdk` |
+| [`pqblocks-qse-sdk`](qse-sdk.md) | Post-quantum cryptography SDK for ML-KEM, ML-DSA, and SLH-DSA (FIPS 203/204/205) | `pip install pqblocks-qse-sdk` |
 
 ### :material-radar: Migration & readiness
 
@@ -131,4 +131,4 @@ The following end-to-end SDKs are in active development across endpoint, governa
 | [`pqblocks-qiea`](qiea.md) | Quantum-Inspired Evolutionary Algorithm (QIEA) with Q-bit representations and quantum rotation gates for Ising and… | `pip install pqblocks-qiea` |
 | [`pqblocks-qubo`](qubo.md) | Unified mathematical representation and converter library for Quadratic Unconstrained Binary Optimization (QUBO) and… | `pip install pqblocks-qubo` |
 | [`pqblocks-qubo-bench`](qubo-bench.md) | Benchmarking harness and standard instance loaders for quantum-inspired optimization algorithms against classical… | `pip install pqblocks-qubo-bench` |
-| [`pqblocks-sparse-bifurcation`](sparse-bifurcation.md) | Sparse Discrete Simulated Bifurcation (dSB) heuristic solver for large-scale Ising and QUBO combinatorial optimization. | `pip install git+https://github.com/PQBlocks/sparse-bifurcation` |
+| [`pqblocks-sparse-bifurcation`](sparse-bifurcation.md) | Sparse Discrete Simulated Bifurcation (dSB) heuristic solver for large-scale Ising and QUBO combinatorial optimization. | `pip install pqblocks-sparse-bifurcation` |

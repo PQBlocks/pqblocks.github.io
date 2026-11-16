@@ -92,7 +92,7 @@ schema: {"@context": "https://schema.org", "@type": "CollectionPage", "name": "P
 
     Sparse Discrete Simulated Bifurcation (dSB) heuristic solver for large-scale Ising and QUBO combinatorial optimization.
 
-    `pip install git+https://github.com/PQBlocks/sparse-bifurcation`
+    `pip install pqblocks-sparse-bifurcation`
 
 </div>
 
@@ -109,4 +109,4 @@ schema: {"@context": "https://schema.org", "@type": "CollectionPage", "name": "P
 | [`pqblocks-qiea`](qiea.md) | Quantum-Inspired Evolutionary Algorithm (QIEA) with Q-bit representations and quantum rotation gates for… | PyPI | none |
 | [`pqblocks-qubo`](qubo.md) | Unified mathematical representation and converter library for Quadratic Unconstrained Binary Optimization… | PyPI | none |
 | [`pqblocks-qubo-bench`](qubo-bench.md) | Benchmarking harness and standard instance loaders for quantum-inspired optimization algorithms against… | PyPI | none |
-| [`pqblocks-sparse-bifurcation`](sparse-bifurcation.md) | Sparse Discrete Simulated Bifurcation (dSB) heuristic solver for large-scale Ising and QUBO combinatorial… | GitHub | none |
+| [`pqblocks-sparse-bifurcation`](sparse-bifurcation.md) | Sparse Discrete Simulated Bifurcation (dSB) heuristic solver for large-scale Ising and QUBO combinatorial… | PyPI | none |

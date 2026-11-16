@@ -10,7 +10,7 @@ schema: {"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name"
 
 <p class="pqb-lead" markdown>Post-quantum cryptography SDK for ML-KEM, ML-DSA, and SLH-DSA (FIPS 203/204/205)</p>
 
-![Install from GitHub](https://img.shields.io/badge/install-GitHub-334155?style=flat-square) ![Area](https://img.shields.io/badge/area-PQ%20cryptography-0e7490?style=flat-square) ![Status](https://img.shields.io/badge/status-Alpha-b45309?style=flat-square) ![Python](https://img.shields.io/badge/python-%3E%3D3.11-1e40af?style=flat-square) ![Licence](https://img.shields.io/badge/licence-Apache--2.0-334155?style=flat-square) [![Source](https://img.shields.io/badge/source-pqblock--qse--sdk-111827?style=flat-square&logo=github)](https://github.com/PQBlocks/pqblock-qse-sdk)
+[![PyPI](https://img.shields.io/pypi/v/pqblocks-qse-sdk?style=flat-square&label=PyPI&color=0f766e)](https://pypi.org/project/pqblocks-qse-sdk/) ![Area](https://img.shields.io/badge/area-PQ%20cryptography-0e7490?style=flat-square) ![Status](https://img.shields.io/badge/status-Alpha-b45309?style=flat-square) ![Python](https://img.shields.io/badge/python-%3E%3D3.11-1e40af?style=flat-square) ![Licence](https://img.shields.io/badge/licence-Apache--2.0-334155?style=flat-square) [![Source](https://img.shields.io/badge/source-pqblock--qse--sdk-111827?style=flat-square&logo=github)](https://github.com/PQBlocks/pqblock-qse-sdk)
 
 !!! abstract "At a glance"
 
@@ -35,6 +35,18 @@ Maintained by The PQBlocks Authors under the Apache-2.0 license.
 
 ## Install
 
+=== "pip"
+
+    ```bash
+    pip install pqblocks-qse-sdk
+    ```
+
+=== "uv"
+
+    ```bash
+    uv add pqblocks-qse-sdk
+    ```
+
 === "pip (from GitHub)"
 
     ```bash
@@ -46,9 +58,6 @@ Maintained by The PQBlocks Authors under the Apache-2.0 license.
     ```bash
     uv add git+https://github.com/PQBlocks/pqblock-qse-sdk
     ```
-
-!!! note "PyPI release staged"
-    `pqblocks-qse-sdk` installs from its GitHub repository while the PyPI release is staged. The import name and API are identical either way.
 
 ## Quickstart
 

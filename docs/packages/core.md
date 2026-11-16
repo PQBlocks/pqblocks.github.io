@@ -10,7 +10,7 @@ schema: {"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name"
 
 <p class="pqb-lead" markdown>Post-quantum hybrid cryptography core SDK with C shared libraries and policy enforcement.</p>
 
-![Install from GitHub](https://img.shields.io/badge/install-GitHub-334155?style=flat-square) ![Area](https://img.shields.io/badge/area-PQ%20cryptography-0e7490?style=flat-square) ![Status](https://img.shields.io/badge/status-Alpha-b45309?style=flat-square) ![Python](https://img.shields.io/badge/python-%3E%3D3.11-1e40af?style=flat-square) ![Licence](https://img.shields.io/badge/licence-Apache--2.0-334155?style=flat-square) [![Source](https://img.shields.io/badge/source-hybrid--sdk-111827?style=flat-square&logo=github)](https://github.com/PQBlocks/hybrid-sdk)
+[![PyPI](https://img.shields.io/pypi/v/pqblocks-core?style=flat-square&label=PyPI&color=0f766e)](https://pypi.org/project/pqblocks-core/) ![Area](https://img.shields.io/badge/area-PQ%20cryptography-0e7490?style=flat-square) ![Status](https://img.shields.io/badge/status-Alpha-b45309?style=flat-square) ![Python](https://img.shields.io/badge/python-%3E%3D3.11-1e40af?style=flat-square) ![Licence](https://img.shields.io/badge/licence-Apache--2.0-334155?style=flat-square) [![Source](https://img.shields.io/badge/source-hybrid--sdk-111827?style=flat-square&logo=github)](https://github.com/PQBlocks/hybrid-sdk)
 
 !!! abstract "At a glance"
 
@@ -35,6 +35,18 @@ Standards implemented: NIST FIPS 203 (ML-KEM), NIST FIPS 204 (ML-DSA), RFC 7748 
 
 ## Install
 
+=== "pip"
+
+    ```bash
+    pip install pqblocks-core
+    ```
+
+=== "uv"
+
+    ```bash
+    uv add pqblocks-core
+    ```
+
 === "pip (from GitHub)"
 
     ```bash
@@ -46,9 +58,6 @@ Standards implemented: NIST FIPS 203 (ML-KEM), NIST FIPS 204 (ML-DSA), RFC 7748 
     ```bash
     uv add git+https://github.com/PQBlocks/hybrid-sdk
     ```
-
-!!! note "PyPI release staged"
-    `pqblocks-core` installs from its GitHub repository while the PyPI release is staged. The import name and API are identical either way.
 
 === "C / Native SDK"
 

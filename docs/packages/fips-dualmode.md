@@ -10,7 +10,7 @@ schema: {"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name"
 
 <p class="pqb-lead" markdown>Dual-mode cryptographic abstraction switching between FIPS 140-3 classical crypto (ECDH/AES-GCM) and post-quantum crypto (ML-KEM/ML-DSA).</p>
 
-![Install from GitHub](https://img.shields.io/badge/install-GitHub-334155?style=flat-square) ![Area](https://img.shields.io/badge/area-PQ%20cryptography-0e7490?style=flat-square) ![Status](https://img.shields.io/badge/status-Alpha-b45309?style=flat-square) ![Python](https://img.shields.io/badge/python-%3E%3D3.11-1e40af?style=flat-square) ![Licence](https://img.shields.io/badge/licence-Apache--2.0-334155?style=flat-square) [![Source](https://img.shields.io/badge/source-fips--dualmode-111827?style=flat-square&logo=github)](https://github.com/PQBlocks/fips-dualmode)
+[![PyPI](https://img.shields.io/pypi/v/pqblocks-fips-dualmode?style=flat-square&label=PyPI&color=0f766e)](https://pypi.org/project/pqblocks-fips-dualmode/) ![Area](https://img.shields.io/badge/area-PQ%20cryptography-0e7490?style=flat-square) ![Status](https://img.shields.io/badge/status-Alpha-b45309?style=flat-square) ![Python](https://img.shields.io/badge/python-%3E%3D3.11-1e40af?style=flat-square) ![Licence](https://img.shields.io/badge/licence-Apache--2.0-334155?style=flat-square) [![Source](https://img.shields.io/badge/source-fips--dualmode-111827?style=flat-square&logo=github)](https://github.com/PQBlocks/fips-dualmode)
 
 !!! abstract "At a glance"
 
@@ -31,6 +31,18 @@ A unified dual-mode cryptographic abstraction providing seamless switching betwe
 
 ## Install
 
+=== "pip"
+
+    ```bash
+    pip install pqblocks-fips-dualmode
+    ```
+
+=== "uv"
+
+    ```bash
+    uv add pqblocks-fips-dualmode
+    ```
+
 === "pip (from GitHub)"
 
     ```bash
@@ -42,9 +54,6 @@ A unified dual-mode cryptographic abstraction providing seamless switching betwe
     ```bash
     uv add git+https://github.com/PQBlocks/fips-dualmode
     ```
-
-!!! note "PyPI release staged"
-    `pqblocks-fips-dualmode` installs from its GitHub repository while the PyPI release is staged. The import name and API are identical either way.
 
 !!! info "Native dependency: liboqs"
     The post-quantum primitives come from [liboqs](https://openquantumsafe.org/liboqs/) (Open Quantum Safe). The package README explains how the library is located: [install notes](https://github.com/PQBlocks/fips-dualmode/blob/main/README.md).

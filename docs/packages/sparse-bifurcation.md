@@ -10,7 +10,7 @@ schema: {"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name"
 
 <p class="pqb-lead" markdown>Sparse Discrete Simulated Bifurcation (dSB) heuristic solver for large-scale Ising and QUBO combinatorial optimization.</p>
 
-![Install from GitHub](https://img.shields.io/badge/install-GitHub-334155?style=flat-square) ![Area](https://img.shields.io/badge/area-Quantum--inspired-0e7490?style=flat-square) ![Status](https://img.shields.io/badge/status-Alpha-b45309?style=flat-square) ![Python](https://img.shields.io/badge/python-%3E%3D3.11-1e40af?style=flat-square) ![Licence](https://img.shields.io/badge/licence-Apache--2.0-334155?style=flat-square) [![Source](https://img.shields.io/badge/source-sparse--bifurcation-111827?style=flat-square&logo=github)](https://github.com/PQBlocks/sparse-bifurcation)
+[![PyPI](https://img.shields.io/pypi/v/pqblocks-sparse-bifurcation?style=flat-square&label=PyPI&color=0f766e)](https://pypi.org/project/pqblocks-sparse-bifurcation/) ![Area](https://img.shields.io/badge/area-Quantum--inspired-0e7490?style=flat-square) ![Status](https://img.shields.io/badge/status-Alpha-b45309?style=flat-square) ![Python](https://img.shields.io/badge/python-%3E%3D3.11-1e40af?style=flat-square) ![Licence](https://img.shields.io/badge/licence-Apache--2.0-334155?style=flat-square) [![Source](https://img.shields.io/badge/source-sparse--bifurcation-111827?style=flat-square&logo=github)](https://github.com/PQBlocks/sparse-bifurcation)
 
 !!! abstract "At a glance"
 
@@ -36,6 +36,18 @@ High-performance sparse matrix Discrete Simulated Bifurcation (dSB) heuristic so
 
 ## Install
 
+=== "pip"
+
+    ```bash
+    pip install pqblocks-sparse-bifurcation
+    ```
+
+=== "uv"
+
+    ```bash
+    uv add pqblocks-sparse-bifurcation
+    ```
+
 === "pip (from GitHub)"
 
     ```bash
@@ -47,9 +59,6 @@ High-performance sparse matrix Discrete Simulated Bifurcation (dSB) heuristic so
     ```bash
     uv add git+https://github.com/PQBlocks/sparse-bifurcation
     ```
-
-!!! note "PyPI release staged"
-    `pqblocks-sparse-bifurcation` installs from its GitHub repository while the PyPI release is staged. The import name and API are identical either way.
 
 ## Quickstart
 
