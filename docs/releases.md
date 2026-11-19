@@ -20,6 +20,7 @@ description: "Current version, status and install channel of every PQBlocks pack
 | [`pqblocks-browser-pqc-verifier`](packages/browser-pqc-verifier.md) | 0.1.0 | alpha | [npm](https://www.npmjs.com/package/@pqblocks/browser-pqc-verifier) | [CHANGELOG](https://github.com/PQBlocks/browser-pqc-verifier/blob/main/CHANGELOG.md) |
 | [`pqblocks-cbom`](packages/cbom.md) | 0.1.0 | Alpha | [PyPI](https://pypi.org/project/pqblocks-cbom/) | [CHANGELOG](https://github.com/PQBlocks/cbom-enricher/blob/main/CHANGELOG.md) |
 | [`pqblocks-cnsa-evidence`](packages/cnsa-evidence.md) | 0.1.0 | Alpha | [PyPI](https://pypi.org/project/pqblocks-cnsa-evidence/) | [CHANGELOG](https://github.com/PQBlocks/cnsa-evidence-pack/blob/main/CHANGELOG.md) |
+| [`pqblocks-cnsa2-pki-auditor`](packages/cnsa2-pki-auditor.md) | 0.1.0 | alpha | GitHub | [CHANGELOG](https://github.com/PQBlocks/cnsa2-pki-auditor/blob/main/CHANGELOG.md) |
 | [`pqblocks-core`](packages/core.md) | 0.1.0 | Alpha | [PyPI](https://pypi.org/project/pqblocks-core/) | [CHANGELOG](https://github.com/PQBlocks/hybrid-sdk/blob/main/CHANGELOG.md) |
 | [`pqblocks-csr-pop`](packages/csr-pop.md) | 0.1.0 | Alpha | [PyPI](https://pypi.org/project/pqblocks-csr-pop/) | [CHANGELOG](https://github.com/PQBlocks/mlkem-csr-pop/blob/main/CHANGELOG.md) |
 | [`pqblocks-digital-anneal`](packages/digital-anneal.md) | 0.1.0 | Alpha | [PyPI](https://pypi.org/project/pqblocks-digital-anneal/) | [CHANGELOG](https://github.com/PQBlocks/digital-annealing/blob/main/CHANGELOG.md) |

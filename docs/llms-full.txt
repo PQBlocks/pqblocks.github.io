@@ -259,6 +259,22 @@ Find cryptography in code and on the wire, emit CBOMs, score readiness, gate CI 
   print(f"Compliance Status: {matrix.get('status', 'complete')}")
   ```
 
+- [pqblocks-cnsa2-pki-auditor](https://pqblocks.github.io/packages/cnsa2-pki-auditor/): X.509 certificate estate compliance auditor enforcing NSA CNSA 2.0 and NIST FIPS 203/204/205 post-quantum standards with SARIF and CycloneDX 1.6 CBOM output. Install: `npm install git+https://github.com/PQBlocks/cnsa2-pki-auditor`. Import: `@pqblocks/cnsa2-pki-auditor`.
+
+  ```python
+  import { auditEstate, verifyCertificate } from '@pqblocks/cnsa2-pki-auditor';
+
+  // Audit certificate directory or PEM files against CNSA 2.0
+  const result = await auditEstate({
+    paths: [],
+    deadline: '2030-12-31',
+    scanDate: '2026-11-20',
+  });
+
+  console.log('Audited certificates:', result.summary.total);
+  console.log('Errors:', result.summary.errors);
+  ```
+
 - [pqblocks-jwe-audit](https://pqblocks.github.io/packages/jwe-audit/): High-throughput JSON Web Encryption (JWE) cryptographic policy auditor enforcing CNSA 2.0 and NIST FIPS 203 PQC standards. Install: `pip install pqblocks-jwe-audit`. Import: `pqblocks_jwe_audit`.
 
   ```python

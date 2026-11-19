@@ -72,6 +72,8 @@ FALLBACK_AREAS = {
     "cbom-enricher": "Migration & readiness",
     "crypto-policy-engine": "Migration & readiness",
     "cnsa-evidence-pack": "Migration & readiness",
+    "cnsa2-pki-auditor": "Migration & readiness",
+    "pqblocks-cnsa2-pki-auditor": "Migration & readiness",
     "jwe-policy-auditor": "Migration & readiness",
     "pqc-lint": "Migration & readiness",
     "crypto-agility": "Migration & readiness",
