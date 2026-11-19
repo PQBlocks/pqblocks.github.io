@@ -407,7 +407,7 @@ def build(pkg_root, run_verify):
             "topics": repo_topics,
             "python": proj.get("requires-python"),
             "cli": cli_list,
-            "status": "Production-Ready",
+            "status": "Stable",
             "on_pypi": live_py,
             "on_npm": live_npm,
             "install": install,

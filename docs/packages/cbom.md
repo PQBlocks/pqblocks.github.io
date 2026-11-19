@@ -10,7 +10,7 @@ schema: {"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name"
 
 <p class="pqb-lead" markdown>CycloneDX 1.5 CBOM metadata enrichment engine injecting quantum-safe classifications and CNSA 2.0 compliance properties.</p>
 
-[![PyPI](https://img.shields.io/pypi/v/pqblocks-cbom?style=flat-square&label=PyPI&color=0f766e)](https://pypi.org/project/pqblocks-cbom/) ![Area](https://img.shields.io/badge/area-Migration%20%26%20readiness-0e7490?style=flat-square) ![Status](https://img.shields.io/badge/status-Production--Ready-059669?style=flat-square) ![Python](https://img.shields.io/badge/python-%3E%3D3.11-1e40af?style=flat-square) ![Licence](https://img.shields.io/badge/licence-Apache--2.0-334155?style=flat-square) [![Source](https://img.shields.io/badge/source-cbom--enricher-111827?style=flat-square&logo=github)](https://github.com/PQBlocks/cbom-enricher)
+[![PyPI](https://img.shields.io/pypi/v/pqblocks-cbom?style=flat-square&label=PyPI&color=0f766e)](https://pypi.org/project/pqblocks-cbom/) ![Area](https://img.shields.io/badge/area-Migration%20%26%20readiness-0e7490?style=flat-square) ![Status](https://img.shields.io/badge/status-Stable-059669?style=flat-square) ![Python](https://img.shields.io/badge/python-%3E%3D3.11-1e40af?style=flat-square) ![Licence](https://img.shields.io/badge/licence-Apache--2.0-334155?style=flat-square) [![Source](https://img.shields.io/badge/source-cbom--enricher-111827?style=flat-square&logo=github)](https://github.com/PQBlocks/cbom-enricher)
 
 !!! abstract "At a glance"
 
@@ -19,7 +19,7 @@ schema: {"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name"
     | **Area** | :material-radar: [Migration & readiness](migration.md) |
     | **Import** | `import pqblocks_cbom` |
     | **Command line** | `pqblocks-cbom` |
-    | **Version** | 0.1.0 (Production-Ready) |
+    | **Version** | 0.1.0 (Stable) |
     | **Python** | >=3.11 |
     | **Native dependency** | liboqs |
     | **Repository** | [PQBlocks/cbom-enricher](https://github.com/PQBlocks/cbom-enricher) |

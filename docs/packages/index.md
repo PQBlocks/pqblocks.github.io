@@ -84,7 +84,7 @@ The following end-to-end SDKs are in active development across endpoint, governa
 | [`pqblocks-files`](files.md) | Hybrid post-quantum file encryption: ML-KEM-768 plus X25519 key encapsulation with chunked ChaCha20-Poly1305 in the… | `pip install pqblocks-files` |
 | [`pqblocks-fips-dualmode`](fips-dualmode.md) | Dual-mode cryptographic abstraction switching between FIPS 140-3 classical crypto (ECDH/AES-GCM) and post-quantum… | `pip install pqblocks-fips-dualmode` |
 | [`pqblocks-jose`](jose.md) | Post-quantum hybrid JOSE library supporting ML-KEM and ML-DSA JWE and JWS tokens. | `pip install pqblocks-jose` |
-| [`pqblocks-primitives`](primitives.md) | Production-ready integrated post-quantum cryptographic primitives (ML-KEM, ML-DSA, SLH-DSA, and hybrid schemes). | `pip install pqblocks-primitives` |
+| [`pqblocks-primitives`](primitives.md) | Integrated post-quantum cryptographic primitives (ML-KEM, ML-DSA, SLH-DSA, and hybrid schemes). | `pip install pqblocks-primitives` |
 | [`pqblocks-qse-sdk`](qse-sdk.md) | Post-quantum cryptography SDK for ML-KEM, ML-DSA, and SLH-DSA (FIPS 203/204/205) | `pip install pqblocks-qse-sdk` |
 
 ### :material-radar: Migration & readiness

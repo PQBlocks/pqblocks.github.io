@@ -50,7 +50,7 @@ schema: {"@context": "https://schema.org", "@type": "CollectionPage", "name": "P
 
     ---
 
-    Production-ready integrated post-quantum cryptographic primitives (ML-KEM, ML-DSA, SLH-DSA, and hybrid schemes).
+    Integrated post-quantum cryptographic primitives (ML-KEM, ML-DSA, SLH-DSA, and hybrid schemes).
 
     `pip install pqblocks-primitives`
 
@@ -72,5 +72,5 @@ schema: {"@context": "https://schema.org", "@type": "CollectionPage", "name": "P
 | [`pqblocks-files`](files.md) | Hybrid post-quantum file encryption: ML-KEM-768 plus X25519 key encapsulation with chunked ChaCha20-Poly1305… | PyPI | liboqs |
 | [`pqblocks-fips-dualmode`](fips-dualmode.md) | Dual-mode cryptographic abstraction switching between FIPS 140-3 classical crypto (ECDH/AES-GCM) and… | PyPI | liboqs |
 | [`pqblocks-jose`](jose.md) | Post-quantum hybrid JOSE library supporting ML-KEM and ML-DSA JWE and JWS tokens. | PyPI | liboqs |
-| [`pqblocks-primitives`](primitives.md) | Production-ready integrated post-quantum cryptographic primitives (ML-KEM, ML-DSA, SLH-DSA, and hybrid… | PyPI | liboqs |
+| [`pqblocks-primitives`](primitives.md) | Integrated post-quantum cryptographic primitives (ML-KEM, ML-DSA, SLH-DSA, and hybrid schemes). | PyPI | liboqs |
 | [`pqblocks-qse-sdk`](qse-sdk.md) | Post-quantum cryptography SDK for ML-KEM, ML-DSA, and SLH-DSA (FIPS 203/204/205) | PyPI | none |

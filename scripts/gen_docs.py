@@ -176,7 +176,7 @@ def badges(p):
     else:
         b.append("![Install from GitHub](https://img.shields.io/badge/install-GitHub-334155?style=flat-square)")
     b.append("![Area](https://img.shields.io/badge/area-%s-0e7490?style=flat-square)" % q(p["area"]))
-    b.append("![Status](https://img.shields.io/badge/status-Production--Ready-059669?style=flat-square)")
+    b.append("![Status](https://img.shields.io/badge/status-Stable-059669?style=flat-square)")
     if p.get("ecosystem") == "npm":
         b.append("![Runtime](https://img.shields.io/badge/runtime-Node.js%20%7C%20Browser-0284c7?style=flat-square)")
     elif p.get("python"):
@@ -275,7 +275,7 @@ def package_page(p, siblings):
             "    | **Area** | :%s: [%s](%s.md) |" % (a[2], a[0], a[1]),
             "    | **Import** | %s |" % import_spec,
             "    | **Command line** | %s |" % (", ".join("`%s`" % c for c in p.get("cli", [])) or "library only"),
-            "    | **Version** | %s (Production-Ready) |" % p["version"],
+            "    | **Version** | %s (Stable) |" % p["version"],
             runtime_row,
             "    | **Native dependency** | %s |" % ("liboqs" if p["needs_liboqs"] else "none"),
             "    | **Repository** | [%s](%s) |" % (p["repo"], p["url"]),
@@ -487,7 +487,7 @@ def releases_page(pkgs):
     out = [front("Releases and versions", "Current version, status and install channel of every PQBlocks package, "
                  "with links to each changelog, plus the versioning and deprecation policy."),
            "# Releases\n",
-           '<p class="pqb-lead">The current release of every package. All packages are verified, tested, and production-ready with stable APIs, following strict semantic versioning, with every release catalogued in its changelog.</p>\n',
+           '<p class="pqb-lead">The current release of every package. All packages are verified and tested against NIST standards with stable APIs, following strict semantic versioning, with every release catalogued in its changelog.</p>\n',
            "| Package | Version | Status | Install from | Changelog |", "|---|---|---|---|---|"]
     for p in sorted(pkgs, key=lambda p: p["package"]):
         if p.get("on_pypi"):
@@ -497,12 +497,12 @@ def releases_page(pkgs):
         else:
             inst = "GitHub"
         out.append("| [`%s`](packages/%s.md) | %s | %s | %s | [CHANGELOG](%s) |" % (
-            p["package"], short(p), p["version"], "Production-Ready",
+            p["package"], short(p), p["version"], "Stable",
             inst,
             p["docs"].get("CHANGELOG.md", p["url"])))
     out += ["", "## Versioning and quality guarantees\n",
             "- **Semantic versioning.** All packages adhere to strict SemVer with API stability guarantees across public releases.",
-            "- **Production ready.** Verified against official NIST standards (FIPS 203, 204, 205, CNSA 2.0) and ACVP test vectors, ready for v1 integration.",
+            "- **Standards verified.** Rigorously tested against official NIST standards (FIPS 203, 204, 205, CNSA 2.0) and ACVP test vectors, ready for v1 integration.",
             "- **Deprecation policy.** Any API deprecation is announced for at least one minor release, with migration warnings and changelog entries, before removal.",
             "- **Security maintenance.** All active packages receive continuous security maintenance and updates ([policy](security/security-notes.md#supported-versions)).",
             "- **This page** is regenerated from the package repositories, so new releases appear here automatically.", ""]

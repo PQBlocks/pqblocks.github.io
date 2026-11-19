@@ -23,7 +23,7 @@ ML-KEM, ML-DSA and SLH-DSA through maintained implementations, hybrid key establ
 - [pqblocks-files](https://pqblocks.github.io/packages/files/): Hybrid post-quantum file encryption: ML-KEM-768 plus X25519 key encapsulation with chunked ChaCha20-Poly1305 in the pfsh v1 format. Install: `pip install pqblocks-files`. Import: `pqblocks_files`.
 - [pqblocks-fips-dualmode](https://pqblocks.github.io/packages/fips-dualmode/): Dual-mode cryptographic abstraction switching between FIPS 140-3 classical crypto (ECDH/AES-GCM) and post-quantum crypto (ML-KEM/ML-DSA). Install: `pip install pqblocks-fips-dualmode`. Import: `pqblocks_fips_dualmode`.
 - [pqblocks-jose](https://pqblocks.github.io/packages/jose/): Post-quantum hybrid JOSE library supporting ML-KEM and ML-DSA JWE and JWS tokens. Install: `pip install pqblocks-jose`. Import: `pqblocks_jose`.
-- [pqblocks-primitives](https://pqblocks.github.io/packages/primitives/): Production-ready integrated post-quantum cryptographic primitives (ML-KEM, ML-DSA, SLH-DSA, and hybrid schemes). Install: `pip install pqblocks-primitives`. Import: `pqblocks_primitives`.
+- [pqblocks-primitives](https://pqblocks.github.io/packages/primitives/): Integrated post-quantum cryptographic primitives (ML-KEM, ML-DSA, SLH-DSA, and hybrid schemes). Install: `pip install pqblocks-primitives`. Import: `pqblocks_primitives`.
 - [pqblocks-qse-sdk](https://pqblocks.github.io/packages/qse-sdk/): Post-quantum cryptography SDK for ML-KEM, ML-DSA, and SLH-DSA (FIPS 203/204/205) Install: `pip install pqblocks-qse-sdk`. Import: `pqblocks_qse_sdk`.
 
 ## Migration & readiness

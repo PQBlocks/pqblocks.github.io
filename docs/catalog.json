@@ -41,7 +41,7 @@
    ],
    "python": ">=3.11",
    "cli": [],
-   "status": "Production-Ready",
+   "status": "Stable",
    "on_pypi": "0.1.0",
    "on_npm": null,
    "install": "pip install pqblocks-core",
@@ -133,7 +133,7 @@
    "cli": [
     "pqblocks-files"
    ],
-   "status": "Production-Ready",
+   "status": "Stable",
    "on_pypi": "0.1.0",
    "on_npm": null,
    "install": "pip install pqblocks-files",
@@ -211,7 +211,7 @@
    ],
    "python": ">=3.11",
    "cli": [],
-   "status": "Production-Ready",
+   "status": "Stable",
    "on_pypi": "0.1.0",
    "on_npm": null,
    "install": "pip install pqblocks-fips-dualmode",
@@ -291,7 +291,7 @@
    "cli": [
     "pqblocks-jose"
    ],
-   "status": "Production-Ready",
+   "status": "Stable",
    "on_pypi": "0.1.0",
    "on_npm": null,
    "install": "pip install pqblocks-jose",
@@ -339,9 +339,9 @@
    "area": "PQ cryptography",
    "kind": "pq",
    "ecosystem": "python",
-   "summary": "Production-ready integrated post-quantum cryptographic primitives (ML-KEM, ML-DSA, SLH-DSA, and hybrid schemes).",
+   "summary": "Integrated post-quantum cryptographic primitives (ML-KEM, ML-DSA, SLH-DSA, and hybrid schemes).",
    "intro": [
-    "Production-ready integrated post-quantum cryptographic primitives (ML-KEM, ML-DSA, SLH-DSA, and hybrid schemes)."
+    "Integrated post-quantum cryptographic primitives (ML-KEM, ML-DSA, SLH-DSA, and hybrid schemes)."
    ],
    "keywords": [
     "cryptography",
@@ -372,7 +372,7 @@
    ],
    "python": ">=3.11",
    "cli": [],
-   "status": "Production-Ready",
+   "status": "Stable",
    "on_pypi": "0.1.0",
    "on_npm": null,
    "install": "pip install pqblocks-primitives",
@@ -449,7 +449,7 @@
    ],
    "python": ">=3.11",
    "cli": [],
-   "status": "Production-Ready",
+   "status": "Stable",
    "on_pypi": "0.1.0",
    "on_npm": null,
    "install": "pip install pqblocks-qse-sdk",
@@ -533,7 +533,7 @@
    "cli": [
     "pqblocks-agility"
    ],
-   "status": "Production-Ready",
+   "status": "Stable",
    "on_pypi": "0.1.0",
    "on_npm": null,
    "install": "pip install pqblocks-agility",
@@ -614,7 +614,7 @@
    "cli": [
     "pqblocks-cbom"
    ],
-   "status": "Production-Ready",
+   "status": "Stable",
    "on_pypi": "0.1.0",
    "on_npm": null,
    "install": "pip install pqblocks-cbom",
@@ -690,7 +690,7 @@
    ],
    "python": ">=3.11",
    "cli": [],
-   "status": "Production-Ready",
+   "status": "Stable",
    "on_pypi": "0.1.0",
    "on_npm": null,
    "install": "pip install pqblocks-cnsa-evidence",
@@ -779,7 +779,7 @@
    "cli": [
     "cnsa2-pki-audit"
    ],
-   "status": "Production-Ready",
+   "status": "Stable",
    "on_pypi": null,
    "on_npm": null,
    "install": "npm install git+https://github.com/PQBlocks/cnsa2-pki-auditor",
@@ -862,7 +862,7 @@
    ],
    "python": ">=3.11",
    "cli": [],
-   "status": "Production-Ready",
+   "status": "Stable",
    "on_pypi": "0.1.0",
    "on_npm": null,
    "install": "pip install pqblocks-jwe-audit",
@@ -944,7 +944,7 @@
    "cli": [
     "pqblocks-lint"
    ],
-   "status": "Production-Ready",
+   "status": "Stable",
    "on_pypi": "0.1.0",
    "on_npm": null,
    "install": "pip install pqblocks-lint",
@@ -1022,7 +1022,7 @@
    "cli": [
     "pqblocks-policy"
    ],
-   "status": "Production-Ready",
+   "status": "Stable",
    "on_pypi": "0.1.0",
    "on_npm": null,
    "install": "pip install pqblocks-policy",
@@ -1103,7 +1103,7 @@
     "pqc-registry",
     "registry-cli"
    ],
-   "status": "Production-Ready",
+   "status": "Stable",
    "on_pypi": null,
    "on_npm": "1.0.0",
    "install": "npm install @pqblocks/pqc-compat-registry",
@@ -1188,7 +1188,7 @@
    "cli": [
     "pqblocks-scan"
    ],
-   "status": "Production-Ready",
+   "status": "Stable",
    "on_pypi": "0.1.0",
    "on_npm": null,
    "install": "pip install pqblocks-scan",
@@ -1265,7 +1265,7 @@
    ],
    "python": ">=3.11",
    "cli": [],
-   "status": "Production-Ready",
+   "status": "Stable",
    "on_pypi": "0.1.0",
    "on_npm": null,
    "install": "pip install pqblocks-csr-pop",
@@ -1346,7 +1346,7 @@
    ],
    "python": ">=3.11",
    "cli": [],
-   "status": "Production-Ready",
+   "status": "Stable",
    "on_pypi": "0.1.0",
    "on_npm": null,
    "install": "pip install pqblocks-jwe",
@@ -1426,7 +1426,7 @@
    "cli": [
     "pqblocks-tls-interop"
    ],
-   "status": "Production-Ready",
+   "status": "Stable",
    "on_pypi": "0.1.0",
    "on_npm": null,
    "install": "pip install pqblocks-tls-interop",
@@ -1507,7 +1507,7 @@
    ],
    "python": ">=3.11",
    "cli": [],
-   "status": "Production-Ready",
+   "status": "Stable",
    "on_pypi": "0.1.0",
    "on_npm": null,
    "install": "pip install pqblocks-wire",
@@ -1589,7 +1589,7 @@
    ],
    "python": ">=3.11",
    "cli": [],
-   "status": "Production-Ready",
+   "status": "Stable",
    "on_pypi": "0.1.0",
    "on_npm": null,
    "install": "pip install pqblocks-acvp",
@@ -1669,7 +1669,7 @@
    "cli": [
     "pqblocks-browser-verify"
    ],
-   "status": "Production-Ready",
+   "status": "Stable",
    "on_pypi": null,
    "on_npm": "0.1.0",
    "install": "npm install @pqblocks/browser-pqc-verifier",
@@ -1748,7 +1748,7 @@
    ],
    "python": ">=3.11",
    "cli": [],
-   "status": "Production-Ready",
+   "status": "Stable",
    "on_pypi": "0.1.0",
    "on_npm": null,
    "install": "pip install pqblocks-fips-check",
@@ -1821,7 +1821,7 @@
    ],
    "python": null,
    "cli": [],
-   "status": "Production-Ready",
+   "status": "Stable",
    "on_pypi": null,
    "on_npm": "1.0.0",
    "install": "npm install @pqblocks/pqc-acvp-runner",
@@ -1900,7 +1900,7 @@
    "cli": [
     "pqblocks-anneal-sa"
    ],
-   "status": "Production-Ready",
+   "status": "Stable",
    "on_pypi": "0.1.0",
    "on_npm": null,
    "install": "pip install pqblocks-anneal-sa",
@@ -1978,7 +1978,7 @@
    ],
    "python": ">=3.11",
    "cli": [],
-   "status": "Production-Ready",
+   "status": "Stable",
    "on_pypi": "0.1.0",
    "on_npm": null,
    "install": "pip install pqblocks-anneal-schedule",
@@ -2056,7 +2056,7 @@
    ],
    "python": ">=3.11",
    "cli": [],
-   "status": "Production-Ready",
+   "status": "Stable",
    "on_pypi": "0.1.0",
    "on_npm": null,
    "install": "pip install pqblocks-anneal-sqa",
@@ -2136,7 +2136,7 @@
    ],
    "python": ">=3.11",
    "cli": [],
-   "status": "Production-Ready",
+   "status": "Stable",
    "on_pypi": "0.1.0",
    "on_npm": null,
    "install": "pip install pqblocks-bifurcation",
@@ -2213,7 +2213,7 @@
    ],
    "python": ">=3.11",
    "cli": [],
-   "status": "Production-Ready",
+   "status": "Stable",
    "on_pypi": "0.1.0",
    "on_npm": null,
    "install": "pip install pqblocks-digital-anneal",
@@ -2291,7 +2291,7 @@
    ],
    "python": ">=3.11",
    "cli": [],
-   "status": "Production-Ready",
+   "status": "Stable",
    "on_pypi": "0.1.0",
    "on_npm": null,
    "install": "pip install pqblocks-population-anneal",
@@ -2368,7 +2368,7 @@
    ],
    "python": ">=3.11",
    "cli": [],
-   "status": "Production-Ready",
+   "status": "Stable",
    "on_pypi": "0.1.0",
    "on_npm": null,
    "install": "pip install pqblocks-qiea",
@@ -2440,7 +2440,7 @@
    ],
    "python": ">=3.11",
    "cli": [],
-   "status": "Production-Ready",
+   "status": "Stable",
    "on_pypi": "0.1.0",
    "on_npm": null,
    "install": "pip install pqblocks-qubo",
@@ -2519,7 +2519,7 @@
    "cli": [
     "pqblocks-qubo-bench"
    ],
-   "status": "Production-Ready",
+   "status": "Stable",
    "on_pypi": "0.1.0",
    "on_npm": null,
    "install": "pip install pqblocks-qubo-bench",
@@ -2598,7 +2598,7 @@
     "pqblocks-sparse-bifurcation",
     "sparse_dsb_cli"
    ],
-   "status": "Production-Ready",
+   "status": "Stable",
    "on_pypi": "0.1.0",
    "on_npm": null,
    "install": "pip install pqblocks-sparse-bifurcation",

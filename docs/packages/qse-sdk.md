@@ -10,7 +10,7 @@ schema: {"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name"
 
 <p class="pqb-lead" markdown>Post-quantum cryptography SDK for ML-KEM, ML-DSA, and SLH-DSA (FIPS 203/204/205)</p>
 
-[![PyPI](https://img.shields.io/pypi/v/pqblocks-qse-sdk?style=flat-square&label=PyPI&color=0f766e)](https://pypi.org/project/pqblocks-qse-sdk/) ![Area](https://img.shields.io/badge/area-PQ%20cryptography-0e7490?style=flat-square) ![Status](https://img.shields.io/badge/status-Production--Ready-059669?style=flat-square) ![Python](https://img.shields.io/badge/python-%3E%3D3.11-1e40af?style=flat-square) ![Licence](https://img.shields.io/badge/licence-Apache--2.0-334155?style=flat-square) [![Source](https://img.shields.io/badge/source-pqblock--qse--sdk-111827?style=flat-square&logo=github)](https://github.com/PQBlocks/pqblock-qse-sdk)
+[![PyPI](https://img.shields.io/pypi/v/pqblocks-qse-sdk?style=flat-square&label=PyPI&color=0f766e)](https://pypi.org/project/pqblocks-qse-sdk/) ![Area](https://img.shields.io/badge/area-PQ%20cryptography-0e7490?style=flat-square) ![Status](https://img.shields.io/badge/status-Stable-059669?style=flat-square) ![Python](https://img.shields.io/badge/python-%3E%3D3.11-1e40af?style=flat-square) ![Licence](https://img.shields.io/badge/licence-Apache--2.0-334155?style=flat-square) [![Source](https://img.shields.io/badge/source-pqblock--qse--sdk-111827?style=flat-square&logo=github)](https://github.com/PQBlocks/pqblock-qse-sdk)
 
 !!! abstract "At a glance"
 
@@ -19,7 +19,7 @@ schema: {"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name"
     | **Area** | :material-shield-key-outline: [PQ cryptography](crypto.md) |
     | **Import** | `import pqblocks_qse_sdk` |
     | **Command line** | library only |
-    | **Version** | 0.1.0 (Production-Ready) |
+    | **Version** | 0.1.0 (Stable) |
     | **Python** | >=3.11 |
     | **Native dependency** | none |
     | **Repository** | [PQBlocks/pqblock-qse-sdk](https://github.com/PQBlocks/pqblock-qse-sdk) |
@@ -156,4 +156,4 @@ Every PQBlocks package ships the same evidence set, so each claim can be checked
 - [`pqblocks-files`](files.md): Hybrid post-quantum file encryption: ML-KEM-768 plus X25519 key encapsulation with chunked ChaCha20-Poly1305 in the…
 - [`pqblocks-fips-dualmode`](fips-dualmode.md): Dual-mode cryptographic abstraction switching between FIPS 140-3 classical crypto (ECDH/AES-GCM) and post-quantum…
 - [`pqblocks-jose`](jose.md): Post-quantum hybrid JOSE library supporting ML-KEM and ML-DSA JWE and JWS tokens.
-- [`pqblocks-primitives`](primitives.md): Production-ready integrated post-quantum cryptographic primitives (ML-KEM, ML-DSA, SLH-DSA, and hybrid schemes).
+- [`pqblocks-primitives`](primitives.md): Integrated post-quantum cryptographic primitives (ML-KEM, ML-DSA, SLH-DSA, and hybrid schemes).

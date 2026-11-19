@@ -26,7 +26,7 @@ Every package follows the organisation's [cryptography policy](https://github.co
 |---|---|
 | **Validation** | No package is FIPS 140-3 / CMVP validated, and none claims to be. |
 | **External audit** | Not yet externally audited. Packages are self-verified; see each `VERIFICATION_REPORT.md`. |
-| **Maturity** | Production-ready (v1 ready). Rigorously tested against NIST standards and official test vectors with stable public APIs. |
+| **Maturity** | Stable (v1 ready). Rigorously tested against NIST standards and official test vectors with stable public APIs. |
 | **Primitives** | Post-quantum algorithms come from maintained implementations (liboqs); classical ones from pyca/cryptography. |
 | **Constant-time** | Inherited from the underlying implementation for primitive operations. Python glue code is not constant-time. Each package documents its status. |
 | **Side channels** | Power and electromagnetic side-channel defences are out of scope for these software packages. |

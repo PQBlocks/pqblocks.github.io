@@ -10,7 +10,7 @@ schema: {"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name"
 
 <p class="pqb-lead" markdown>Cryptography inventory scanner: finds classical and post-quantum algorithms in source code or a TLS endpoint and writes a CycloneDX 1.6 CBOM, a SARIF 2.1.0 report and a readiness grade.</p>
 
-[![PyPI](https://img.shields.io/pypi/v/pqblocks-scan?style=flat-square&label=PyPI&color=0f766e)](https://pypi.org/project/pqblocks-scan/) ![Area](https://img.shields.io/badge/area-Migration%20%26%20readiness-0e7490?style=flat-square) ![Status](https://img.shields.io/badge/status-Production--Ready-059669?style=flat-square) ![Python](https://img.shields.io/badge/python-%3E%3D3.11-1e40af?style=flat-square) ![Licence](https://img.shields.io/badge/licence-Apache--2.0-334155?style=flat-square) [![Source](https://img.shields.io/badge/source-cbom--scanner-111827?style=flat-square&logo=github)](https://github.com/PQBlocks/cbom-scanner)
+[![PyPI](https://img.shields.io/pypi/v/pqblocks-scan?style=flat-square&label=PyPI&color=0f766e)](https://pypi.org/project/pqblocks-scan/) ![Area](https://img.shields.io/badge/area-Migration%20%26%20readiness-0e7490?style=flat-square) ![Status](https://img.shields.io/badge/status-Stable-059669?style=flat-square) ![Python](https://img.shields.io/badge/python-%3E%3D3.11-1e40af?style=flat-square) ![Licence](https://img.shields.io/badge/licence-Apache--2.0-334155?style=flat-square) [![Source](https://img.shields.io/badge/source-cbom--scanner-111827?style=flat-square&logo=github)](https://github.com/PQBlocks/cbom-scanner)
 
 !!! abstract "At a glance"
 
@@ -19,7 +19,7 @@ schema: {"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name"
     | **Area** | :material-radar: [Migration & readiness](migration.md) |
     | **Import** | `import pqblocks_scan` |
     | **Command line** | `pqblocks-scan` |
-    | **Version** | 0.1.0 (Production-Ready) |
+    | **Version** | 0.1.0 (Stable) |
     | **Python** | >=3.11 |
     | **Native dependency** | none |
     | **Repository** | [PQBlocks/cbom-scanner](https://github.com/PQBlocks/cbom-scanner) |

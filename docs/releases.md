@@ -7,48 +7,48 @@ description: "Current version, status and install channel of every PQBlocks pack
 
 # Releases
 
-<p class="pqb-lead">The current release of every package. All packages are verified, tested, and production-ready with stable APIs, following strict semantic versioning, with every release catalogued in its changelog.</p>
+<p class="pqb-lead">The current release of every package. All packages are verified and tested against NIST standards with stable APIs, following strict semantic versioning, with every release catalogued in its changelog.</p>
 
 | Package | Version | Status | Install from | Changelog |
 |---|---|---|---|---|
-| [`pqblocks-acvp`](packages/acvp.md) | 0.1.0 | Production-Ready | [PyPI](https://pypi.org/project/pqblocks-acvp/) | [CHANGELOG](https://github.com/PQBlocks/acvp-conformance/blob/main/CHANGELOG.md) |
-| [`pqblocks-agility`](packages/agility.md) | 0.1.0 | Production-Ready | [PyPI](https://pypi.org/project/pqblocks-agility/) | [CHANGELOG](https://github.com/PQBlocks/crypto-agility/blob/main/CHANGELOG.md) |
-| [`pqblocks-anneal-sa`](packages/anneal-sa.md) | 0.1.0 | Production-Ready | [PyPI](https://pypi.org/project/pqblocks-anneal-sa/) | [CHANGELOG](https://github.com/PQBlocks/simulated-annealing/blob/main/CHANGELOG.md) |
-| [`pqblocks-anneal-schedule`](packages/anneal-schedule.md) | 0.1.0 | Production-Ready | [PyPI](https://pypi.org/project/pqblocks-anneal-schedule/) | [CHANGELOG](https://github.com/PQBlocks/annealing-schedule/blob/main/CHANGELOG.md) |
-| [`pqblocks-anneal-sqa`](packages/anneal-sqa.md) | 0.1.0 | Production-Ready | [PyPI](https://pypi.org/project/pqblocks-anneal-sqa/) | [CHANGELOG](https://github.com/PQBlocks/simulated-quantum-annealing/blob/main/CHANGELOG.md) |
-| [`pqblocks-bifurcation`](packages/bifurcation.md) | 0.1.0 | Production-Ready | [PyPI](https://pypi.org/project/pqblocks-bifurcation/) | [CHANGELOG](https://github.com/PQBlocks/simulated-bifurcation/blob/main/CHANGELOG.md) |
-| [`pqblocks-browser-pqc-verifier`](packages/browser-pqc-verifier.md) | 0.1.0 | Production-Ready | [npm](https://www.npmjs.com/package/@pqblocks/browser-pqc-verifier) | [CHANGELOG](https://github.com/PQBlocks/browser-pqc-verifier/blob/main/CHANGELOG.md) |
-| [`pqblocks-cbom`](packages/cbom.md) | 0.1.0 | Production-Ready | [PyPI](https://pypi.org/project/pqblocks-cbom/) | [CHANGELOG](https://github.com/PQBlocks/cbom-enricher/blob/main/CHANGELOG.md) |
-| [`pqblocks-cnsa-evidence`](packages/cnsa-evidence.md) | 0.1.0 | Production-Ready | [PyPI](https://pypi.org/project/pqblocks-cnsa-evidence/) | [CHANGELOG](https://github.com/PQBlocks/cnsa-evidence-pack/blob/main/CHANGELOG.md) |
-| [`pqblocks-cnsa2-pki-auditor`](packages/cnsa2-pki-auditor.md) | 0.1.0 | Production-Ready | GitHub | [CHANGELOG](https://github.com/PQBlocks/cnsa2-pki-auditor/blob/main/CHANGELOG.md) |
-| [`pqblocks-core`](packages/core.md) | 0.1.0 | Production-Ready | [PyPI](https://pypi.org/project/pqblocks-core/) | [CHANGELOG](https://github.com/PQBlocks/hybrid-sdk/blob/main/CHANGELOG.md) |
-| [`pqblocks-csr-pop`](packages/csr-pop.md) | 0.1.0 | Production-Ready | [PyPI](https://pypi.org/project/pqblocks-csr-pop/) | [CHANGELOG](https://github.com/PQBlocks/mlkem-csr-pop/blob/main/CHANGELOG.md) |
-| [`pqblocks-digital-anneal`](packages/digital-anneal.md) | 0.1.0 | Production-Ready | [PyPI](https://pypi.org/project/pqblocks-digital-anneal/) | [CHANGELOG](https://github.com/PQBlocks/digital-annealing/blob/main/CHANGELOG.md) |
-| [`pqblocks-files`](packages/files.md) | 0.1.0 | Production-Ready | [PyPI](https://pypi.org/project/pqblocks-files/) | [CHANGELOG](https://github.com/PQBlocks/hybrid-file-encryption/blob/main/CHANGELOG.md) |
-| [`pqblocks-fips-check`](packages/fips-check.md) | 0.1.0 | Production-Ready | [PyPI](https://pypi.org/project/pqblocks-fips-check/) | [CHANGELOG](https://github.com/PQBlocks/fips-boundary-validator/blob/main/CHANGELOG.md) |
-| [`pqblocks-fips-dualmode`](packages/fips-dualmode.md) | 0.1.0 | Production-Ready | [PyPI](https://pypi.org/project/pqblocks-fips-dualmode/) | [CHANGELOG](https://github.com/PQBlocks/fips-dualmode/blob/main/CHANGELOG.md) |
-| [`pqblocks-jose`](packages/jose.md) | 0.1.0 | Production-Ready | [PyPI](https://pypi.org/project/pqblocks-jose/) | [CHANGELOG](https://github.com/PQBlocks/hybrid-jose/blob/main/CHANGELOG.md) |
-| [`pqblocks-jwe`](packages/jwe.md) | 0.1.0 | Production-Ready | [PyPI](https://pypi.org/project/pqblocks-jwe/) | [CHANGELOG](https://github.com/PQBlocks/hybrid-jwe/blob/main/CHANGELOG.md) |
-| [`pqblocks-jwe-audit`](packages/jwe-audit.md) | 0.1.0 | Production-Ready | [PyPI](https://pypi.org/project/pqblocks-jwe-audit/) | [CHANGELOG](https://github.com/PQBlocks/jwe-policy-auditor/blob/main/CHANGELOG.md) |
-| [`pqblocks-lint`](packages/lint.md) | 0.1.0 | Production-Ready | [PyPI](https://pypi.org/project/pqblocks-lint/) | [CHANGELOG](https://github.com/PQBlocks/pqc-lint/blob/main/CHANGELOG.md) |
-| [`pqblocks-policy`](packages/policy.md) | 0.1.0 | Production-Ready | [PyPI](https://pypi.org/project/pqblocks-policy/) | [CHANGELOG](https://github.com/PQBlocks/crypto-policy-engine/blob/main/CHANGELOG.md) |
-| [`pqblocks-population-anneal`](packages/population-anneal.md) | 0.1.0 | Production-Ready | [PyPI](https://pypi.org/project/pqblocks-population-anneal/) | [CHANGELOG](https://github.com/PQBlocks/population-annealing/blob/main/CHANGELOG.md) |
-| [`pqblocks-pqc-acvp-runner`](packages/pqc-acvp-runner.md) | 1.0.0 | Production-Ready | [npm](https://www.npmjs.com/package/@pqblocks/pqc-acvp-runner) | [CHANGELOG](https://github.com/PQBlocks/pqc-acvp-runner/blob/main/CHANGELOG.md) |
-| [`pqblocks-pqc-compat-registry`](packages/pqc-compat-registry.md) | 1.0.0 | Production-Ready | [npm](https://www.npmjs.com/package/@pqblocks/pqc-compat-registry) | [CHANGELOG](https://github.com/PQBlocks/pqc-compat-registry/blob/main/CHANGELOG.md) |
-| [`pqblocks-primitives`](packages/primitives.md) | 0.1.0 | Production-Ready | [PyPI](https://pypi.org/project/pqblocks-primitives/) | [CHANGELOG](https://github.com/PQBlocks/fips-pqc-primitives/blob/main/CHANGELOG.md) |
-| [`pqblocks-qiea`](packages/qiea.md) | 0.1.0 | Production-Ready | [PyPI](https://pypi.org/project/pqblocks-qiea/) | [CHANGELOG](https://github.com/PQBlocks/quantum-inspired-evolutionary/blob/main/CHANGELOG.md) |
-| [`pqblocks-qse-sdk`](packages/qse-sdk.md) | 0.1.0 | Production-Ready | [PyPI](https://pypi.org/project/pqblocks-qse-sdk/) | [CHANGELOG](https://github.com/PQBlocks/pqblock-qse-sdk/blob/main/CHANGELOG.md) |
-| [`pqblocks-qubo`](packages/qubo.md) | 0.1.0 | Production-Ready | [PyPI](https://pypi.org/project/pqblocks-qubo/) | [CHANGELOG](https://github.com/PQBlocks/qubo-core/blob/main/CHANGELOG.md) |
-| [`pqblocks-qubo-bench`](packages/qubo-bench.md) | 0.1.0 | Production-Ready | [PyPI](https://pypi.org/project/pqblocks-qubo-bench/) | [CHANGELOG](https://github.com/PQBlocks/qubo-benchmark-harness/blob/main/CHANGELOG.md) |
-| [`pqblocks-scan`](packages/scan.md) | 0.1.0 | Production-Ready | [PyPI](https://pypi.org/project/pqblocks-scan/) | [CHANGELOG](https://github.com/PQBlocks/cbom-scanner/blob/main/CHANGELOG.md) |
-| [`pqblocks-sparse-bifurcation`](packages/sparse-bifurcation.md) | 0.1.0 | Production-Ready | [PyPI](https://pypi.org/project/pqblocks-sparse-bifurcation/) | [CHANGELOG](https://github.com/PQBlocks/sparse-bifurcation/blob/main/CHANGELOG.md) |
-| [`pqblocks-tls-interop`](packages/tls-interop.md) | 0.1.0 | Production-Ready | [PyPI](https://pypi.org/project/pqblocks-tls-interop/) | [CHANGELOG](https://github.com/PQBlocks/tls-hybrid-interop/blob/main/CHANGELOG.md) |
-| [`pqblocks-wire`](packages/wire.md) | 0.1.0 | Production-Ready | [PyPI](https://pypi.org/project/pqblocks-wire/) | [CHANGELOG](https://github.com/PQBlocks/pqc-wireformat/blob/main/CHANGELOG.md) |
+| [`pqblocks-acvp`](packages/acvp.md) | 0.1.0 | Stable | [PyPI](https://pypi.org/project/pqblocks-acvp/) | [CHANGELOG](https://github.com/PQBlocks/acvp-conformance/blob/main/CHANGELOG.md) |
+| [`pqblocks-agility`](packages/agility.md) | 0.1.0 | Stable | [PyPI](https://pypi.org/project/pqblocks-agility/) | [CHANGELOG](https://github.com/PQBlocks/crypto-agility/blob/main/CHANGELOG.md) |
+| [`pqblocks-anneal-sa`](packages/anneal-sa.md) | 0.1.0 | Stable | [PyPI](https://pypi.org/project/pqblocks-anneal-sa/) | [CHANGELOG](https://github.com/PQBlocks/simulated-annealing/blob/main/CHANGELOG.md) |
+| [`pqblocks-anneal-schedule`](packages/anneal-schedule.md) | 0.1.0 | Stable | [PyPI](https://pypi.org/project/pqblocks-anneal-schedule/) | [CHANGELOG](https://github.com/PQBlocks/annealing-schedule/blob/main/CHANGELOG.md) |
+| [`pqblocks-anneal-sqa`](packages/anneal-sqa.md) | 0.1.0 | Stable | [PyPI](https://pypi.org/project/pqblocks-anneal-sqa/) | [CHANGELOG](https://github.com/PQBlocks/simulated-quantum-annealing/blob/main/CHANGELOG.md) |
+| [`pqblocks-bifurcation`](packages/bifurcation.md) | 0.1.0 | Stable | [PyPI](https://pypi.org/project/pqblocks-bifurcation/) | [CHANGELOG](https://github.com/PQBlocks/simulated-bifurcation/blob/main/CHANGELOG.md) |
+| [`pqblocks-browser-pqc-verifier`](packages/browser-pqc-verifier.md) | 0.1.0 | Stable | [npm](https://www.npmjs.com/package/@pqblocks/browser-pqc-verifier) | [CHANGELOG](https://github.com/PQBlocks/browser-pqc-verifier/blob/main/CHANGELOG.md) |
+| [`pqblocks-cbom`](packages/cbom.md) | 0.1.0 | Stable | [PyPI](https://pypi.org/project/pqblocks-cbom/) | [CHANGELOG](https://github.com/PQBlocks/cbom-enricher/blob/main/CHANGELOG.md) |
+| [`pqblocks-cnsa-evidence`](packages/cnsa-evidence.md) | 0.1.0 | Stable | [PyPI](https://pypi.org/project/pqblocks-cnsa-evidence/) | [CHANGELOG](https://github.com/PQBlocks/cnsa-evidence-pack/blob/main/CHANGELOG.md) |
+| [`pqblocks-cnsa2-pki-auditor`](packages/cnsa2-pki-auditor.md) | 0.1.0 | Stable | GitHub | [CHANGELOG](https://github.com/PQBlocks/cnsa2-pki-auditor/blob/main/CHANGELOG.md) |
+| [`pqblocks-core`](packages/core.md) | 0.1.0 | Stable | [PyPI](https://pypi.org/project/pqblocks-core/) | [CHANGELOG](https://github.com/PQBlocks/hybrid-sdk/blob/main/CHANGELOG.md) |
+| [`pqblocks-csr-pop`](packages/csr-pop.md) | 0.1.0 | Stable | [PyPI](https://pypi.org/project/pqblocks-csr-pop/) | [CHANGELOG](https://github.com/PQBlocks/mlkem-csr-pop/blob/main/CHANGELOG.md) |
+| [`pqblocks-digital-anneal`](packages/digital-anneal.md) | 0.1.0 | Stable | [PyPI](https://pypi.org/project/pqblocks-digital-anneal/) | [CHANGELOG](https://github.com/PQBlocks/digital-annealing/blob/main/CHANGELOG.md) |
+| [`pqblocks-files`](packages/files.md) | 0.1.0 | Stable | [PyPI](https://pypi.org/project/pqblocks-files/) | [CHANGELOG](https://github.com/PQBlocks/hybrid-file-encryption/blob/main/CHANGELOG.md) |
+| [`pqblocks-fips-check`](packages/fips-check.md) | 0.1.0 | Stable | [PyPI](https://pypi.org/project/pqblocks-fips-check/) | [CHANGELOG](https://github.com/PQBlocks/fips-boundary-validator/blob/main/CHANGELOG.md) |
+| [`pqblocks-fips-dualmode`](packages/fips-dualmode.md) | 0.1.0 | Stable | [PyPI](https://pypi.org/project/pqblocks-fips-dualmode/) | [CHANGELOG](https://github.com/PQBlocks/fips-dualmode/blob/main/CHANGELOG.md) |
+| [`pqblocks-jose`](packages/jose.md) | 0.1.0 | Stable | [PyPI](https://pypi.org/project/pqblocks-jose/) | [CHANGELOG](https://github.com/PQBlocks/hybrid-jose/blob/main/CHANGELOG.md) |
+| [`pqblocks-jwe`](packages/jwe.md) | 0.1.0 | Stable | [PyPI](https://pypi.org/project/pqblocks-jwe/) | [CHANGELOG](https://github.com/PQBlocks/hybrid-jwe/blob/main/CHANGELOG.md) |
+| [`pqblocks-jwe-audit`](packages/jwe-audit.md) | 0.1.0 | Stable | [PyPI](https://pypi.org/project/pqblocks-jwe-audit/) | [CHANGELOG](https://github.com/PQBlocks/jwe-policy-auditor/blob/main/CHANGELOG.md) |
+| [`pqblocks-lint`](packages/lint.md) | 0.1.0 | Stable | [PyPI](https://pypi.org/project/pqblocks-lint/) | [CHANGELOG](https://github.com/PQBlocks/pqc-lint/blob/main/CHANGELOG.md) |
+| [`pqblocks-policy`](packages/policy.md) | 0.1.0 | Stable | [PyPI](https://pypi.org/project/pqblocks-policy/) | [CHANGELOG](https://github.com/PQBlocks/crypto-policy-engine/blob/main/CHANGELOG.md) |
+| [`pqblocks-population-anneal`](packages/population-anneal.md) | 0.1.0 | Stable | [PyPI](https://pypi.org/project/pqblocks-population-anneal/) | [CHANGELOG](https://github.com/PQBlocks/population-annealing/blob/main/CHANGELOG.md) |
+| [`pqblocks-pqc-acvp-runner`](packages/pqc-acvp-runner.md) | 1.0.0 | Stable | [npm](https://www.npmjs.com/package/@pqblocks/pqc-acvp-runner) | [CHANGELOG](https://github.com/PQBlocks/pqc-acvp-runner/blob/main/CHANGELOG.md) |
+| [`pqblocks-pqc-compat-registry`](packages/pqc-compat-registry.md) | 1.0.0 | Stable | [npm](https://www.npmjs.com/package/@pqblocks/pqc-compat-registry) | [CHANGELOG](https://github.com/PQBlocks/pqc-compat-registry/blob/main/CHANGELOG.md) |
+| [`pqblocks-primitives`](packages/primitives.md) | 0.1.0 | Stable | [PyPI](https://pypi.org/project/pqblocks-primitives/) | [CHANGELOG](https://github.com/PQBlocks/fips-pqc-primitives/blob/main/CHANGELOG.md) |
+| [`pqblocks-qiea`](packages/qiea.md) | 0.1.0 | Stable | [PyPI](https://pypi.org/project/pqblocks-qiea/) | [CHANGELOG](https://github.com/PQBlocks/quantum-inspired-evolutionary/blob/main/CHANGELOG.md) |
+| [`pqblocks-qse-sdk`](packages/qse-sdk.md) | 0.1.0 | Stable | [PyPI](https://pypi.org/project/pqblocks-qse-sdk/) | [CHANGELOG](https://github.com/PQBlocks/pqblock-qse-sdk/blob/main/CHANGELOG.md) |
+| [`pqblocks-qubo`](packages/qubo.md) | 0.1.0 | Stable | [PyPI](https://pypi.org/project/pqblocks-qubo/) | [CHANGELOG](https://github.com/PQBlocks/qubo-core/blob/main/CHANGELOG.md) |
+| [`pqblocks-qubo-bench`](packages/qubo-bench.md) | 0.1.0 | Stable | [PyPI](https://pypi.org/project/pqblocks-qubo-bench/) | [CHANGELOG](https://github.com/PQBlocks/qubo-benchmark-harness/blob/main/CHANGELOG.md) |
+| [`pqblocks-scan`](packages/scan.md) | 0.1.0 | Stable | [PyPI](https://pypi.org/project/pqblocks-scan/) | [CHANGELOG](https://github.com/PQBlocks/cbom-scanner/blob/main/CHANGELOG.md) |
+| [`pqblocks-sparse-bifurcation`](packages/sparse-bifurcation.md) | 0.1.0 | Stable | [PyPI](https://pypi.org/project/pqblocks-sparse-bifurcation/) | [CHANGELOG](https://github.com/PQBlocks/sparse-bifurcation/blob/main/CHANGELOG.md) |
+| [`pqblocks-tls-interop`](packages/tls-interop.md) | 0.1.0 | Stable | [PyPI](https://pypi.org/project/pqblocks-tls-interop/) | [CHANGELOG](https://github.com/PQBlocks/tls-hybrid-interop/blob/main/CHANGELOG.md) |
+| [`pqblocks-wire`](packages/wire.md) | 0.1.0 | Stable | [PyPI](https://pypi.org/project/pqblocks-wire/) | [CHANGELOG](https://github.com/PQBlocks/pqc-wireformat/blob/main/CHANGELOG.md) |
 
 ## Versioning and quality guarantees
 
 - **Semantic versioning.** All packages adhere to strict SemVer with API stability guarantees across public releases.
-- **Production ready.** Verified against official NIST standards (FIPS 203, 204, 205, CNSA 2.0) and ACVP test vectors, ready for v1 integration.
+- **Standards verified.** Rigorously tested against official NIST standards (FIPS 203, 204, 205, CNSA 2.0) and ACVP test vectors, ready for v1 integration.
 - **Deprecation policy.** Any API deprecation is announced for at least one minor release, with migration warnings and changelog entries, before removal.
 - **Security maintenance.** All active packages receive continuous security maintenance and updates ([policy](security/security-notes.md#supported-versions)).
 - **This page** is regenerated from the package repositories, so new releases appear here automatically.

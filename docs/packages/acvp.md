@@ -10,7 +10,7 @@ schema: {"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name"
 
 <p class="pqb-lead" markdown>Cross-implementation NIST ACVP conformance harness for FIPS 203 (ML-KEM) and FIPS 204 (ML-DSA).</p>
 
-[![PyPI](https://img.shields.io/pypi/v/pqblocks-acvp?style=flat-square&label=PyPI&color=0f766e)](https://pypi.org/project/pqblocks-acvp/) ![Area](https://img.shields.io/badge/area-Conformance-0e7490?style=flat-square) ![Status](https://img.shields.io/badge/status-Production--Ready-059669?style=flat-square) ![Python](https://img.shields.io/badge/python-%3E%3D3.11-1e40af?style=flat-square) ![Licence](https://img.shields.io/badge/licence-Apache--2.0-334155?style=flat-square) [![Source](https://img.shields.io/badge/source-acvp--conformance-111827?style=flat-square&logo=github)](https://github.com/PQBlocks/acvp-conformance)
+[![PyPI](https://img.shields.io/pypi/v/pqblocks-acvp?style=flat-square&label=PyPI&color=0f766e)](https://pypi.org/project/pqblocks-acvp/) ![Area](https://img.shields.io/badge/area-Conformance-0e7490?style=flat-square) ![Status](https://img.shields.io/badge/status-Stable-059669?style=flat-square) ![Python](https://img.shields.io/badge/python-%3E%3D3.11-1e40af?style=flat-square) ![Licence](https://img.shields.io/badge/licence-Apache--2.0-334155?style=flat-square) [![Source](https://img.shields.io/badge/source-acvp--conformance-111827?style=flat-square&logo=github)](https://github.com/PQBlocks/acvp-conformance)
 
 !!! abstract "At a glance"
 
@@ -19,7 +19,7 @@ schema: {"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name"
     | **Area** | :material-check-decagram-outline: [Conformance](conformance.md) |
     | **Import** | `import pqblocks_acvp` |
     | **Command line** | library only |
-    | **Version** | 0.1.0 (Production-Ready) |
+    | **Version** | 0.1.0 (Stable) |
     | **Python** | >=3.11 |
     | **Native dependency** | liboqs |
     | **Repository** | [PQBlocks/acvp-conformance](https://github.com/PQBlocks/acvp-conformance) |

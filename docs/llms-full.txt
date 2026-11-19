@@ -115,7 +115,7 @@ ML-KEM, ML-DSA and SLH-DSA through maintained implementations, hybrid key establ
   print(f"JWE decrypted matches: {decryption.plaintext == plaintext}")
   ```
 
-- [pqblocks-primitives](https://pqblocks.github.io/packages/primitives/): Production-ready integrated post-quantum cryptographic primitives (ML-KEM, ML-DSA, SLH-DSA, and hybrid schemes). Install: `pip install pqblocks-primitives`. Import: `pqblocks_primitives`.
+- [pqblocks-primitives](https://pqblocks.github.io/packages/primitives/): Integrated post-quantum cryptographic primitives (ML-KEM, ML-DSA, SLH-DSA, and hybrid schemes). Install: `pip install pqblocks-primitives`. Import: `pqblocks_primitives`.
 
   ```python
   from pqblocks_primitives import kem_keygen, kem_encaps, kem_decaps
@@ -847,9 +847,9 @@ Each package installs on its own through its native ecosystem: npm for JavaScrip
 
 Yes. In addition to Python, PQBlocks delivers first-class JavaScript and TypeScript components such as @pqblocks/browser-pqc-verifier, providing pure-JS post-quantum X.509 certificate validation, CBOM generation, and hybrid Express authentication middleware that run in web browsers, Edge workers, and Node.js without native C compilation dependencies.
 
-### Are PQBlocks packages production-ready?
+### Are PQBlocks packages stable and ready to use?
 
-Yes. PQBlocks packages are verified, thoroughly tested, and production-ready for post-quantum migrations and modern cryptographic workflows. Every package is strictly implemented against official NIST standards (FIPS 203, 204, 205, CNSA 2.0), validated against official KAT/ACVP test vectors, and ships with comprehensive test suites, benchmarks, and verification reports. Packages maintain high test coverage, strict memory bounds, and dependable API stability for enterprise and production deployments.
+Yes. PQBlocks packages are verified, thoroughly tested, and stable for post-quantum migrations and modern cryptographic workflows. Every package is strictly implemented against official NIST standards (FIPS 203, 204, 205, CNSA 2.0), validated against official KAT/ACVP test vectors, and ships with comprehensive test suites, benchmarks, and verification reports. Packages maintain high test coverage, strict memory bounds, and dependable API stability.
 
 ### Are PQBlocks packages FIPS validated?
 

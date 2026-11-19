@@ -10,7 +10,7 @@ schema: {"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name"
 
 <p class="pqb-lead" markdown>X.509 certificate estate compliance auditor enforcing NSA CNSA 2.0 and NIST FIPS 203/204/205 post-quantum standards with SARIF and CycloneDX 1.6 CBOM output.</p>
 
-![Install from GitHub](https://img.shields.io/badge/install-GitHub-334155?style=flat-square) ![Area](https://img.shields.io/badge/area-Migration%20%26%20readiness-0e7490?style=flat-square) ![Status](https://img.shields.io/badge/status-Production--Ready-059669?style=flat-square) ![Runtime](https://img.shields.io/badge/runtime-Node.js%20%7C%20Browser-0284c7?style=flat-square) ![Licence](https://img.shields.io/badge/licence-Apache--2.0-334155?style=flat-square) [![Source](https://img.shields.io/badge/source-cnsa2--pki--auditor-111827?style=flat-square&logo=github)](https://github.com/PQBlocks/cnsa2-pki-auditor)
+![Install from GitHub](https://img.shields.io/badge/install-GitHub-334155?style=flat-square) ![Area](https://img.shields.io/badge/area-Migration%20%26%20readiness-0e7490?style=flat-square) ![Status](https://img.shields.io/badge/status-Stable-059669?style=flat-square) ![Runtime](https://img.shields.io/badge/runtime-Node.js%20%7C%20Browser-0284c7?style=flat-square) ![Licence](https://img.shields.io/badge/licence-Apache--2.0-334155?style=flat-square) [![Source](https://img.shields.io/badge/source-cnsa2--pki--auditor-111827?style=flat-square&logo=github)](https://github.com/PQBlocks/cnsa2-pki-auditor)
 
 !!! abstract "At a glance"
 
@@ -19,7 +19,7 @@ schema: {"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name"
     | **Area** | :material-radar: [Migration & readiness](migration.md) |
     | **Import** | `import ... from '@pqblocks/cnsa2-pki-auditor'` |
     | **Command line** | `cnsa2-pki-audit` |
-    | **Version** | 0.1.0 (Production-Ready) |
+    | **Version** | 0.1.0 (Stable) |
     | **Runtime** | Node.js >=18 / Browser |
     | **Native dependency** | none |
     | **Repository** | [PQBlocks/cnsa2-pki-auditor](https://github.com/PQBlocks/cnsa2-pki-auditor) |

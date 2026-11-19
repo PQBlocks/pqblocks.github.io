@@ -39,14 +39,13 @@
         [`@pqblocks/browser-pqc-verifier`](packages/browser-pqc-verifier.md), providing pure-JS post-quantum
         X.509 certificate validation, CBOM generation, and hybrid Express authentication middleware that run
         in web browsers, Edge workers, and Node.js without native C compilation dependencies.
-    - q: Are PQBlocks packages production-ready?
+    - q: Are PQBlocks packages stable and ready to use?
       a: >-
-        Yes. PQBlocks packages are verified, thoroughly tested, and production-ready for post-quantum
+        Yes. PQBlocks packages are verified, thoroughly tested, and stable for post-quantum
         migrations and modern cryptographic workflows. Every package is strictly implemented against
         official NIST standards (FIPS 203, 204, 205, CNSA 2.0), validated against official KAT/ACVP test
         vectors, and ships with comprehensive test suites, benchmarks, and verification reports. Packages
-        maintain high test coverage, strict memory bounds, and dependable API stability for enterprise
-        and production deployments.
+        maintain high test coverage, strict memory bounds, and dependable API stability.
     - q: Are PQBlocks packages FIPS validated?
       home: true
       a: >-

@@ -10,7 +10,7 @@ schema: {"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name"
 
 <p class="pqb-lead" markdown>Simulated Annealing heuristic solver for Ising and QUBO optimization problems. Quantum-inspired classical optimization, not cryptography.</p>
 
-[![PyPI](https://img.shields.io/pypi/v/pqblocks-anneal-sa?style=flat-square&label=PyPI&color=0f766e)](https://pypi.org/project/pqblocks-anneal-sa/) ![Area](https://img.shields.io/badge/area-Quantum--inspired-0e7490?style=flat-square) ![Status](https://img.shields.io/badge/status-Production--Ready-059669?style=flat-square) ![Python](https://img.shields.io/badge/python-%3E%3D3.11-1e40af?style=flat-square) ![Licence](https://img.shields.io/badge/licence-Apache--2.0-334155?style=flat-square) [![Source](https://img.shields.io/badge/source-simulated--annealing-111827?style=flat-square&logo=github)](https://github.com/PQBlocks/simulated-annealing)
+[![PyPI](https://img.shields.io/pypi/v/pqblocks-anneal-sa?style=flat-square&label=PyPI&color=0f766e)](https://pypi.org/project/pqblocks-anneal-sa/) ![Area](https://img.shields.io/badge/area-Quantum--inspired-0e7490?style=flat-square) ![Status](https://img.shields.io/badge/status-Stable-059669?style=flat-square) ![Python](https://img.shields.io/badge/python-%3E%3D3.11-1e40af?style=flat-square) ![Licence](https://img.shields.io/badge/licence-Apache--2.0-334155?style=flat-square) [![Source](https://img.shields.io/badge/source-simulated--annealing-111827?style=flat-square&logo=github)](https://github.com/PQBlocks/simulated-annealing)
 
 !!! abstract "At a glance"
 
@@ -19,7 +19,7 @@ schema: {"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name"
     | **Area** | :material-chart-bell-curve-cumulative: [Quantum-inspired](optimization.md) |
     | **Import** | `import pqblocks_anneal_sa` |
     | **Command line** | `pqblocks-anneal-sa` |
-    | **Version** | 0.1.0 (Production-Ready) |
+    | **Version** | 0.1.0 (Stable) |
     | **Python** | >=3.11 |
     | **Native dependency** | none |
     | **Repository** | [PQBlocks/simulated-annealing](https://github.com/PQBlocks/simulated-annealing) |
