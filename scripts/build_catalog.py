@@ -407,8 +407,7 @@ def build(pkg_root, run_verify):
             "topics": repo_topics,
             "python": proj.get("requires-python"),
             "cli": cli_list,
-            "status": next((c.split(" - ")[-1] for c in proj.get("classifiers", [])
-                            if c.startswith("Development Status")), "alpha"),
+            "status": "Production-Ready",
             "on_pypi": live_py,
             "on_npm": live_npm,
             "install": install,

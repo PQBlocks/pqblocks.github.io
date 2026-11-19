@@ -10,7 +10,7 @@ schema: {"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name"
 
 <p class="pqb-lead" markdown>NIST FIPS 203 and 204 ACVP Known Answer Test runner and Wycheproof harness in Node.js.</p>
 
-[![npm](https://img.shields.io/npm/v/@pqblocks/pqc-acvp-runner?style=flat-square&label=npm&color=0f766e)](https://www.npmjs.com/package/@pqblocks/pqc-acvp-runner) ![Area](https://img.shields.io/badge/area-Conformance-0e7490?style=flat-square) ![Status](https://img.shields.io/badge/status-alpha-b45309?style=flat-square) ![Runtime](https://img.shields.io/badge/runtime-Node.js%20%7C%20Browser-0284c7?style=flat-square) ![Licence](https://img.shields.io/badge/licence-Apache--2.0-334155?style=flat-square) [![Source](https://img.shields.io/badge/source-pqc--acvp--runner-111827?style=flat-square&logo=github)](https://github.com/PQBlocks/pqc-acvp-runner)
+[![npm](https://img.shields.io/npm/v/@pqblocks/pqc-acvp-runner?style=flat-square&label=npm&color=0f766e)](https://www.npmjs.com/package/@pqblocks/pqc-acvp-runner) ![Area](https://img.shields.io/badge/area-Conformance-0e7490?style=flat-square) ![Status](https://img.shields.io/badge/status-Production--Ready-059669?style=flat-square) ![Runtime](https://img.shields.io/badge/runtime-Node.js%20%7C%20Browser-0284c7?style=flat-square) ![Licence](https://img.shields.io/badge/licence-Apache--2.0-334155?style=flat-square) [![Source](https://img.shields.io/badge/source-pqc--acvp--runner-111827?style=flat-square&logo=github)](https://github.com/PQBlocks/pqc-acvp-runner)
 
 !!! abstract "At a glance"
 
@@ -19,7 +19,7 @@ schema: {"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name"
     | **Area** | :material-check-decagram-outline: [Conformance](conformance.md) |
     | **Import** | `import ... from '@pqblocks/pqc-acvp-runner'` |
     | **Command line** | library only |
-    | **Version** | 1.0.0 (alpha) |
+    | **Version** | 1.0.0 (Production-Ready) |
     | **Runtime** | Node.js >=18 / Browser |
     | **Native dependency** | none |
     | **Repository** | [PQBlocks/pqc-acvp-runner](https://github.com/PQBlocks/pqc-acvp-runner) |

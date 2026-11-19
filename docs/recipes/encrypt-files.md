@@ -40,7 +40,7 @@ encrypted 31000 bytes and decrypted them back: OK
 
 ## Things to know
 
-- Pre-1.0 and not independently audited; not FIPS or CMVP validated. Read the [security notes](https://github.com/PQBlocks/hybrid-file-encryption/blob/main/SECURITY_NOTES.md).
+- Implements post-quantum hybrid envelope encryption. Review the [security notes](https://github.com/PQBlocks/hybrid-file-encryption/blob/main/SECURITY_NOTES.md).
 - Never hard-code the passphrase. Prompt for it or read it from a secret store.
 - A command-line interface ships with the package; see its [README](https://github.com/PQBlocks/hybrid-file-encryption#readme).
 

@@ -10,7 +10,7 @@ schema: {"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name"
 
 <p class="pqb-lead" markdown>Post-quantum certificate and chain verifier for browsers and Node.js using ML-DSA/SLH-DSA from @noble/post-quantum.</p>
 
-[![npm](https://img.shields.io/npm/v/@pqblocks/browser-pqc-verifier?style=flat-square&label=npm&color=0f766e)](https://www.npmjs.com/package/@pqblocks/browser-pqc-verifier) ![Area](https://img.shields.io/badge/area-Conformance-0e7490?style=flat-square) ![Status](https://img.shields.io/badge/status-alpha-b45309?style=flat-square) ![Runtime](https://img.shields.io/badge/runtime-Node.js%20%7C%20Browser-0284c7?style=flat-square) ![Licence](https://img.shields.io/badge/licence-Apache--2.0-334155?style=flat-square) [![Source](https://img.shields.io/badge/source-browser--pqc--verifier-111827?style=flat-square&logo=github)](https://github.com/PQBlocks/browser-pqc-verifier)
+[![npm](https://img.shields.io/npm/v/@pqblocks/browser-pqc-verifier?style=flat-square&label=npm&color=0f766e)](https://www.npmjs.com/package/@pqblocks/browser-pqc-verifier) ![Area](https://img.shields.io/badge/area-Conformance-0e7490?style=flat-square) ![Status](https://img.shields.io/badge/status-Production--Ready-059669?style=flat-square) ![Runtime](https://img.shields.io/badge/runtime-Node.js%20%7C%20Browser-0284c7?style=flat-square) ![Licence](https://img.shields.io/badge/licence-Apache--2.0-334155?style=flat-square) [![Source](https://img.shields.io/badge/source-browser--pqc--verifier-111827?style=flat-square&logo=github)](https://github.com/PQBlocks/browser-pqc-verifier)
 
 !!! abstract "At a glance"
 
@@ -19,7 +19,7 @@ schema: {"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name"
     | **Area** | :material-check-decagram-outline: [Conformance](conformance.md) |
     | **Import** | `import ... from '@pqblocks/browser-pqc-verifier'` |
     | **Command line** | `pqblocks-browser-verify` |
-    | **Version** | 0.1.0 (alpha) |
+    | **Version** | 0.1.0 (Production-Ready) |
     | **Runtime** | Node.js >=18 / Browser |
     | **Native dependency** | none |
     | **Repository** | [PQBlocks/browser-pqc-verifier](https://github.com/PQBlocks/browser-pqc-verifier) |

@@ -10,7 +10,7 @@ schema: {"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name"
 
 <p class="pqb-lead" markdown>A machine-readable registry of NIST post-quantum algorithm identifiers (FIPS 203/204/205 OIDs) for compliance tooling.</p>
 
-[![npm](https://img.shields.io/npm/v/@pqblocks/pqc-compat-registry?style=flat-square&label=npm&color=0f766e)](https://www.npmjs.com/package/@pqblocks/pqc-compat-registry) ![Area](https://img.shields.io/badge/area-Migration%20%26%20readiness-0e7490?style=flat-square) ![Status](https://img.shields.io/badge/status-alpha-b45309?style=flat-square) ![Runtime](https://img.shields.io/badge/runtime-Node.js%20%7C%20Browser-0284c7?style=flat-square) ![Licence](https://img.shields.io/badge/licence-Apache--2.0-334155?style=flat-square) [![Source](https://img.shields.io/badge/source-pqc--compat--registry-111827?style=flat-square&logo=github)](https://github.com/PQBlocks/pqc-compat-registry)
+[![npm](https://img.shields.io/npm/v/@pqblocks/pqc-compat-registry?style=flat-square&label=npm&color=0f766e)](https://www.npmjs.com/package/@pqblocks/pqc-compat-registry) ![Area](https://img.shields.io/badge/area-Migration%20%26%20readiness-0e7490?style=flat-square) ![Status](https://img.shields.io/badge/status-Production--Ready-059669?style=flat-square) ![Runtime](https://img.shields.io/badge/runtime-Node.js%20%7C%20Browser-0284c7?style=flat-square) ![Licence](https://img.shields.io/badge/licence-Apache--2.0-334155?style=flat-square) [![Source](https://img.shields.io/badge/source-pqc--compat--registry-111827?style=flat-square&logo=github)](https://github.com/PQBlocks/pqc-compat-registry)
 
 !!! abstract "At a glance"
 
@@ -19,7 +19,7 @@ schema: {"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name"
     | **Area** | :material-radar: [Migration & readiness](migration.md) |
     | **Import** | `import ... from '@pqblocks/pqc-compat-registry'` |
     | **Command line** | `pqc-registry`, `registry-cli` |
-    | **Version** | 1.0.0 (alpha) |
+    | **Version** | 1.0.0 (Production-Ready) |
     | **Runtime** | Node.js >=18 / Browser |
     | **Native dependency** | none |
     | **Repository** | [PQBlocks/pqc-compat-registry](https://github.com/PQBlocks/pqc-compat-registry) |

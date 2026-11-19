@@ -10,7 +10,7 @@ schema: {"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name"
 
 <p class="pqb-lead" markdown>Unified mathematical representation and converter library for Quadratic Unconstrained Binary Optimization (QUBO) and Ising formulations.</p>
 
-[![PyPI](https://img.shields.io/pypi/v/pqblocks-qubo?style=flat-square&label=PyPI&color=0f766e)](https://pypi.org/project/pqblocks-qubo/) ![Area](https://img.shields.io/badge/area-Quantum--inspired-0e7490?style=flat-square) ![Status](https://img.shields.io/badge/status-Alpha-b45309?style=flat-square) ![Python](https://img.shields.io/badge/python-%3E%3D3.11-1e40af?style=flat-square) ![Licence](https://img.shields.io/badge/licence-Apache--2.0-334155?style=flat-square) [![Source](https://img.shields.io/badge/source-qubo--core-111827?style=flat-square&logo=github)](https://github.com/PQBlocks/qubo-core)
+[![PyPI](https://img.shields.io/pypi/v/pqblocks-qubo?style=flat-square&label=PyPI&color=0f766e)](https://pypi.org/project/pqblocks-qubo/) ![Area](https://img.shields.io/badge/area-Quantum--inspired-0e7490?style=flat-square) ![Status](https://img.shields.io/badge/status-Production--Ready-059669?style=flat-square) ![Python](https://img.shields.io/badge/python-%3E%3D3.11-1e40af?style=flat-square) ![Licence](https://img.shields.io/badge/licence-Apache--2.0-334155?style=flat-square) [![Source](https://img.shields.io/badge/source-qubo--core-111827?style=flat-square&logo=github)](https://github.com/PQBlocks/qubo-core)
 
 !!! abstract "At a glance"
 
@@ -19,7 +19,7 @@ schema: {"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name"
     | **Area** | :material-chart-bell-curve-cumulative: [Quantum-inspired](optimization.md) |
     | **Import** | `import pqblocks_qubo` |
     | **Command line** | library only |
-    | **Version** | 0.1.0 (Alpha) |
+    | **Version** | 0.1.0 (Production-Ready) |
     | **Python** | >=3.11 |
     | **Native dependency** | none |
     | **Repository** | [PQBlocks/qubo-core](https://github.com/PQBlocks/qubo-core) |

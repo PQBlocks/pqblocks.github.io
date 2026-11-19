@@ -46,7 +46,7 @@ The package also ships a command-line scanner that writes CBOM and SARIF for a d
 ## Things to know
 
 - Static scanning finds algorithms named in code. Algorithms chosen at runtime or hidden behind library defaults need a TLS probe ([`pqblocks-tls-interop`](../packages/tls-interop.md)) or data-flow analysis ([`pqblocks-lint`](../packages/lint.md)).
-- Alpha status: files the scanner cannot parse are reported as scan errors, never silently skipped.
+- Strict audit mode: files the scanner cannot parse are reported as scan errors, never silently skipped.
 
 ## Next steps
 

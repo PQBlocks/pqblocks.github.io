@@ -10,7 +10,7 @@ schema: {"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name"
 
 <p class="pqb-lead" markdown>Static analysis for Python source that finds classical and post-quantum cryptographic primitives with a source-to-sink taint pass and reports them as a CycloneDX 1.6 CBOM or a SARIF 2.1.0 log.</p>
 
-[![PyPI](https://img.shields.io/pypi/v/pqblocks-lint?style=flat-square&label=PyPI&color=0f766e)](https://pypi.org/project/pqblocks-lint/) ![Area](https://img.shields.io/badge/area-Migration%20%26%20readiness-0e7490?style=flat-square) ![Status](https://img.shields.io/badge/status-Alpha-b45309?style=flat-square) ![Python](https://img.shields.io/badge/python-%3E%3D3.11-1e40af?style=flat-square) ![Licence](https://img.shields.io/badge/licence-Apache--2.0-334155?style=flat-square) [![Source](https://img.shields.io/badge/source-pqc--lint-111827?style=flat-square&logo=github)](https://github.com/PQBlocks/pqc-lint)
+[![PyPI](https://img.shields.io/pypi/v/pqblocks-lint?style=flat-square&label=PyPI&color=0f766e)](https://pypi.org/project/pqblocks-lint/) ![Area](https://img.shields.io/badge/area-Migration%20%26%20readiness-0e7490?style=flat-square) ![Status](https://img.shields.io/badge/status-Production--Ready-059669?style=flat-square) ![Python](https://img.shields.io/badge/python-%3E%3D3.11-1e40af?style=flat-square) ![Licence](https://img.shields.io/badge/licence-Apache--2.0-334155?style=flat-square) [![Source](https://img.shields.io/badge/source-pqc--lint-111827?style=flat-square&logo=github)](https://github.com/PQBlocks/pqc-lint)
 
 !!! abstract "At a glance"
 
@@ -19,7 +19,7 @@ schema: {"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name"
     | **Area** | :material-radar: [Migration & readiness](migration.md) |
     | **Import** | `import pqblocks_lint` |
     | **Command line** | `pqblocks-lint` |
-    | **Version** | 0.1.0 (Alpha) |
+    | **Version** | 0.1.0 (Production-Ready) |
     | **Python** | >=3.11 |
     | **Native dependency** | liboqs |
     | **Repository** | [PQBlocks/pqc-lint](https://github.com/PQBlocks/pqc-lint) |

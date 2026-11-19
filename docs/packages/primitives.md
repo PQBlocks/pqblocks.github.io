@@ -10,7 +10,7 @@ schema: {"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name"
 
 <p class="pqb-lead" markdown>Production-ready integrated post-quantum cryptographic primitives (ML-KEM, ML-DSA, SLH-DSA, and hybrid schemes).</p>
 
-[![PyPI](https://img.shields.io/pypi/v/pqblocks-primitives?style=flat-square&label=PyPI&color=0f766e)](https://pypi.org/project/pqblocks-primitives/) ![Area](https://img.shields.io/badge/area-PQ%20cryptography-0e7490?style=flat-square) ![Status](https://img.shields.io/badge/status-Alpha-b45309?style=flat-square) ![Python](https://img.shields.io/badge/python-%3E%3D3.11-1e40af?style=flat-square) ![Licence](https://img.shields.io/badge/licence-Apache--2.0-334155?style=flat-square) [![Source](https://img.shields.io/badge/source-fips--pqc--primitives-111827?style=flat-square&logo=github)](https://github.com/PQBlocks/fips-pqc-primitives)
+[![PyPI](https://img.shields.io/pypi/v/pqblocks-primitives?style=flat-square&label=PyPI&color=0f766e)](https://pypi.org/project/pqblocks-primitives/) ![Area](https://img.shields.io/badge/area-PQ%20cryptography-0e7490?style=flat-square) ![Status](https://img.shields.io/badge/status-Production--Ready-059669?style=flat-square) ![Python](https://img.shields.io/badge/python-%3E%3D3.11-1e40af?style=flat-square) ![Licence](https://img.shields.io/badge/licence-Apache--2.0-334155?style=flat-square) [![Source](https://img.shields.io/badge/source-fips--pqc--primitives-111827?style=flat-square&logo=github)](https://github.com/PQBlocks/fips-pqc-primitives)
 
 !!! abstract "At a glance"
 
@@ -19,7 +19,7 @@ schema: {"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name"
     | **Area** | :material-shield-key-outline: [PQ cryptography](crypto.md) |
     | **Import** | `import pqblocks_primitives` |
     | **Command line** | library only |
-    | **Version** | 0.1.0 (Alpha) |
+    | **Version** | 0.1.0 (Production-Ready) |
     | **Python** | >=3.11 |
     | **Native dependency** | liboqs |
     | **Repository** | [PQBlocks/fips-pqc-primitives](https://github.com/PQBlocks/fips-pqc-primitives) |

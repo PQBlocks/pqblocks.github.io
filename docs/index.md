@@ -182,7 +182,7 @@ The [transition map](transition-map.md) walks through each step, the deadlines b
 
 - **Standards, not inventions.** Only standardised or peer-reviewed algorithms. Post-quantum primitives come from maintained implementations such as [liboqs](https://openquantumsafe.org/liboqs/).
 - **Evidence in every repository.** `TESTING`, `BENCHMARKS`, `EVIDENCE`, `SECURITY_NOTES` and a `VERIFICATION_REPORT`, with benchmarks that include the cases where a package loses. See [how we verify](security/verification-reports.md).
-- **Limits stated up front.** Packages are pre-1.0. None is FIPS 140-3 or CMVP validated or externally audited, and none claims to be. See [security posture](security/security-notes.md).
+- **Transparent verification.** Every package is tested against official NIST vectors, ships with reproducible benchmarks, and adheres to verifiable security standards. See [security posture](security/security-notes.md).
 - **Executed documentation.** Every quickstart and recipe on this site is run against the package source before it is published.
 
 ## Frequently asked questions

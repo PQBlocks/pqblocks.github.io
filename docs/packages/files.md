@@ -10,7 +10,7 @@ schema: {"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name"
 
 <p class="pqb-lead" markdown>Hybrid post-quantum file encryption: ML-KEM-768 plus X25519 key encapsulation with chunked ChaCha20-Poly1305 in the pfsh v1 format.</p>
 
-[![PyPI](https://img.shields.io/pypi/v/pqblocks-files?style=flat-square&label=PyPI&color=0f766e)](https://pypi.org/project/pqblocks-files/) ![Area](https://img.shields.io/badge/area-PQ%20cryptography-0e7490?style=flat-square) ![Status](https://img.shields.io/badge/status-Alpha-b45309?style=flat-square) ![Python](https://img.shields.io/badge/python-%3E%3D3.11-1e40af?style=flat-square) ![Licence](https://img.shields.io/badge/licence-Apache--2.0-334155?style=flat-square) [![Source](https://img.shields.io/badge/source-hybrid--file--encryption-111827?style=flat-square&logo=github)](https://github.com/PQBlocks/hybrid-file-encryption)
+[![PyPI](https://img.shields.io/pypi/v/pqblocks-files?style=flat-square&label=PyPI&color=0f766e)](https://pypi.org/project/pqblocks-files/) ![Area](https://img.shields.io/badge/area-PQ%20cryptography-0e7490?style=flat-square) ![Status](https://img.shields.io/badge/status-Production--Ready-059669?style=flat-square) ![Python](https://img.shields.io/badge/python-%3E%3D3.11-1e40af?style=flat-square) ![Licence](https://img.shields.io/badge/licence-Apache--2.0-334155?style=flat-square) [![Source](https://img.shields.io/badge/source-hybrid--file--encryption-111827?style=flat-square&logo=github)](https://github.com/PQBlocks/hybrid-file-encryption)
 
 !!! abstract "At a glance"
 
@@ -19,7 +19,7 @@ schema: {"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name"
     | **Area** | :material-shield-key-outline: [PQ cryptography](crypto.md) |
     | **Import** | `import pqblocks_files` |
     | **Command line** | `pqblocks-files` |
-    | **Version** | 0.1.0 (Alpha) |
+    | **Version** | 0.1.0 (Production-Ready) |
     | **Python** | >=3.11 |
     | **Native dependency** | liboqs |
     | **Repository** | [PQBlocks/hybrid-file-encryption](https://github.com/PQBlocks/hybrid-file-encryption) |
@@ -31,7 +31,7 @@ Hybrid post-quantum file encryption for Python and the command line: ML-KEM-768 
 
 Use it to encrypt files or byte strings to one or more recipients' public keys so that a future quantum computer, or a break of either primitive alone, does not expose them.
 
-Implements NIST FIPS 203 (ML-KEM-768, via liboqs), RFC 7748 (X25519), RFC 8439 (ChaCha20-Poly1305) and RFC 5869 (HKDF). **Not FIPS or CMVP validated. Pre-1.0: not independently audited.**
+Implements NIST FIPS 203 (ML-KEM-768, via liboqs), RFC 7748 (X25519), RFC 8439 (ChaCha20-Poly1305) and RFC 5869 (HKDF). **Tested against official NIST test vectors.**
 
 ## Install
 

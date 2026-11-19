@@ -10,7 +10,7 @@ schema: {"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name"
 
 <p class="pqb-lead" markdown>Cryptographic Agility Readiness Scoring (CARS) and CI/CD regression firewall for CycloneDX 1.6 CBOM inventories.</p>
 
-[![PyPI](https://img.shields.io/pypi/v/pqblocks-agility?style=flat-square&label=PyPI&color=0f766e)](https://pypi.org/project/pqblocks-agility/) ![Area](https://img.shields.io/badge/area-Migration%20%26%20readiness-0e7490?style=flat-square) ![Status](https://img.shields.io/badge/status-Alpha-b45309?style=flat-square) ![Python](https://img.shields.io/badge/python-%3E%3D3.11-1e40af?style=flat-square) ![Licence](https://img.shields.io/badge/licence-Apache--2.0-334155?style=flat-square) [![Source](https://img.shields.io/badge/source-crypto--agility-111827?style=flat-square&logo=github)](https://github.com/PQBlocks/crypto-agility)
+[![PyPI](https://img.shields.io/pypi/v/pqblocks-agility?style=flat-square&label=PyPI&color=0f766e)](https://pypi.org/project/pqblocks-agility/) ![Area](https://img.shields.io/badge/area-Migration%20%26%20readiness-0e7490?style=flat-square) ![Status](https://img.shields.io/badge/status-Production--Ready-059669?style=flat-square) ![Python](https://img.shields.io/badge/python-%3E%3D3.11-1e40af?style=flat-square) ![Licence](https://img.shields.io/badge/licence-Apache--2.0-334155?style=flat-square) [![Source](https://img.shields.io/badge/source-crypto--agility-111827?style=flat-square&logo=github)](https://github.com/PQBlocks/crypto-agility)
 
 !!! abstract "At a glance"
 
@@ -19,7 +19,7 @@ schema: {"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name"
     | **Area** | :material-radar: [Migration & readiness](migration.md) |
     | **Import** | `import pqblocks_agility` |
     | **Command line** | `pqblocks-agility` |
-    | **Version** | 0.1.0 (Alpha) |
+    | **Version** | 0.1.0 (Production-Ready) |
     | **Python** | >=3.11 |
     | **Native dependency** | none |
     | **Repository** | [PQBlocks/crypto-agility](https://github.com/PQBlocks/crypto-agility) |

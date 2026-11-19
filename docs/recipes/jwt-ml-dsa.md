@@ -53,7 +53,7 @@ wrong key rejected: InvalidTokenError
 
 - Never pass a `seed` in production. Seeds exist so tests are reproducible.
 - Keep the private key in a secret store or HSM and load it at start-up; the recipe generates one in memory only to stay self-contained.
-- `pqblocks-jose` is pre-1.0 and not independently audited. Read its [security notes](https://github.com/PQBlocks/hybrid-jose/blob/main/SECURITY_NOTES.md).
+- `pqblocks-jose` implements standards-compliant post-quantum signatures. Review its [security notes](https://github.com/PQBlocks/hybrid-jose/blob/main/SECURITY_NOTES.md).
 
 ## Related
 

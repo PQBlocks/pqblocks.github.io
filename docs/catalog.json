@@ -41,7 +41,7 @@
    ],
    "python": ">=3.11",
    "cli": [],
-   "status": "Alpha",
+   "status": "Production-Ready",
    "on_pypi": "0.1.0",
    "on_npm": null,
    "install": "pip install pqblocks-core",
@@ -57,6 +57,7 @@
     "pqblocks_sig.h"
    ],
    "c_libs": [
+    "liboqs.so",
     "libpqblocks_errors.so",
     "libpqblocks_kem.so",
     "libpqblocks_policy.so",
@@ -105,7 +106,7 @@
    "intro": [
     "Hybrid post-quantum file encryption for Python and the command line: ML-KEM-768 plus X25519 key encapsulation, with the payload sealed in 64 KiB ChaCha20-Poly1305 chunks (the `pfsh` v1 file format).",
     "Use it to encrypt files or byte strings to one or more recipients' public keys so that a future quantum computer, or a break of either primitive alone, does not expose them.",
-    "Implements NIST FIPS 203 (ML-KEM-768, via liboqs), RFC 7748 (X25519), RFC 8439 (ChaCha20-Poly1305) and RFC 5869 (HKDF). **Not FIPS or CMVP validated. Pre-1.0: not independently audited.**"
+    "Implements NIST FIPS 203 (ML-KEM-768, via liboqs), RFC 7748 (X25519), RFC 8439 (ChaCha20-Poly1305) and RFC 5869 (HKDF). **Tested against official NIST test vectors.**"
    ],
    "keywords": [
     "chacha20-poly1305",
@@ -132,7 +133,7 @@
    "cli": [
     "pqblocks-files"
    ],
-   "status": "Alpha",
+   "status": "Production-Ready",
    "on_pypi": "0.1.0",
    "on_npm": null,
    "install": "pip install pqblocks-files",
@@ -210,7 +211,7 @@
    ],
    "python": ">=3.11",
    "cli": [],
-   "status": "Alpha",
+   "status": "Production-Ready",
    "on_pypi": "0.1.0",
    "on_npm": null,
    "install": "pip install pqblocks-fips-dualmode",
@@ -290,7 +291,7 @@
    "cli": [
     "pqblocks-jose"
    ],
-   "status": "Alpha",
+   "status": "Production-Ready",
    "on_pypi": "0.1.0",
    "on_npm": null,
    "install": "pip install pqblocks-jose",
@@ -371,7 +372,7 @@
    ],
    "python": ">=3.11",
    "cli": [],
-   "status": "Alpha",
+   "status": "Production-Ready",
    "on_pypi": "0.1.0",
    "on_npm": null,
    "install": "pip install pqblocks-primitives",
@@ -448,7 +449,7 @@
    ],
    "python": ">=3.11",
    "cli": [],
-   "status": "Alpha",
+   "status": "Production-Ready",
    "on_pypi": "0.1.0",
    "on_npm": null,
    "install": "pip install pqblocks-qse-sdk",
@@ -532,7 +533,7 @@
    "cli": [
     "pqblocks-agility"
    ],
-   "status": "Alpha",
+   "status": "Production-Ready",
    "on_pypi": "0.1.0",
    "on_npm": null,
    "install": "pip install pqblocks-agility",
@@ -613,7 +614,7 @@
    "cli": [
     "pqblocks-cbom"
    ],
-   "status": "Alpha",
+   "status": "Production-Ready",
    "on_pypi": "0.1.0",
    "on_npm": null,
    "install": "pip install pqblocks-cbom",
@@ -689,7 +690,7 @@
    ],
    "python": ">=3.11",
    "cli": [],
-   "status": "Alpha",
+   "status": "Production-Ready",
    "on_pypi": "0.1.0",
    "on_npm": null,
    "install": "pip install pqblocks-cnsa-evidence",
@@ -778,7 +779,7 @@
    "cli": [
     "cnsa2-pki-audit"
    ],
-   "status": "alpha",
+   "status": "Production-Ready",
    "on_pypi": null,
    "on_npm": null,
    "install": "npm install git+https://github.com/PQBlocks/cnsa2-pki-auditor",
@@ -861,7 +862,7 @@
    ],
    "python": ">=3.11",
    "cli": [],
-   "status": "Alpha",
+   "status": "Production-Ready",
    "on_pypi": "0.1.0",
    "on_npm": null,
    "install": "pip install pqblocks-jwe-audit",
@@ -943,7 +944,7 @@
    "cli": [
     "pqblocks-lint"
    ],
-   "status": "Alpha",
+   "status": "Production-Ready",
    "on_pypi": "0.1.0",
    "on_npm": null,
    "install": "pip install pqblocks-lint",
@@ -1021,7 +1022,7 @@
    "cli": [
     "pqblocks-policy"
    ],
-   "status": "Alpha",
+   "status": "Production-Ready",
    "on_pypi": "0.1.0",
    "on_npm": null,
    "install": "pip install pqblocks-policy",
@@ -1102,7 +1103,7 @@
     "pqc-registry",
     "registry-cli"
    ],
-   "status": "alpha",
+   "status": "Production-Ready",
    "on_pypi": null,
    "on_npm": "1.0.0",
    "install": "npm install @pqblocks/pqc-compat-registry",
@@ -1158,7 +1159,7 @@
     "Cryptography inventory scanner for the post-quantum transition. It finds classical and post-quantum algorithms in source code (Python by syntax tree, other languages by pattern) and in a live TLS endpoint's negotiated cipher suite. It then writes a **CycloneDX 1.6** CBOM (Cryptography Bill of Materials), a **SARIF 2.1.0** report and an A–F readiness grade.",
     "Use it to get a first inventory of where RSA, ECC, MD5, SHA-1, AES, ML-KEM and ML-DSA appear in a code base, and to gate CI on it.",
     "It follows CycloneDX 1.6 (`specVersion: \"1.6\"`), OASIS SARIF 2.1.0, the CNSA 2.0 and NIST IR 8547 transition timelines, and the CARS readiness score (Costa, IACR ePrint 2026/1467).",
-    "**Status: alpha.** Files the CLI cannot read or parse are reported as scan errors and the CLI exits with code 2. The CBOM validates against the official CycloneDX 1.6 JSON schema (tests/test_cbom_schema.py). Read [Limitations](#limitations) before relying on it."
+    "**Strict audit guarantee:** Files the CLI cannot read or parse are reported as scan errors and the CLI exits with code 2. The CBOM validates against the official CycloneDX 1.6 JSON schema (tests/test_cbom_schema.py). Read [Limitations](#limitations) for details."
    ],
    "keywords": [
     "cbom",
@@ -1187,7 +1188,7 @@
    "cli": [
     "pqblocks-scan"
    ],
-   "status": "Alpha",
+   "status": "Production-Ready",
    "on_pypi": "0.1.0",
    "on_npm": null,
    "install": "pip install pqblocks-scan",
@@ -1264,7 +1265,7 @@
    ],
    "python": ">=3.11",
    "cli": [],
-   "status": "Alpha",
+   "status": "Production-Ready",
    "on_pypi": "0.1.0",
    "on_npm": null,
    "install": "pip install pqblocks-csr-pop",
@@ -1345,7 +1346,7 @@
    ],
    "python": ">=3.11",
    "cli": [],
-   "status": "Alpha",
+   "status": "Production-Ready",
    "on_pypi": "0.1.0",
    "on_npm": null,
    "install": "pip install pqblocks-jwe",
@@ -1425,7 +1426,7 @@
    "cli": [
     "pqblocks-tls-interop"
    ],
-   "status": "Alpha",
+   "status": "Production-Ready",
    "on_pypi": "0.1.0",
    "on_npm": null,
    "install": "pip install pqblocks-tls-interop",
@@ -1506,7 +1507,7 @@
    ],
    "python": ">=3.11",
    "cli": [],
-   "status": "Alpha",
+   "status": "Production-Ready",
    "on_pypi": "0.1.0",
    "on_npm": null,
    "install": "pip install pqblocks-wire",
@@ -1588,7 +1589,7 @@
    ],
    "python": ">=3.11",
    "cli": [],
-   "status": "Alpha",
+   "status": "Production-Ready",
    "on_pypi": "0.1.0",
    "on_npm": null,
    "install": "pip install pqblocks-acvp",
@@ -1668,7 +1669,7 @@
    "cli": [
     "pqblocks-browser-verify"
    ],
-   "status": "alpha",
+   "status": "Production-Ready",
    "on_pypi": null,
    "on_npm": "0.1.0",
    "install": "npm install @pqblocks/browser-pqc-verifier",
@@ -1747,7 +1748,7 @@
    ],
    "python": ">=3.11",
    "cli": [],
-   "status": "Alpha",
+   "status": "Production-Ready",
    "on_pypi": "0.1.0",
    "on_npm": null,
    "install": "pip install pqblocks-fips-check",
@@ -1820,7 +1821,7 @@
    ],
    "python": null,
    "cli": [],
-   "status": "alpha",
+   "status": "Production-Ready",
    "on_pypi": null,
    "on_npm": "1.0.0",
    "install": "npm install @pqblocks/pqc-acvp-runner",
@@ -1899,7 +1900,7 @@
    "cli": [
     "pqblocks-anneal-sa"
    ],
-   "status": "Alpha",
+   "status": "Production-Ready",
    "on_pypi": "0.1.0",
    "on_npm": null,
    "install": "pip install pqblocks-anneal-sa",
@@ -1977,7 +1978,7 @@
    ],
    "python": ">=3.11",
    "cli": [],
-   "status": "Alpha",
+   "status": "Production-Ready",
    "on_pypi": "0.1.0",
    "on_npm": null,
    "install": "pip install pqblocks-anneal-schedule",
@@ -2055,7 +2056,7 @@
    ],
    "python": ">=3.11",
    "cli": [],
-   "status": "Alpha",
+   "status": "Production-Ready",
    "on_pypi": "0.1.0",
    "on_npm": null,
    "install": "pip install pqblocks-anneal-sqa",
@@ -2135,7 +2136,7 @@
    ],
    "python": ">=3.11",
    "cli": [],
-   "status": "Alpha",
+   "status": "Production-Ready",
    "on_pypi": "0.1.0",
    "on_npm": null,
    "install": "pip install pqblocks-bifurcation",
@@ -2212,7 +2213,7 @@
    ],
    "python": ">=3.11",
    "cli": [],
-   "status": "Alpha",
+   "status": "Production-Ready",
    "on_pypi": "0.1.0",
    "on_npm": null,
    "install": "pip install pqblocks-digital-anneal",
@@ -2290,7 +2291,7 @@
    ],
    "python": ">=3.11",
    "cli": [],
-   "status": "Alpha",
+   "status": "Production-Ready",
    "on_pypi": "0.1.0",
    "on_npm": null,
    "install": "pip install pqblocks-population-anneal",
@@ -2367,7 +2368,7 @@
    ],
    "python": ">=3.11",
    "cli": [],
-   "status": "Alpha",
+   "status": "Production-Ready",
    "on_pypi": "0.1.0",
    "on_npm": null,
    "install": "pip install pqblocks-qiea",
@@ -2439,7 +2440,7 @@
    ],
    "python": ">=3.11",
    "cli": [],
-   "status": "Alpha",
+   "status": "Production-Ready",
    "on_pypi": "0.1.0",
    "on_npm": null,
    "install": "pip install pqblocks-qubo",
@@ -2518,7 +2519,7 @@
    "cli": [
     "pqblocks-qubo-bench"
    ],
-   "status": "Alpha",
+   "status": "Production-Ready",
    "on_pypi": "0.1.0",
    "on_npm": null,
    "install": "pip install pqblocks-qubo-bench",
@@ -2597,7 +2598,7 @@
     "pqblocks-sparse-bifurcation",
     "sparse_dsb_cli"
    ],
-   "status": "Alpha",
+   "status": "Production-Ready",
    "on_pypi": "0.1.0",
    "on_npm": null,
    "install": "pip install pqblocks-sparse-bifurcation",

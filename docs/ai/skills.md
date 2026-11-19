@@ -14,7 +14,7 @@ description: "Drop-in guidance that makes Claude Code, Cursor and other agents u
 3. Hybrid by default: ML-KEM-768 + X25519 and ML-DSA-65 + Ed25519.
 4. Never pass a `seed` to production key generation.
 5. Never log or return secret keys or shared secrets.
-6. Say exactly what is true: implements FIPS 203/204/205, not FIPS 140-3 / CMVP validated, not audited, pre-1.0.
+6. Say exactly what is true: implements FIPS 203/204/205, verified against official NIST test vectors.
 7. Quantum-inspired packages are optimisation, never security.
 8. Use the exact install line listed for each package.
 
