@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 340" width="1200" height="340" role="img" aria-label="Post-quantum migration steps and the PQBlocks packages for each" font-family="Inter, 'Segoe UI', system-ui, sans-serif">
+<defs><linearGradient id="acc" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0891b2"/><stop offset="1" stop-color="#7c3aed"/></linearGradient></defs>
+<rect width="1200" height="340" rx="16" fill="#ffffff"/>
+<text x="600" y="40" font-size="22" font-weight="700" fill="#0f172a" text-anchor="middle">The post-quantum migration, step by step</text>
+<text x="600" y="64" font-size="12" font-weight="400" fill="#475569" text-anchor="middle">package names below omit the pqblocks- prefix</text>
+<rect x="25" y="92" width="170" height="214" rx="12" fill="#f8fafc" stroke="#cbd5e1"/>
+<circle cx="53" cy="122" r="16" fill="url(#acc)"/>
+<text x="53" y="127" font-size="14" font-weight="700" fill="#ffffff" text-anchor="middle">1</text>
+<text x="77" y="127" font-size="16" font-weight="700" fill="#0f172a" text-anchor="start">Discover</text>
+<text x="110" y="156" font-size="12" font-weight="400" fill="#475569" text-anchor="middle">find every algorithm</text>
+<rect x="39" y="176" width="142" height="24" rx="12" fill="#e2e8f0"/>
+<text x="110" y="192" font-size="12" font-weight="500" fill="#0f172a" text-anchor="middle">scan</text>
+<rect x="39" y="206" width="142" height="24" rx="12" fill="#e2e8f0"/>
+<text x="110" y="222" font-size="12" font-weight="500" fill="#0f172a" text-anchor="middle">lint</text>
+<path d="M199 199 h16" stroke="#7c3aed" stroke-width="2.5"/>
+<path d="M221 199 l-6 -5 v10 z" fill="#7c3aed"/>
+<rect x="221" y="92" width="170" height="214" rx="12" fill="#f8fafc" stroke="#cbd5e1"/>
+<circle cx="249" cy="122" r="16" fill="url(#acc)"/>
+<text x="249" y="127" font-size="14" font-weight="700" fill="#ffffff" text-anchor="middle">2</text>
+<text x="273" y="127" font-size="16" font-weight="700" fill="#0f172a" text-anchor="start">Assess</text>
+<text x="306" y="156" font-size="12" font-weight="400" fill="#475569" text-anchor="middle">score and document</text>
+<rect x="235" y="176" width="142" height="24" rx="12" fill="#e2e8f0"/>
+<text x="306" y="192" font-size="12" font-weight="500" fill="#0f172a" text-anchor="middle">cbom</text>
+<rect x="235" y="206" width="142" height="24" rx="12" fill="#e2e8f0"/>
+<text x="306" y="222" font-size="12" font-weight="500" fill="#0f172a" text-anchor="middle">agility</text>
+<path d="M395 199 h16" stroke="#7c3aed" stroke-width="2.5"/>
+<path d="M417 199 l-6 -5 v10 z" fill="#7c3aed"/>
+<rect x="417" y="92" width="170" height="214" rx="12" fill="#f8fafc" stroke="#cbd5e1"/>
+<circle cx="445" cy="122" r="16" fill="url(#acc)"/>
+<text x="445" y="127" font-size="14" font-weight="700" fill="#ffffff" text-anchor="middle">3</text>
+<text x="469" y="127" font-size="16" font-weight="700" fill="#0f172a" text-anchor="start">Govern</text>
+<text x="502" y="156" font-size="12" font-weight="400" fill="#475569" text-anchor="middle">enforce in CI</text>
+<rect x="431" y="176" width="142" height="24" rx="12" fill="#e2e8f0"/>
+<text x="502" y="192" font-size="12" font-weight="500" fill="#0f172a" text-anchor="middle">policy</text>
+<rect x="431" y="206" width="142" height="24" rx="12" fill="#e2e8f0"/>
+<text x="502" y="222" font-size="12" font-weight="500" fill="#0f172a" text-anchor="middle">jwe-audit</text>
+<rect x="431" y="236" width="142" height="24" rx="12" fill="#e2e8f0"/>
+<text x="502" y="252" font-size="12" font-weight="500" fill="#0f172a" text-anchor="middle">cnsa-evidence</text>
+<path d="M591 199 h16" stroke="#7c3aed" stroke-width="2.5"/>
+<path d="M613 199 l-6 -5 v10 z" fill="#7c3aed"/>
+<rect x="613" y="92" width="170" height="214" rx="12" fill="#f8fafc" stroke="#cbd5e1"/>
+<circle cx="641" cy="122" r="16" fill="url(#acc)"/>
+<text x="641" y="127" font-size="14" font-weight="700" fill="#ffffff" text-anchor="middle">4</text>
+<text x="665" y="127" font-size="16" font-weight="700" fill="#0f172a" text-anchor="start">Migrate</text>
+<text x="698" y="156" font-size="12" font-weight="400" fill="#475569" text-anchor="middle">hybrid PQ primitives</text>
+<rect x="627" y="176" width="142" height="24" rx="12" fill="#e2e8f0"/>
+<text x="698" y="192" font-size="12" font-weight="500" fill="#0f172a" text-anchor="middle">core</text>
+<rect x="627" y="206" width="142" height="24" rx="12" fill="#e2e8f0"/>
+<text x="698" y="222" font-size="12" font-weight="500" fill="#0f172a" text-anchor="middle">primitives</text>
+<rect x="627" y="236" width="142" height="24" rx="12" fill="#e2e8f0"/>
+<text x="698" y="252" font-size="12" font-weight="500" fill="#0f172a" text-anchor="middle">jose</text>
+<rect x="627" y="266" width="142" height="24" rx="12" fill="#e2e8f0"/>
+<text x="698" y="282" font-size="12" font-weight="500" fill="#0f172a" text-anchor="middle">files</text>
+<path d="M787 199 h16" stroke="#7c3aed" stroke-width="2.5"/>
+<path d="M809 199 l-6 -5 v10 z" fill="#7c3aed"/>
+<rect x="809" y="92" width="170" height="214" rx="12" fill="#f8fafc" stroke="#cbd5e1"/>
+<circle cx="837" cy="122" r="16" fill="url(#acc)"/>
+<text x="837" y="127" font-size="14" font-weight="700" fill="#ffffff" text-anchor="middle">5</text>
+<text x="861" y="127" font-size="16" font-weight="700" fill="#0f172a" text-anchor="start">Interoperate</text>
+<text x="894" y="156" font-size="12" font-weight="400" fill="#475569" text-anchor="middle">carry it on the wire</text>
+<rect x="823" y="176" width="142" height="24" rx="12" fill="#e2e8f0"/>
+<text x="894" y="192" font-size="12" font-weight="500" fill="#0f172a" text-anchor="middle">tls-interop</text>
+<rect x="823" y="206" width="142" height="24" rx="12" fill="#e2e8f0"/>
+<text x="894" y="222" font-size="12" font-weight="500" fill="#0f172a" text-anchor="middle">wire</text>
+<rect x="823" y="236" width="142" height="24" rx="12" fill="#e2e8f0"/>
+<text x="894" y="252" font-size="12" font-weight="500" fill="#0f172a" text-anchor="middle">csr-pop</text>
+<rect x="823" y="266" width="142" height="24" rx="12" fill="#e2e8f0"/>
+<text x="894" y="282" font-size="12" font-weight="500" fill="#0f172a" text-anchor="middle">jwe</text>
+<path d="M983 199 h16" stroke="#7c3aed" stroke-width="2.5"/>
+<path d="M1005 199 l-6 -5 v10 z" fill="#7c3aed"/>
+<rect x="1005" y="92" width="170" height="214" rx="12" fill="#f8fafc" stroke="#cbd5e1"/>
+<circle cx="1033" cy="122" r="16" fill="url(#acc)"/>
+<text x="1033" y="127" font-size="14" font-weight="700" fill="#ffffff" text-anchor="middle">6</text>
+<text x="1057" y="127" font-size="16" font-weight="700" fill="#0f172a" text-anchor="start">Verify</text>
+<text x="1090" y="156" font-size="12" font-weight="400" fill="#475569" text-anchor="middle">prove it is correct</text>
+<rect x="1019" y="176" width="142" height="24" rx="12" fill="#e2e8f0"/>
+<text x="1090" y="192" font-size="12" font-weight="500" fill="#0f172a" text-anchor="middle">acvp</text>
+<rect x="1019" y="206" width="142" height="24" rx="12" fill="#e2e8f0"/>
+<text x="1090" y="222" font-size="12" font-weight="500" fill="#0f172a" text-anchor="middle">fips-check</text>
+</svg>
