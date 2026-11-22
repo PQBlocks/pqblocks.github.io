@@ -17,7 +17,7 @@ schema: {"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name"
     | | |
     |---|---|
     | **Area** | :material-shield-key-outline: [PQ cryptography](crypto.md) |
-    | **Import** | `import pqblocks_hybrid_cert_validator.egg-info` |
+    | **Import** | `import pqblocks.hybrid_cert_validator` |
     | **Command line** | `pqblocks-hybrid-cert-validate` |
     | **Version** | 0.1.0 (Stable) |
     | **Python** | >=3.10 |

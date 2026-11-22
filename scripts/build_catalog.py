@@ -387,7 +387,11 @@ def build(pkg_root, run_verify):
         mods = []
         src_dir = os.path.join(d, "src")
         if os.path.isdir(src_dir):
-            mods = [m for m in os.listdir(src_dir) if m.startswith("pqblocks_") and os.path.isdir(os.path.join(src_dir, m))]
+            mods = [m for m in os.listdir(src_dir) if m.startswith("pqblocks_") and not m.endswith(".egg-info") and os.path.isdir(os.path.join(src_dir, m))]
+            if not mods and os.path.isdir(os.path.join(src_dir, "pqblocks")):
+                submods = [f"pqblocks.{sm}" for sm in os.listdir(os.path.join(src_dir, "pqblocks")) if os.path.isdir(os.path.join(src_dir, "pqblocks", sm)) and not sm.startswith(("_", "."))]
+                if submods:
+                    mods = sorted(submods)
 
         import_name = mods[0] if mods else (dist_py.replace("-", "_") if dist_py else dist_npm)
         import_npm = dist_npm if dist_npm else None

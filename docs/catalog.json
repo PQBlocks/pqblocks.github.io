@@ -253,7 +253,7 @@
   },
   {
    "package": "pqblocks-hybrid-cert-validator",
-   "import": "pqblocks_hybrid_cert_validator.egg-info",
+   "import": "pqblocks.hybrid_cert_validator",
    "import_npm": null,
    "version": "0.1.0",
    "repo": "PQBlocks/hybrid-cert-validator",

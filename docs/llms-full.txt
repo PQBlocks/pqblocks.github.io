@@ -69,7 +69,7 @@ ML-KEM, ML-DSA and SLH-DSA through maintained implementations, hybrid key establ
   print("FIPS Mode decryption successful!")
   ```
 
-- [pqblocks-hybrid-cert-validator](https://pqblocks.github.io/packages/hybrid-cert-validator/): Composite X.509 hybrid certificate validator enforcing NSA CNSA 2.0 policy (RSA-3072 + ML-DSA-65) per draft-ietf-lamps-pq-composite-keys. Install: `pip install git+https://github.com/PQBlocks/hybrid-cert-validator`. Import: `pqblocks_hybrid_cert_validator.egg-info`.
+- [pqblocks-hybrid-cert-validator](https://pqblocks.github.io/packages/hybrid-cert-validator/): Composite X.509 hybrid certificate validator enforcing NSA CNSA 2.0 policy (RSA-3072 + ML-DSA-65) per draft-ietf-lamps-pq-composite-keys. Install: `pip install git+https://github.com/PQBlocks/hybrid-cert-validator`. Import: `pqblocks.hybrid_cert_validator`.
 
   ```python
   from pqblocks.hybrid_cert_validator import (
