@@ -56,6 +56,11 @@ AREAS = {
 FALLBACK_AREAS = {
     "pqblock-qse-sdk": "PQ cryptography",
     "pqblocks-qse-sdk": "PQ cryptography",
+    "pqblocks-tls": "Interoperability",
+    "tls-hybrid-fuzzer": "Interoperability",
+    "pqblocks-tls-fuzzer": "Interoperability",
+    "pqblocks-hybrid-cert-validator": "PQ cryptography",
+    "hybrid-cert-validator": "PQ cryptography",
     "qse-sdk": "PQ cryptography",
     "browser-pqc-verifier": "PQ cryptography",
     "pqblocks-browser-verifier": "PQ cryptography",

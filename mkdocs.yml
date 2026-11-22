@@ -68,6 +68,7 @@ plugins:
       type: date
       enable_creation_date: true
       fallback_to_build_date: true
+      enable_git_follow: false
       strict: false
 
 extra:
@@ -158,6 +159,7 @@ nav:
       - Overview: packages/crypto.md
       - pqblocks-files: packages/files.md
       - pqblocks-fips-dualmode: packages/fips-dualmode.md
+      - pqblocks-hybrid-cert-validator: packages/hybrid-cert-validator.md
       - pqblocks-jose: packages/jose.md
       - pqblocks-primitives: packages/primitives.md
     - Migration & readiness:
@@ -175,6 +177,7 @@ nav:
       - Overview: packages/interop.md
       - pqblocks-csr-pop: packages/csr-pop.md
       - pqblocks-jwe: packages/jwe.md
+      - pqblocks-tls: packages/tls.md
       - pqblocks-tls-interop: packages/tls-interop.md
       - pqblocks-wire: packages/wire.md
     - Conformance:
