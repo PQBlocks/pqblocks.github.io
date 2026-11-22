@@ -69,27 +69,6 @@ ML-KEM, ML-DSA and SLH-DSA through maintained implementations, hybrid key establ
   print("FIPS Mode decryption successful!")
   ```
 
-- [pqblocks-hybrid-cert-validator](https://pqblocks.github.io/packages/hybrid-cert-validator/): Composite X.509 hybrid certificate validator enforcing NSA CNSA 2.0 policy (RSA-3072 + ML-DSA-65) per draft-ietf-lamps-pq-composite-keys. Install: `pip install git+https://github.com/PQBlocks/hybrid-cert-validator`. Import: `pqblocks.hybrid_cert_validator`.
-
-  ```python
-  from pqblocks.hybrid_cert_validator import (
-      HybridCertValidator,
-      CompositePolicy,
-      InvalidPEM,
-      ValidationResult,
-  )
-
-  # Initialize validator with CNSA 2.0 Transition Policy
-  validator = HybridCertValidator(policy=CompositePolicy.CNSA20_TRANSITION)
-  assert validator.policy == CompositePolicy.CNSA20_TRANSITION
-
-  # Validate input with strict fail-safe exception handling
-  try:
-      validator.validate(b"non-pem-data")
-  except InvalidPEM:
-      pass  # Fail-safe rejection of invalid inputs
-  ```
-
 - [pqblocks-jose](https://pqblocks.github.io/packages/jose/): Post-quantum hybrid JOSE library supporting ML-KEM and ML-DSA JWE and JWS tokens. Install: `pip install pqblocks-jose`. Import: `pqblocks_jose`.
 
   ```python
@@ -445,24 +424,6 @@ Wire formats, JOSE, X.509/CSR and TLS hybrid groups that carry larger post-quant
   parsed = parse_jwe(token)
   assert parsed["header"]["alg"] == ALG_HYBRID   # parse_jwe does not check alg/enc for you
   print(len(token), parsed["aad"], len(parsed["kem_ct"]))   # 1697 b'settlement-v1' 1120
-  ```
-
-- [pqblocks-tls](https://pqblocks.github.io/packages/tls/): Post-quantum hybrid TLS 1.3 handshake fuzzer and verification harness (X25519 + ML-KEM-768). Install: `pip install git+https://github.com/PQBlocks/tls-hybrid-fuzzer`. Import: `pqblocks_tls`.
-
-  ```python
-  from pqblocks_tls import fuzz_tls_handshake, FuzzResults
-
-  # Execute 1,000 hybrid handshake iterations with a deterministic seed
-  results: FuzzResults = fuzz_tls_handshake(
-      algorithms=("X25519", "ML-KEM-768"),
-      iterations=1000,
-      max_latency_ms=50,
-      seed=42,
-  )
-
-  print(f"Passed: {results.passed}/{results.total_iterations}")
-  print(f"Elapsed: {results.elapsed_ms} ms")
-  assert results.all_passed()
   ```
 
 - [pqblocks-tls-interop](https://pqblocks.github.io/packages/tls-interop/): TLS 1.3 hybrid key exchange (X25519MLKEM768 / RFC 10024) endpoint probe, downgrade detector, and key material validator. Install: `pip install pqblocks-tls-interop`. Import: `pqblocks_tls_interop`.
