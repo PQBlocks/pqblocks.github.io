@@ -280,6 +280,21 @@ Find cryptography in code and on the wire, emit CBOMs, score readiness, gate CI 
   print(f"Compliance Status: {matrix.get('status', 'complete')}")
   ```
 
+- [pqblocks-cnsa2-cbom-auditor](https://pqblocks.github.io/packages/cnsa2-cbom-auditor/): CycloneDX 1.6 Cryptographic Bill of Materials (CBOM) generator, validator, and comparator for NSA CNSA 2.0 and NIST PQC migration standards. Install: `npm install git+https://github.com/PQBlocks/cnsa2-cbom-auditor`. Import: `@pqblocks/cnsa2-cbom-auditor`.
+
+  ```python
+  import { scanToCbom, verifyCbom } from '@pqblocks/cnsa2-cbom-auditor';
+
+  // Audit target directory and synthesize CycloneDX 1.6 CBOM
+  const { bom, summary } = await scanToCbom('./certs');
+  console.log('Inspected assets:', summary.total);
+  console.log('CycloneDX spec version:', bom.specVersion);
+
+  // Validate CBOM against CycloneDX 1.6 schema
+  const report = verifyCbom(bom);
+  console.log('Schema valid:', report.valid);
+  ```
+
 - [pqblocks-cnsa2-pki-auditor](https://pqblocks.github.io/packages/cnsa2-pki-auditor/): X.509 certificate estate compliance auditor enforcing NSA CNSA 2.0 and NIST FIPS 203/204/205 post-quantum standards with SARIF and CycloneDX 1.6 CBOM output. Install: `npm install git+https://github.com/PQBlocks/cnsa2-pki-auditor`. Import: `@pqblocks/cnsa2-pki-auditor`.
 
   ```python

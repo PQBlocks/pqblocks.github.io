@@ -167,6 +167,7 @@ nav:
       - pqblocks-agility: packages/agility.md
       - pqblocks-cbom: packages/cbom.md
       - pqblocks-cnsa-evidence: packages/cnsa-evidence.md
+      - pqblocks-cnsa2-cbom-auditor: packages/cnsa2-cbom-auditor.md
       - pqblocks-cnsa2-pki-auditor: packages/cnsa2-pki-auditor.md
       - pqblocks-jwe-audit: packages/jwe-audit.md
       - pqblocks-lint: packages/lint.md
