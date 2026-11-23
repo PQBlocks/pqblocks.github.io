@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="320" viewBox="0 0 1280 320" role="img" aria-label="PQBlocks: open, verified building blocks for the post-quantum transition">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0b0f17"/><stop offset="1" stop-color="#111827"/></linearGradient>
+    <linearGradient id="acc" gradientUnits="userSpaceOnUse" x1="80" y1="0" x2="1240" y2="0"><stop offset="0" stop-color="#22d3ee"/><stop offset="1" stop-color="#a78bfa"/></linearGradient>
+    <pattern id="lat" width="40" height="40" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1.4" fill="#334155"/></pattern>
+  </defs>
+  <rect width="1280" height="320" fill="url(#bg)"/>
+  <rect width="1280" height="320" fill="url(#lat)" opacity="0.7"/>
+  <g transform="translate(40,0)" stroke="url(#acc)" stroke-width="1.2" opacity="0.55" fill="none">
+    <path d="M900 60 L980 100 L1060 60 L1140 100 L1220 60"/><path d="M900 140 L980 180 L1060 140 L1140 180 L1220 140"/>
+    <path d="M900 220 L980 260 L1060 220 L1140 260 L1220 220"/><path d="M980 100 L980 180 L980 260"/><path d="M1140 100 L1140 180 L1140 260"/>
+    <path d="M1060 60 L1060 140 L1060 220"/>
+  </g>
+  <g transform="translate(40,0)" fill="url(#acc)"><circle cx="980" cy="100" r="5"/><circle cx="1060" cy="140" r="5"/><circle cx="1140" cy="180" r="5"/><circle cx="980" cy="260" r="5"/><circle cx="1220" cy="60" r="5"/></g>
+  <rect x="96" y="104" width="44" height="44" rx="6" fill="none" stroke="url(#acc)" stroke-width="3"/>
+  <rect x="148" y="104" width="44" height="44" rx="6" fill="url(#acc)" opacity="0.9"/>
+  <rect x="96" y="156" width="44" height="44" rx="6" fill="url(#acc)" opacity="0.55"/>
+  <rect x="148" y="156" width="44" height="44" rx="6" fill="none" stroke="url(#acc)" stroke-width="3"/>
+  <text x="224" y="166" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="64" font-weight="700" fill="#f8fafc">PQBlocks</text>
+  <text x="226" y="206" font-family="ui-sans-serif,system-ui,Segoe UI,Helvetica,Arial,sans-serif" font-size="22" fill="#94a3b8">Open, verified building blocks for the post-quantum transition</text>
+  <text x="96" y="270" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="15" fill="#64748b">ML-KEM · ML-DSA · SLH-DSA · hybrid · conformance · inventory · quantum-inspired optimisation</text>
+</svg>
