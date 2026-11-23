@@ -22,7 +22,7 @@ ML-KEM, ML-DSA and SLH-DSA through maintained implementations, hybrid key establ
 - [pqblocks-core](https://pqblocks.github.io/packages/core/): Post-quantum hybrid cryptography core SDK with C shared libraries and policy enforcement. Install: `pip install pqblocks-core`. Import: `pqblocks_core`.
 - [pqblocks-files](https://pqblocks.github.io/packages/files/): Hybrid post-quantum file encryption: ML-KEM-768 plus X25519 key encapsulation with chunked ChaCha20-Poly1305 in the pfsh v1 format. Install: `pip install pqblocks-files`. Import: `pqblocks_files`.
 - [pqblocks-fips-dualmode](https://pqblocks.github.io/packages/fips-dualmode/): Dual-mode cryptographic abstraction switching between FIPS 140-3 classical crypto (ECDH/AES-GCM) and post-quantum crypto (ML-KEM/ML-DSA). Install: `pip install pqblocks-fips-dualmode`. Import: `pqblocks_fips_dualmode`.
-- [pqblocks-hybrid-cert-validator](https://pqblocks.github.io/packages/hybrid-cert-validator/): Composite X.509 hybrid certificate validator enforcing NSA CNSA 2.0 policy (RSA-3072 + ML-DSA-65) per draft-ietf-lamps-pq-composite-keys. Install: `pip install git+https://github.com/PQBlocks/hybrid-cert-validator`. Import: `pqblocks_hybrid_cert_validator.egg-info`.
+- [pqblocks-hybrid-cert-validator](https://pqblocks.github.io/packages/hybrid-cert-validator/): Composite X.509 hybrid certificate validator enforcing NSA CNSA 2.0 policy (RSA-3072 + ML-DSA-65) per draft-ietf-lamps-pq-composite-keys. Install: `pip install git+https://github.com/PQBlocks/hybrid-cert-validator`. Import: `pqblocks.hybrid_cert_validator`.
 - [pqblocks-jose](https://pqblocks.github.io/packages/jose/): Post-quantum hybrid JOSE library supporting ML-KEM and ML-DSA JWE and JWS tokens. Install: `pip install pqblocks-jose`. Import: `pqblocks_jose`.
 - [pqblocks-primitives](https://pqblocks.github.io/packages/primitives/): Integrated post-quantum cryptographic primitives (ML-KEM, ML-DSA, SLH-DSA, and hybrid schemes). Install: `pip install pqblocks-primitives`. Import: `pqblocks_primitives`.
 - [pqblocks-qse-sdk](https://pqblocks.github.io/packages/qse-sdk/): Post-quantum cryptography SDK for ML-KEM, ML-DSA, and SLH-DSA (FIPS 203/204/205) Install: `pip install pqblocks-qse-sdk`. Import: `pqblocks_qse_sdk`.
@@ -57,9 +57,9 @@ Wire formats, JOSE, X.509/CSR and TLS hybrid groups that carry larger post-quant
 Official NIST ACVP vectors and strict FIPS 203/204 boundary checks that prove an implementation and a migration are correct.
 
 - [pqblocks-acvp](https://pqblocks.github.io/packages/acvp/): Cross-implementation NIST ACVP conformance harness for FIPS 203 (ML-KEM) and FIPS 204 (ML-DSA). Install: `pip install pqblocks-acvp`. Import: `pqblocks_acvp`.
-- [pqblocks-browser-pqc-verifier](https://pqblocks.github.io/packages/browser-pqc-verifier/): Post-quantum certificate and chain verifier for browsers and Node.js using ML-DSA/SLH-DSA from @noble/post-quantum. Install: `npm install @pqblocks/browser-pqc-verifier`. Import: `@pqblocks/browser-pqc-verifier`.
+- [pqblocks-browser-pqc-verifier](https://pqblocks.github.io/packages/browser-pqc-verifier/): Post-quantum certificate and chain verifier for browsers and Node.js using ML-DSA/SLH-DSA from @noble/post-quantum. Install: `npm install git+https://github.com/PQBlocks/browser-pqc-verifier`. Import: `@pqblocks/browser-pqc-verifier`.
 - [pqblocks-fips-check](https://pqblocks.github.io/packages/fips-check/): FIPS 203/204 boundary validator and hybrid key exchange (X25519 + ML-KEM-768) with ML-DSA-65 signatures and CBOM reporting. Install: `pip install pqblocks-fips-check`. Import: `pqblocks_fips_check`.
-- [pqblocks-pqc-acvp-runner](https://pqblocks.github.io/packages/pqc-acvp-runner/): NIST FIPS 203 and 204 ACVP Known Answer Test runner and Wycheproof harness in Node.js. Install: `npm install @pqblocks/pqc-acvp-runner`. Import: `@pqblocks/pqc-acvp-runner`.
+- [pqblocks-pqc-acvp-runner](https://pqblocks.github.io/packages/pqc-acvp-runner/): NIST FIPS 203 and 204 ACVP Known Answer Test runner and Wycheproof harness in Node.js. Install: `npm install git+https://github.com/PQBlocks/pqc-acvp-runner`. Import: `@pqblocks/pqc-acvp-runner`.
 
 ## Quantum-inspired
 

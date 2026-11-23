@@ -253,7 +253,7 @@
   },
   {
    "package": "pqblocks-hybrid-cert-validator",
-   "import": "pqblocks_hybrid_cert_validator.egg-info",
+   "import": "pqblocks.hybrid_cert_validator",
    "import_npm": null,
    "version": "0.1.0",
    "repo": "PQBlocks/hybrid-cert-validator",
@@ -281,7 +281,8 @@
     "cnsa-2-0",
     "post-quantum",
     "pq-crypto",
-    "x509"
+    "x509",
+    "pqblocks"
    ],
    "python": ">=3.10",
    "cli": [
@@ -814,7 +815,7 @@
    "ecosystem": "npm",
    "summary": "CycloneDX 1.6 Cryptographic Bill of Materials (CBOM) generator, validator, and comparator for NSA CNSA 2.0 and NIST PQC migration standards.",
    "intro": [
-    "CycloneDX 1.6 Cryptographic Bill of Materials (CBOM) generator, validator, and delta comparator enforcing NSA CNSA 2.0 and NIST FIPS 203/204/205 post-quantum standards."
+    "CycloneDX 1.6 Cryptographic Bill of Materials (CBOM) generator, validator, and delta comparator enforcing NSA CNSA 2.0 and NIST Post-Quantum Cryptography transition timelines."
    ],
    "keywords": [
     "cbom",
@@ -832,6 +833,7 @@
     "post-quantum",
     "pqblocks",
     "pqc",
+    "slh-dsa",
     "spki",
     "x509"
    ],
@@ -841,10 +843,6 @@
     "cnsa2",
     "cryptography",
     "cyclonedx",
-    "fips203",
-    "fips204",
-    "fips205",
-    "pki",
     "post-quantum",
     "pq-migration",
     "pqblocks",
@@ -853,8 +851,11 @@
    ],
    "python": null,
    "cli": [
+    "cnsa2-cbom",
     "cnsa2-cbom-audit",
-    "cnsa2-cbom"
+    "compare",
+    "pqblocks-cnsa-evidence",
+    "verify"
    ],
    "status": "Stable",
    "on_pypi": null,
@@ -867,11 +868,9 @@
    "c_headers": [],
    "c_libs": [],
    "needs_liboqs": false,
-   "quickstart": "import { scanToCbom, verifyCbom } from '@pqblocks/cnsa2-cbom-auditor';\n\n// Audit target directory and synthesize CycloneDX 1.6 CBOM\nconst { bom, summary } = await scanToCbom('./certs');\nconsole.log('Inspected assets:', summary.total);\nconsole.log('CycloneDX spec version:', bom.specVersion);\n\n// Validate CBOM against CycloneDX 1.6 schema\nconst report = verifyCbom(bom);\nconsole.log('Schema valid:', report.valid);\n",
+   "quickstart": "const {\n  scan,\n  scanToCbom,\n  scanTarget,\n  generateCbom,\n  verifyCbom,\n  compareCboms,\n  classify\n} = require('@pqblocks/cnsa2-cbom-auditor');\n\n// 1. Scan a directory of certificates\nasync function runAudit() {\n  const result = await scanToCbom('./golden-vectors', {\n    maxFiles: 1000,\n    failOn: 'disallowed'\n  });\n\n  console.log('Total Assets Found:', result.summary.total);\n  console.log('Compliant Assets:', result.summary.compliant);\n  console.log('Disallowed Assets:', result.summary.disallowed);\n\n  // 2. Access the CycloneDX 1.6 BOM object\n  const bom = result.bom;\n  console.log('CycloneDX BOM Format:', bom.bomFormat); // \"CycloneDX\"\n  console.log('Spec Version:', bom.specVersion);       // \"1.6\"\n\n  // 3. Verify the generated CBOM\n  const verification = verifyCbom(bom);\n  console.log('CBOM Valid against Schema:', verification.valid);\n\n  // 4. Classify an individual asset\n  const sampleAsset = result.assets[0];\n  const verdict = classify(sampleAsset);\n  console.log(`Asset ${sampleAsset.file}: status=${verdict.verdict}, reason=${verdict.reason}`);\n}\n\nrunAudit().catch(console.error);\n",
    "quickstart_lang": "javascript",
-   "examples": [
-    "quickstart.js"
-   ],
+   "examples": [],
    "docs": {
     "README.md": "https://github.com/PQBlocks/cnsa2-cbom-auditor/blob/main/README.md",
     "AGENTS.md": "https://github.com/PQBlocks/cnsa2-cbom-auditor/blob/main/AGENTS.md",
@@ -885,12 +884,12 @@
    },
    "sections": [
     "Overview",
-    "Key Features",
     "Installation",
     "CLI Usage",
     "Exit Codes",
     "Programmatic API",
     "Standards Conformance",
+    "Authors & Contributors",
     "Security & Vulnerability Reporting",
     "License"
    ],
@@ -1557,7 +1556,7 @@
    "package": "pqblocks-tls",
    "import": "pqblocks_tls",
    "import_npm": null,
-   "version": "0.1.0",
+   "version": "0.2.0",
    "repo": "PQBlocks/tls-hybrid-fuzzer",
    "url": "https://github.com/PQBlocks/tls-hybrid-fuzzer",
    "area": "Interoperability",
@@ -1583,10 +1582,13 @@
     "ml-kem",
     "post-quantum",
     "pq-interop",
-    "tls"
+    "tls",
+    "pqblocks"
    ],
    "python": ">=3.10",
-   "cli": [],
+   "cli": [
+    "pqblocks-tlsfuzz"
+   ],
    "status": "Stable",
    "on_pypi": null,
    "on_npm": null,
@@ -1618,6 +1620,7 @@
     "Installation",
     "Quickstart",
     "API Reference",
+    "Command-Line Interface (`pqblocks-tlsfuzz`)",
     "Testing & Verification",
     "Author & Maintainers",
     "License"
@@ -1791,7 +1794,7 @@
    "package": "pqblocks-acvp",
    "import": "pqblocks_acvp",
    "import_npm": null,
-   "version": "0.1.0",
+   "version": "0.2.0",
    "repo": "PQBlocks/acvp-conformance",
    "url": "https://github.com/PQBlocks/acvp-conformance",
    "area": "Conformance",
@@ -1827,7 +1830,9 @@
     "pq-conformance"
    ],
    "python": ">=3.11",
-   "cli": [],
+   "cli": [
+    "pqblocks-acvp"
+   ],
    "status": "Stable",
    "on_pypi": "0.1.0",
    "on_npm": null,
@@ -1910,10 +1915,10 @@
    ],
    "status": "Stable",
    "on_pypi": null,
-   "on_npm": "0.1.0",
-   "install": "npm install @pqblocks/browser-pqc-verifier",
+   "on_npm": null,
+   "install": "npm install git+https://github.com/PQBlocks/browser-pqc-verifier",
    "install_pip": null,
-   "install_npm": "npm install @pqblocks/browser-pqc-verifier",
+   "install_npm": "npm install git+https://github.com/PQBlocks/browser-pqc-verifier",
    "install_c": null,
    "has_c_sdk": false,
    "c_headers": [],
@@ -2062,10 +2067,10 @@
    "cli": [],
    "status": "Stable",
    "on_pypi": null,
-   "on_npm": "1.0.0",
-   "install": "npm install @pqblocks/pqc-acvp-runner",
+   "on_npm": null,
+   "install": "npm install git+https://github.com/PQBlocks/pqc-acvp-runner",
    "install_pip": null,
-   "install_npm": "npm install @pqblocks/pqc-acvp-runner",
+   "install_npm": "npm install git+https://github.com/PQBlocks/pqc-acvp-runner",
    "install_c": null,
    "has_c_sdk": false,
    "c_headers": [],

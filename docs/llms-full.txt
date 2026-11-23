@@ -69,7 +69,7 @@ ML-KEM, ML-DSA and SLH-DSA through maintained implementations, hybrid key establ
   print("FIPS Mode decryption successful!")
   ```
 
-- [pqblocks-hybrid-cert-validator](https://pqblocks.github.io/packages/hybrid-cert-validator/): Composite X.509 hybrid certificate validator enforcing NSA CNSA 2.0 policy (RSA-3072 + ML-DSA-65) per draft-ietf-lamps-pq-composite-keys. Install: `pip install git+https://github.com/PQBlocks/hybrid-cert-validator`. Import: `pqblocks_hybrid_cert_validator.egg-info`.
+- [pqblocks-hybrid-cert-validator](https://pqblocks.github.io/packages/hybrid-cert-validator/): Composite X.509 hybrid certificate validator enforcing NSA CNSA 2.0 policy (RSA-3072 + ML-DSA-65) per draft-ietf-lamps-pq-composite-keys. Install: `pip install git+https://github.com/PQBlocks/hybrid-cert-validator`. Import: `pqblocks.hybrid_cert_validator`.
 
   ```python
   from pqblocks.hybrid_cert_validator import (
@@ -283,16 +283,43 @@ Find cryptography in code and on the wire, emit CBOMs, score readiness, gate CI 
 - [pqblocks-cnsa2-cbom-auditor](https://pqblocks.github.io/packages/cnsa2-cbom-auditor/): CycloneDX 1.6 Cryptographic Bill of Materials (CBOM) generator, validator, and comparator for NSA CNSA 2.0 and NIST PQC migration standards. Install: `npm install git+https://github.com/PQBlocks/cnsa2-cbom-auditor`. Import: `@pqblocks/cnsa2-cbom-auditor`.
 
   ```python
-  import { scanToCbom, verifyCbom } from '@pqblocks/cnsa2-cbom-auditor';
+  const {
+    scan,
+    scanToCbom,
+    scanTarget,
+    generateCbom,
+    verifyCbom,
+    compareCboms,
+    classify
+  } = require('@pqblocks/cnsa2-cbom-auditor');
 
-  // Audit target directory and synthesize CycloneDX 1.6 CBOM
-  const { bom, summary } = await scanToCbom('./certs');
-  console.log('Inspected assets:', summary.total);
-  console.log('CycloneDX spec version:', bom.specVersion);
+  // 1. Scan a directory of certificates
+  async function runAudit() {
+    const result = await scanToCbom('./golden-vectors', {
+      maxFiles: 1000,
+      failOn: 'disallowed'
+    });
 
-  // Validate CBOM against CycloneDX 1.6 schema
-  const report = verifyCbom(bom);
-  console.log('Schema valid:', report.valid);
+    console.log('Total Assets Found:', result.summary.total);
+    console.log('Compliant Assets:', result.summary.compliant);
+    console.log('Disallowed Assets:', result.summary.disallowed);
+
+    // 2. Access the CycloneDX 1.6 BOM object
+    const bom = result.bom;
+    console.log('CycloneDX BOM Format:', bom.bomFormat); // "CycloneDX"
+    console.log('Spec Version:', bom.specVersion);       // "1.6"
+
+    // 3. Verify the generated CBOM
+    const verification = verifyCbom(bom);
+    console.log('CBOM Valid against Schema:', verification.valid);
+
+    // 4. Classify an individual asset
+    const sampleAsset = result.assets[0];
+    const verdict = classify(sampleAsset);
+    console.log(`Asset ${sampleAsset.file}: status=${verdict.verdict}, reason=${verdict.reason}`);
+  }
+
+  runAudit().catch(console.error);
   ```
 
 - [pqblocks-cnsa2-pki-auditor](https://pqblocks.github.io/packages/cnsa2-pki-auditor/): X.509 certificate estate compliance auditor enforcing NSA CNSA 2.0 and NIST FIPS 203/204/205 post-quantum standards with SARIF and CycloneDX 1.6 CBOM output. Install: `npm install git+https://github.com/PQBlocks/cnsa2-pki-auditor`. Import: `@pqblocks/cnsa2-pki-auditor`.
@@ -541,7 +568,7 @@ Official NIST ACVP vectors and strict FIPS 203/204 boundary checks that prove an
   print(f"Executed {rep.total_attempted} cases: {rep.passed} passed (denominator verified: {rep.denominator_verified})")
   ```
 
-- [pqblocks-browser-pqc-verifier](https://pqblocks.github.io/packages/browser-pqc-verifier/): Post-quantum certificate and chain verifier for browsers and Node.js using ML-DSA/SLH-DSA from @noble/post-quantum. Install: `npm install @pqblocks/browser-pqc-verifier`. Import: `@pqblocks/browser-pqc-verifier`.
+- [pqblocks-browser-pqc-verifier](https://pqblocks.github.io/packages/browser-pqc-verifier/): Post-quantum certificate and chain verifier for browsers and Node.js using ML-DSA/SLH-DSA from @noble/post-quantum. Install: `npm install git+https://github.com/PQBlocks/browser-pqc-verifier`. Import: `@pqblocks/browser-pqc-verifier`.
 
   ```python
   import {
@@ -645,7 +672,7 @@ Official NIST ACVP vectors and strict FIPS 203/204 boundary checks that prove an
   assert "ML-KEM-768" in cbom_json and "ML-DSA-65" in cbom_json
   ```
 
-- [pqblocks-pqc-acvp-runner](https://pqblocks.github.io/packages/pqc-acvp-runner/): NIST FIPS 203 and 204 ACVP Known Answer Test runner and Wycheproof harness in Node.js. Install: `npm install @pqblocks/pqc-acvp-runner`. Import: `@pqblocks/pqc-acvp-runner`.
+- [pqblocks-pqc-acvp-runner](https://pqblocks.github.io/packages/pqc-acvp-runner/): NIST FIPS 203 and 204 ACVP Known Answer Test runner and Wycheproof harness in Node.js. Install: `npm install git+https://github.com/PQBlocks/pqc-acvp-runner`. Import: `@pqblocks/pqc-acvp-runner`.
 
   ```python
   import {
