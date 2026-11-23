@@ -149,5 +149,6 @@ Every PQBlocks package ships the same evidence set, so each claim can be checked
 ## Related packages in Interoperability
 
 - [`pqblocks-csr-pop`](csr-pop.md): ML-KEM (FIPS 203) PKCS#10 Certificate Signing Request (CSR) generator with RFC 9883 Proof of Possession (PoP).
+- [`pqblocks-tls`](tls.md): Post-quantum hybrid TLS 1.3 handshake fuzzer and verification harness (X25519 + ML-KEM-768).
 - [`pqblocks-tls-interop`](tls-interop.md): TLS 1.3 hybrid key exchange (X25519MLKEM768 / RFC 10024) endpoint probe, downgrade detector, and key material validator.
 - [`pqblocks-wire`](wire.md): Length-prefixed container format (PQCWF1) for ML-KEM ciphertexts and ML-DSA / SLH-DSA signatures, with thin wrappers…

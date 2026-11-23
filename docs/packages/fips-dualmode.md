@@ -156,6 +156,7 @@ Every PQBlocks package ships the same evidence set, so each claim can be checked
 
 - [`pqblocks-core`](core.md): Post-quantum hybrid cryptography core SDK with C shared libraries and policy enforcement.
 - [`pqblocks-files`](files.md): Hybrid post-quantum file encryption: ML-KEM-768 plus X25519 key encapsulation with chunked ChaCha20-Poly1305 in the…
+- [`pqblocks-hybrid-cert-validator`](hybrid-cert-validator.md): Composite X.509 hybrid certificate validator enforcing NSA CNSA 2.0 policy (RSA-3072 + ML-DSA-65) per…
 - [`pqblocks-jose`](jose.md): Post-quantum hybrid JOSE library supporting ML-KEM and ML-DSA JWE and JWS tokens.
 - [`pqblocks-primitives`](primitives.md): Integrated post-quantum cryptographic primitives (ML-KEM, ML-DSA, SLH-DSA, and hybrid schemes).
 - [`pqblocks-qse-sdk`](qse-sdk.md): Post-quantum cryptography SDK for ML-KEM, ML-DSA, and SLH-DSA (FIPS 203/204/205)
