@@ -1617,6 +1617,7 @@
    "sections": [
     "Overview",
     "Key Features",
+    "Architecture & Fuzzing Pipeline",
     "Installation",
     "Quickstart",
     "API Reference",
@@ -1862,6 +1863,7 @@
     "CHANGELOG.md": "https://github.com/PQBlocks/acvp-conformance/blob/main/CHANGELOG.md"
    },
    "sections": [
+    "Architecture & Data Flow",
     "Why PQBlocks?",
     "Installation",
     "Usage",
