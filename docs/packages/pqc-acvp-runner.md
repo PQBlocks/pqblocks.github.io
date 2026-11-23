@@ -10,7 +10,7 @@ schema: {"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name"
 
 <p class="pqb-lead" markdown>NIST FIPS 203 and 204 ACVP Known Answer Test runner and Wycheproof harness in Node.js.</p>
 
-![Install from GitHub](https://img.shields.io/badge/install-GitHub-334155?style=flat-square) ![Area](https://img.shields.io/badge/area-Conformance-0e7490?style=flat-square) ![Status](https://img.shields.io/badge/status-Stable-059669?style=flat-square) ![Runtime](https://img.shields.io/badge/runtime-Node.js%20%7C%20Browser-0284c7?style=flat-square) ![Licence](https://img.shields.io/badge/licence-Apache--2.0-334155?style=flat-square) [![Source](https://img.shields.io/badge/source-pqc--acvp--runner-111827?style=flat-square&logo=github)](https://github.com/PQBlocks/pqc-acvp-runner)
+[![npm](https://img.shields.io/npm/v/@pqblocks/pqc-acvp-runner?style=flat-square&label=npm&color=0f766e)](https://www.npmjs.com/package/@pqblocks/pqc-acvp-runner) ![Area](https://img.shields.io/badge/area-Conformance-0e7490?style=flat-square) ![Status](https://img.shields.io/badge/status-Stable-059669?style=flat-square) ![Runtime](https://img.shields.io/badge/runtime-Node.js%20%7C%20Browser-0284c7?style=flat-square) ![Licence](https://img.shields.io/badge/licence-Apache--2.0-334155?style=flat-square) [![Source](https://img.shields.io/badge/source-pqc--acvp--runner-111827?style=flat-square&logo=github)](https://github.com/PQBlocks/pqc-acvp-runner)
 
 !!! abstract "At a glance"
 
@@ -31,6 +31,30 @@ A high-assurance Node.js Known Answer Test (KAT) runner and Wycheproof harness f
 
 ## Install
 
+=== "npm"
+
+    ```bash
+    npm i @pqblocks/pqc-acvp-runner
+    ```
+
+=== "pnpm"
+
+    ```bash
+    pnpm add @pqblocks/pqc-acvp-runner
+    ```
+
+=== "yarn"
+
+    ```bash
+    yarn add @pqblocks/pqc-acvp-runner
+    ```
+
+=== "bun"
+
+    ```bash
+    bun add @pqblocks/pqc-acvp-runner
+    ```
+
 === "npm (from GitHub)"
 
     ```bash
@@ -48,9 +72,6 @@ A high-assurance Node.js Known Answer Test (KAT) runner and Wycheproof harness f
     ```bash
     bun add git+https://github.com/PQBlocks/pqc-acvp-runner
     ```
-
-!!! note "npm release staged"
-    `@pqblocks/pqc-acvp-runner` installs from its GitHub repository while the npm release is staged. The package name and API are identical either way.
 
 ## Quickstart
 

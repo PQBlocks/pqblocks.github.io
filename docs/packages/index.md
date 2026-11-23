@@ -60,7 +60,7 @@ Full-featured development kits providing high-level APIs, client runtimes, and p
 |---|---|---|---|
 | [`pqblocks-core`](core.md) | Post-quantum hybrid cryptography core SDK with C shared libraries and policy enforcement. | Python + Native C (`libpqblocks`) | `pip install pqblocks-core` |
 | [`pqblocks-qse-sdk`](qse-sdk.md) | Post-quantum cryptography SDK for ML-KEM, ML-DSA, and SLH-DSA (FIPS 203/204/205) | Python (CLI & Library) | `pip install pqblocks-qse-sdk` |
-| [`pqblocks-browser-pqc-verifier`](browser-pqc-verifier.md) | Post-quantum certificate and chain verifier for browsers and Node.js using ML-DSA/SLH-DSA from @noble/post-quantum. | JavaScript / TypeScript (Browser & Node.js) | `npm install git+https://github.com/PQBlocks/browser-pqc-verifier` |
+| [`pqblocks-browser-pqc-verifier`](browser-pqc-verifier.md) | Post-quantum certificate and chain verifier for browsers and Node.js using ML-DSA/SLH-DSA from @noble/post-quantum. | JavaScript / TypeScript (Browser & Node.js) | `npm install @pqblocks/browser-pqc-verifier` |
 | [`pqblocks-fips-check`](fips-check.md) | FIPS 203/204 boundary validator and hybrid key exchange (X25519 + ML-KEM-768) with ML-DSA-65 signatures and CBOM… | Python (CLI & Library) | `pip install pqblocks-fips-check` |
 
 ### Upcoming SDK Roadmap
@@ -118,9 +118,9 @@ The following end-to-end SDKs are in active development across endpoint, governa
 | Package | What it does | Install |
 |---|---|---|
 | [`pqblocks-acvp`](acvp.md) | Cross-implementation NIST ACVP conformance harness for FIPS 203 (ML-KEM) and FIPS 204 (ML-DSA). | `pip install pqblocks-acvp` |
-| [`pqblocks-browser-pqc-verifier`](browser-pqc-verifier.md) | Post-quantum certificate and chain verifier for browsers and Node.js using ML-DSA/SLH-DSA from @noble/post-quantum. | `npm install git+https://github.com/PQBlocks/browser-pqc-verifier` |
+| [`pqblocks-browser-pqc-verifier`](browser-pqc-verifier.md) | Post-quantum certificate and chain verifier for browsers and Node.js using ML-DSA/SLH-DSA from @noble/post-quantum. | `npm install @pqblocks/browser-pqc-verifier` |
 | [`pqblocks-fips-check`](fips-check.md) | FIPS 203/204 boundary validator and hybrid key exchange (X25519 + ML-KEM-768) with ML-DSA-65 signatures and CBOM… | `pip install pqblocks-fips-check` |
-| [`pqblocks-pqc-acvp-runner`](pqc-acvp-runner.md) | NIST FIPS 203 and 204 ACVP Known Answer Test runner and Wycheproof harness in Node.js. | `npm install git+https://github.com/PQBlocks/pqc-acvp-runner` |
+| [`pqblocks-pqc-acvp-runner`](pqc-acvp-runner.md) | NIST FIPS 203 and 204 ACVP Known Answer Test runner and Wycheproof harness in Node.js. | `npm install @pqblocks/pqc-acvp-runner` |
 
 ### :material-chart-bell-curve-cumulative: Quantum-inspired
 

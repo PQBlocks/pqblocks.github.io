@@ -17,7 +17,7 @@ description: "Current version, status and install channel of every PQBlocks pack
 | [`pqblocks-anneal-schedule`](packages/anneal-schedule.md) | 0.1.0 | Stable | [PyPI](https://pypi.org/project/pqblocks-anneal-schedule/) | [CHANGELOG](https://github.com/PQBlocks/annealing-schedule/blob/main/CHANGELOG.md) |
 | [`pqblocks-anneal-sqa`](packages/anneal-sqa.md) | 0.1.0 | Stable | [PyPI](https://pypi.org/project/pqblocks-anneal-sqa/) | [CHANGELOG](https://github.com/PQBlocks/simulated-quantum-annealing/blob/main/CHANGELOG.md) |
 | [`pqblocks-bifurcation`](packages/bifurcation.md) | 0.1.0 | Stable | [PyPI](https://pypi.org/project/pqblocks-bifurcation/) | [CHANGELOG](https://github.com/PQBlocks/simulated-bifurcation/blob/main/CHANGELOG.md) |
-| [`pqblocks-browser-pqc-verifier`](packages/browser-pqc-verifier.md) | 0.1.0 | Stable | GitHub | [CHANGELOG](https://github.com/PQBlocks/browser-pqc-verifier/blob/main/CHANGELOG.md) |
+| [`pqblocks-browser-pqc-verifier`](packages/browser-pqc-verifier.md) | 0.1.0 | Stable | [npm](https://www.npmjs.com/package/@pqblocks/browser-pqc-verifier) | [CHANGELOG](https://github.com/PQBlocks/browser-pqc-verifier/blob/main/CHANGELOG.md) |
 | [`pqblocks-cbom`](packages/cbom.md) | 0.1.0 | Stable | [PyPI](https://pypi.org/project/pqblocks-cbom/) | [CHANGELOG](https://github.com/PQBlocks/cbom-enricher/blob/main/CHANGELOG.md) |
 | [`pqblocks-cnsa-evidence`](packages/cnsa-evidence.md) | 0.1.0 | Stable | [PyPI](https://pypi.org/project/pqblocks-cnsa-evidence/) | [CHANGELOG](https://github.com/PQBlocks/cnsa-evidence-pack/blob/main/CHANGELOG.md) |
 | [`pqblocks-cnsa2-cbom-auditor`](packages/cnsa2-cbom-auditor.md) | 0.1.0 | Stable | GitHub | [CHANGELOG](https://github.com/PQBlocks/cnsa2-cbom-auditor/blob/main/CHANGELOG.md) |
@@ -35,7 +35,7 @@ description: "Current version, status and install channel of every PQBlocks pack
 | [`pqblocks-lint`](packages/lint.md) | 0.1.0 | Stable | [PyPI](https://pypi.org/project/pqblocks-lint/) | [CHANGELOG](https://github.com/PQBlocks/pqc-lint/blob/main/CHANGELOG.md) |
 | [`pqblocks-policy`](packages/policy.md) | 0.1.0 | Stable | [PyPI](https://pypi.org/project/pqblocks-policy/) | [CHANGELOG](https://github.com/PQBlocks/crypto-policy-engine/blob/main/CHANGELOG.md) |
 | [`pqblocks-population-anneal`](packages/population-anneal.md) | 0.1.0 | Stable | [PyPI](https://pypi.org/project/pqblocks-population-anneal/) | [CHANGELOG](https://github.com/PQBlocks/population-annealing/blob/main/CHANGELOG.md) |
-| [`pqblocks-pqc-acvp-runner`](packages/pqc-acvp-runner.md) | 1.0.0 | Stable | GitHub | [CHANGELOG](https://github.com/PQBlocks/pqc-acvp-runner/blob/main/CHANGELOG.md) |
+| [`pqblocks-pqc-acvp-runner`](packages/pqc-acvp-runner.md) | 1.0.0 | Stable | [npm](https://www.npmjs.com/package/@pqblocks/pqc-acvp-runner) | [CHANGELOG](https://github.com/PQBlocks/pqc-acvp-runner/blob/main/CHANGELOG.md) |
 | [`pqblocks-pqc-compat-registry`](packages/pqc-compat-registry.md) | 1.0.0 | Stable | [npm](https://www.npmjs.com/package/@pqblocks/pqc-compat-registry) | [CHANGELOG](https://github.com/PQBlocks/pqc-compat-registry/blob/main/CHANGELOG.md) |
 | [`pqblocks-primitives`](packages/primitives.md) | 0.1.0 | Stable | [PyPI](https://pypi.org/project/pqblocks-primitives/) | [CHANGELOG](https://github.com/PQBlocks/fips-pqc-primitives/blob/main/CHANGELOG.md) |
 | [`pqblocks-qiea`](packages/qiea.md) | 0.1.0 | Stable | [PyPI](https://pypi.org/project/pqblocks-qiea/) | [CHANGELOG](https://github.com/PQBlocks/quantum-inspired-evolutionary/blob/main/CHANGELOG.md) |
